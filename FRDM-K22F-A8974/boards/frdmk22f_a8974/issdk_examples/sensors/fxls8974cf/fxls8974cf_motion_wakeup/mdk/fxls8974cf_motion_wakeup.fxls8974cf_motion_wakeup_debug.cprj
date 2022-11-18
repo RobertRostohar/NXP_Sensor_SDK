@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<cprj schemaVersion="1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CPRJ.xsd">
+
+  <created timestamp="2022-11-18T14:55:52" tool="uVision V5.37.0.0"/>
+
+  <info>
+    <name>fxls8974cf_motion_wakeup</name>
+    <description/>
+  </info>
+
+  <packages>
+    <package name="MK22F51212_DFP" vendor="NXP"/>
+  </packages>
+
+  <compilers>
+    <compiler name="AC6" version="6.0.0:6.99.99"/>
+  </compilers>
+
+  <target Ddsp="NO_DSP" Dendian="Little-endian" Dfpu="SP_FPU" Dmve="NO_MVE" Dname="MK22FN512VLH12" Dsecure="Non-secure" Dtz="NO_TZ" Dvendor="NXP:11">
+    <output intdir="debug/" name="fxls8974cf_motion_wakeup.out" outdir="debug/" type="exe"/>
+    <ldflags add="--library_type=microlib --diag_suppress 6314 --strict --remove --keep=*(.FlashConfig) --entry=Reset_Handler --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols --info sizes --info totals --info unused --info veneers" compiler="AC6" file="MK22FN512xxx12_flash.scf"/>
+    <cflags add="-D__MICROLIB -IC:/Arm/Packs/NXP/MK22F51212_DFP/15.0.0/Device/Include -O1 -Wno-documentation -Wno-documentation-unknown-command -Wno-license-management -Wno-missing-noreturn -Wno-missing-prototypes -Wno-missing-variable-declarations -Wno-nonportable-include-path -Wno-packed -Wno-parentheses-equality -Wno-reserved-id-macro -Wno-reserved-identifier -Wno-sign-conversion -Wno-unused-macros -fdata-sections -ffreestanding -ffunction-sections -fno-builtin -fno-common -fno-rtti -fshort-enums -fshort-wchar -funsigned-char -gdwarf-4 -mthumb -std=c99 -xc" compiler="AC6"/>
+    <asflags add="-D__MICROLIB -IC:/Arm/Packs/NXP/MK22F51212_DFP/15.0.0/Device/Include -gdwarf-4 -masm=gnu" compiler="AC6"/>
+    <includes>..;../../../../..;../../../../../../../CMSIS/Core/Include;../../../../../../../CMSIS/Driver/Include;../../../../../../../components/lists;../../../../../../../components/serial_manager;../../../../../../../components/uart;../../../../../../../devices/MK22F51212;../../../../../../../devices/MK22F51212/cmsis_drivers;../../../../../../../devices/MK22F51212/drivers;../../../../../../../devices/MK22F51212/utilities/debug_console;../../../../../../../devices/MK22F51212/utilities/str;../../../../../../../middleware/issdk/drivers/gpio;../../../../../../../middleware/issdk/drivers/gpio/kinetis;../../../../../../../middleware/issdk/drivers/systick;../../../../../../../middleware/issdk/sensors</includes>
+    <defines>CPU_MK22FN512VLH12;DEBUG;FRDM_K22F;FREEDOM;MCUXPRESSO_SDK;PRINTF_ADVANCED_ENABLE;SERIAL_PORT_TYPE_UART=1</defines>
+  </target>
+
+  <files>
+    <group name="board">
+      <file category="sourceC" name="../../../../../frdm_k22f.c"/>
+      <file category="header" name="../../../../../frdm_k22f.h"/>
+      <file category="header" name="../../../../../frdm_stbi_a8974_shield.h"/>
+      <file category="header" name="../../../../../issdk_hal.h"/>
+      <file category="header" name="../../../../../RTE_Device.h"/>
+      <file category="sourceC" name="../pin_mux.c"/>
+      <file category="header" name="../pin_mux.h"/>
+      <file category="sourceC" name="../clock_config.c"/>
+      <file category="header" name="../clock_config.h"/>
+      <file category="sourceC" name="../board.c"/>
+      <file category="header" name="../board.h"/>
+    </group>
+    <group name="source">
+      <file category="sourceC" name="../fxls8974cf_motion_wakeup.c"/>
+    </group>
+    <group name="doc">
+      <file category="doc" name="../readme.txt"/>
+    </group>
+    <group name="gpio_driver">
+      <file category="sourceC" name="../../../../../../../middleware/issdk/drivers/gpio/kinetis/gpio_driver_irq.c"/>
+      <file category="sourceC" name="../../../../../../../middleware/issdk/drivers/gpio/kinetis/gpio_driver.c"/>
+      <file category="header" name="../../../../../../../middleware/issdk/drivers/gpio/kinetis/gpio_driver.h"/>
+      <file category="header" name="../../../../../../../middleware/issdk/drivers/gpio/Driver_GPIO.h"/>
+    </group>
+    <group name="drivers">
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_port.h"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_uart.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_uart.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_gpio.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_gpio.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_i2c.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_i2c.c"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_i2c_edma.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_i2c_edma.h"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/cmsis_drivers/fsl_i2c_cmsis.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/cmsis_drivers/fsl_i2c_cmsis.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_dmamux.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_dmamux.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_edma.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_edma.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_dspi.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_dspi.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_dspi_edma.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_dspi_edma.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/cmsis_drivers/fsl_dspi_cmsis.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/cmsis_drivers/fsl_dspi_cmsis.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_smc.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_smc.c"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_lptmr.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_lptmr.h"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_uart_edma.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_uart_edma.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/cmsis_drivers/fsl_uart_cmsis.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/cmsis_drivers/fsl_uart_cmsis.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_clock.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_clock.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_adapter.h"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_utilities.h"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_features.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_controller.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_controller.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_flash.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_flash.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_cache.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_cache.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_flexnvm.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_flexnvm.h"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_flash.h"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_common.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_common.c"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_common_arm.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_common_arm.h"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/drivers/fsl_lpuart.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/drivers/fsl_lpuart.c"/>
+    </group>
+    <group name="utilities">
+      <file category="sourceC" name="../../../../../../../middleware/issdk/drivers/systick/systick_utils.c"/>
+      <file category="header" name="../../../../../../../middleware/issdk/drivers/systick/systick_utils.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/utilities/str/fsl_str.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/utilities/str/fsl_str.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/utilities/debug_console/fsl_debug_console.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/utilities/debug_console/fsl_debug_console.h"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/utilities/debug_console/fsl_debug_console_conf.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/utilities/fsl_assert.c"/>
+    </group>
+    <group name="interfaces">
+      <file category="sourceC" name="../../../../../../../middleware/issdk/sensors/register_io_i2c.c"/>
+      <file category="sourceC" name="../../../../../../../middleware/issdk/sensors/register_io_spi.c"/>
+      <file category="sourceC" name="../../../../../../../middleware/issdk/sensors/sensor_io_spi.c"/>
+      <file category="sourceC" name="../../../../../../../middleware/issdk/sensors/sensor_io_i2c.c"/>
+      <file category="header" name="../../../../../../../middleware/issdk/sensors/register_io_i2c.h"/>
+      <file category="header" name="../../../../../../../middleware/issdk/sensors/register_io_spi.h"/>
+      <file category="header" name="../../../../../../../middleware/issdk/sensors/sensor_io_spi.h"/>
+      <file category="header" name="../../../../../../../middleware/issdk/sensors/sensor_io_i2c.h"/>
+      <file category="header" name="../../../../../../../middleware/issdk/sensors/sensor_drv.h"/>
+    </group>
+    <group name="sensors">
+      <file category="header" name="../../../../../../../middleware/issdk/sensors/fxls8974.h"/>
+      <file category="header" name="../../../../../../../middleware/issdk/sensors/fxls8974_drv.h"/>
+      <file category="sourceC" name="../../../../../../../middleware/issdk/sensors/fxls8974_drv.c"/>
+    </group>
+    <group name="device">
+      <file category="header" name="../../../../../../../devices/MK22F51212/fsl_device_registers.h"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/MK22F51212.h"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/MK22F51212_features.h"/>
+      <file category="sourceC" name="../../../../../../../devices/MK22F51212/system_MK22F51212.c"/>
+      <file category="header" name="../../../../../../../devices/MK22F51212/system_MK22F51212.h"/>
+    </group>
+    <group name="startup">
+      <file category="sourceAsm" name="../../../../../../../devices/MK22F51212/arm/startup_MK22F51212.S"/>
+    </group>
+    <group name="component/uart">
+      <file category="header" name="../../../../../../../components/uart/fsl_adapter_uart.h"/>
+      <file category="sourceC" name="../../../../../../../components/uart/fsl_adapter_uart.c"/>
+    </group>
+    <group name="component/serial_manager">
+      <file category="header" name="../../../../../../../components/serial_manager/fsl_component_serial_manager.h"/>
+      <file category="header" name="../../../../../../../components/serial_manager/fsl_component_serial_port_internal.h"/>
+      <file category="sourceC" name="../../../../../../../components/serial_manager/fsl_component_serial_manager.c"/>
+      <file category="header" name="../../../../../../../components/serial_manager/fsl_component_serial_port_uart.h"/>
+      <file category="sourceC" name="../../../../../../../components/serial_manager/fsl_component_serial_port_uart.c"/>
+    </group>
+    <group name="component/lists">
+      <file category="header" name="../../../../../../../components/lists/fsl_component_generic_list.h"/>
+      <file category="sourceC" name="../../../../../../../components/lists/fsl_component_generic_list.c"/>
+    </group>
+    <group name="cmsis_driver">
+      <file category="header" name="../../../../../../../CMSIS/Driver/Include/Driver_SPI.h"/>
+      <file category="header" name="../../../../../../../CMSIS/Driver/Include/Driver_I2C.h"/>
+      <file category="header" name="../../../../../../../CMSIS/Driver/Include/Driver_Common.h"/>
+      <file category="header" name="../../../../../../../CMSIS/Driver/Include/Driver_USART.h"/>
+    </group>
+    <group name="CMSIS">
+      <file category="header" name="../../../../../../../CMSIS/Core/Include/cmsis_armcc.h"/>
+      <file category="header" name="../../../../../../../CMSIS/Core/Include/cmsis_armclang.h"/>
+      <file category="header" name="../../../../../../../CMSIS/Core/Include/cmsis_armclang_ltm.h"/>
+      <file category="header" name="../../../../../../../CMSIS/Core/Include/cmsis_compiler.h"/>
+      <file category="header" name="../../../../../../../CMSIS/Core/Include/cmsis_gcc.h"/>
+      <file category="header" name="../../../../../../../CMSIS/Core/Include/cmsis_iccarm.h"/>
+      <file category="header" name="../../../../../../../CMSIS/Core/Include/cmsis_version.h"/>
+      <file category="header" name="../../../../../../../CMSIS/Core/Include/core_cm4.h"/>
+      <file category="header" name="../../../../../../../CMSIS/Core/Include/mpu_armv7.h"/>
+    </group>
+    <group name="CMSIS_driver">
+      <file category="header" name="../../../../../../../CMSIS/Driver/Include/Driver_I2C.h"/>
+      <file category="header" name="../../../../../../../CMSIS/Driver/Include/Driver_Common.h"/>
+      <file category="header" name="../../../../../../../CMSIS/Driver/Include/Driver_SPI.h"/>
+      <file category="header" name="../../../../../../../CMSIS/Driver/Include/Driver_USART.h"/>
+    </group>
+  </files>
+
+</cprj>
