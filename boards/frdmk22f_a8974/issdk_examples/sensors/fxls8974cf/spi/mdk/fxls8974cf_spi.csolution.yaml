@@ -1,0 +1,57 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/schemas/projmgr/1.3.0/tools/projmgr/schemas/csolution.schema.json
+
+solution:
+
+  packs:
+    - pack: NXP::MK22F51212_DFP@15.0.0
+    - pack: ARM::CMSIS@5.9.0
+
+  target-types:
+    - type: frdmk22f
+      device: NXP::MK22FN512VLH12
+      define:
+        - CPU_MK22FN512VLH12
+        - FRDM_K22F
+        - FREEDOM
+
+  build-types:
+    - type: debug
+      compiler: AC6
+      define:
+        - DEBUG
+      optimize: none
+      debug: on
+      misc:
+        - C-CPP:
+            - -fno-builtin
+            - -fno-rtti
+            - -fshort-enums
+            - -fshort-wchar
+          C:
+            - -std=c99
+          Link:
+            - --remove --keep=*(.FlashConfig) --entry=Reset_Handler
+            - --strict
+            - --diag_suppress 6314 --summary_stderr --info summarysizes
+
+    - type: release
+      compiler: AC6
+      define:
+        - NDEBUG
+      optimize: size
+      debug: off
+      misc:
+        - C-CPP:
+            - -fno-builtin
+            - -fno-rtti
+            - -fshort-enums
+            - -fshort-wchar
+          C:
+            - -std=c99
+          Link:
+            - --remove --keep=*(.FlashConfig) --entry=Reset_Handler
+            - --strict
+            - --diag_suppress 6314 --summary_stderr --info summarysizes
+
+  projects:
+    - project: fxls8974cf_spi.cproject.yaml
