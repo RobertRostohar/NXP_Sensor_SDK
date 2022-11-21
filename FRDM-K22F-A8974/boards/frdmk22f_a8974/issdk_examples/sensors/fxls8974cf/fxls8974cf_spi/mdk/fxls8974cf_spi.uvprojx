@@ -1,40 +1,46 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="project_projx.xsd">
+
   <SchemaVersion>2.1</SchemaVersion>
+
   <Header>### uVision Project, (C) Keil Software</Header>
+
   <Targets>
     <Target>
       <TargetName>fxls8974cf_spi debug</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>6180000::V6.18::ARMCLANG</pCCUsed>
+      <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>MK22FN512VLH12</Device>
           <Vendor>NXP</Vendor>
-          <PackID>Keil.Kinetis_K20_DFP.1.1.0</PackID>
-          <PackURL>http://www.keil.com/pack/</PackURL>
+          <PackID>NXP.MK22F51212_DFP.15.0.0</PackID>
+          <PackURL>https://mcuxpresso.nxp.com/cmsis_pack/repo/</PackURL>
           <Cpu>CPUTYPE("Cortex-M4") FPU2</Cpu>
-          <FlashUtilSpec/>
-          <StartupFile/>
+          <FlashUtilSpec></FlashUtilSpec>
+          <StartupFile></StartupFile>
+          <FlashDriverDll></FlashDriverDll>
           <DeviceId>0</DeviceId>
           <RegisterFile>$$Device:MK22FN512xxx12$Device\Include\MK22F51212.h</RegisterFile>
-          <MemoryEnv/>
-          <Cmp/>
-          <Asm/>
-          <Linker/>
-          <OHString/>
-          <InfinionOptionDll/>
-          <SLE66CMisc/>
-          <SLE66AMisc/>
-          <SLE66LinkerMisc/>
+          <MemoryEnv></MemoryEnv>
+          <Cmp></Cmp>
+          <Asm></Asm>
+          <Linker></Linker>
+          <OHString></OHString>
+          <InfinionOptionDll></InfinionOptionDll>
+          <SLE66CMisc></SLE66CMisc>
+          <SLE66AMisc></SLE66AMisc>
+          <SLE66LinkerMisc></SLE66LinkerMisc>
           <SFDFile>$$Device:MK22FN512xxx12$SVD\MK22F51212.svd</SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
-          <BinPath/>
-          <IncludePath/>
-          <LibPath/>
-          <RegisterFilePath/>
-          <DBRegisterFilePath/>
+          <BinPath></BinPath>
+          <IncludePath></IncludePath>
+          <LibPath></LibPath>
+          <RegisterFilePath></RegisterFilePath>
+          <DBRegisterFilePath></DBRegisterFilePath>
           <TargetStatus>
             <Error>0</Error>
             <ExitCodeStop>0</ExitCodeStop>
@@ -56,8 +62,8 @@
           <BeforeCompile>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name/>
-            <UserProg2Name/>
+            <UserProg1Name></UserProg1Name>
+            <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopU1X>0</nStopU1X>
@@ -66,8 +72,8 @@
           <BeforeMake>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name/>
-            <UserProg2Name/>
+            <UserProg1Name></UserProg1Name>
+            <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopB1X>0</nStopB1X>
@@ -77,12 +83,14 @@
             <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
             <UserProg1Name>fromelf.exe --output "$L@L.bin" --bincombined "#L"</UserProg1Name>
-            <UserProg2Name/>
+            <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
+            <nStopA1X>0</nStopA1X>
+            <nStopA2X>0</nStopA2X>
           </AfterMake>
           <SelectedForBatchBuild>1</SelectedForBatchBuild>
-          <SVCSIdString/>
+          <SVCSIdString></SVCSIdString>
         </TargetCommonOption>
         <CommonProperty>
           <UseCPPCompiler>0</UseCPPCompiler>
@@ -96,8 +104,8 @@
           <AssembleAssemblyFile>0</AssembleAssemblyFile>
           <PublicsOnly>0</PublicsOnly>
           <StopOnExitCode>3</StopOnExitCode>
-          <CustomArgument/>
-          <IncludeLibraryModules/>
+          <CustomArgument></CustomArgument>
+          <IncludeLibraryModules></IncludeLibraryModules>
           <ComprImg>1</ComprImg>
         </CommonProperty>
         <DllOption>
@@ -106,7 +114,7 @@
           <SimDlgDll>DCM.DLL</SimDlgDll>
           <SimDlgDllArguments>-pCM4</SimDlgDllArguments>
           <TargetDllName>SARMCM3.DLL</TargetDllName>
-          <TargetDllArguments/>
+          <TargetDllArguments></TargetDllArguments>
           <TargetDlgDll>TCM.DLL</TargetDlgDll>
           <TargetDlgDllArguments>-pCM4</TargetDlgDllArguments>
         </DllOption>
@@ -118,48 +126,6 @@
             <HexOffset>0</HexOffset>
             <Oh166RecLen>16</Oh166RecLen>
           </OPTHX>
-          <Simulator>
-            <UseSimulator>0</UseSimulator>
-            <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
-            <RunToMain>1</RunToMain>
-            <RestoreBreakpoints>1</RestoreBreakpoints>
-            <RestoreWatchpoints>1</RestoreWatchpoints>
-            <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
-            <RestoreFunctions>1</RestoreFunctions>
-            <RestoreToolbox>1</RestoreToolbox>
-            <LimitSpeedToRealTime>0</LimitSpeedToRealTime>
-            <RestoreSysVw>1</RestoreSysVw>
-          </Simulator>
-          <Target>
-            <UseTarget>1</UseTarget>
-            <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
-            <RunToMain>1</RunToMain>
-            <RestoreBreakpoints>1</RestoreBreakpoints>
-            <RestoreWatchpoints>1</RestoreWatchpoints>
-            <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
-            <RestoreFunctions>0</RestoreFunctions>
-            <RestoreToolbox>1</RestoreToolbox>
-            <RestoreTracepoints>1</RestoreTracepoints>
-            <RestoreSysVw>1</RestoreSysVw>
-            <UsePdscDebugDescription>1</UsePdscDebugDescription>
-          </Target>
-          <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>12</TargetSelection>
-          <SimDlls>
-            <CpuDll/>
-            <CpuDllArguments/>
-            <PeripheralDll/>
-            <PeripheralDllArguments/>
-            <InitializationFile/>
-          </SimDlls>
-          <TargetDlls>
-            <CpuDll/>
-            <CpuDllArguments/>
-            <PeripheralDll/>
-            <PeripheralDllArguments/>
-            <InitializationFile/>
-            <Driver>BIN\CMSIS_AGDI.dll</Driver>
-          </TargetDlls>
         </DebugOption>
         <Utilities>
           <Flash1>
@@ -172,11 +138,11 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3/>
-          <Flash4/>
-          <pFcarmOut/>
-          <pFcarmGrp/>
-          <pFcArmRoot/>
+          <Flash3></Flash3>
+          <Flash4></Flash4>
+          <pFcarmOut></pFcarmOut>
+          <pFcarmGrp></pFcarmGrp>
+          <pFcArmRoot></pFcArmRoot>
           <FcArmLst>0</FcArmLst>
         </Utilities>
         <TargetArmAds>
@@ -209,21 +175,25 @@
             <RvctClst>0</RvctClst>
             <GenPPlst>0</GenPPlst>
             <AdsCpuType>"Cortex-M4"</AdsCpuType>
-            <RvctDeviceName/>
+            <RvctDeviceName></RvctDeviceName>
             <mOS>0</mOS>
             <uocRom>0</uocRom>
             <uocRam>0</uocRam>
-            <hadIROM>1</hadIROM>
-            <hadIRAM>1</hadIRAM>
+            <hadIROM>0</hadIROM>
+            <hadIRAM>0</hadIRAM>
             <hadXRAM>0</hadXRAM>
             <uocXRam>0</uocXRam>
             <RvdsVP>2</RvdsVP>
-            <hadIRAM2>1</hadIRAM2>
+            <RvdsMve>0</RvdsMve>
+            <RvdsCdeCp>0</RvdsCdeCp>
+            <nBranchProt>0</nBranchProt>
+            <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
             <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
+            <nSecure>0</nSecure>
             <RoSelD>3</RoSelD>
             <RwSelD>3</RwSelD>
             <CodeSel>0</CodeSel>
@@ -340,8 +310,7 @@
                 <Size>0x10000</Size>
               </OCR_RVCT10>
             </OnChipMemories>
-            <RvctStartVector/>
-            <nSecure>0</nSecure>
+            <RvctStartVector></RvctStartVector>
           </ArmAdsMisc>
           <Cads>
             <interw>0</interw>
@@ -358,18 +327,21 @@
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>0</uC99>
+            <uGnu>0</uGnu>
             <useXO>0</useXO>
             <v6Lang>3</v6Lang>
             <v6LangP>3</v6LangP>
+            <vShortEn>1</vShortEn>
+            <vShortWch>1</vShortWch>
+            <v6Lto>0</v6Lto>
+            <v6WtE>0</v6WtE>
+            <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>-fno-common  -fdata-sections  -ffreestanding  -fno-builtin  -mthumb</MiscControls>
               <Define>DEBUG, CPU_MK22FN512VLH12, FRDM_K22F, FREEDOM, PRINTF_ADVANCED_ENABLE, SERIAL_PORT_TYPE_UART=1, MCUXPRESSO_SDK</Define>
-              <Undefine/>
-              <IncludePath>../../../../..;..;../../../../../../../middleware/issdk/drivers/gpio/kinetis;../../../../../../../middleware/issdk/drivers/gpio;../../../../../../../devices/MK22F51212/drivers;../../../../../../../devices/MK22F51212/cmsis_drivers;../../../../../../../middleware/issdk/drivers/systick;../../../../../../../middleware/issdk/sensors;../../../../../../../devices/MK22F51212;../../../../../../../devices/MK22F51212/utilities/str;../../../../../../../devices/MK22F51212/utilities/debug_console;../../../../../../../components/uart;../../../../../../../components/serial_manager;../../../../../../../components/lists;../../../../../../../CMSIS/Driver/Include;../../../../../../../CMSIS/Core/Include</IncludePath>
+              <Undefine></Undefine>
+              <IncludePath>../../../../..;..;../../../../../../../middleware/issdk/drivers/gpio/kinetis;../../../../../../../middleware/issdk/drivers/gpio;../../../../../../../middleware/issdk/drivers/systick;../../../../../../../middleware/issdk/sensors</IncludePath>
             </VariousControls>
-            <vShortEn>1</vShortEn>
-            <vShortWch>1</vShortWch>
-            <v6Rtti>0</v6Rtti>
           </Cads>
           <Aads>
             <interw>0</interw>
@@ -381,13 +353,13 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
+            <ClangAsOpt>2</ClangAsOpt>
             <VariousControls>
-              <MiscControls/>
+              <MiscControls></MiscControls>
               <Define>DEBUG</Define>
-              <Undefine/>
-              <IncludePath/>
+              <Undefine></Undefine>
+              <IncludePath></IncludePath>
             </VariousControls>
-            <uClangAs>1</uClangAs>
           </Aads>
           <LDads>
             <umfTarg>0</umfTarg>
@@ -398,17 +370,16 @@
             <useFile>0</useFile>
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x20000000</DataAddressRange>
-            <pXoBase/>
-            <ScatterFile>MK22FN512xxx12_flash.scf</ScatterFile>
-            <IncludeLibs/>
-            <IncludeLibsPath/>
+            <pXoBase></pXoBase>
+            <ScatterFile>.\RTE\Device\MK22FN512VLH12\MK22FN512xxx12_flash.scf</ScatterFile>
+            <IncludeLibs></IncludeLibs>
+            <IncludeLibsPath></IncludeLibsPath>
             <Misc>--remove --keep=*(.FlashConfig) --entry=Reset_Handler</Misc>
-            <LinkerInputFile/>
+            <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings>6314</DisabledWarnings>
           </LDads>
         </TargetArmAds>
       </TargetOption>
-      <uAC6>1</uAC6>
       <Groups>
         <Group>
           <GroupName>board</GroupName>
@@ -488,11 +459,6 @@
               <FileType>5</FileType>
               <FilePath>../readme.txt</FilePath>
             </File>
-            <File>
-              <FileName>readme.txt</FileName>
-              <FileType>5</FileType>
-              <FilePath>../readme.txt</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -521,256 +487,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>drivers</GroupName>
-          <Files>
-            <File>
-              <FileName>fsl_port.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_port.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_uart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_uart.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_gpio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_gpio.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_gpio.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_i2c.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_i2c.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_i2c_edma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_i2c_edma.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_i2c_edma.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_i2c_edma.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_i2c_cmsis.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/cmsis_drivers/fsl_i2c_cmsis.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_i2c_cmsis.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/cmsis_drivers/fsl_i2c_cmsis.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_dmamux.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_dmamux.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_dmamux.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_dmamux.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_edma.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_edma.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_edma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_edma.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_dspi.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_dspi.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_dspi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_dspi.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_dspi_edma.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_dspi_edma.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_dspi_edma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_dspi_edma.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_dspi_cmsis.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/cmsis_drivers/fsl_dspi_cmsis.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_dspi_cmsis.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/cmsis_drivers/fsl_dspi_cmsis.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_smc.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_smc.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_smc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_smc.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_lptmr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_lptmr.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_lptmr.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_lptmr.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_uart_edma.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_uart_edma.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_uart_edma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_uart_edma.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_uart_cmsis.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/cmsis_drivers/fsl_uart_cmsis.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_uart_cmsis.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/cmsis_drivers/fsl_uart_cmsis.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_clock.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_clock.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_clock.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_clock.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_adapter.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_adapter.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_utilities.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_utilities.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_features.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_features.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_controller.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_controller.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_controller.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_controller.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_flash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_flash.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_flash.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_flash.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_cache.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_cache.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_cache.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_cache.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_flexnvm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_flexnvm.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_flexnvm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_flexnvm.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_flash.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_flash.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_common.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_common.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_common.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_common.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_common_arm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_common_arm.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_common_arm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_common_arm.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_lpuart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_lpuart.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_lpuart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_lpuart.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>utilities</GroupName>
           <Files>
             <File>
@@ -782,36 +498,6 @@
               <FileName>systick_utils.h</FileName>
               <FileType>5</FileType>
               <FilePath>../../../../../../../middleware/issdk/drivers/systick/systick_utils.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_str.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/utilities/str/fsl_str.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_str.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/utilities/str/fsl_str.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_debug_console.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/utilities/debug_console/fsl_debug_console.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_debug_console.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/utilities/debug_console/fsl_debug_console.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_debug_console_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/utilities/debug_console/fsl_debug_console_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_assert.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/utilities/fsl_assert.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -886,204 +572,13 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>device</GroupName>
-          <Files>
-            <File>
-              <FileName>fsl_device_registers.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/fsl_device_registers.h</FilePath>
-            </File>
-            <File>
-              <FileName>MK22F51212.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/MK22F51212.h</FilePath>
-            </File>
-            <File>
-              <FileName>MK22F51212_features.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/MK22F51212_features.h</FilePath>
-            </File>
-            <File>
-              <FileName>system_MK22F51212.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/system_MK22F51212.c</FilePath>
-            </File>
-            <File>
-              <FileName>system_MK22F51212.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/system_MK22F51212.h</FilePath>
-            </File>
-          </Files>
+          <GroupName>::CMSIS</GroupName>
         </Group>
         <Group>
-          <GroupName>startup</GroupName>
-          <Files>
-            <File>
-              <FileName>startup_MK22F51212.S</FileName>
-              <FileType>2</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/arm/startup_MK22F51212.S</FilePath>
-            </File>
-          </Files>
+          <GroupName>::CMSIS Driver</GroupName>
         </Group>
         <Group>
-          <GroupName>component/uart</GroupName>
-          <Files>
-            <File>
-              <FileName>fsl_adapter_uart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../components/uart/fsl_adapter_uart.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_adapter_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../components/uart/fsl_adapter_uart.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>component/serial_manager</GroupName>
-          <Files>
-            <File>
-              <FileName>fsl_component_serial_manager.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../components/serial_manager/fsl_component_serial_manager.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_component_serial_port_internal.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../components/serial_manager/fsl_component_serial_port_internal.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_component_serial_manager.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../components/serial_manager/fsl_component_serial_manager.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_component_serial_port_uart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../components/serial_manager/fsl_component_serial_port_uart.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_component_serial_port_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../components/serial_manager/fsl_component_serial_port_uart.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>component/lists</GroupName>
-          <Files>
-            <File>
-              <FileName>fsl_component_generic_list.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../components/lists/fsl_component_generic_list.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_component_generic_list.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../components/lists/fsl_component_generic_list.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>cmsis_driver</GroupName>
-          <Files>
-            <File>
-              <FileName>Driver_SPI.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Driver/Include/Driver_SPI.h</FilePath>
-            </File>
-            <File>
-              <FileName>Driver_I2C.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Driver/Include/Driver_I2C.h</FilePath>
-            </File>
-            <File>
-              <FileName>Driver_Common.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Driver/Include/Driver_Common.h</FilePath>
-            </File>
-            <File>
-              <FileName>Driver_USART.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Driver/Include/Driver_USART.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>CMSIS</GroupName>
-          <Files>
-            <File>
-              <FileName>cmsis_armcc.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Core/Include/cmsis_armcc.h</FilePath>
-            </File>
-            <File>
-              <FileName>cmsis_armclang.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Core/Include/cmsis_armclang.h</FilePath>
-            </File>
-            <File>
-              <FileName>cmsis_armclang_ltm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Core/Include/cmsis_armclang_ltm.h</FilePath>
-            </File>
-            <File>
-              <FileName>cmsis_compiler.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Core/Include/cmsis_compiler.h</FilePath>
-            </File>
-            <File>
-              <FileName>cmsis_gcc.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Core/Include/cmsis_gcc.h</FilePath>
-            </File>
-            <File>
-              <FileName>cmsis_iccarm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Core/Include/cmsis_iccarm.h</FilePath>
-            </File>
-            <File>
-              <FileName>cmsis_version.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Core/Include/cmsis_version.h</FilePath>
-            </File>
-            <File>
-              <FileName>core_cm4.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Core/Include/core_cm4.h</FilePath>
-            </File>
-            <File>
-              <FileName>mpu_armv7.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Core/Include/mpu_armv7.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>CMSIS_driver</GroupName>
-          <Files>
-            <File>
-              <FileName>Driver_I2C.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Driver/Include/Driver_I2C.h</FilePath>
-            </File>
-            <File>
-              <FileName>Driver_Common.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Driver/Include/Driver_Common.h</FilePath>
-            </File>
-            <File>
-              <FileName>Driver_SPI.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Driver/Include/Driver_SPI.h</FilePath>
-            </File>
-            <File>
-              <FileName>Driver_USART.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Driver/Include/Driver_USART.h</FilePath>
-            </File>
-          </Files>
+          <GroupName>::Device</GroupName>
         </Group>
       </Groups>
     </Target>
@@ -1091,34 +586,37 @@
       <TargetName>fxls8974cf_spi release</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>6180000::V6.18::ARMCLANG</pCCUsed>
+      <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>MK22FN512VLH12</Device>
           <Vendor>NXP</Vendor>
-          <PackID>Keil.Kinetis_K20_DFP.1.1.0</PackID>
-          <PackURL>http://www.keil.com/pack/</PackURL>
+          <PackID>NXP.MK22F51212_DFP.15.0.0</PackID>
+          <PackURL>https://mcuxpresso.nxp.com/cmsis_pack/repo/</PackURL>
           <Cpu>CPUTYPE("Cortex-M4") FPU2</Cpu>
-          <FlashUtilSpec/>
-          <StartupFile/>
+          <FlashUtilSpec></FlashUtilSpec>
+          <StartupFile></StartupFile>
+          <FlashDriverDll></FlashDriverDll>
           <DeviceId>0</DeviceId>
           <RegisterFile>$$Device:MK22FN512xxx12$Device\Include\MK22F51212.h</RegisterFile>
-          <MemoryEnv/>
-          <Cmp/>
-          <Asm/>
-          <Linker/>
-          <OHString/>
-          <InfinionOptionDll/>
-          <SLE66CMisc/>
-          <SLE66AMisc/>
-          <SLE66LinkerMisc/>
+          <MemoryEnv></MemoryEnv>
+          <Cmp></Cmp>
+          <Asm></Asm>
+          <Linker></Linker>
+          <OHString></OHString>
+          <InfinionOptionDll></InfinionOptionDll>
+          <SLE66CMisc></SLE66CMisc>
+          <SLE66AMisc></SLE66AMisc>
+          <SLE66LinkerMisc></SLE66LinkerMisc>
           <SFDFile>$$Device:MK22FN512xxx12$SVD\MK22F51212.svd</SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
-          <BinPath/>
-          <IncludePath/>
-          <LibPath/>
-          <RegisterFilePath/>
-          <DBRegisterFilePath/>
+          <BinPath></BinPath>
+          <IncludePath></IncludePath>
+          <LibPath></LibPath>
+          <RegisterFilePath></RegisterFilePath>
+          <DBRegisterFilePath></DBRegisterFilePath>
           <TargetStatus>
             <Error>0</Error>
             <ExitCodeStop>0</ExitCodeStop>
@@ -1140,8 +638,8 @@
           <BeforeCompile>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name/>
-            <UserProg2Name/>
+            <UserProg1Name></UserProg1Name>
+            <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopU1X>0</nStopU1X>
@@ -1150,8 +648,8 @@
           <BeforeMake>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name/>
-            <UserProg2Name/>
+            <UserProg1Name></UserProg1Name>
+            <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopB1X>0</nStopB1X>
@@ -1161,12 +659,14 @@
             <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
             <UserProg1Name>fromelf.exe --output "$L@L.bin" --bincombined "#L"</UserProg1Name>
-            <UserProg2Name/>
+            <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
+            <nStopA1X>0</nStopA1X>
+            <nStopA2X>0</nStopA2X>
           </AfterMake>
           <SelectedForBatchBuild>1</SelectedForBatchBuild>
-          <SVCSIdString/>
+          <SVCSIdString></SVCSIdString>
         </TargetCommonOption>
         <CommonProperty>
           <UseCPPCompiler>0</UseCPPCompiler>
@@ -1180,8 +680,8 @@
           <AssembleAssemblyFile>0</AssembleAssemblyFile>
           <PublicsOnly>0</PublicsOnly>
           <StopOnExitCode>3</StopOnExitCode>
-          <CustomArgument/>
-          <IncludeLibraryModules/>
+          <CustomArgument></CustomArgument>
+          <IncludeLibraryModules></IncludeLibraryModules>
           <ComprImg>1</ComprImg>
         </CommonProperty>
         <DllOption>
@@ -1190,7 +690,7 @@
           <SimDlgDll>DCM.DLL</SimDlgDll>
           <SimDlgDllArguments>-pCM4</SimDlgDllArguments>
           <TargetDllName>SARMCM3.DLL</TargetDllName>
-          <TargetDllArguments/>
+          <TargetDllArguments></TargetDllArguments>
           <TargetDlgDll>TCM.DLL</TargetDlgDll>
           <TargetDlgDllArguments>-pCM4</TargetDlgDllArguments>
         </DllOption>
@@ -1202,48 +702,6 @@
             <HexOffset>0</HexOffset>
             <Oh166RecLen>16</Oh166RecLen>
           </OPTHX>
-          <Simulator>
-            <UseSimulator>0</UseSimulator>
-            <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
-            <RunToMain>1</RunToMain>
-            <RestoreBreakpoints>1</RestoreBreakpoints>
-            <RestoreWatchpoints>1</RestoreWatchpoints>
-            <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
-            <RestoreFunctions>1</RestoreFunctions>
-            <RestoreToolbox>1</RestoreToolbox>
-            <LimitSpeedToRealTime>0</LimitSpeedToRealTime>
-            <RestoreSysVw>1</RestoreSysVw>
-          </Simulator>
-          <Target>
-            <UseTarget>1</UseTarget>
-            <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
-            <RunToMain>1</RunToMain>
-            <RestoreBreakpoints>1</RestoreBreakpoints>
-            <RestoreWatchpoints>1</RestoreWatchpoints>
-            <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
-            <RestoreFunctions>0</RestoreFunctions>
-            <RestoreToolbox>1</RestoreToolbox>
-            <RestoreTracepoints>1</RestoreTracepoints>
-            <RestoreSysVw>1</RestoreSysVw>
-            <UsePdscDebugDescription>1</UsePdscDebugDescription>
-          </Target>
-          <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>12</TargetSelection>
-          <SimDlls>
-            <CpuDll/>
-            <CpuDllArguments/>
-            <PeripheralDll/>
-            <PeripheralDllArguments/>
-            <InitializationFile/>
-          </SimDlls>
-          <TargetDlls>
-            <CpuDll/>
-            <CpuDllArguments/>
-            <PeripheralDll/>
-            <PeripheralDllArguments/>
-            <InitializationFile/>
-            <Driver>BIN\CMSIS_AGDI.dll</Driver>
-          </TargetDlls>
         </DebugOption>
         <Utilities>
           <Flash1>
@@ -1251,16 +709,16 @@
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
-            <Capability>0</Capability>
+            <Capability>1</Capability>
             <DriverSelection>-1</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3/>
-          <Flash4/>
-          <pFcarmOut/>
-          <pFcarmGrp/>
-          <pFcArmRoot/>
+          <Flash3></Flash3>
+          <Flash4></Flash4>
+          <pFcarmOut></pFcarmOut>
+          <pFcarmGrp></pFcarmGrp>
+          <pFcArmRoot></pFcArmRoot>
           <FcArmLst>0</FcArmLst>
         </Utilities>
         <TargetArmAds>
@@ -1293,21 +751,25 @@
             <RvctClst>0</RvctClst>
             <GenPPlst>0</GenPPlst>
             <AdsCpuType>"Cortex-M4"</AdsCpuType>
-            <RvctDeviceName/>
+            <RvctDeviceName></RvctDeviceName>
             <mOS>0</mOS>
             <uocRom>0</uocRom>
             <uocRam>0</uocRam>
-            <hadIROM>1</hadIROM>
-            <hadIRAM>1</hadIRAM>
+            <hadIROM>0</hadIROM>
+            <hadIRAM>0</hadIRAM>
             <hadXRAM>0</hadXRAM>
             <uocXRam>0</uocXRam>
             <RvdsVP>2</RvdsVP>
-            <hadIRAM2>1</hadIRAM2>
+            <RvdsMve>0</RvdsMve>
+            <RvdsCdeCp>0</RvdsCdeCp>
+            <nBranchProt>0</nBranchProt>
+            <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
             <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
+            <nSecure>0</nSecure>
             <RoSelD>3</RoSelD>
             <RwSelD>3</RwSelD>
             <CodeSel>0</CodeSel>
@@ -1424,8 +886,7 @@
                 <Size>0x10000</Size>
               </OCR_RVCT10>
             </OnChipMemories>
-            <RvctStartVector/>
-            <nSecure>0</nSecure>
+            <RvctStartVector></RvctStartVector>
           </ArmAdsMisc>
           <Cads>
             <interw>0</interw>
@@ -1442,18 +903,21 @@
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>0</uC99>
+            <uGnu>0</uGnu>
             <useXO>0</useXO>
             <v6Lang>3</v6Lang>
             <v6LangP>3</v6LangP>
+            <vShortEn>1</vShortEn>
+            <vShortWch>1</vShortWch>
+            <v6Lto>0</v6Lto>
+            <v6WtE>0</v6WtE>
+            <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>-fno-common  -fdata-sections  -ffreestanding  -fno-builtin  -mthumb</MiscControls>
               <Define>NDEBUG, CPU_MK22FN512VLH12, FRDM_K22F, FREEDOM, PRINTF_ADVANCED_ENABLE, SERIAL_PORT_TYPE_UART=1, MCUXPRESSO_SDK</Define>
-              <Undefine/>
-              <IncludePath>../../../../..;..;../../../../../../../middleware/issdk/drivers/gpio/kinetis;../../../../../../../middleware/issdk/drivers/gpio;../../../../../../../devices/MK22F51212/drivers;../../../../../../../devices/MK22F51212/cmsis_drivers;../../../../../../../middleware/issdk/drivers/systick;../../../../../../../middleware/issdk/sensors;../../../../../../../devices/MK22F51212;../../../../../../../devices/MK22F51212/utilities/str;../../../../../../../devices/MK22F51212/utilities/debug_console;../../../../../../../components/uart;../../../../../../../components/serial_manager;../../../../../../../components/lists;../../../../../../../CMSIS/Driver/Include;../../../../../../../CMSIS/Core/Include</IncludePath>
+              <Undefine></Undefine>
+              <IncludePath>../../../../..;..;../../../../../../../middleware/issdk/drivers/gpio/kinetis;../../../../../../../middleware/issdk/drivers/gpio;../../../../../../../middleware/issdk/drivers/systick;../../../../../../../middleware/issdk/sensors</IncludePath>
             </VariousControls>
-            <vShortEn>1</vShortEn>
-            <vShortWch>1</vShortWch>
-            <v6Rtti>0</v6Rtti>
           </Cads>
           <Aads>
             <interw>0</interw>
@@ -1465,13 +929,13 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
+            <ClangAsOpt>2</ClangAsOpt>
             <VariousControls>
-              <MiscControls/>
+              <MiscControls></MiscControls>
               <Define>NDEBUG</Define>
-              <Undefine/>
-              <IncludePath/>
+              <Undefine></Undefine>
+              <IncludePath></IncludePath>
             </VariousControls>
-            <uClangAs>1</uClangAs>
           </Aads>
           <LDads>
             <umfTarg>0</umfTarg>
@@ -1482,17 +946,16 @@
             <useFile>0</useFile>
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x20000000</DataAddressRange>
-            <pXoBase/>
-            <ScatterFile>MK22FN512xxx12_flash.scf</ScatterFile>
-            <IncludeLibs/>
-            <IncludeLibsPath/>
+            <pXoBase></pXoBase>
+            <ScatterFile>.\RTE\Device\MK22FN512VLH12\MK22FN512xxx12_flash.scf</ScatterFile>
+            <IncludeLibs></IncludeLibs>
+            <IncludeLibsPath></IncludeLibsPath>
             <Misc>--remove --keep=*(.FlashConfig) --entry=Reset_Handler</Misc>
-            <LinkerInputFile/>
+            <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings>6314</DisabledWarnings>
           </LDads>
         </TargetArmAds>
       </TargetOption>
-      <uAC6>1</uAC6>
       <Groups>
         <Group>
           <GroupName>board</GroupName>
@@ -1572,11 +1035,6 @@
               <FileType>5</FileType>
               <FilePath>../readme.txt</FilePath>
             </File>
-            <File>
-              <FileName>readme.txt</FileName>
-              <FileType>5</FileType>
-              <FilePath>../readme.txt</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -1605,256 +1063,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>drivers</GroupName>
-          <Files>
-            <File>
-              <FileName>fsl_port.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_port.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_uart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_uart.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_gpio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_gpio.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_gpio.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_i2c.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_i2c.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_i2c_edma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_i2c_edma.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_i2c_edma.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_i2c_edma.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_i2c_cmsis.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/cmsis_drivers/fsl_i2c_cmsis.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_i2c_cmsis.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/cmsis_drivers/fsl_i2c_cmsis.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_dmamux.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_dmamux.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_dmamux.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_dmamux.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_edma.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_edma.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_edma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_edma.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_dspi.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_dspi.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_dspi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_dspi.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_dspi_edma.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_dspi_edma.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_dspi_edma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_dspi_edma.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_dspi_cmsis.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/cmsis_drivers/fsl_dspi_cmsis.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_dspi_cmsis.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/cmsis_drivers/fsl_dspi_cmsis.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_smc.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_smc.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_smc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_smc.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_lptmr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_lptmr.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_lptmr.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_lptmr.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_uart_edma.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_uart_edma.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_uart_edma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_uart_edma.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_uart_cmsis.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/cmsis_drivers/fsl_uart_cmsis.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_uart_cmsis.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/cmsis_drivers/fsl_uart_cmsis.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_clock.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_clock.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_clock.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_clock.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_adapter.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_adapter.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_utilities.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_utilities.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_features.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_features.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_controller.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_controller.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_controller.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_controller.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_flash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_flash.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_flash.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_flash.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_cache.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_cache.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_cache.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_cache.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_flexnvm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_flexnvm.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_ftfx_flexnvm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_ftfx_flexnvm.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_flash.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_flash.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_common.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_common.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_common.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_common.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_common_arm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_common_arm.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_common_arm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_common_arm.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_lpuart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_lpuart.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_lpuart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/drivers/fsl_lpuart.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>utilities</GroupName>
           <Files>
             <File>
@@ -1866,36 +1074,6 @@
               <FileName>systick_utils.h</FileName>
               <FileType>5</FileType>
               <FilePath>../../../../../../../middleware/issdk/drivers/systick/systick_utils.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_str.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/utilities/str/fsl_str.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_str.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/utilities/str/fsl_str.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_debug_console.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/utilities/debug_console/fsl_debug_console.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_debug_console.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/utilities/debug_console/fsl_debug_console.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_debug_console_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/utilities/debug_console/fsl_debug_console_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_assert.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/utilities/fsl_assert.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1970,206 +1148,328 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>device</GroupName>
-          <Files>
-            <File>
-              <FileName>fsl_device_registers.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/fsl_device_registers.h</FilePath>
-            </File>
-            <File>
-              <FileName>MK22F51212.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/MK22F51212.h</FilePath>
-            </File>
-            <File>
-              <FileName>MK22F51212_features.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/MK22F51212_features.h</FilePath>
-            </File>
-            <File>
-              <FileName>system_MK22F51212.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/system_MK22F51212.c</FilePath>
-            </File>
-            <File>
-              <FileName>system_MK22F51212.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/system_MK22F51212.h</FilePath>
-            </File>
-          </Files>
+          <GroupName>::CMSIS</GroupName>
         </Group>
         <Group>
-          <GroupName>startup</GroupName>
-          <Files>
-            <File>
-              <FileName>startup_MK22F51212.S</FileName>
-              <FileType>2</FileType>
-              <FilePath>../../../../../../../devices/MK22F51212/arm/startup_MK22F51212.S</FilePath>
-            </File>
-          </Files>
+          <GroupName>::CMSIS Driver</GroupName>
         </Group>
         <Group>
-          <GroupName>component/uart</GroupName>
-          <Files>
-            <File>
-              <FileName>fsl_adapter_uart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../components/uart/fsl_adapter_uart.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_adapter_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../components/uart/fsl_adapter_uart.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>component/serial_manager</GroupName>
-          <Files>
-            <File>
-              <FileName>fsl_component_serial_manager.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../components/serial_manager/fsl_component_serial_manager.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_component_serial_port_internal.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../components/serial_manager/fsl_component_serial_port_internal.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_component_serial_manager.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../components/serial_manager/fsl_component_serial_manager.c</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_component_serial_port_uart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../components/serial_manager/fsl_component_serial_port_uart.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_component_serial_port_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../components/serial_manager/fsl_component_serial_port_uart.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>component/lists</GroupName>
-          <Files>
-            <File>
-              <FileName>fsl_component_generic_list.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../components/lists/fsl_component_generic_list.h</FilePath>
-            </File>
-            <File>
-              <FileName>fsl_component_generic_list.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../../../components/lists/fsl_component_generic_list.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>cmsis_driver</GroupName>
-          <Files>
-            <File>
-              <FileName>Driver_SPI.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Driver/Include/Driver_SPI.h</FilePath>
-            </File>
-            <File>
-              <FileName>Driver_I2C.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Driver/Include/Driver_I2C.h</FilePath>
-            </File>
-            <File>
-              <FileName>Driver_Common.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Driver/Include/Driver_Common.h</FilePath>
-            </File>
-            <File>
-              <FileName>Driver_USART.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Driver/Include/Driver_USART.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>CMSIS</GroupName>
-          <Files>
-            <File>
-              <FileName>cmsis_armcc.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Core/Include/cmsis_armcc.h</FilePath>
-            </File>
-            <File>
-              <FileName>cmsis_armclang.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Core/Include/cmsis_armclang.h</FilePath>
-            </File>
-            <File>
-              <FileName>cmsis_armclang_ltm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Core/Include/cmsis_armclang_ltm.h</FilePath>
-            </File>
-            <File>
-              <FileName>cmsis_compiler.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Core/Include/cmsis_compiler.h</FilePath>
-            </File>
-            <File>
-              <FileName>cmsis_gcc.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Core/Include/cmsis_gcc.h</FilePath>
-            </File>
-            <File>
-              <FileName>cmsis_iccarm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Core/Include/cmsis_iccarm.h</FilePath>
-            </File>
-            <File>
-              <FileName>cmsis_version.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Core/Include/cmsis_version.h</FilePath>
-            </File>
-            <File>
-              <FileName>core_cm4.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Core/Include/core_cm4.h</FilePath>
-            </File>
-            <File>
-              <FileName>mpu_armv7.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Core/Include/mpu_armv7.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>CMSIS_driver</GroupName>
-          <Files>
-            <File>
-              <FileName>Driver_I2C.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Driver/Include/Driver_I2C.h</FilePath>
-            </File>
-            <File>
-              <FileName>Driver_Common.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Driver/Include/Driver_Common.h</FilePath>
-            </File>
-            <File>
-              <FileName>Driver_SPI.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Driver/Include/Driver_SPI.h</FilePath>
-            </File>
-            <File>
-              <FileName>Driver_USART.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../../../CMSIS/Driver/Include/Driver_USART.h</FilePath>
-            </File>
-          </Files>
+          <GroupName>::Device</GroupName>
         </Group>
       </Groups>
     </Target>
   </Targets>
+
+  <RTE>
+    <packages>
+      <filter>
+        <targetInfos/>
+      </filter>
+      <package name="CMSIS" schemaVersion="1.7.7" url="http://www.keil.com/pack/" vendor="ARM" version="5.9.0">
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi release" versionMatchMode="fixed"/>
+        </targetInfos>
+      </package>
+      <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0">
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi release" versionMatchMode="fixed"/>
+        </targetInfos>
+      </package>
+    </packages>
+    <apis>
+      <api Capiversion="2.4.0" Cclass="CMSIS Driver" Cgroup="I2C" exclusive="0">
+        <package name="CMSIS" schemaVersion="1.7.7" url="http://www.keil.com/pack/" vendor="ARM" version="5.9.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </api>
+      <api Capiversion="2.3.0" Cclass="CMSIS Driver" Cgroup="SPI" exclusive="0">
+        <package name="CMSIS" schemaVersion="1.7.7" url="http://www.keil.com/pack/" vendor="ARM" version="5.9.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </api>
+      <api Capiversion="2.4.0" Cclass="CMSIS Driver" Cgroup="USART" exclusive="0">
+        <package name="CMSIS" schemaVersion="1.7.7" url="http://www.keil.com/pack/" vendor="ARM" version="5.9.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </api>
+    </apis>
+    <components>
+      <component Capiversion="2.4.0" Cclass="CMSIS Driver" Cgroup="I2C" Csub="Custom" Cvendor="ARM" Cversion="1.0.0" custom="1">
+        <package name="CMSIS" schemaVersion="1.7.7" url="http://www.keil.com/pack/" vendor="ARM" version="5.9.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Capiversion="2.3.0" Cclass="CMSIS Driver" Cgroup="SPI" Csub="Custom" Cvendor="ARM" Cversion="1.0.0" custom="1">
+        <package name="CMSIS" schemaVersion="1.7.7" url="http://www.keil.com/pack/" vendor="ARM" version="5.9.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Capiversion="2.4.0" Cclass="CMSIS Driver" Cgroup="USART" Csub="Custom" Cvendor="ARM" Cversion="1.0.0" custom="1">
+        <package name="CMSIS" schemaVersion="1.7.7" url="http://www.keil.com/pack/" vendor="ARM" version="5.9.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="5.6.0" condition="ARMv6_7_8-M Device">
+        <package name="CMSIS" schemaVersion="1.7.7" url="http://www.keil.com/pack/" vendor="ARM" version="5.9.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Capiversion="2.3.0" Cclass="CMSIS Driver" Cgroup="I2C" Csub="i2c_cmsis" Cvendor="NXP" Cversion="2.2.0" condition="device.MK22F51212_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.i2c_AND_driver.i2c_edma">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Capiversion="2.2.0" Cclass="CMSIS Driver" Cgroup="SPI" Csub="dspi_cmsis" Cvendor="NXP" Cversion="2.3.0" condition="device.MK22F51212_AND_CMSIS_Driver_Include.SPI_AND_RTE_Device_AND_driver.dspi_edma">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Capiversion="2.3.0" Cclass="CMSIS Driver" Cgroup="USART" Csub="uart_cmsis" Cvendor="NXP" Cversion="2.1.0" condition="device.MK22F51212_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.uart_AND_driver.uart_edma">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="CMSIS" Csub="MK22F51212_header" Cvendor="NXP" Cversion="1.0.0" condition="device.MK22F51212_AND_CMSIS_Include_core_cm">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="CMSIS" Csub="MK22F51212_system" Cvendor="NXP" Cversion="1.0.0" condition="device.MK22F51212_AND_device.MK22F51212_CMSIS">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="clock" Cvendor="NXP" Cversion="2.3.0" condition="device.MK22F51212_AND_driver.common">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="common" Cvendor="NXP" Cversion="2.3.2" condition="device.MK22F51212_AND_device.MK22F51212_CMSIS_AND_driver.clock">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux" Cvendor="NXP" Cversion="2.0.5" condition="device.MK22F51212_AND_driver.common">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="dspi" Cvendor="NXP" Cversion="2.2.4" condition="device.MK22F51212_AND_driver.common">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="dspi_edma" Cvendor="NXP" Cversion="2.2.4" condition="device.MK22F51212_AND_driver.dspi_AND_driver.edma">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="edma" Cvendor="NXP" Cversion="2.4.3" condition="device.MK22F51212_AND_driver.common_AND_driver.dmamux">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="flash" Cvendor="NXP" Cversion="3.0.0" condition="device.MK22F51212_AND_driver.common">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio" Cvendor="NXP" Cversion="2.6.0" condition="device.MK22F51212_AND_driver.common">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c" Cvendor="NXP" Cversion="2.0.9" condition="device.MK22F51212_AND_driver.common">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_edma" Cvendor="NXP" Cversion="2.0.9" condition="device.MK22F51212_AND_driver.edma_AND_driver.i2c">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="lists" Cvendor="NXP" Cversion="1.0.0" condition="device.MK22F51212_AND_driver.common">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr" Cvendor="NXP" Cversion="2.1.1" condition="device.MK22F51212_AND_driver.common">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart" Cvendor="NXP" Cversion="2.5.3" condition="device.MK22F51212_AND_driver.common">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="port" Cvendor="NXP" Cversion="2.3.0" condition="device.MK22F51212_AND_driver.common">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="smc" Cvendor="NXP" Cversion="2.0.7" condition="device.MK22F51212_AND_driver.common">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart" Cvendor="NXP" Cversion="2.5.1" condition="device.MK22F51212_AND_driver.common">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter" Cvendor="NXP" Cversion="1.0.0" condition="device.MK22F51212_AND_driver.common_AND_driver.uart">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart_edma" Cvendor="NXP" Cversion="2.5.3" condition="device.MK22F51212_AND_driver.edma_AND_driver.uart">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device" Cvendor="NXP" Cversion="1.0.0" condition="device.MK22F51212_AND_driver.dmamux_AND_driver.edma">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert" Cvendor="NXP" Cversion="1.0.0" condition="device.MK22F51212_AND_utility.debug_console">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console" Cvendor="NXP" Cversion="1.0.1" condition="device.MK22F51212_AND_component.serial_manager_AND_driver.common">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager" Cvendor="NXP" Cversion="1.0.1" condition="device.MK22F51212_AND__component.serial_manager_spi_OR_component.serial_manager_swo_OR_component.serial_manager_uart_OR_component.serial_manager_virtual__AND_component.lists_AND_driver.common">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart" Cvendor="NXP" Cversion="1.0.0" condition="device.MK22F51212_AND__driver.lpuart_OR_driver.uart__AND_component.serial_manager_AND_component.uart_adapter">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.1.0" condition="device.MK22F51212_AND__armclang_OR_iar__AND_device.MK22F51212_system">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </component>
+    </components>
+    <files>
+      <file attr="config" category="linkerScript" condition="mdk" name="arm\MK22FN512xxx12_flash.scf" version="1.1.0">
+        <instance index="0">RTE\Device\MK22FN512VLH12\MK22FN512xxx12_flash.scf</instance>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.1.0" condition="device.MK22F51212_AND__armclang_OR_iar__AND_device.MK22F51212_system"/>
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="linkerScript" condition="mdk" name="arm\MK22FN512xxx12_ram.scf" version="1.1.0">
+        <instance index="0">RTE\Device\MK22FN512VLH12\MK22FN512xxx12_ram.scf</instance>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.1.0" condition="device.MK22F51212_AND__armclang_OR_iar__AND_device.MK22F51212_system"/>
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" name="template\RTE_Device.h" version="1.0.0">
+        <instance index="0">RTE\Device\MK22FN512VLH12\RTE_Device.h</instance>
+        <component Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device" Cvendor="NXP" Cversion="1.0.0" condition="device.MK22F51212_AND_driver.dmamux_AND_driver.edma"/>
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="sourceAsm" condition="mdk" name="arm\startup_MK22F51212.S" version="1.1.0">
+        <instance index="0">RTE\Device\MK22FN512VLH12\startup_MK22F51212.S</instance>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.1.0" condition="device.MK22F51212_AND__armclang_OR_iar__AND_device.MK22F51212_system"/>
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_spi debug"/>
+          <targetInfo name="fxls8974cf_spi release"/>
+        </targetInfos>
+      </file>
+    </files>
+  </RTE>
+
 </Project>
