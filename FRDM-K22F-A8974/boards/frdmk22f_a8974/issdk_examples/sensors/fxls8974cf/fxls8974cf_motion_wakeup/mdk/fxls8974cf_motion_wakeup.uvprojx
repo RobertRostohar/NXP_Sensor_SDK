@@ -404,41 +404,6 @@
               <FileType>5</FileType>
               <FilePath>../../../../../issdk_hal.h</FilePath>
             </File>
-            <File>
-              <FileName>RTE_Device.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../RTE_Device.h</FilePath>
-            </File>
-            <File>
-              <FileName>pin_mux.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../pin_mux.c</FilePath>
-            </File>
-            <File>
-              <FileName>pin_mux.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../pin_mux.h</FilePath>
-            </File>
-            <File>
-              <FileName>clock_config.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../clock_config.c</FilePath>
-            </File>
-            <File>
-              <FileName>clock_config.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../clock_config.h</FilePath>
-            </File>
-            <File>
-              <FileName>board.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../board.c</FilePath>
-            </File>
-            <File>
-              <FileName>board.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../board.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -570,6 +535,9 @@
               <FilePath>../../../../../../../middleware/issdk/sensors/fxls8974_drv.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>::Board Support</GroupName>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
@@ -980,41 +948,6 @@
               <FileType>5</FileType>
               <FilePath>../../../../../issdk_hal.h</FilePath>
             </File>
-            <File>
-              <FileName>RTE_Device.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../../../../../RTE_Device.h</FilePath>
-            </File>
-            <File>
-              <FileName>pin_mux.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../pin_mux.c</FilePath>
-            </File>
-            <File>
-              <FileName>pin_mux.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../pin_mux.h</FilePath>
-            </File>
-            <File>
-              <FileName>clock_config.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../clock_config.c</FilePath>
-            </File>
-            <File>
-              <FileName>clock_config.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../clock_config.h</FilePath>
-            </File>
-            <File>
-              <FileName>board.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../board.c</FilePath>
-            </File>
-            <File>
-              <FileName>board.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../board.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -1148,6 +1081,9 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>::Board Support</GroupName>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
         <Group>
@@ -1228,6 +1164,13 @@
           <targetInfo name="fxls8974cf_motion_wakeup release"/>
         </targetInfos>
       </component>
+      <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MK22F51212" Cvendor="NXP" Cversion="1.0.0" condition="device.MK22F51212_AND___component.serial_manager_AND_utility.assert_AND_utility.debug_console__OR__utility.assert_lite_AND_utility.debug_console_lite___AND_component.uart_adapter_AND_device.MK22F51212_startup_AND_driver.adc16_AND_driver.clock_AND_driver.common_AND_driver.dspi_AND_driver.gpio_AND_driver.i2c_AND_driver.port_AND_driver.rtc_AND_driver.smc_AND_driver.uart">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_motion_wakeup debug"/>
+          <targetInfo name="fxls8974cf_motion_wakeup release"/>
+        </targetInfos>
+      </component>
       <component Capiversion="2.3.0" Cclass="CMSIS Driver" Cgroup="I2C" Csub="i2c_cmsis" Cvendor="NXP" Cversion="2.2.0" condition="device.MK22F51212_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.i2c_AND_driver.i2c_edma">
         <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
         <targetInfos>
@@ -1257,6 +1200,13 @@
         </targetInfos>
       </component>
       <component Cclass="Device" Cgroup="CMSIS" Csub="MK22F51212_system" Cvendor="NXP" Cversion="1.0.0" condition="device.MK22F51212_AND_device.MK22F51212_CMSIS">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_motion_wakeup debug"/>
+          <targetInfo name="fxls8974cf_motion_wakeup release"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="adc" Cvendor="NXP" Cversion="2.3.0" condition="device.MK22F51212_AND_driver.common">
         <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
         <targetInfos>
           <targetInfo name="fxls8974cf_motion_wakeup debug"/>
@@ -1361,6 +1311,13 @@
           <targetInfo name="fxls8974cf_motion_wakeup release"/>
         </targetInfos>
       </component>
+      <component Cclass="Device" Cgroup="SDK Drivers" Csub="rtc" Cvendor="NXP" Cversion="2.2.1" condition="device.MK22F51212_AND_driver.common">
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_motion_wakeup debug"/>
+          <targetInfo name="fxls8974cf_motion_wakeup release"/>
+        </targetInfos>
+      </component>
       <component Cclass="Device" Cgroup="SDK Drivers" Csub="smc" Cvendor="NXP" Cversion="2.0.7" condition="device.MK22F51212_AND_driver.common">
         <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
         <targetInfos>
@@ -1433,6 +1390,78 @@
       </component>
     </components>
     <files>
+      <file attr="config" category="sourceC" name="project_template\board.c" version="1.0.0">
+        <instance index="0">RTE\Board_Support\MK22FN512VLH12\board.c</instance>
+        <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MK22F51212" Cvendor="NXP" Cversion="1.0.0" condition="device.MK22F51212_AND___component.serial_manager_AND_utility.assert_AND_utility.debug_console__OR__utility.assert_lite_AND_utility.debug_console_lite___AND_component.uart_adapter_AND_device.MK22F51212_startup_AND_driver.adc16_AND_driver.clock_AND_driver.common_AND_driver.dspi_AND_driver.gpio_AND_driver.i2c_AND_driver.port_AND_driver.rtc_AND_driver.smc_AND_driver.uart" isDefaultVariant="1"/>
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_motion_wakeup debug"/>
+          <targetInfo name="fxls8974cf_motion_wakeup release"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" name="project_template\board.h" version="1.0.0">
+        <instance index="0">RTE\Board_Support\MK22FN512VLH12\board.h</instance>
+        <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MK22F51212" Cvendor="NXP" Cversion="1.0.0" condition="device.MK22F51212_AND___component.serial_manager_AND_utility.assert_AND_utility.debug_console__OR__utility.assert_lite_AND_utility.debug_console_lite___AND_component.uart_adapter_AND_device.MK22F51212_startup_AND_driver.adc16_AND_driver.clock_AND_driver.common_AND_driver.dspi_AND_driver.gpio_AND_driver.i2c_AND_driver.port_AND_driver.rtc_AND_driver.smc_AND_driver.uart" isDefaultVariant="1"/>
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_motion_wakeup debug"/>
+          <targetInfo name="fxls8974cf_motion_wakeup release"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="sourceC" name="project_template\clock_config.c" version="1.0.0">
+        <instance index="0">RTE\Board_Support\MK22FN512VLH12\clock_config.c</instance>
+        <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MK22F51212" Cvendor="NXP" Cversion="1.0.0" condition="device.MK22F51212_AND___component.serial_manager_AND_utility.assert_AND_utility.debug_console__OR__utility.assert_lite_AND_utility.debug_console_lite___AND_component.uart_adapter_AND_device.MK22F51212_startup_AND_driver.adc16_AND_driver.clock_AND_driver.common_AND_driver.dspi_AND_driver.gpio_AND_driver.i2c_AND_driver.port_AND_driver.rtc_AND_driver.smc_AND_driver.uart" isDefaultVariant="1"/>
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_motion_wakeup debug"/>
+          <targetInfo name="fxls8974cf_motion_wakeup release"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" name="project_template\clock_config.h" version="1.0.0">
+        <instance index="0">RTE\Board_Support\MK22FN512VLH12\clock_config.h</instance>
+        <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MK22F51212" Cvendor="NXP" Cversion="1.0.0" condition="device.MK22F51212_AND___component.serial_manager_AND_utility.assert_AND_utility.debug_console__OR__utility.assert_lite_AND_utility.debug_console_lite___AND_component.uart_adapter_AND_device.MK22F51212_startup_AND_driver.adc16_AND_driver.clock_AND_driver.common_AND_driver.dspi_AND_driver.gpio_AND_driver.i2c_AND_driver.port_AND_driver.rtc_AND_driver.smc_AND_driver.uart" isDefaultVariant="1"/>
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_motion_wakeup debug"/>
+          <targetInfo name="fxls8974cf_motion_wakeup release"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="sourceC" name="project_template\peripherals.c" version="1.0.0">
+        <instance index="0">RTE\Board_Support\MK22FN512VLH12\peripherals.c</instance>
+        <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MK22F51212" Cvendor="NXP" Cversion="1.0.0" condition="device.MK22F51212_AND___component.serial_manager_AND_utility.assert_AND_utility.debug_console__OR__utility.assert_lite_AND_utility.debug_console_lite___AND_component.uart_adapter_AND_device.MK22F51212_startup_AND_driver.adc16_AND_driver.clock_AND_driver.common_AND_driver.dspi_AND_driver.gpio_AND_driver.i2c_AND_driver.port_AND_driver.rtc_AND_driver.smc_AND_driver.uart" isDefaultVariant="1"/>
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_motion_wakeup debug"/>
+          <targetInfo name="fxls8974cf_motion_wakeup release"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" name="project_template\peripherals.h" version="1.0.0">
+        <instance index="0">RTE\Board_Support\MK22FN512VLH12\peripherals.h</instance>
+        <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MK22F51212" Cvendor="NXP" Cversion="1.0.0" condition="device.MK22F51212_AND___component.serial_manager_AND_utility.assert_AND_utility.debug_console__OR__utility.assert_lite_AND_utility.debug_console_lite___AND_component.uart_adapter_AND_device.MK22F51212_startup_AND_driver.adc16_AND_driver.clock_AND_driver.common_AND_driver.dspi_AND_driver.gpio_AND_driver.i2c_AND_driver.port_AND_driver.rtc_AND_driver.smc_AND_driver.uart" isDefaultVariant="1"/>
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_motion_wakeup debug"/>
+          <targetInfo name="fxls8974cf_motion_wakeup release"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="sourceC" name="project_template\pin_mux.c" version="1.0.0">
+        <instance index="0">RTE\Board_Support\MK22FN512VLH12\pin_mux.c</instance>
+        <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MK22F51212" Cvendor="NXP" Cversion="1.0.0" condition="device.MK22F51212_AND___component.serial_manager_AND_utility.assert_AND_utility.debug_console__OR__utility.assert_lite_AND_utility.debug_console_lite___AND_component.uart_adapter_AND_device.MK22F51212_startup_AND_driver.adc16_AND_driver.clock_AND_driver.common_AND_driver.dspi_AND_driver.gpio_AND_driver.i2c_AND_driver.port_AND_driver.rtc_AND_driver.smc_AND_driver.uart" isDefaultVariant="1"/>
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_motion_wakeup debug"/>
+          <targetInfo name="fxls8974cf_motion_wakeup release"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" name="project_template\pin_mux.h" version="1.0.0">
+        <instance index="0">RTE\Board_Support\MK22FN512VLH12\pin_mux.h</instance>
+        <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MK22F51212" Cvendor="NXP" Cversion="1.0.0" condition="device.MK22F51212_AND___component.serial_manager_AND_utility.assert_AND_utility.debug_console__OR__utility.assert_lite_AND_utility.debug_console_lite___AND_component.uart_adapter_AND_device.MK22F51212_startup_AND_driver.adc16_AND_driver.clock_AND_driver.common_AND_driver.dspi_AND_driver.gpio_AND_driver.i2c_AND_driver.port_AND_driver.rtc_AND_driver.smc_AND_driver.uart" isDefaultVariant="1"/>
+        <package name="MK22F51212_DFP" schemaVersion="1.4" url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="15.0.0"/>
+        <targetInfos>
+          <targetInfo name="fxls8974cf_motion_wakeup debug"/>
+          <targetInfo name="fxls8974cf_motion_wakeup release"/>
+        </targetInfos>
+      </file>
       <file attr="config" category="linkerScript" condition="mdk" name="arm\MK22FN512xxx12_flash.scf" version="1.1.0">
         <instance index="0">RTE\Device\MK22FN512VLH12\MK22FN512xxx12_flash.scf</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.1.0" condition="device.MK22F51212_AND__armclang_OR_iar__AND_device.MK22F51212_system"/>
