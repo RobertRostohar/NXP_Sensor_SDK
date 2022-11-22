@@ -7,7 +7,7 @@ solution:
     - pack: ARM::CMSIS@5.9.0
 
   target-types:
-    - type: frdmk22f
+    - type: frdmk22f_a8974
       device: NXP::MK22FN512VLH12
       define:
         - CPU_MK22FN512VLH12

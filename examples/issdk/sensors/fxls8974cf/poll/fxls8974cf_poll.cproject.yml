@@ -2,64 +2,13 @@
 
 project:
 
-  define:
-    - MCUXPRESSO_SDK
-    - PRINTF_ADVANCED_ENABLE
-    - SERIAL_PORT_TYPE_UART=1
-
   # add-path:
-  #   - ../../../../../boards
   #   - ../../../../../middleware/issdk/drivers/gpio
   #   - ../../../../../middleware/issdk/drivers/gpio/kinetis
   #   - ../../../../../middleware/issdk/drivers/systick
   #   - ../../../../../middleware/issdk/sensors
 
-  components:
-    - component: NXP::Board Support:SDK Project Template:project_template&MK22F51212
-    - component: ARM::CMSIS:CORE
-    - component: ARM::CMSIS Driver:I2C:Custom
-    - component: NXP::CMSIS Driver:I2C:i2c_cmsis
-    - component: ARM::CMSIS Driver:SPI:Custom
-    - component: NXP::CMSIS Driver:SPI:dspi_cmsis
-    - component: ARM::CMSIS Driver:USART:Custom
-    - component: NXP::CMSIS Driver:USART:uart_cmsis
-    - component: NXP::Device:CMSIS:MK22F51212_header
-    - component: NXP::Device:CMSIS:MK22F51212_system
-    - component: NXP::Device:SDK Drivers:adc
-    - component: NXP::Device:SDK Drivers:clock
-    - component: NXP::Device:SDK Drivers:common
-    - component: NXP::Device:SDK Drivers:dmamux
-    - component: NXP::Device:SDK Drivers:dspi
-    - component: NXP::Device:SDK Drivers:dspi_edma
-    - component: NXP::Device:SDK Drivers:edma
-    - component: NXP::Device:SDK Drivers:flash
-    - component: NXP::Device:SDK Drivers:gpio
-    - component: NXP::Device:SDK Drivers:i2c
-    - component: NXP::Device:SDK Drivers:i2c_edma
-    - component: NXP::Device:SDK Drivers:lists
-    - component: NXP::Device:SDK Drivers:lptmr
-    - component: NXP::Device:SDK Drivers:lpuart
-    - component: NXP::Device:SDK Drivers:port
-    - component: NXP::Device:SDK Drivers:rtc
-    - component: NXP::Device:SDK Drivers:smc
-    - component: NXP::Device:SDK Drivers:uart
-    - component: NXP::Device:SDK Drivers:uart_adapter
-    - component: NXP::Device:SDK Drivers:uart_edma
-    - component: NXP::Device:SDK Project Template:RTE_Device
-    - component: NXP::Device:SDK Utilities:assert
-    - component: NXP::Device:SDK Utilities:debug_console
-    - component: NXP::Device:SDK Utilities:serial_manager
-    - component: NXP::Device:SDK Utilities:serial_manager_uart
-    - component: NXP::Device:Startup
-
   groups:
-    - group: board
-      files:
-        - file: ../../../../../boards/frdmk22f_a8974/frdm_k22f.c
-        - file: ../../../../../boards/frdmk22f_a8974/frdm_k22f.h
-        - file: ../../../../../boards/frdmk22f_a8974/frdm_stbi_a8974_shield.h
-        - file: ../../../../../boards/frdmk22f_a8974/issdk_hal.h
-        - file: ../../../../../boards/frdmk22f_a8974//RTE/Device/MK22FN512VLH12/MK22FN512xxx12_flash.scf
     - group: source
       files:
         - file: ./fxls8974cf_poll.c
@@ -92,3 +41,8 @@ project:
         - file: ../../../../../middleware/issdk/sensors/fxls8974.h
         - file: ../../../../../middleware/issdk/sensors/fxls8974_drv.h
         - file: ../../../../../middleware/issdk/sensors/fxls8974_drv.c
+
+  layers:
+    - layer: ../../../../../boards/frdmk22f_a8974/frdmk22f_a8974.clayer.yml
+      for-type:
+        - +frdmk22f_a8974
