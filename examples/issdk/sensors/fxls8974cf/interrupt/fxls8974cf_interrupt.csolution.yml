@@ -54,4 +54,4 @@ solution:
             - --diag_suppress 6314 --summary_stderr --info summarysizes
 
   projects:
-    - project: fxls8974cf_interrupt.cproject.yaml
+    - project: fxls8974cf_interrupt.cproject.yml
