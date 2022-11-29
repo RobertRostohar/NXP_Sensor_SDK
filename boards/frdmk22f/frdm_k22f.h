@@ -17,6 +17,9 @@
 #include "MK22F51212.h"
 #include "RTE_Device.h"
 #include "gpio_driver.h"
+#include "Driver_I2C.h"
+#include "Driver_SPI.h"
+#include "Driver_USART.h"
 
 // I2C0 Handle
 extern gpioHandleKSDK_t A5;
@@ -55,20 +58,18 @@ extern gpioHandleKSDK_t BLUE_LED;
 extern gpioHandleKSDK_t INT1;
 extern gpioHandleKSDK_t INT2;
 
-// I2C_S1: Pin mapping and driver information for default I2C brought to shield
-#define I2C_S1_SCL_PIN      A5
-#define I2C_S1_SDA_PIN      A4
-#define I2C_S1_DRIVER       Driver_I2C0
-#define I2C_S1_DEVICE_INDEX I2C0_INDEX
-#define I2C_S1_SIGNAL_EVENT I2C0_SignalEvent_t
+// CMSIS Drivers
+extern ARM_DRIVER_I2C Driver_I2C0;
+extern ARM_DRIVER_SPI Driver_SPI1;
+extern ARM_DRIVER_USART Driver_USART1;
+extern ARM_DRIVER_USART Driver_USART2;
 
-// I2C_S2: Pin mapping and driver information for alternate I2C bus on shield
-// Note :  I2C1 cannot be used with UART1 (which is the TGT_MCU Debug UART).
-#define I2C_S2_SCL_PIN      D15
-#define I2C_S2_SDA_PIN      D14
-#define I2C_S2_DRIVER       Driver_I2C1
-#define I2C_S2_DEVICE_INDEX I2C1_INDEX
-#define I2C_S2_SIGNAL_EVENT I2C1_SignalEvent_t
+// I2C_S: Pin mapping and driver information for default I2C brought to shield
+#define I2C_S_SCL_PIN       A5
+#define I2C_S_SDA_PIN       A4
+#define I2C_S_DRIVER        Driver_I2C0
+#define I2C_S_DEVICE_INDEX  I2C0_INDEX
+#define I2C_S_SIGNAL_EVENT  I2C0_SignalEvent_t
 
 // I2C_BB: PPin mapping and driver information for I2C routed on K22F base board
 #define I2C_BB_SCL_PIN      A5

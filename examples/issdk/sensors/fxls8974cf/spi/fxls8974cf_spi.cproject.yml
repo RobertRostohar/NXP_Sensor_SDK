@@ -3,6 +3,7 @@
 project:
 
   # add-path:
+  #   - ../../../../../middleware/issdk/hal
   #   - ../../../../../middleware/issdk/drivers/gpio
   #   - ../../../../../middleware/issdk/drivers/gpio/kinetis
   #   - ../../../../../middleware/issdk/drivers/systick
@@ -15,6 +16,9 @@ project:
     - group: doc
       files:
         - file: ./readme.txt
+    - group: hal
+      files:
+        - file: ../../../../../middleware/issdk/hal/issdk_hal.h
     - group: gpio_driver
       files:
         - file: ../../../../../middleware/issdk/drivers/gpio/kinetis/gpio_driver_irq.c
@@ -43,6 +47,9 @@ project:
         - file: ../../../../../middleware/issdk/sensors/fxls8974_drv.c
 
   layers:
-    - layer: ../../../../../boards/frdmk22f_a8974/frdmk22f_a8974.clayer.yml
+    - layer: ../../../../../boards/frdmk22f/frdmk22f.clayer.yml
+      for-type:
+        - +frdmk22f_a8974
+    - layer: ../../../../../shields/a8974/a8974.clayer.yml
       for-type:
         - +frdmk22f_a8974

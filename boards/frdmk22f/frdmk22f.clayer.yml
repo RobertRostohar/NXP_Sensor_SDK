@@ -1,14 +1,45 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/schemas/projmgr/1.3.0/tools/projmgr/schemas/clayer.schema.json
 
 layer:
-  description: FRDMK22F-A8974 Sensor Toolbox Development Board
+  description: FRDMK22F Development Board
+
+  interfaces:
+    provides:
+      - A_UART: 2
+      - A_SPI: 1
+    # - A_I2C: 0
+      - A_I2C_Alt: 0
+    # - A_IO_D0:
+    # - A_IO_D1:
+      - A_IO_D2:
+      - A_IO_D3:
+      - A_IO_D4:
+      - A_IO_D5:
+      - A_IO_D6:
+      - A_IO_D7:
+      - A_IO_D8:
+      - A_IO_D9:
+      - A_IO_D10:
+    # - A_IO_D11:
+    # - A_IO_D12:
+    # - A_IO_D13:
+    # - A_IO_D18:
+    # - A_IO_D19:
+      - A_IO_A0:
+      - A_IO_A1:
+      - A_IO_A2:
+      - A_IO_A3:
+    # - A_IO_A4:
+    # - A_IO_A5:
+      - Heap: 1024
 
   define:
     - MCUXPRESSO_SDK
     - PRINTF_ADVANCED_ENABLE
     - SERIAL_PORT_TYPE_UART=1
+    - BOARD_HEADER="frdm_k22f.h"
 
-# add-path:
+  # add-path:
   #   - .
 
   components:
@@ -54,6 +85,4 @@ layer:
       files:
         - file: ./frdm_k22f.c
         - file: ./frdm_k22f.h
-        - file: ./frdm_stbi_a8974_shield.h
-        - file: ./issdk_hal.h
         - file: ./RTE/Device/MK22FN512VLH12/MK22FN512xxx12_flash.scf

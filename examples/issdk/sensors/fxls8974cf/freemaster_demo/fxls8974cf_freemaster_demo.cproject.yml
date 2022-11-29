@@ -7,6 +7,7 @@ project:
   #   - ../../../../../middleware/freemaster/src/drivers/mcuxsdk/can
   #   - ../../../../../middleware/freemaster/src/drivers/mcuxsdk/serial
   #   - ../../../../../middleware/freemaster/src/platforms/gen32le
+  #   - ../../../../../middleware/issdk/hal
   #   - ../../../../../middleware/issdk/drivers/gpio
   #   - ../../../../../middleware/issdk/drivers/gpio/kinetis
   #   - ../../../../../middleware/issdk/drivers/systick
@@ -20,6 +21,9 @@ project:
     - group: doc
       files:
         - file: ./readme.txt
+    - group: hal
+      files:
+        - file: ../../../../../middleware/issdk/hal/issdk_hal.h
     - group: gpio_driver
       files:
         - file: ../../../../../middleware/issdk/drivers/gpio/kinetis/gpio_driver_irq.c
@@ -103,6 +107,9 @@ project:
         - file: ../../../../../middleware/freemaster/src/drivers/mcuxsdk/network/freemaster_net_lwip_tcp.h
 
   layers:
-    - layer: ../../../../../boards/frdmk22f_a8974/frdmk22f_a8974.clayer.yml
+    - layer: ../../../../../boards/frdmk22f/frdmk22f.clayer.yml
+      for-type:
+        - +frdmk22f_a8974
+    - layer: ../../../../../shields/a8974/a8974.clayer.yml
       for-type:
         - +frdmk22f_a8974
