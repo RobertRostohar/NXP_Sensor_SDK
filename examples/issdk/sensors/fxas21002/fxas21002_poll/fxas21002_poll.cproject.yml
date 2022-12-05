@@ -1,0 +1,55 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/schemas/projmgr/1.3.0/tools/projmgr/schemas/cproject.schema.json
+
+project:
+
+  # add-path:
+  #   - ../../../../../middleware/issdk/hal
+  #   - ../../../../../middleware/issdk/drivers/gpio
+  #   - ../../../../../middleware/issdk/drivers/gpio/kinetis
+  #   - ../../../../../middleware/issdk/drivers/systick
+  #   - ../../../../../middleware/issdk/sensors
+
+  groups:
+    - group: source
+      files:
+        - file: ./fxas21002_poll.c
+    - group: doc
+      files:
+        - file: ./readme.txt
+    - group: hal
+      files:
+        - file: ../../../../../middleware/issdk/hal/issdk_hal.h
+    - group: gpio_driver
+      files:
+        - file: ../../../../../middleware/issdk/drivers/gpio/kinetis/gpio_driver_irq.c
+        - file: ../../../../../middleware/issdk/drivers/gpio/kinetis/gpio_driver.c
+        - file: ../../../../../middleware/issdk/drivers/gpio/kinetis/gpio_driver.h
+        - file: ../../../../../middleware/issdk/drivers/gpio/Driver_GPIO.h
+    - group: utilities
+      files:
+        - file: ../../../../../middleware/issdk/drivers/systick/systick_utils.c
+        - file: ../../../../../middleware/issdk/drivers/systick/systick_utils.h
+    - group: interfaces
+      files:
+        - file: ../../../../../middleware/issdk/sensors/register_io_i2c.c
+        - file: ../../../../../middleware/issdk/sensors/register_io_spi.c
+        - file: ../../../../../middleware/issdk/sensors/sensor_io_spi.c
+        - file: ../../../../../middleware/issdk/sensors/sensor_io_i2c.c
+        - file: ../../../../../middleware/issdk/sensors/register_io_i2c.h
+        - file: ../../../../../middleware/issdk/sensors/register_io_spi.h
+        - file: ../../../../../middleware/issdk/sensors/sensor_io_spi.h
+        - file: ../../../../../middleware/issdk/sensors/sensor_io_i2c.h
+        - file: ../../../../../middleware/issdk/sensors/sensor_drv.h
+    - group: sensors
+      files:
+        - file: ../../../../../middleware/issdk/sensors/fxas21002.h
+        - file: ../../../../../middleware/issdk/sensors/fxas21002_drv.h
+        - file: ../../../../../middleware/issdk/sensors/fxas21002_drv.c
+
+  layers:
+    - layer: ../../../../../boards/frdmk22f/frdmk22f.clayer.yml
+      for-type:
+        - +frdmk22f_agmp03
+    - layer: ../../../../../shields/agmp03/agmp03.clayer.yml
+      for-type:
+        - +frdmk22f_agmp03
