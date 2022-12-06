@@ -4,7 +4,6 @@ solution:
 
   packs:
     - pack: NXP::MK22F51212_DFP@15.0.0
-    - pack: NXP::LPC54114_DFP@13.0.0
     - pack: ARM::CMSIS@5.9.0
 
   target-types:
@@ -14,10 +13,6 @@ solution:
         - CPU_MK22FN512VLH12
         - FRDM_K22F
         - FREEDOM
-    - type: lpc54114_a8974
-      device: NXP::LPC54114J256BD64:cm4
-      define:
-        - CPU_LPC54114J256BD64_cm4
 
   build-types:
     - type: debug
