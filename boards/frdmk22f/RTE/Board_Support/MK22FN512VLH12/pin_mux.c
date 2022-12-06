@@ -123,7 +123,7 @@ void BOARD_InitPins(void) {
     );
 
   I2C0_InitPins();
-  DSPI1_InitPins();     /* required for SPI demo */
+  DSPI1_InitPins();
 }
 
 
