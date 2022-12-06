@@ -9,8 +9,12 @@ layer:
     # - A_I2C:
       - A_I2C_Alt:
       - A_IO_D2:
+      - A_IO_D5:
+      - A_IO_D7:
+      - A_IO_D8:
       - A_IO_D10:
       - A_IO_A0:
+      - A_IO_A1:
       - A_IO_A3:
 
   define:
