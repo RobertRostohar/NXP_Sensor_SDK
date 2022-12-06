@@ -9,6 +9,11 @@ project:
   #   - ../../../../../middleware/issdk/drivers/systick
   #   - ../../../../../middleware/issdk/sensors
 
+  interfaces:
+    consumes:
+      - FXLS8974_SPI:
+      - FXLS8974_CS:
+
   groups:
     - group: source
       files:

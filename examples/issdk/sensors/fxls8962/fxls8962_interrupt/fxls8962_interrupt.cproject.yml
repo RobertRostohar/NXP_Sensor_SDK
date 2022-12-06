@@ -9,6 +9,11 @@ project:
   #   - ../../../../../middleware/issdk/drivers/systick
   #   - ../../../../../middleware/issdk/sensors
 
+  interfaces:
+    consumes:
+      - FXLS8962_I2C:
+      - FXLS8962_INT1:
+
   groups:
     - group: source
       files:

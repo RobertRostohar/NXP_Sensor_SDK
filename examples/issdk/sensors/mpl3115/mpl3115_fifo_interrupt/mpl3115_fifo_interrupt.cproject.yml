@@ -9,6 +9,11 @@ project:
   #   - ../../../../../middleware/issdk/drivers/systick
   #   - ../../../../../middleware/issdk/sensors
 
+  interfaces:
+    consumes:
+      - MPL3115_I2C:
+      - MPL3115_INT1:
+
   groups:
     - group: source
       files:

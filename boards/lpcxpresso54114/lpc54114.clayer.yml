@@ -4,6 +4,13 @@ layer:
   description: LPCXpresso54114 Development Board
 
   interfaces:
+    # Arduino UNO Rev3
+      # A_UART: RX=D0, TX=D1
+      # A_SPI: COPI=D11, CIPO=D12, SCK=D13, (SS=D10)
+      # A_I2C: SDA=D18, SCL=D19
+      # A_I2C_Alt: SDA=A4, SCL=A5
+      # A_IO_Dn: A_IO_D0..D14, A_IO_D18..19
+      # A_IO_An: A_IO_A0..5
     provides:
       - A_UART: 0
       - A_SPI: 5

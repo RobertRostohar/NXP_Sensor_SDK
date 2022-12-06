@@ -9,6 +9,11 @@ project:
   #   - ../../../../../middleware/issdk/drivers/systick
   #   - ../../../../../middleware/issdk/sensors
 
+  interfaces:
+    consumes:
+      - FXAS21002_I2C:
+      - FXAS21002_INT1:
+
   groups:
     - group: source
       files:

@@ -4,18 +4,51 @@ layer:
   description: AGMP03 Shield
 
   interfaces:
+    # Arduino UNO Rev3
+      # A_UART: RX=D0, TX=D1
+      # A_SPI: COPI=D11, CIPO=D12, SCK=D13, (SS=D10)
+      # A_I2C: SDA=D18, SCL=D19
+      # A_I2C_Alt: SDA=A4, SCL=A5
+      # A_IO_Dn: A_IO_D0..D14, A_IO_D18..19
+      # A_IO_An: A_IO_A0..5
+
     consumes:
+
+      # Jumper configuration: I2C=I2C0
+      - A_I2C:
+
+      # Jumper configuration: I2C=I2C1
+      # - A_I2C_Alt:
+
       - A_SPI:
-    # - A_I2C:
-      - A_I2C_Alt:
+
       - A_IO_D2:
       - A_IO_D5:
       - A_IO_D7:
       - A_IO_D8:
       - A_IO_D10:
-      - A_IO_A0:
       - A_IO_A1:
       - A_IO_A3:
+
+    provides:
+
+      # Jumper configuration: I2C/SPI=I2C
+      - FXLS8962_I2C:
+      - FXAS21002_I2C:
+
+      # Jumper configuration: I2C/SPI=SPI
+      # - FXLS8962_SPI:
+      # - FXLS8962_CS:
+      # - FXAS21002_SPI:
+      # - FXAS21002_CS:
+
+      - FXLS8962_INT1:
+      - FXAS21002_INT1:
+
+      - MPL3115_I2C:
+      - MPL3115_INT1:
+      - MAG3110_I2C:
+      - MAG3110_INT1:
 
   define:
     - SHIELD_HEADER="frdm_stbc_agmp03_shield.h"

@@ -4,14 +4,38 @@ layer:
   description: A8974 Shield
 
   interfaces:
+    # Arduino UNO Rev3
+      # A_UART: RX=D0, TX=D1
+      # A_SPI: COPI=D11, CIPO=D12, SCK=D13, (SS=D10)
+      # A_I2C: SDA=D18, SCL=D19
+      # A_I2C_Alt: SDA=A4, SCL=A5
+      # A_IO_Dn: A_IO_D0..D14, A_IO_D18..19
+      # A_IO_An: A_IO_A0..5
+
     consumes:
-      - A_SPI:
-    # - A_I2C:
+
+      # Jumper configuration: I2C=I2C0
+      # - A_I2C:
+
+      # Jumper configuration: I2C=I2C1
       - A_I2C_Alt:
+
+      - A_SPI:
+
       - A_IO_D2:
       - A_IO_D10:
-      - A_IO_A0:
       - A_IO_A3:
+
+    provides:
+
+      # Jumper configuration: I2C/SPI=I2C
+      - FXLS8974_I2C:
+
+      # Jumper configuration: I2C/SPI=SPI
+      # - FXLS8974_SPI:
+      # - FXLS8974_CS:
+
+      - FXLS8974_INT1:
 
   define:
     - SHIELD_HEADER="frdm_stbi_a8974_shield.h"
