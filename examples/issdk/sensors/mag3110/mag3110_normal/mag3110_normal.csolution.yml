@@ -30,9 +30,9 @@ solution:
           C:
             - -std=c99
           Link:
-            - --remove --keep=*(.FlashConfig) --entry=Reset_Handler
-            - --strict
-            - --diag_suppress 6314 --summary_stderr --info summarysizes
+            - --entry=Reset_Handler --strict --info summarysizes
+            - --remove --keep=*(.crp) --keep=*(.FlashConfig)
+            - --diag_suppress 6314,6319
 
     - type: release
       compiler: AC6
@@ -49,9 +49,9 @@ solution:
           C:
             - -std=c99
           Link:
-            - --remove --keep=*(.FlashConfig) --entry=Reset_Handler
-            - --strict
-            - --diag_suppress 6314 --summary_stderr --info summarysizes
+            - --entry=Reset_Handler --strict --info summarysizes
+            - --remove --keep=*(.crp) --keep=*(.FlashConfig)
+            - --diag_suppress 6314,6319
 
   projects:
     - project: mag3110_normal.cproject.yml
