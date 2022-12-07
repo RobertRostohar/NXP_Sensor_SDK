@@ -3,6 +3,39 @@
 layer:
   description: A8974 Shield
 
+# interfaces:
+#   - interface: FXLS8974_Interface
+#     # Jumper configuration: I2C/SPI=I2C
+#     provides:
+#       - FXLS8974_I2C:
+#     consumes:
+#       # Jumper configuration: I2C=I2C0
+#       # - A_I2C:
+#       # Jumper configuration: I2C=I2C1
+#       - A_I2C_Alt:
+#     # Jumper configuration: I2C/SPI=SPI
+#     # provides:
+#     #   - FXLS8974_SPI:
+#     #   - FXLS8974_CS:
+#     # consumes:
+#     #   - A_SPI:
+#     #   - A_IO_D10:
+#   - interface: FXLS8974_Interrupt1
+#     provides:
+#       - FXLS8974_INT1:
+#     consumes:
+#       - A_IO_D2:
+#   - interface: FXLS8974_Interrupt2
+#     provides:
+#       - FXLS8974_INT2:
+#     consumes:
+#       - A_IO_A0:
+#   - interface: Shield_Reset
+#     provides:
+#       - A8974_RESET:
+#     consumes:
+#       - A_IO_A3:
+
   interfaces:
     # Arduino UNO Rev3
       # A_UART: RX=D0, TX=D1

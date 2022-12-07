@@ -9,6 +9,12 @@ project:
   #   - ../../../../../middleware/issdk/drivers/systick
   #   - ../../../../../middleware/issdk/sensors
 
+# interfaces:
+#   - interface: FXAS21002
+#     consumes:
+#       - FXAS21002_SPI:
+#       - FXAS21002_CS:
+
   interfaces:
     consumes:
       - FXAS21002_SPI:

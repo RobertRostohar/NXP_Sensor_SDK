@@ -9,6 +9,11 @@ project:
   #   - ../../../../../middleware/issdk/drivers/systick
   #   - ../../../../../middleware/issdk/sensors
 
+# interfaces:
+#   - interface: FXLS8974
+#     consumes:
+#       - FXLS8974_I2C:
+
   interfaces:
     consumes:
       - FXLS8974_I2C:

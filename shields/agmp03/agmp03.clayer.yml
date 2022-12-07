@@ -3,6 +3,90 @@
 layer:
   description: AGMP03 Shield
 
+# interfaces:
+#   - interface: FXLS8962_Interface
+#     # Jumper configuration: I2C/SPI=I2C
+#     provides:
+#       - FXLS8962_I2C:
+#     consumes:
+#       # Jumper configuration: I2C=I2C0
+#       - A_I2C:
+#       # Jumper configuration: I2C=I2C1
+#       # - A_I2C_Alt:
+#     # Jumper configuration: I2C/SPI=SPI
+#     # provides:
+#     #   - FXLS8962_SPI:
+#     #   - FXLS8962_CS:
+#     # consumes:
+#     #   - A_SPI:
+#     #   - A_IO_D10:
+#   - interface: FXLS8962_Interrupt1
+#     provides:
+#       - FXLS8962_INT1:
+#     consumes:
+#       - A_IO_D2:
+#   - interface: FXLS8962_Interrupt2
+#     provides:
+#       - FXLS8962_INT2:
+#     consumes:
+#       - A_IO_A0:
+#
+#   - interface: FXAS21002_Interface
+#     # Jumper configuration: I2C/SPI=I2C
+#     provides:
+#       - FXAS21002_I2C:
+#     consumes:
+#       # Jumper configuration: I2C=I2C0
+#       - A_I2C:
+#       # Jumper configuration: I2C=I2C1
+#       # - A_I2C_Alt:
+#     # Jumper configuration: I2C/SPI=SPI
+#     # provides:
+#     #   - FXAS21002_SPI:
+#     #   - FXAS21002_CS:
+#     # consumes:
+#     #   - A_SPI:
+#     #   - A_IO_A1:
+#   - interface: FXAS21002_Interrupt1
+#     provides:
+#       - FXAS21002_INT1:
+#     consumes:
+#       - A_IO_D8:
+#
+#   - interface: MPL3115_Interface
+#     provides:
+#       - MPL3115_I2C:
+#     consumes:
+#       # Jumper configuration: I2C=I2C0
+#       - A_I2C:
+#       # Jumper configuration: I2C=I2C1
+#       # - A_I2C_Alt:
+#   - interface: MPL3115_Interrupt1
+#     provides:
+#       - MPL3115_INT1:
+#     consumes:
+#       - A_IO_D7:
+#
+#   - interface: MAG3110_Interface
+#     provides:
+#       - MAG3110_I2C:
+#     consumes:
+#       # Jumper configuration: I2C=I2C0
+#       - A_I2C:
+#       # Jumper configuration: I2C=I2C1
+#       # - A_I2C_Alt:
+#   - interface: MAG3110_Interrupt1
+#     provides:
+#       - MAG3110_INT1:
+#     consumes:
+#       - A_IO_D5:
+#
+#   - interface: Shield_Reset
+#     provides:
+#       - AGMP03_RESET:
+#     consumes:
+#       - A_IO_A3:
+
   interfaces:
     # Arduino UNO Rev3
       # A_UART: RX=D0, TX=D1

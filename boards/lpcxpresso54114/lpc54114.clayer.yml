@@ -3,6 +3,28 @@
 layer:
   description: LPCXpresso54114 Development Board
 
+# interfaces:
+#   - interface: FRDMK22F
+#     provides:
+#       - A_UART: 0
+#       - A_SPI: 5
+#       - A_I2C: 4
+#       - A_IO_D2:
+#       - A_IO_D3:
+#       - A_IO_D4:
+#       - A_IO_D5:
+#       - A_IO_D6:
+#       - A_IO_D7:
+#       - A_IO_D8:
+#       - A_IO_D9:
+#       - A_IO_D10:
+#       - A_IO_A0:
+#       - A_IO_A2:
+#       - A_IO_A3:
+#       - A_IO_A4:
+#       - A_IO_A5:
+#       - Heap: 1024
+
   interfaces:
     # Arduino UNO Rev3
       # A_UART: RX=D0, TX=D1

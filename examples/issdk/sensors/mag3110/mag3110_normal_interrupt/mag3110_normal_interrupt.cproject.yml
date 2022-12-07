@@ -9,6 +9,12 @@ project:
   #   - ../../../../../middleware/issdk/drivers/systick
   #   - ../../../../../middleware/issdk/sensors
 
+# interfaces:
+#   - interface: MAG3110
+#     consumes:
+#       - MAG3110_I2C:
+#       - MAG31104_INT1:
+
   interfaces:
     consumes:
       - MAG3110_I2C:

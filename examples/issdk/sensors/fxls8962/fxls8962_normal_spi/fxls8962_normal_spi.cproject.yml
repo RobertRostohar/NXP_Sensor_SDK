@@ -9,6 +9,12 @@ project:
   #   - ../../../../../middleware/issdk/drivers/systick
   #   - ../../../../../middleware/issdk/sensors
 
+# interfaces:
+#   - interface: FXLS8962
+#     consumes:
+#       - FXLS8962_SPI:
+#       - FXLS8962_CS:
+
   interfaces:
     consumes:
       - FXLS8962_SPI:
