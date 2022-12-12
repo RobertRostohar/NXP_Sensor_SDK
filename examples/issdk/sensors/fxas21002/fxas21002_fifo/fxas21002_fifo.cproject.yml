@@ -53,10 +53,10 @@ project:
     - layer: ../../../../../boards/frdmk22f/frdmk22f.clayer.yml
       for-type:
         - +frdmk22f_agmp03
-    - layer: ../../../../../boards/lpcxpresso54114/lpc54114.clayer.yml
+    - layer: ../../../../../boards/lpcxpresso54114/lpcxpresso54114.clayer.yml
       for-type:
-        - +lpc54114_agmp03
+        - +lpcxpresso54114_agmp03
     - layer: ../../../../../shields/agmp03/agmp03.clayer.yml
       for-type:
         - +frdmk22f_agmp03
-        - +lpc54114_agmp03
+        - +lpcxpresso54114_agmp03

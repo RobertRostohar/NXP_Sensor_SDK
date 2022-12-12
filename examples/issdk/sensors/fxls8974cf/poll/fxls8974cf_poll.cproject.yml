@@ -53,10 +53,10 @@ project:
     - layer: ../../../../../boards/frdmk22f/frdmk22f.clayer.yml
       for-type:
         - +frdmk22f_a8974
-    - layer: ../../../../../boards/lpcxpresso54114/lpc54114.clayer.yml
+    - layer: ../../../../../boards/lpcxpresso54114/lpcxpresso54114.clayer.yml
       for-type:
-        - +lpc54114_a8974
+        - +lpcxpresso54114_a8974
     - layer: ../../../../../shields/a8974/a8974.clayer.yml
       for-type:
         - +frdmk22f_a8974
-        - +lpc54114_a8974
+        - +lpcxpresso54114_a8974

@@ -14,7 +14,7 @@ solution:
         - CPU_MK22FN512VLH12
         - FRDM_K22F
         - FREEDOM
-    - type: lpc54114_agmp03
+    - type: lpcxpresso54114_agmp03
       device: NXP::LPC54114J256BD64:cm4
       define:
         - CPU_LPC54114J256BD64_cm4
