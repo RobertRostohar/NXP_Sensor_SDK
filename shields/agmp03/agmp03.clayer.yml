@@ -1,138 +1,118 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/schemas/projmgr/1.3.0/tools/projmgr/schemas/clayer.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/schemas/projmgr/1.4.0/tools/projmgr/schemas/clayer.schema.json
 
 layer:
-  description: AGMP03 Shield
+  type: Shield
+# name: AGMP03
+  description: FRDM-STBC-AGMP03 Sensor Shield Board
 
-# interfaces:
-#   - interface: FXLS8962_Interface
-#     # Jumper configuration: I2C/SPI=I2C
-#     provides:
-#       - FXLS8962_I2C:
-#     consumes:
-#       # Jumper configuration: I2C=I2C0
-#       - A_I2C:
-#       # Jumper configuration: I2C=I2C1
-#       # - A_I2C_Alt:
-#     # Jumper configuration: I2C/SPI=SPI
-#     # provides:
-#     #   - FXLS8962_SPI:
-#     #   - FXLS8962_CS:
-#     # consumes:
-#     #   - A_SPI:
-#     #   - A_IO_D10:
-#   - interface: FXLS8962_Interrupt1
-#     provides:
-#       - FXLS8962_INT1:
-#     consumes:
-#       - A_IO_D2:
-#   - interface: FXLS8962_Interrupt2
-#     provides:
-#       - FXLS8962_INT2:
-#     consumes:
-#       - A_IO_A0:
-#
-#   - interface: FXAS21002_Interface
-#     # Jumper configuration: I2C/SPI=I2C
-#     provides:
-#       - FXAS21002_I2C:
-#     consumes:
-#       # Jumper configuration: I2C=I2C0
-#       - A_I2C:
-#       # Jumper configuration: I2C=I2C1
-#       # - A_I2C_Alt:
-#     # Jumper configuration: I2C/SPI=SPI
-#     # provides:
-#     #   - FXAS21002_SPI:
-#     #   - FXAS21002_CS:
-#     # consumes:
-#     #   - A_SPI:
-#     #   - A_IO_A1:
-#   - interface: FXAS21002_Interrupt1
-#     provides:
-#       - FXAS21002_INT1:
-#     consumes:
-#       - A_IO_D8:
-#
-#   - interface: MPL3115_Interface
-#     provides:
-#       - MPL3115_I2C:
-#     consumes:
-#       # Jumper configuration: I2C=I2C0
-#       - A_I2C:
-#       # Jumper configuration: I2C=I2C1
-#       # - A_I2C_Alt:
-#   - interface: MPL3115_Interrupt1
-#     provides:
-#       - MPL3115_INT1:
-#     consumes:
-#       - A_IO_D7:
-#
-#   - interface: MAG3110_Interface
-#     provides:
-#       - MAG3110_I2C:
-#     consumes:
-#       # Jumper configuration: I2C=I2C0
-#       - A_I2C:
-#       # Jumper configuration: I2C=I2C1
-#       # - A_I2C_Alt:
-#   - interface: MAG3110_Interrupt1
-#     provides:
-#       - MAG3110_INT1:
-#     consumes:
-#       - A_IO_D5:
-#
-#   - interface: Shield_Reset
-#     provides:
-#       - AGMP03_RESET:
-#     consumes:
-#       - A_IO_A3:
+  connections:
+    - connect: FXLS8962 I2C Bus
+      set: Bus.I2C
+      info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
+      provides:
+        - FXLS8962_I2C
+      consumes:
+        - ARDUINO_UNO_I2C
+    - connect: FXLS8962 Alternate I2C Bus
+      set: Bus.I2C-Alt
+      info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
+      provides:
+        - FXLS8962_I2C
+      consumes:
+        - ARDUINO_UNO_I2C-Alt
+    - connect: FXLS8962 SPI Bus
+      set: Bus.SPI
+      info: "Jumper configuration: I2C/SPI=SPI"
+      provides:
+        - FXLS8962_SPI
+        - FXLS8962_CS
+      consumes:
+        - ARDUINO_UNO_SPI
+        - ARDUINO_UNO_D10
+    - connect: FXLS8962 Interrupt 1
+      provides:
+        - FXLS8962_INT1
+      consumes:
+        - ARDUINO_UNO_D2
+    - connect: FXLS8962 Interrupt 2
+      provides:
+        - FXLS8962_INT2
+      consumes:
+        - ARDUINO_UNO_A0
 
-  interfaces:
-    # Arduino UNO Rev3
-      # A_UART: RX=D0, TX=D1
-      # A_SPI: COPI=D11, CIPO=D12, SCK=D13, (SS=D10)
-      # A_I2C: SDA=D18, SCL=D19
-      # A_I2C_Alt: SDA=A4, SCL=A5
-      # A_IO_Dn: A_IO_D0..D14, A_IO_D18..19
-      # A_IO_An: A_IO_A0..5
+    - connect: FXAS21002 I2C Bus
+      set: Bus.I2C
+      info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
+      provides:
+        - FXAS21002_I2C
+      consumes:
+        - ARDUINO_UNO_I2C
+    - connect: FXAS21002 Alternate I2C Bus
+      set: Bus.I2C-Alt
+      info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
+      provides:
+        - FXAS21002_I2C
+      consumes:
+        - ARDUINO_UNO_I2C-Alt
+    - connect: FXAS21002 SPI Bus
+      set: Bus.SPI
+      info: "Jumper configuration: I2C/SPI=SPI"
+      provides:
+        - FXAS21002_SPI
+        - FXAS21002_CS
+      consumes:
+        - ARDUINO_UNO_SPI
+        - ARDUINO_UNO_A1
+    - connect: FXAS21002 Interrupt 1
+      provides:
+        - FXAS21002_INT1
+      consumes:
+        - ARDUINO_UNO_D8
 
-    consumes:
+    - connect: MPL3115 I2C Bus
+      set: Bus.I2C
+      info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
+      provides:
+        - MPL3115_I2C
+      consumes:
+        - ARDUINO_UNO_I2C
+    - connect: MPL3115 Alternate I2C Bus
+      set: Bus.I2C-Alt
+      info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
+      provides:
+        - MPL3115_I2C
+      consumes:
+        - ARDUINO_UNO_I2C-Alt
+    - connect: MPL3115 Interrupt 1
+      provides:
+        - MPL3115_INT1
+      consumes:
+        - ARDUINO_UNO_D7
 
-      # Jumper configuration: I2C=I2C0
-      - A_I2C:
-
-      # Jumper configuration: I2C=I2C1
-      # - A_I2C_Alt:
-
-      - A_SPI:
-
-      - A_IO_D2:
-      - A_IO_D5:
-      - A_IO_D7:
-      - A_IO_D8:
-      - A_IO_D10:
-      - A_IO_A1:
-      - A_IO_A3:
-
-    provides:
-
-      # Jumper configuration: I2C/SPI=I2C
-      - FXLS8962_I2C:
-      - FXAS21002_I2C:
-
-      # Jumper configuration: I2C/SPI=SPI
-      # - FXLS8962_SPI:
-      # - FXLS8962_CS:
-      # - FXAS21002_SPI:
-      # - FXAS21002_CS:
-
-      - FXLS8962_INT1:
-      - FXAS21002_INT1:
-
-      - MPL3115_I2C:
-      - MPL3115_INT1:
-      - MAG3110_I2C:
-      - MAG3110_INT1:
+    - connect: MAG3110 I2C Bus
+      set: Bus.I2C
+      info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
+      provides:
+        - MAG3110_I2C
+      consumes:
+        - ARDUINO_UNO_I2C
+    - connect: MAG3110 Alternate I2C Bus
+      set: Bus.I2C-Alt
+      info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
+      provides:
+        - MAG3110_I2C
+      consumes:
+        - ARDUINO_UNO_I2C-Alt
+    - connect: MAG3110 Interrupt 1
+      provides:
+        - MAG3110_INT1
+      consumes:
+        - ARDUINO_UNO_D5
+    - connect: Shield Reset
+      provides:
+        - AGMP03_RESET
+      consumes:
+        - ARDUINO_UNO_A3
 
   define:
     - SHIELD_HEADER="frdm_stbc_agmp03_shield.h"

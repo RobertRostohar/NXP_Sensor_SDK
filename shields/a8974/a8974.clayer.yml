@@ -1,74 +1,49 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/schemas/projmgr/1.3.0/tools/projmgr/schemas/clayer.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/schemas/projmgr/1.4.0/tools/projmgr/schemas/clayer.schema.json
 
 layer:
-  description: A8974 Shield
+  type: Shield
+# name: A8974
+  description: FRDM-STBI-A8974 Sensor Shield Board
 
-# interfaces:
-#   - interface: FXLS8974_Interface
-#     # Jumper configuration: I2C/SPI=I2C
-#     provides:
-#       - FXLS8974_I2C:
-#     consumes:
-#       # Jumper configuration: I2C=I2C0
-#       # - A_I2C:
-#       # Jumper configuration: I2C=I2C1
-#       - A_I2C_Alt:
-#     # Jumper configuration: I2C/SPI=SPI
-#     # provides:
-#     #   - FXLS8974_SPI:
-#     #   - FXLS8974_CS:
-#     # consumes:
-#     #   - A_SPI:
-#     #   - A_IO_D10:
-#   - interface: FXLS8974_Interrupt1
-#     provides:
-#       - FXLS8974_INT1:
-#     consumes:
-#       - A_IO_D2:
-#   - interface: FXLS8974_Interrupt2
-#     provides:
-#       - FXLS8974_INT2:
-#     consumes:
-#       - A_IO_A0:
-#   - interface: Shield_Reset
-#     provides:
-#       - A8974_RESET:
-#     consumes:
-#       - A_IO_A3:
-
-  interfaces:
-    # Arduino UNO Rev3
-      # A_UART: RX=D0, TX=D1
-      # A_SPI: COPI=D11, CIPO=D12, SCK=D13, (SS=D10)
-      # A_I2C: SDA=D18, SCL=D19
-      # A_I2C_Alt: SDA=A4, SCL=A5
-      # A_IO_Dn: A_IO_D0..D14, A_IO_D18..19
-      # A_IO_An: A_IO_A0..5
-
-    consumes:
-
-      # Jumper configuration: I2C=I2C0
-      # - A_I2C:
-
-      # Jumper configuration: I2C=I2C1
-      - A_I2C_Alt:
-
-      - A_SPI:
-
-      - A_IO_D2:
-      - A_IO_D10:
-      - A_IO_A3:
-
-    provides:
-
-      # Jumper configuration: I2C/SPI=I2C
-      - FXLS8974_I2C:
-
-      # Jumper configuration: I2C/SPI=SPI
-      # - FXLS8974_SPI:
-      # - FXLS8974_CS:
-
-      - FXLS8974_INT1:
+  connections:
+    - connect: FXLS8974 I2C Bus
+      set: Bus.I2C
+      info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
+      provides:
+        - FXLS8974_I2C
+      consumes:
+        - ARDUINO_UNO_I2C
+    - connect: FXLS8974 Alternate I2C Bus
+      set: Bus.I2C-Alt
+      info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
+      provides:
+        - FXLS8974_I2C
+      consumes:
+        - ARDUINO_UNO_I2C-Alt
+    - connect: FXLS8974 SPI Bus
+      set: Bus.SPI
+      info: "Jumper configuration: I2C/SPI=SPI"
+      provides:
+        - FXLS8974_SPI
+        - FXLS8974_CS
+      consumes:
+        - ARDUINO_UNO_SPI
+        - ARDUINO_UNO_D10
+    - connect: FXLS8974 Interrupt 1
+      provides:
+        - FXLS8974_INT1
+      consumes:
+        - ARDUINO_UNO_D2
+    - connect: FXLS8974 Interrupt 2
+      provides:
+        - FXLS8974_INT2
+      consumes:
+        - ARDUINO_UNO_A0
+    - connect: Shield Reset
+      provides:
+        - A8974_RESET
+      consumes:
+        - ARDUINO_UNO_A3
 
   define:
     - SHIELD_HEADER="frdm_stbi_a8974_shield.h"

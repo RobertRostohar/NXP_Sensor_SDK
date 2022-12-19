@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/schemas/projmgr/1.3.0/tools/projmgr/schemas/cproject.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/schemas/projmgr/1.4.0/tools/projmgr/schemas/cproject.schema.json
 
 project:
 
@@ -9,16 +9,11 @@ project:
   #   - ../../../../../middleware/issdk/drivers/systick
   #   - ../../../../../middleware/issdk/sensors
 
-# interfaces:
-#   - interface: FXAS21002
-#     consumes:
-#       - FXAS21002_SPI:
-#       - FXAS21002_CS:
-
-  interfaces:
-    consumes:
-      - FXAS21002_SPI:
-      - FXAS21002_CS:
+  connections:
+    - connect: FXAS21002 Sensor
+      consumes:
+        - FXAS21002_SPI
+        - FXAS21002_CS
 
   groups:
     - group: source
