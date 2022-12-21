@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.7.15">
+  <vendor>NXP</vendor>
+  <name>Sensor_MSP</name>
+  <description>NXP Sensor Middleware Software Pack</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+
+  <releases>
+    <release version="1.0.0-test">
+      Test pack
+    </release>
+  </releases>
+
+  <requirements>
+    <packages>
+      <package vendor="ARM" name="CMSIS" version="5.7.0"/>
+    </packages>
+  </requirements>
+
+  <keywords>
+    <keyword>NXP</keyword>
+    <keyword>Sensor</keyword>
+    <keyword>ISSDK</keyword>
+    <keyword>FreeMASTER</keyword>
+    <keyword>Middleware Software Pack</keyword>
+  </keywords>
+
+  <apis>
+    <api Cclass="Driver" Cgroup="GPIO" Capiversion="1.0.0" exclusive="0">
+      <description>GPIO Driver API</description>
+      <files>
+        <file category="header" name="middleware/issdk/drivers/gpio/Driver_GPIO.h"/>
+      </files>
+    </api>
+  </apis>
+
+  <conditions>
+    <condition id="GPIO Kinetis">
+      <description>GPIO Kinetis devices</description>
+      <!-- ToDo -->
+    </condition>
+    <condition id="GPIO LPC">
+      <description>GPIO LPC devices</description>
+      <!-- ToDo -->
+    </condition>
+    <condition id="ISSDK HAL">
+      <description>ISSDK HAL</description>
+      <!-- ToDo -->
+    </condition>
+    <condition id="ISSDK SysTick">
+      <description>ISSDK SysTick Driver</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="ISSDK Interface I2C">
+      <description>ISSDK Interface using I2C</description>
+      <require Cclass="CMSIS Driver" Cgroup="I2C"/>
+      <require Cclass="Driver" Cgroup="GPIO"/>
+      <require Cbundle="NXP" Cclass="ISSDK" Cgroup="HAL"/>
+      <require Cbundle="NXP" Cclass="ISSDK" Cgroup="Driver" Csub="SysTick"/>
+    </condition>
+    <condition id="ISSDK Interface SPI">
+      <description>ISSDK Interface using SPI</description>
+      <require Cclass="CMSIS Driver" Cgroup="SPI"/>
+      <require Cclass="Driver" Cgroup="GPIO"/>
+      <require Cbundle="NXP" Cclass="ISSDK" Cgroup="HAL"/>
+      <require Cbundle="NXP" Cclass="ISSDK" Cgroup="Driver" Csub="SysTick"/>
+    </condition>
+    <condition id="ISSDK Sensor I2C">
+      <description>ISSDK Sensor using I2C interface</description>
+      <require Cbundle="NXP" Cclass="ISSDK" Cgroup="Interface" Csub="I2C"/>
+    </condition>
+    <condition id="ISSDK Sensor SPI">
+      <description>ISSDK Sensor using SPI interface</description>
+      <require Cbundle="NXP" Cclass="ISSDK" Cgroup="Interface" Csub="SPI"/>
+    </condition>
+    <condition id="FreeMASTER CORE">
+      <description>FreeMASTER Core</description>
+      <require Cbundle="NXP" Cclass="FreeMASTER" Cgroup="Driver"/>
+    </condition>
+    <condition id="FreeMASTER MCUXSDK">
+      <description>FreeMASTER using MCUXSDK</description>
+      <!-- ToDo -->
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- GPIO Driver -->
+    <component Cclass="Driver" Cgroup="GPIO" Csub="Kinetis" Capiversion="1.0.0" Cversion="1.0.0" condition="GPIO Kinetis">
+      <description>GPIO Driver for Kinetis devices</description>
+      <files>
+        <file category="header" name="middleware/issdk/drivers/gpio/kinetis/gpio_driver.h"/>
+        <file category="source" name="middleware/issdk/drivers/gpio/kinetis/gpio_driver.c"/>
+        <file category="source" name="middleware/issdk/drivers/gpio/kinetis/gpio_driver_irq.c"/>
+      </files>
+    </component>
+    <component Cclass="Driver" Cgroup="GPIO" Csub="LPC" Capiversion="1.0.0" Cversion="1.0.0" condition="GPIO LPC">
+      <description>GPIO Driver for LPC devices</description>
+      <files>
+        <file category="header" name="middleware/issdk/drivers/gpio/lpc/gpio_driver.h"/>
+        <file category="source" name="middleware/issdk/drivers/gpio/lpc/gpio_driver.c"/>
+        <file category="source" name="middleware/issdk/drivers/gpio/lpc/gpio_driver_irq.c"/>
+      </files>
+    </component>
+    <!-- ISSDK -->
+    <bundle Cbundle="NXP" Cclass="ISSDK" Cversion="1.0.0">
+      <component Cgroup="HAL" condition="ISSDK HAL">
+        <description>ISSDK Hardware Abraction Layer</description>
+        <files>
+          <file category="header" name="middleware/issdk/hal/issdk_hal.h"/>
+        </files>
+      </component>
+      <component Cgroup="Driver" Csub="SysTick" condition="ISSDK SysTick">
+        <description>ISSDK SysTick Driver</description>
+        <files>
+          <file category="header" name="middleware/issdk/drivers/systick/systick_utils.h"/>
+          <file category="source" name="middleware/issdk/drivers/systick/systick_utils.c"/>
+        </files>
+      </component>
+      <component Cgroup="Interface" Csub="I2C" condition="ISSDK Interface I2C">
+        <description>ISSDK Interace (I2C)</description>
+        <files>
+          <file category="header" name="middleware/issdk/sensors/sensor_drv.h"/>
+          <file category="header" name="middleware/issdk/sensors/sensor_io_i2c.h"/>
+          <file category="source" name="middleware/issdk/sensors/sensor_io_i2c.c"/>
+          <file category="header" name="middleware/issdk/sensors/register_io_i2c.h"/>
+          <file category="source" name="middleware/issdk/sensors/register_io_i2c.c"/>
+        </files>
+      </component>
+      <component Cgroup="Interface" Csub="SPI" condition="ISSDK Interface SPI">
+        <description>ISSDK Interace (SPI)</description>
+        <files>
+          <file category="header" name="middleware/issdk/sensors/sensor_drv.h"/>
+          <file category="header" name="middleware/issdk/sensors/sensor_io_spi.h"/>
+          <file category="source" name="middleware/issdk/sensors/sensor_io_spi.c"/>
+          <file category="header" name="middleware/issdk/sensors/register_io_spi.h"/>
+          <file category="source" name="middleware/issdk/sensors/register_io_spi.c"/>
+        </files>
+      </component>
+      <component Cgroup="Sensor" Csub="FXAS21002" Cvariant="I2C" condition="ISSDK Sensor I2C">
+        <description>ISSDK Sensor driver for FXAS21002 (I2C)</description>
+        <files>
+          <file category="header" name="middleware/issdk/sensors/fxas21002.h"/>
+          <file category="header" name="middleware/issdk/sensors/fxas21002_drv.h"/>
+          <file category="source" name="middleware/issdk/sensors/fxas21002_drv.c"/>
+        </files>
+      </component>
+      <component Cgroup="Sensor" Csub="FXAS21002" Cvariant="SPI" condition="ISSDK Sensor SPI">
+        <description>ISSDK Sensor driver for FXAS21002 (SPI)</description>
+        <files>
+          <file category="header" name="middleware/issdk/sensors/fxas21002.h"/>
+          <file category="header" name="middleware/issdk/sensors/fxas21002_drv.h"/>
+          <file category="source" name="middleware/issdk/sensors/fxas21002_drv.c"/>
+        </files>
+      </component>
+      <component Cgroup="Sensor" Csub="FXLS8962" Cvariant="I2C" condition="ISSDK Sensor I2C">
+        <description>ISSDK Sensor driver for FXLS8962 (I2C)</description>
+        <files>
+          <file category="header" name="middleware/issdk/sensors/fxls8962.h"/>
+          <file category="header" name="middleware/issdk/sensors/fxls8962_drv.h"/>
+          <file category="source" name="middleware/issdk/sensors/fxls8962_drv.c"/>
+        </files>
+      </component>
+      <component Cgroup="Sensor" Csub="FXLS8962" Cvariant="SPI" condition="ISSDK Sensor SPI">
+        <description>ISSDK Sensor driver for FXLS8962 (SPI)</description>
+        <files>
+          <file category="header" name="middleware/issdk/sensors/fxls8962.h"/>
+          <file category="header" name="middleware/issdk/sensors/fxls8962_drv.h"/>
+          <file category="source" name="middleware/issdk/sensors/fxls8962_drv.c"/>
+        </files>
+      </component>
+      <component Cgroup="Sensor" Csub="FXLS8974" Cvariant="I2C" condition="ISSDK Sensor I2C">
+        <description>ISSDK Sensor driver for FXLS8974 (I2C)</description>
+        <files>
+          <file category="header" name="middleware/issdk/sensors/fxls8974.h"/>
+          <file category="header" name="middleware/issdk/sensors/fxls8974_drv.h"/>
+          <file category="source" name="middleware/issdk/sensors/fxls8974_drv.c"/>
+        </files>
+      </component>
+      <component Cgroup="Sensor" Csub="FXLS8974" Cvariant="SPI" condition="ISSDK Sensor SPI">
+        <description>ISSDK Sensor driver for FXLS8974 (SPI)</description>
+        <files>
+          <file category="header" name="middleware/issdk/sensors/fxls8974.h"/>
+          <file category="header" name="middleware/issdk/sensors/fxls8974_drv.h"/>
+          <file category="source" name="middleware/issdk/sensors/fxls8974_drv.c"/>
+        </files>
+      </component>
+      <component Cgroup="Sensor" Csub="MAG3110" Cvariant="I2C" condition="ISSDK Sensor I2C">
+        <description>ISSDK Sensor driver for MAG3110 (I2C)</description>
+        <files>
+          <file category="header" name="middleware/issdk/sensors/mag3110.h"/>
+          <file category="header" name="middleware/issdk/sensors/mag3110_drv.h"/>
+          <file category="source" name="middleware/issdk/sensors/mag3110_drv.c"/>
+        </files>
+      </component>
+      <component Cgroup="Sensor" Csub="MPL3115" Cvariant="I2C" condition="ISSDK Sensor I2C">
+        <description>ISSDK Sensor driver for MPL3115 (I2C)</description>
+        <files>
+          <file category="header" name="middleware/issdk/sensors/mpl3115.h"/>
+          <file category="header" name="middleware/issdk/sensors/mpl3115_drv.h"/>
+          <file category="source" name="middleware/issdk/sensors/mpl3115_drv.c"/>
+        </files>
+      </component>
+    </bundle>
+    <!-- FreeMASTER -->
+    <bundle Cbundle="NXP" Cclass="FreeMASTER" Cversion="1.0.0">
+      <component Cgroup="CORE" condition="FreeMASTER CORE">
+        <description>FreeMASTER CORE</description>
+        <files>
+          <file category="header" name="middleware/freemaster/src/config/freemaster_cfg.h" attr="config" version="1.0.0"/>
+          <file category="header" name="middleware/freemaster/src/common/freemaster.h"/>
+          <file category="source" name="middleware/freemaster/src/common/freemaster_appcmd.c"/>
+          <file category="header" name="middleware/freemaster/src/common/freemaster_defcfg.h"/>
+          <file category="source" name="middleware/freemaster/src/common/freemaster_pipes.c"/>
+          <file category="header" name="middleware/freemaster/src/common/freemaster_private.h"/>
+          <file category="source" name="middleware/freemaster/src/common/freemaster_protocol.c"/>
+          <file category="header" name="middleware/freemaster/src/common/freemaster_protocol.h"/>
+          <file category="source" name="middleware/freemaster/src/common/freemaster_rec.c"/>
+          <file category="header" name="middleware/freemaster/src/common/freemaster_rec.h"/>
+          <file category="source" name="middleware/freemaster/src/common/freemaster_scope.c"/>
+          <file category="source" name="middleware/freemaster/src/common/freemaster_tsa.c"/>
+          <file category="header" name="middleware/freemaster/src/common/freemaster_tsa.h"/>
+          <file category="source" name="middleware/freemaster/src/common/freemaster_ures.c"/>
+          <file category="header" name="middleware/freemaster/src/common/freemaster_ures.h"/>
+          <file category="source" name="middleware/freemaster/src/common/freemaster_utils.c"/>
+          <file category="header" name="middleware/freemaster/src/common/freemaster_utils.h"/>
+          <file category="source" name="middleware/freemaster/src/common/freemaster_can.c"/>
+          <file category="header" name="middleware/freemaster/src/common/freemaster_can.h"/>
+          <file category="source" name="middleware/freemaster/src/common/freemaster_sha.c"/>
+          <file category="source" name="middleware/freemaster/src/common/freemaster_pdbdm.c"/>
+          <file category="source" name="middleware/freemaster/src/common/freemaster_serial.c"/>
+          <file category="header" name="middleware/freemaster/src/common/freemaster_serial.h"/>
+          <file category="source" name="middleware/freemaster/src/common/freemaster_net.c"/>
+          <file category="header" name="middleware/freemaster/src/common/freemaster_net.h"/>
+          <file category="header" name="middleware/freemaster/src/platforms/gen32be/freemaster_gen32be.h"/>
+          <file category="header" name="middleware/freemaster/src/platforms/gen32be/freemaster_gen32be.h"/>
+        </files>
+      </component>
+      <component Cgroup="Driver" Cvariant="MCUXSDK" condition="FreeMASTER MCUXSDK">
+        <files>
+          <file category="source" name="middleware/freemaster/src/drivers/mcuxsdk/can/freemaster_flexcan.c"/>
+          <file category="header" name="middleware/freemaster/src/drivers/mcuxsdk/can/freemaster_flexcan.h"/>
+          <file category="source" name="middleware/freemaster/src/drivers/mcuxsdk/can/freemaster_mscan.c"/>
+          <file category="header" name="middleware/freemaster/src/drivers/mcuxsdk/can/freemaster_mscan.h"/>
+          <file category="source" name="middleware/freemaster/src/drivers/mcuxsdk/can/freemaster_mcan.c"/>
+          <file category="header" name="middleware/freemaster/src/drivers/mcuxsdk/can/freemaster_mcan.h"/>
+          <file category="source" name="middleware/freemaster/src/drivers/mcuxsdk/serial/freemaster_serial_uart.c"/>
+          <file category="header" name="middleware/freemaster/src/drivers/mcuxsdk/serial/freemaster_serial_uart.h"/>
+          <file category="source" name="middleware/freemaster/src/drivers/mcuxsdk/serial/freemaster_serial_lpsci.c"/>
+          <file category="header" name="middleware/freemaster/src/drivers/mcuxsdk/serial/freemaster_serial_lpsci.h"/>
+          <file category="source" name="middleware/freemaster/src/drivers/mcuxsdk/serial/freemaster_serial_lpuart.c"/>
+          <file category="header" name="middleware/freemaster/src/drivers/mcuxsdk/serial/freemaster_serial_lpuart.h"/>
+          <file category="source" name="middleware/freemaster/src/drivers/mcuxsdk/serial/freemaster_serial_usart.c"/>
+          <file category="header" name="middleware/freemaster/src/drivers/mcuxsdk/serial/freemaster_serial_usart.h"/>
+          <file category="source" name="middleware/freemaster/src/drivers/mcuxsdk/serial/freemaster_serial_miniusart.c"/>
+          <file category="header" name="middleware/freemaster/src/drivers/mcuxsdk/serial/freemaster_serial_miniusart.h"/>
+          <file category="source" name="middleware/freemaster/src/drivers/mcuxsdk/serial/freemaster_serial_usb.c"/>
+          <file category="header" name="middleware/freemaster/src/drivers/mcuxsdk/serial/freemaster_serial_usb.h"/>
+          <file category="source" name="middleware/freemaster/src/drivers/mcuxsdk/network/freemaster_net_segger_rtt.c"/>
+          <file category="header" name="middleware/freemaster/src/drivers/mcuxsdk/network/freemaster_net_segger_rtt.h"/>
+          <file category="source" name="middleware/freemaster/src/drivers/mcuxsdk/network/freemaster_net_lwip_udp.c"/>
+          <file category="header" name="middleware/freemaster/src/drivers/mcuxsdk/network/freemaster_net_lwip_udp.h"/>
+          <file category="source" name="middleware/freemaster/src/drivers/mcuxsdk/network/freemaster_net_lwip_tcp.c"/>
+          <file category="header" name="middleware/freemaster/src/drivers/mcuxsdk/network/freemaster_net_lwip_tcp.h"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+  <clayers>
+    <clayer name="A8974" type="Shield" file="shields/a8974/a8974.clayer.yml">
+      <description>"FRDM-STBI-A8974 Sensor Shield Board"</description>
+    </clayer>
+    <clayer name="AGMP03" type="Shield" file="shields/agmp03/agmp03.clayer.yml">
+      <description>"FRDM-STBC-AGMP03 Sensor Shield Board"</description>
+    </clayer>
+  </clayers>
+
+</package>
