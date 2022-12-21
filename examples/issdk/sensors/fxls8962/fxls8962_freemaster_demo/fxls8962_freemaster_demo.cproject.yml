@@ -107,9 +107,7 @@ project:
         - file: ../../../../../middleware/freemaster/src/drivers/mcuxsdk/network/freemaster_net_lwip_tcp.h
 
   layers:
-    - layer: ../../../../../boards/frdmk22f/frdmk22f.clayer.yml
-      for-type:
-        - +frdmk22f_agmp03
-    - layer: ../../../../../shields/agmp03/agmp03.clayer.yml
-      for-type:
-        - +frdmk22f_agmp03
+    - layer: $Board-Layer$
+      type: Board
+    - layer: $Shield-Layer$
+      type: Shield

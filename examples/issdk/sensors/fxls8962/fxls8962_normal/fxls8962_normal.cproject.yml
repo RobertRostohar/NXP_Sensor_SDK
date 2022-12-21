@@ -46,13 +46,7 @@ project:
         - file: ../../../../../middleware/issdk/sensors/fxls8962_drv.c
 
   layers:
-    - layer: ../../../../../boards/frdmk22f/frdmk22f.clayer.yml
-      for-type:
-        - +frdmk22f_agmp03
-    - layer: ../../../../../boards/lpcxpresso54114/lpcxpresso54114.clayer.yml
-      for-type:
-        - +lpcxpresso54114_agmp03
-    - layer: ../../../../../shields/agmp03/agmp03.clayer.yml
-      for-type:
-        - +frdmk22f_agmp03
-        - +lpcxpresso54114_agmp03
+    - layer: $Board-Layer$
+      type: Board
+    - layer: $Shield-Layer$
+      type: Shield

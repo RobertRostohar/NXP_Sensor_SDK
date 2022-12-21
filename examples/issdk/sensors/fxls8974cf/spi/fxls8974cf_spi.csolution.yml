@@ -1,23 +1,33 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/schemas/projmgr/1.3.0/tools/projmgr/schemas/csolution.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/schemas/projmgr/1.4.0/tools/projmgr/schemas/csolution.schema.json
 
 solution:
 
   packs:
     - pack: NXP::MK22F51212_DFP@15.0.0
     - pack: NXP::LPC54114_DFP@13.0.0
+    - pack: NXP::FRDM-K22F_BSP@15.0.1
+    - pack: NXP::LPCXpresso54114_BSP@13.0.0
     - pack: ARM::CMSIS@5.9.0
 
   target-types:
     - type: frdmk22f_a8974
-      device: NXP::MK22FN512VLH12
+      board: NXP::FRDM-K22F
+   #  device: NXP::MK22FN512VLH12
       define:
         - CPU_MK22FN512VLH12
         - FRDM_K22F
         - FREEDOM
+      variables:
+        - Board-Layer:  ../../../../../boards/frdmk22f/frdmk22f.clayer.yml
+        - Shield-Layer: ../../../../../shields/a8974/a8974.clayer.yml
     - type: lpcxpresso54114_a8974
+      board: NXP::LPCXpresso54114
       device: NXP::LPC54114J256BD64:cm4
       define:
         - CPU_LPC54114J256BD64_cm4
+      variables:
+        - Board-Layer:  ../../../../../boards/lpcxpresso54114/lpcxpresso54114.clayer.yml
+        - Shield-Layer: ../../../../../shields/a8974/a8974.clayer.yml
 
   build-types:
     - type: debug
