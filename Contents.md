@@ -83,10 +83,11 @@ Directory     | Description
    >Note: `issdk_hal.h` is updated to be hardware agnostic by using `BOARD_HEADER` and `SHIELD_HEADER` definitions 
    (moved to top-level directory `middleware/issdk/hal`).
 
-5. Describing interfaces
+5. Adding connections
 
-   Interface description (`interfaces`) which describes provided and consumed interfaces, is added to the project and layer YML files. 
-   This information helps determining which layers are compatible with a certain project.
+   The `connections` node is added to the project and layer YML files. 
+   The `connections` node contains meta-data that describe the compatibility of project and layers. 
+   It lists functionality (drivers, pins, and other software or hardware resources) that is consumed (required) or provided.
 
 6. Moving sensor examples 
 
