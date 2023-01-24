@@ -1,0 +1,19 @@
+Checking whether the ASM compiler is GNU using "--version" did not match "(GNU assembler)|(GCC)|(Free Software Foundation)":
+armclang: warning: Your license for feature mdk_pro_compiler5 will expire in 15 days [-Wlicense-management]
+Product: MDK Professional 5.37 (Flex)
+Component: Arm Compiler for Embedded 6.18
+Tool: armclang [5e4cca00]
+
+Target: unspecified-arm-none-unspecified
+Checking whether the ASM compiler is Clang using "--version" did not match "(clang version)":
+Product: MDK Professional 5.37 (Flex)
+Component: Arm Compiler for Embedded 6.18
+Tool: armclang [5e4cca00]
+
+Target: unspecified-arm-none-unspecified
+Checking whether the ASM compiler is AppleClang using "--version" did not match "(Apple LLVM version)":
+Product: MDK Professional 5.37 (Flex)
+Component: Arm Compiler for Embedded 6.18
+Tool: armclang [5e4cca00]
+
+Target: unspecified-arm-none-unspecified

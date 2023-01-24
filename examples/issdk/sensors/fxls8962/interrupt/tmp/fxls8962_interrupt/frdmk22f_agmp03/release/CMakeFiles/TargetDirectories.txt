@@ -1,0 +1,4 @@
+C:/GIT/NXP_Sensor_SDK/examples/issdk/sensors/fxls8962/interrupt/tmp/fxls8962_interrupt/frdmk22f_agmp03/release/CMakeFiles/database.dir
+C:/GIT/NXP_Sensor_SDK/examples/issdk/sensors/fxls8962/interrupt/tmp/fxls8962_interrupt/frdmk22f_agmp03/release/CMakeFiles/fxls8962_interrupt.release+frdmk22f_agmp03.dir
+C:/GIT/NXP_Sensor_SDK/examples/issdk/sensors/fxls8962/interrupt/tmp/fxls8962_interrupt/frdmk22f_agmp03/release/CMakeFiles/edit_cache.dir
+C:/GIT/NXP_Sensor_SDK/examples/issdk/sensors/fxls8962/interrupt/tmp/fxls8962_interrupt/frdmk22f_agmp03/release/CMakeFiles/rebuild_cache.dir

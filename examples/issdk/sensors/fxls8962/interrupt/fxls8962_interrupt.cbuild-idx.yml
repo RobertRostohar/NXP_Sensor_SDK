@@ -1,0 +1,12 @@
+build-idx:
+  csolution: fxls8962_interrupt.csolution.yml
+  cprojects:
+    - cproject: fxls8962_interrupt.cproject.yml
+      clayers:
+        - clayer: $Board-Layer$
+        - clayer: $Shield-Layer$
+  cbuilds:
+    - cbuild: fxls8962_interrupt.debug+frdmk22f_agmp03.cbuild.yml
+    - cbuild: fxls8962_interrupt.debug+lpcxpresso54114_agmp03.cbuild.yml
+    - cbuild: fxls8962_interrupt.release+frdmk22f_agmp03.cbuild.yml
+    - cbuild: fxls8962_interrupt.release+lpcxpresso54114_agmp03.cbuild.yml
