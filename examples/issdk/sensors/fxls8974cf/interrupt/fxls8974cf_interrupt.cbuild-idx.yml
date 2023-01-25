@@ -8,5 +8,7 @@ build-idx:
   cbuilds:
     - cbuild: fxls8974cf_interrupt.debug+frdmk22f_a8974.cbuild.yml
     - cbuild: fxls8974cf_interrupt.debug+lpcxpresso54114_a8974.cbuild.yml
+    - cbuild: fxls8974cf_interrupt.debug+lpcxpresso55S69_a8974.cbuild.yml
     - cbuild: fxls8974cf_interrupt.release+frdmk22f_a8974.cbuild.yml
     - cbuild: fxls8974cf_interrupt.release+lpcxpresso54114_a8974.cbuild.yml
+    - cbuild: fxls8974cf_interrupt.release+lpcxpresso55S69_a8974.cbuild.yml

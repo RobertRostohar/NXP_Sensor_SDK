@@ -37,10 +37,13 @@ layer:
   components:
     - component: NXP::Board Support:SDK Project Template:project_template&LPC55S69
     - component: ARM::CMSIS:CORE
+    - component: ARM::CMSIS Driver:SPI:Custom #Needed to add?
+    - component: ARM::CMSIS Driver:I2C:Custom #Needed to add?
+    - component: ARM::CMSIS Driver:USART:Custom #Needed to add?
     - component: NXP::CMSIS Driver:I2C:flexcomm_i2c_cmsis
     - component: NXP::CMSIS Driver:SPI:flexcomm_spi_cmsis
     - component: NXP::CMSIS Driver:USART:flexcomm_usart_cmsis
-    - component: NXP::Device:CMSIS:LPC55S69_header
+    #- component: NXP::Device:CMSIS:LPC55S69_header
     - component: NXP::Device:CMSIS:LPC55S69_system
     - component: NXP::Device:SDK Drivers:clock
     - component: NXP::Device:SDK Drivers:common
@@ -79,4 +82,4 @@ layer:
       files:
         - file: ./lpc55S69.c
         - file: ./lpc55S69.h
-        - file: ./RTE/Device/LPC55S69JBD100_cm4/LPC55S69JBD100_cm4.scf
+        - file: ./RTE/Device/LPC55S69JBD100_cm33_core0/LPC55S69JBD100_cm33_core0.scf
