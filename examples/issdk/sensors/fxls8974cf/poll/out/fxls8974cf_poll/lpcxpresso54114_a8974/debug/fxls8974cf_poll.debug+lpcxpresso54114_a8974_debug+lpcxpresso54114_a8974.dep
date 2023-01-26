@@ -1,0 +1,719 @@
+Dependencies for Project 'fxls8974cf_poll.debug+lpcxpresso54114_a8974', Target 'debug+lpcxpresso54114_a8974': (DO NOT MODIFY !)
+CompilerVersion: 6180000::V6.18::ARMCLANG
+F (.\fxls8974cf_poll.c)(0x639781BA)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fxls8974cf_poll.o -MD)
+F (.\readme.txt)(0x639781BA)()
+F (..\..\..\..\..\middleware\issdk\hal\issdk_hal.h)(0x639781BA)()
+F (..\..\..\..\..\middleware\issdk\drivers\systick\systick_utils.c)(0x639781BA)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/systick_utils.o -MD)
+F (..\..\..\..\..\middleware\issdk\drivers\systick\systick_utils.h)(0x639781BA)()
+F (..\..\..\..\..\middleware\issdk\sensors\register_io_i2c.c)(0x639781BB)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/register_io_i2c.o -MD)
+F (..\..\..\..\..\middleware\issdk\sensors\register_io_spi.c)(0x639781BB)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/register_io_spi.o -MD)
+F (..\..\..\..\..\middleware\issdk\sensors\sensor_io_spi.c)(0x639781BB)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/sensor_io_spi.o -MD)
+F (..\..\..\..\..\middleware\issdk\sensors\sensor_io_i2c.c)(0x639781BB)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/sensor_io_i2c.o -MD)
+F (..\..\..\..\..\middleware\issdk\sensors\register_io_i2c.h)(0x639781BB)()
+F (..\..\..\..\..\middleware\issdk\sensors\register_io_spi.h)(0x639781BB)()
+F (..\..\..\..\..\middleware\issdk\sensors\sensor_io_spi.h)(0x639781BB)()
+F (..\..\..\..\..\middleware\issdk\sensors\sensor_io_i2c.h)(0x639781BB)()
+F (..\..\..\..\..\middleware\issdk\sensors\sensor_drv.h)(0x639781BB)()
+F (..\..\..\..\..\middleware\issdk\sensors\fxls8974.h)(0x639781BB)()
+F (..\..\..\..\..\middleware\issdk\sensors\fxls8974_drv.h)(0x639781BB)()
+F (..\..\..\..\..\middleware\issdk\sensors\fxls8974_drv.c)(0x639781BB)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fxls8974_drv.o -MD)
+F (..\..\..\..\..\middleware\issdk\drivers\gpio\lpc\gpio_driver_irq.c)(0x639781BA)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/gpio_driver_irq.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_gint.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+F (..\..\..\..\..\middleware\issdk\drivers\gpio\lpc\gpio_driver.c)(0x639781BA)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/gpio_driver.o -MD)
+F (..\..\..\..\..\middleware\issdk\drivers\gpio\lpc\gpio_driver.h)(0x639781BA)()
+F (..\..\..\..\..\middleware\issdk\drivers\gpio\Driver_GPIO.h)(0x639781BA)()
+F (..\..\..\..\..\boards\lpcxpresso54114\lpc54114.c)(0x639781BA)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/lpc54114.o -MD)
+F (..\..\..\..\..\boards\lpcxpresso54114\lpc54114.h)(0x63D1AFDE)()
+F (..\..\..\..\..\shields\a8974\frdm_stbi_a8974_shield.h)(0x639781BB)()
+F (RTE/Board_Support/LPC54114J256BD64_cm4/board.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/board.o -MD)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (RTE\Board_Support\LPC54114J256BD64_cm4\clock_config.h)(0x6397854F)
+I (RTE\Board_Support\LPC54114J256BD64_cm4\board.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_gpio.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\utilities\debug_console\fsl_debug_console.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\serial_manager\fsl_component_serial_manager.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\serial_manager\fsl_component_serial_port_uart.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\uart\fsl_adapter_uart.h)(0x6397854F)
+F (RTE/Board_Support/LPC54114J256BD64_cm4/board.h)(0x6397854F)()
+F (RTE/Board_Support/LPC54114J256BD64_cm4/clock_config.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/clock_config.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_power.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (RTE\Board_Support\LPC54114J256BD64_cm4\clock_config.h)(0x6397854F)
+F (RTE/Board_Support/LPC54114J256BD64_cm4/clock_config.h)(0x6397854F)()
+F (RTE/Board_Support/LPC54114J256BD64_cm4/peripherals.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/peripherals.o -MD)
+I (RTE\Board_Support\LPC54114J256BD64_cm4\peripherals.h)(0x6397854F)
+F (RTE/Board_Support/LPC54114J256BD64_cm4/peripherals.h)(0x6397854F)()
+F (RTE/Board_Support/LPC54114J256BD64_cm4/pin_mux.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/pin_mux.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (RTE\Board_Support\LPC54114J256BD64_cm4\pin_mux.h)(0x6397854F)
+F (RTE/Board_Support/LPC54114J256BD64_cm4/pin_mux.h)(0x6397854F)()
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers/fsl_i2c_cmsis.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_i2c_cmsis.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\cmsis_drivers\fsl_i2c_cmsis.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Driver\Include\Driver_I2C.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Driver\Include\Driver_Common.h)(0x627001AE)
+I (RTE\Device\LPC54114J256BD64_cm4\RTE_Device.h)(0x6397854F)
+I (RTE\Board_Support\LPC54114J256BD64_cm4\pin_mux.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_i2c.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_flexcomm.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_i2c_dma.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_dma.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers/fsl_spi_cmsis.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_spi_cmsis.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\cmsis_drivers\fsl_spi_cmsis.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_spi.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_flexcomm.h)(0x6397854F)
+I (RTE\Device\LPC54114J256BD64_cm4\RTE_Device.h)(0x6397854F)
+I (RTE\Board_Support\LPC54114J256BD64_cm4\pin_mux.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Driver\Include\Driver_SPI.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Driver\Include\Driver_Common.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_spi_dma.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_dma.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers/fsl_usart_cmsis.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_usart_cmsis.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\cmsis_drivers\fsl_usart_cmsis.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Driver\Include\Driver_USART.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Driver\Include\Driver_Common.h)(0x627001AE)
+I (RTE\Device\LPC54114J256BD64_cm4\RTE_Device.h)(0x6397854F)
+I (RTE\Board_Support\LPC54114J256BD64_cm4\pin_mux.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_usart.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_usart_dma.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_dma.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/arm/keil_lib_power.lib)(0x6397854F)()
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/arm/startup_LPC54114_cm4.S)(0x6397854F)(--target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -masm=auto -c-gdwarf-4 -I ../../../../../boards/lpcxpresso54114 -I ../../../../../middleware/issdk/drivers/gpio -I ../../../../../middleware/issdk/drivers/gpio/lpc -I ../../../../../middleware/issdk/drivers/systick -I ../../../../../middleware/issdk/hal -I ../../../../../middleware/issdk/sensors -I ../../../../../shields/a8974-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION=537 -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART=1 -DBOARD_HEADER=lpc54114.h -DSHIELD_HEADER=frdm_stbi_a8974_shield.h -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/startup_lpc54114_cm4.o)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists/fsl_component_generic_list.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_component_generic_list.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\lists\fsl_component_generic_list.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager/fsl_component_serial_manager.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_component_serial_manager.o -MD)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\serial_manager\fsl_component_serial_manager.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\serial_manager\fsl_component_serial_port_uart.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\uart\fsl_adapter_uart.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\serial_manager\fsl_component_serial_port_internal.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager/fsl_component_serial_port_uart.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_component_serial_port_uart.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\serial_manager\fsl_component_serial_manager.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\serial_manager\fsl_component_serial_port_uart.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\uart\fsl_adapter_uart.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\serial_manager\fsl_component_serial_port_internal.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart/fsl_adapter_usart.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_adapter_usart.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_usart.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_flexcomm.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\uart\fsl_adapter_uart.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers/fsl_clock.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_clock.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_power.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers/fsl_common.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_common.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers/fsl_dma.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_dma.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_dma.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers/fsl_flexcomm.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_flexcomm.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_flexcomm.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers/fsl_gint.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_gint.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_gint.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers/fsl_gpio.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_gpio.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_gpio.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers/fsl_i2c.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_i2c.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_i2c.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_flexcomm.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers/fsl_i2c_dma.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_i2c_dma.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_i2c_dma.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_i2c.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_dma.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_flexcomm.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers/fsl_inputmux.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_inputmux.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_inputmux.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_inputmux_connections.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers/fsl_power.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_power.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_power.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers/fsl_reset.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_reset.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers/fsl_spi.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_spi.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_spi.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_flexcomm.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers/fsl_spi_dma.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_spi_dma.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_spi_dma.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_dma.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_spi.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_flexcomm.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers/fsl_usart.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_usart.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_usart.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_flexcomm.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers/fsl_usart_dma.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_usart_dma.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_usart.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_dma.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_flexcomm.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_usart_dma.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/system_LPC54114_cm4.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/system_lpc54114_cm4.o -MD)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console/fsl_debug_console.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_debug_console.o -MD)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdarg.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x625317A6)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\utilities\debug_console\fsl_debug_console_conf.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\utilities\str\fsl_str.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\serial_manager\fsl_component_serial_manager.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\serial_manager\fsl_component_serial_port_uart.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\uart\fsl_adapter_uart.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\utilities\debug_console\fsl_debug_console.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/fsl_assert.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_assert.o -MD)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\utilities\debug_console\fsl_debug_console.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\serial_manager\fsl_component_serial_manager.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\serial_manager\fsl_component_serial_port_uart.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\components\uart\fsl_adapter_uart.h)(0x6397854F)
+F (C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str/fsl_str.c)(0x6397854F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -fno-function-sections -fno-builtin-I./RTE/Board_Support/LPC54114J256BD64_cm4-I./RTE/Device/LPC54114J256BD64_cm4-I./RTE/_debug_lpcxpresso54114_a8974-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console-IC:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str-D__UVISION_VERSION="537" -D_RTE_ -DCPU_LPC54114J256BD64_cm4 -D_RTE_ -DSERIAL_PORT_TYPE_UART="1" -DBOARD_HEADER="lpc54114.h" -DSHIELD_HEADER="frdm_stbi_a8974_shield.h" -DCPU_LPC54114J256BD64_cm4 -DDEBUG-o out/fxls8974cf_poll/lpcxpresso54114_a8974/debug/fsl_str.o -MD)
+I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdarg.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\errno.h)(0x625317A8)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\utilities\str\fsl_str.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_common.h)(0x6397854F)
+I (C:\Keil_v5\ARM\ARMCLANG\include\assert.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625317A8)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x625317A6)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x625317A6)
+I (RTE\_debug_lpcxpresso54114_a8974\RTE_Components.h)(0x63D2F549)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\fsl_device_registers.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x627001AE)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\system_LPC54114_cm4.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\LPC54114_cm4_features.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_clock.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\drivers\fsl_reset.h)(0x6397854F)
+I (C:\Users\nxf81111\AppData\Local\Arm\Packs\NXP\LPC54114_DFP\13.0.0\utilities\debug_console\fsl_debug_console_conf.h)(0x6397854F)
+F (RTE/Device/LPC54114J256BD64_cm4/LPC54114J256_cm4.scf)(0x6397854F)()
+F (RTE/Device/LPC54114J256BD64_cm4/LPC54114J256_cm4_ram.scf)(0x6397854F)()
+F (RTE/Device/LPC54114J256BD64_cm4/RTE_Device.h)(0x6397854F)()

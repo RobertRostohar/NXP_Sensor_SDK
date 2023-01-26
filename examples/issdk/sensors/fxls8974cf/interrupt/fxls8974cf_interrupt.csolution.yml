@@ -4,11 +4,11 @@ solution:
 
   packs:
     - pack: NXP::MK22F51212_DFP@15.0.0
-    - pack: NXP::LPC55S69_DFP  
+    - pack: NXP::LPC55S69_DFP@14.0.0  
     - pack: NXP::LPC54114_DFP@13.0.0
     - pack: NXP::FRDM-K22F_BSP@15.0.1
     - pack: NXP::LPCXpresso54114_BSP@13.0.0
-    - pack: NXP::LPCXpresso55S69_BSP
+    - pack: NXP::LPCXpresso55S69_BSP@14.0.0
     - pack: ARM::CMSIS@5.9.0
 
   target-types:

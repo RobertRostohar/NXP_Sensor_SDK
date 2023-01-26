@@ -1,0 +1,403 @@
+build:
+  context: fxls8974cf_poll.release+lpcxpresso55S69_a8974
+  compiler: AC6
+  board: NXP::LPCXpresso55S69
+  device: NXP::LPC55S69JBD100:cm33_core0
+  processor:
+    fpu: on
+    endian: little
+    trustzone: non-secure
+  packs:
+    - pack: ARM::CMSIS@5.9.0
+      path: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0
+    - pack: NXP::LPC55S69_DFP@14.0.0
+      path: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0
+    - pack: NXP::LPCXpresso55S69_BSP@14.0.0
+      path: ${CMSIS_PACK_ROOT}/NXP/LPCXpresso55S69_BSP/14.0.0
+  optimize: size
+  debug: off
+  misc:
+    C:
+      - -std=c99
+      - -fno-builtin
+      - -fno-rtti
+      - -fshort-enums
+      - -fshort-wchar
+    CPP:
+      - -fno-builtin
+      - -fno-rtti
+      - -fshort-enums
+      - -fshort-wchar
+    Link:
+      - --entry=Reset_Handler --strict --info summarysizes
+      - --remove --keep=*(.crp) --keep=*(.FlashConfig)
+      - --diag_suppress 6314,6319
+  define:
+    - SERIAL_PORT_TYPE_UART=1
+    - BOARD_HEADER="lpc55s69.h"
+    - SHIELD_HEADER="frdm_stbi_a8974_shield.h"
+    - CPU_LPC55S69JBD100_cm33_core0
+    - NDEBUG
+    - CPU_LPC55S69JBD100_cm33_core0
+    - _RTE_
+  add-path:
+    - ../../../../../boards/lpcxpresso55s69/RTE/Board_Support/LPC55S69JBD100_cm33_core0
+    - ../../../../../boards/lpcxpresso55s69/RTE/Device/LPC55S69JBD100_cm33_core0
+    - RTE/_fxls8974cf_poll.release_lpcxpresso55S69_a8974
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Driver/Include
+    - ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0
+    - ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/cmsis_drivers
+    - ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/components/lists
+    - ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/components/serial_manager
+    - ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/components/uart
+    - ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/drivers
+    - ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/utilities/debug_console
+    - ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/utilities/str
+  output-type: exe
+  output-dirs:
+    gendir: generated
+    intdir: tmp/fxls8974cf_poll/lpcxpresso55S69_a8974/release
+    outdir: out/fxls8974cf_poll/lpcxpresso55S69_a8974/release
+    rtedir: RTE
+  components:
+    - component: ARM::CMSIS:CORE@5.6.0
+      condition: ARMv6_7_8-M Device
+      from-pack: ARM::CMSIS@5.9.0
+      selected-by: ARM::CMSIS:CORE
+    - component: NXP::Board Support:SDK Project Template:project_template&LPC55S69@1.0.0
+      condition: device.LPC55S69_AND___component.serial_manager_AND_utility.debug_console__OR_utility.debug_console_lite__AND_component.usart_adapter_AND_device.LPC55S69_startup_AND_driver.clock_AND_driver.common_AND_driver.flexcomm_i2c_AND_driver.flexcomm_spi_AND_driver.flexcomm_usart_AND_driver.lpc_gpio_AND_driver.lpc_iocon_AND_driver.power_AND_driver.reset
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Board Support:SDK Project Template:project_template&LPC55S69
+      files:
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Board_Support/LPC55S69JBD100_cm33_core0/board.c
+          category: sourceC
+          attr: config
+          version: 1.0.0
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Board_Support/LPC55S69JBD100_cm33_core0/board.h
+          category: header
+          attr: config
+          version: 1.0.0
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Board_Support/LPC55S69JBD100_cm33_core0/clock_config.c
+          category: sourceC
+          attr: config
+          version: 1.0.0
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Board_Support/LPC55S69JBD100_cm33_core0/clock_config.h
+          category: header
+          attr: config
+          version: 1.0.0
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Board_Support/LPC55S69JBD100_cm33_core0/peripherals.c
+          category: sourceC
+          attr: config
+          version: 1.0.0
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Board_Support/LPC55S69JBD100_cm33_core0/peripherals.h
+          category: header
+          attr: config
+          version: 1.0.0
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Board_Support/LPC55S69JBD100_cm33_core0/pin_mux.c
+          category: sourceC
+          attr: config
+          version: 1.0.0
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Board_Support/LPC55S69JBD100_cm33_core0/pin_mux.h
+          category: header
+          attr: config
+          version: 1.0.0
+    - component: NXP::CMSIS Driver:I2C:flexcomm_i2c_cmsis@2.2.0
+      condition: device.LPC55S69_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.flexcomm_i2c_dma
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::CMSIS Driver:I2C:flexcomm_i2c_cmsis
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/cmsis_drivers/fsl_i2c_cmsis.c
+          category: sourceC
+    - component: NXP::CMSIS Driver:SPI:flexcomm_spi_cmsis@2.4.0
+      condition: device.LPC55S69_AND_CMSIS_Driver_Include.SPI_AND_RTE_Device_AND_driver.flexcomm_spi_dma
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::CMSIS Driver:SPI:flexcomm_spi_cmsis
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/cmsis_drivers/fsl_spi_cmsis.c
+          category: sourceC
+    - component: NXP::CMSIS Driver:USART:flexcomm_usart_cmsis@2.2.0
+      condition: device.LPC55S69_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.flexcomm_usart_dma
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::CMSIS Driver:USART:flexcomm_usart_cmsis
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/cmsis_drivers/fsl_usart_cmsis.c
+          category: sourceC
+    - component: NXP::Device:CMSIS:LPC55S69_system@1.0.0
+      condition: device.LPC55S69_AND_device.LPC55S69_CMSIS
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:CMSIS:LPC55S69_system
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/system_LPC55S69_cm33_core0.c
+          category: sourceC
+    - component: NXP::Device:SDK Drivers:clock@2.3.3
+      condition: device.LPC55S69_AND_driver.common_AND_driver.power
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:clock
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/drivers/fsl_clock.c
+          category: sourceC
+    - component: NXP::Device:SDK Drivers:common@2.3.1
+      condition: device.LPC55S69_AND_device.LPC55S69_CMSIS_AND_driver.clock_AND_driver.reset
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:common
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/drivers/fsl_common.c
+          category: sourceC
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/drivers/fsl_common_arm.c
+          category: sourceC
+    - component: NXP::Device:SDK Drivers:dma@2.4.3
+      condition: device.LPC55S69_AND_driver.common
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:dma
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/drivers/fsl_dma.c
+          category: sourceC
+    - component: NXP::Device:SDK Drivers:flexcomm@2.0.2
+      condition: device.LPC55S69_AND_driver.common
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:flexcomm
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/drivers/fsl_flexcomm.c
+          category: sourceC
+    - component: NXP::Device:SDK Drivers:gint@2.0.3
+      condition: device.LPC55S69_AND_driver.common
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:gint
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/drivers/fsl_gint.c
+          category: sourceC
+    - component: NXP::Device:SDK Drivers:gpio@2.1.7
+      condition: device.LPC55S69_AND_driver.common
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:gpio
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/drivers/fsl_gpio.c
+          category: sourceC
+    - component: NXP::Device:SDK Drivers:i2c@2.3.0
+      condition: device.LPC55S69_AND_driver.common_AND_driver.flexcomm
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:i2c
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/drivers/fsl_i2c.c
+          category: sourceC
+    - component: NXP::Device:SDK Drivers:i2c_dma@2.3.0
+      condition: device.LPC55S69_AND_driver.common_AND_driver.flexcomm_AND_driver.flexcomm_i2c_AND_driver.lpc_dma
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:i2c_dma
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/drivers/fsl_i2c_dma.c
+          category: sourceC
+    - component: NXP::Device:SDK Drivers:inputmux@2.0.4
+      condition: device.LPC55S69_AND_driver.common_AND_driver.inputmux_connections
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:inputmux
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/drivers/fsl_inputmux.c
+          category: sourceC
+    - component: NXP::Device:SDK Drivers:inputmux_connections@2.0.1
+      condition: device.LPC55S69_AND_driver.common
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:inputmux_connections
+    - component: NXP::Device:SDK Drivers:iocon@2.2.0
+      condition: device.LPC55S69_AND_driver.common
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:iocon
+    - component: NXP::Device:SDK Drivers:lists@1.0.0
+      condition: device.LPC55S69_AND_driver.common
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:lists
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/components/lists/fsl_component_generic_list.c
+          category: sourceC
+    - component: NXP::Device:SDK Drivers:power@2.3.0
+      condition: device.LPC55S69_AND_driver.common
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:power
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/drivers/fsl_power.c
+          category: sourceC
+    - component: NXP::Device:SDK Drivers:reset@2.1.2
+      condition: device.LPC55S69_AND_driver.common
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:reset
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/drivers/fsl_reset.c
+          category: sourceC
+    - component: NXP::Device:SDK Drivers:spi@2.2.1
+      condition: device.LPC55S69_AND_driver.common_AND_driver.flexcomm
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:spi
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/drivers/fsl_spi.c
+          category: sourceC
+    - component: NXP::Device:SDK Drivers:spi_dma@2.1.1
+      condition: device.LPC55S69_AND_driver.flexcomm_AND_driver.flexcomm_spi_AND_driver.lpc_dma
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:spi_dma
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/drivers/fsl_spi_dma.c
+          category: sourceC
+    - component: NXP::Device:SDK Drivers:usart@2.6.0
+      condition: device.LPC55S69_AND_driver.flexcomm
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:usart
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/drivers/fsl_usart.c
+          category: sourceC
+    - component: NXP::Device:SDK Drivers:usart_adapter@1.0.0
+      condition: device.LPC55S69_AND_driver.common_AND_driver.flexcomm_AND_driver.flexcomm_usart
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:usart_adapter
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/components/uart/fsl_adapter_usart.c
+          category: sourceC
+    - component: NXP::Device:SDK Drivers:usart_dma@2.6.0
+      condition: device.LPC55S69_AND_driver.flexcomm_AND_driver.flexcomm_usart_AND_driver.lpc_dma
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Drivers:usart_dma
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/drivers/fsl_usart_dma.c
+          category: sourceC
+    - component: NXP::Device:SDK Project Template:RTE_Device@1.0.0
+      condition: device.LPC55S69_AND_driver.lpc_dma
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Project Template:RTE_Device
+      files:
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Device/LPC55S69JBD100_cm33_core0/RTE_Device.h
+          category: header
+          attr: config
+          version: 1.0.0
+    - component: NXP::Device:SDK Utilities:assert@1.0.0
+      condition: device.LPC55S69_AND_utility.debug_console
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Utilities:assert
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/utilities/fsl_assert.c
+          category: sourceC
+    - component: NXP::Device:SDK Utilities:debug_console@1.0.0
+      condition: device.LPC55S69_AND_component.serial_manager_AND_driver.common
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Utilities:debug_console
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/utilities/debug_console/fsl_debug_console.c
+          category: sourceC
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/utilities/str/fsl_str.c
+          category: sourceC
+    - component: NXP::Device:SDK Utilities:serial_manager@1.0.1
+      condition: device.LPC55S69_AND__component.serial_manager_spi_OR_component.serial_manager_swo_OR_component.serial_manager_uart_OR_component.serial_manager_virtual__AND_component.lists_AND_driver.common
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Utilities:serial_manager
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/components/serial_manager/fsl_component_serial_manager.c
+          category: sourceC
+    - component: NXP::Device:SDK Utilities:serial_manager_uart@1.0.0
+      condition: device.LPC55S69_AND_component.serial_manager_AND_component.usart_adapter_AND_driver.flexcomm_usart
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:SDK Utilities:serial_manager_uart
+      files:
+        - file: ${CMSIS_PACK_ROOT}/NXP/LPC55S69_DFP/14.0.0/components/serial_manager/fsl_component_serial_port_uart.c
+          category: sourceC
+    - component: NXP::Device:Startup@1.1.0
+      condition: device.LPC55S69_AND_CMSIS_Include_core_cm_AND__armclang_OR_iar__AND_device.LPC55S69_system
+      from-pack: NXP::LPC55S69_DFP@14.0.0
+      selected-by: NXP::Device:Startup
+      files:
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Device/LPC55S69JBD100_cm33_core0/LPC55S69_cm33_core0_flash.scf
+          category: linkerScript
+          attr: config
+          version: 1.1.0
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Device/LPC55S69JBD100_cm33_core0/LPC55S69_cm33_core0_flash_ns.scf
+          category: linkerScript
+          attr: config
+          version: 1.1.0
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Device/LPC55S69JBD100_cm33_core0/LPC55S69_cm33_core0_flash_s.scf
+          category: linkerScript
+          attr: config
+          version: 1.1.0
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Device/LPC55S69JBD100_cm33_core0/LPC55S69_cm33_core0_ram.scf
+          category: linkerScript
+          attr: config
+          version: 1.1.0
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Device/LPC55S69JBD100_cm33_core0/startup_LPC55S69_cm33_core0.S
+          category: sourceAsm
+          attr: config
+          version: 1.1.0
+  groups:
+    - group: source
+      files:
+        - file: ./fxls8974cf_poll.c
+          category: sourceC
+    - group: doc
+      files:
+        - file: ./readme.txt
+          category: doc
+    - group: hal
+      files:
+        - file: ../../../../../middleware/issdk/hal/issdk_hal.h
+          category: header
+    - group: utilities
+      files:
+        - file: ../../../../../middleware/issdk/drivers/systick/systick_utils.c
+          category: sourceC
+        - file: ../../../../../middleware/issdk/drivers/systick/systick_utils.h
+          category: header
+    - group: interfaces
+      files:
+        - file: ../../../../../middleware/issdk/sensors/register_io_i2c.c
+          category: sourceC
+        - file: ../../../../../middleware/issdk/sensors/register_io_spi.c
+          category: sourceC
+        - file: ../../../../../middleware/issdk/sensors/sensor_io_spi.c
+          category: sourceC
+        - file: ../../../../../middleware/issdk/sensors/sensor_io_i2c.c
+          category: sourceC
+        - file: ../../../../../middleware/issdk/sensors/register_io_i2c.h
+          category: header
+        - file: ../../../../../middleware/issdk/sensors/register_io_spi.h
+          category: header
+        - file: ../../../../../middleware/issdk/sensors/sensor_io_spi.h
+          category: header
+        - file: ../../../../../middleware/issdk/sensors/sensor_io_i2c.h
+          category: header
+        - file: ../../../../../middleware/issdk/sensors/sensor_drv.h
+          category: header
+    - group: sensors
+      files:
+        - file: ../../../../../middleware/issdk/sensors/fxls8974.h
+          category: header
+        - file: ../../../../../middleware/issdk/sensors/fxls8974_drv.h
+          category: header
+        - file: ../../../../../middleware/issdk/sensors/fxls8974_drv.c
+          category: sourceC
+    - group: gpio_driver
+      files:
+        - file: ../../../../../middleware/issdk/drivers/gpio/lpc/gpio_driver_irq.c
+          category: sourceC
+        - file: ../../../../../middleware/issdk/drivers/gpio/lpc/gpio_driver.c
+          category: sourceC
+        - file: ../../../../../middleware/issdk/drivers/gpio/lpc/gpio_driver.h
+          category: header
+        - file: ../../../../../middleware/issdk/drivers/gpio/Driver_GPIO.h
+          category: header
+    - group: board
+      files:
+        - file: ../../../../../boards/lpcxpresso55s69/lpc55s69.c
+          category: sourceC
+        - file: ../../../../../boards/lpcxpresso55s69/lpc55s69.h
+          category: header
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Device/LPC55S69_cm33_core0/LPC55S69_cm33_core0_flash.scf
+          category: linkerScript
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Device/LPC55S69_cm33_core0/LPC55S69_cm33_core0_flash_ns.scf
+          category: linkerScript
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Device/LPC55S69_cm33_core0/LPC55S69_cm33_core0_flash_s.scf
+          category: linkerScript
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Device/LPC55S69_cm33_core0/LPC55S69_cm33_core0_ram.scf
+          category: linkerScript
+    - group: shield
+      files:
+        - file: ../../../../../shields/a8974/frdm_stbi_a8974_shield.h
+          category: header
+  constructed-files:
+    - file: RTE/_fxls8974cf_poll.release_lpcxpresso55S69_a8974/RTE_Components.h
+      category: header

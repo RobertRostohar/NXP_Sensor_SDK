@@ -1,0 +1,346 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.37.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Kyle Dando nxp Flex license: MDK Professional 5.37 (Flex): 35 user(s) (mdk_pro) Operation stops: 3 Feb 2023
+ 
+Tool Versions:
+Toolchain:       MDK Professional 5.37 (Flex): 35 user(s)  Version: 5.37.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.18
+Assembler:       Armasm.exe V6.18
+Linker/Locator:  ArmLink.exe V6.18
+Library Manager: ArmAr.exe V6.18
+Hex Converter:   FromElf.exe V6.18
+CPU DLL:         SARMCM3.DLL V5.37.0.0
+Dialog DLL:      DCM.DLL V1.17.5.0 
+<h2>Project:</h2>
+C:\GIT\NXP_Sensor_SDK\examples\issdk\sensors\fxls8974cf\poll\fxls8974cf_poll.debug+lpcxpresso54114_a8974.uvprojx
+Project File Date:  01/26/2023
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.18', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
+Build target 'debug+lpcxpresso54114_a8974'
+ArmClang: warning: Your license for feature mdk_pro_compiler5 will expire in 8 days [-Wlicense-management]
+../../../../../middleware/issdk/sensors/sensor_io_spi.c(17): error: 'systick_utils.h' file not found
+#include "systick_utils.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling sensor_io_spi.c...
+ArmClang: warning: Your license for feature mdk_pro_compiler5 will expire in 8 days [-Wlicense-management]
+../../../../../middleware/issdk/sensors/register_io_i2c.c(19): error: 'issdk_hal.h' file not found
+#include "issdk_hal.h"
+         ^~~~~~~~~~~~~
+1 error generated.
+compiling register_io_i2c.c...
+ArmClang: warning: Your license for feature mdk_pro_compiler5 will expire in 8 days [-Wlicense-management]
+../../../../../middleware/issdk/sensors/sensor_io_i2c.c(17): error: 'systick_utils.h' file not found
+#include "systick_utils.h"
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+compiling sensor_io_i2c.c...
+ArmClang: warning: Your license for feature mdk_pro_compiler5 will expire in 8 days [-Wlicense-management]
+../../../../../middleware/issdk/sensors/register_io_spi.c(19): error: 'issdk_hal.h' file not found
+#include "issdk_hal.h"
+         ^~~~~~~~~~~~~
+1 error generated.
+compiling register_io_spi.c...
+ArmClang: warning: Your license for feature mdk_pro_compiler5 will expire in 8 days [-Wlicense-management]
+fxls8974cf_poll.c(24): error: 'issdk_hal.h' file not found
+#include "issdk_hal.h"
+         ^~~~~~~~~~~~~
+1 error generated.
+compiling fxls8974cf_poll.c...
+ArmClang: warning: Your license for feature mdk_pro_compiler5 will expire in 8 days [-Wlicense-management]
+../../../../../middleware/issdk/drivers/systick/systick_utils.c(16): error: 'issdk_hal.h' file not found
+#include "issdk_hal.h"
+         ^~~~~~~~~~~~~
+1 error generated.
+compiling systick_utils.c...
+ArmClang: warning: Your license for feature mdk_pro_compiler5 will expire in 8 days [-Wlicense-management]
+../../../../../middleware/issdk/sensors/fxls8974_drv.c(16): error: 'gpio_driver.h' file not found
+#include "gpio_driver.h"
+         ^~~~~~~~~~~~~~~
+1 error generated.
+compiling fxls8974_drv.c...
+compiling gpio_driver_irq.c...
+../../../../../middleware/issdk/drivers/gpio/lpc/gpio_driver.c(15): warning: In file included from...
+../../../../../middleware/issdk/drivers/gpio/lpc/gpio_driver.h(19): error: 'Driver_GPIO.h' file not found
+#include "Driver_GPIO.h"
+         ^~~~~~~~~~~~~~~
+1 error generated.
+compiling gpio_driver.c...
+../../../../../boards/lpcxpresso54114/lpc54114.c(14): warning: In file included from...
+../../../../../boards/lpcxpresso54114/lpc54114.h(20): error: 'gpio_driver.h' file not found
+#include "gpio_driver.h"
+         ^~~~~~~~~~~~~~~
+1 error generated.
+compiling lpc54114.c...
+compiling clock_config.c...
+RTE/Board_Support/LPC54114J256BD64_cm4/board.c(49): warning: implicit conversion from 'uint32_t' (aka 'unsigned int') to 'uint8_t' (aka 'unsigned char') changes value from 1074290688 to 0 [-Wconstant-conversion]
+    result = DbgConsole_Init(BOARD_DEBUG_UART_BASEADDR, BOARD_DEBUG_UART_BAUDRATE, DEBUG_CONSOLE_DEVICE_TYPE_FLEXCOMM,
+             ~~~~~~~~~~~~~~~ ^~~~~~~~~~~~~~~~~~~~~~~~~
+./RTE/Board_Support/LPC54114J256BD64_cm4/board.h(26): note: expanded from macro 'BOARD_DEBUG_UART_BASEADDR'
+#define BOARD_DEBUG_UART_BASEADDR (uint32_t) USART0
+                                  ^~~~~~~~~~~~~~~~~
+1 warning generated.
+compiling board.c...
+compiling peripherals.c...
+compiling pin_mux.c...
+compiling fsl_i2c_cmsis.c...
+compiling fsl_spi_cmsis.c...
+compiling fsl_usart_cmsis.c...
+compiling fsl_component_serial_manager.c...
+compiling fsl_component_serial_port_uart.c...
+compiling fsl_component_generic_list.c...
+compiling fsl_adapter_usart.c...
+compiling fsl_common.c...
+compiling fsl_clock.c...
+compiling fsl_flexcomm.c...
+compiling fsl_gint.c...
+compiling fsl_dma.c...
+compiling fsl_gpio.c...
+compiling fsl_i2c_dma.c...
+compiling fsl_i2c.c...
+compiling fsl_power.c...
+compiling fsl_inputmux.c...
+compiling fsl_reset.c...
+C:\Users\nxf81111\AppData\Local\Temp\4\startup_LPC54114_cm4-83dfd7.s(96): warning: Reset_Handler changed binding to STB_WEAK
+    .weak Reset_Handler
+    ^
+assembling startup_LPC54114_cm4.S...
+compiling fsl_spi.c...
+ArmClang: warning: Your license for feature mdk_pro_compiler5 will expire in 8 days [-Wlicense-management]
+compiling fsl_spi_dma.c...
+ArmClang: warning: Your license for feature mdk_pro_compiler5 will expire in 8 days [-Wlicense-management]
+compiling system_LPC54114_cm4.c...
+ArmClang: warning: Your license for feature mdk_pro_compiler5 will expire in 8 days [-Wlicense-management]
+compiling fsl_debug_console.c...
+ArmClang: warning: Your license for feature mdk_pro_compiler5 will expire in 8 days [-Wlicense-management]
+compiling fsl_usart.c...
+ArmClang: warning: Your license for feature mdk_pro_compiler5 will expire in 8 days [-Wlicense-management]
+compiling fsl_usart_dma.c...
+ArmClang: warning: Your license for feature mdk_pro_compiler5 will expire in 8 days [-Wlicense-management]
+compiling fsl_assert.c...
+ArmClang: warning: Your license for feature mdk_pro_compiler5 will expire in 8 days [-Wlicense-management]
+compiling fsl_str.c...
+"out\fxls8974cf_poll\lpcxpresso54114_a8974\debug\.axf" - 9 Error(s), 16 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.9.0.pack
+                ARM.CMSIS.5.9.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: I2C Version: 2.4.0
+   * Component: SPI Version: 2.3.0
+   * Component: USART Version: 2.4.0
+   * Component: CORE Version: 5.6.0
+
+Package Vendor: NXP
+                https://mcuxpresso.nxp.com/cmsis_pack/repo/NXP.LPC54114_DFP.13.0.0.pack
+                NXP.LPC54114_DFP.13.0.0
+                Device Family Pack for LPC54114
+   * Component: project_template Variant: LPC54114 Version: 1.0.0
+   * Component: flexcomm_i2c_cmsis Version: 2.2.0
+   * Component: flexcomm_spi_cmsis Version: 2.4.0
+   * Component: flexcomm_usart_cmsis Version: 2.2.0
+   * Component: LPC54114_header Version: 1.0.0
+   * Component: LPC54114_system Version: 1.0.0
+   * Component: clock Version: 2.2.0
+   * Component: common Version: 2.2.9
+   * Component: dma Version: 2.4.2
+   * Component: flexcomm Version: 2.0.2
+   * Component: gint Version: 2.0.3
+   * Component: gpio Version: 2.1.7
+   * Component: i2c Version: 2.1.0
+   * Component: i2c_dma Version: 2.1.0
+   * Component: inputmux Version: 2.0.3
+   * Component: inputmux_connections Version: 2.0.1
+   * Component: iocon Version: 2.1.2
+   * Component: lists Version: 1.0.0
+   * Component: power Version: 2.0.0
+   * Component: reset Version: 2.0.1
+   * Component: spi Version: 2.2.1
+   * Component: spi_dma Version: 2.1.1
+   * Component: usart Version: 2.4.0
+   * Component: usart_adapter Version: 1.0.0
+   * Component: usart_dma Version: 2.3.1
+   * Component: RTE_Device Version: 1.0.0
+   * Component: assert Version: 1.0.0
+   * Component: debug_console Version: 1.0.0
+   * Component: serial_manager Version: 1.0.0
+   * Component: serial_manager_uart Version: 1.0.0
+   * Component: Startup Version: 1.1.0
+
+Package Vendor: NXP
+                https://mcuxpresso.nxp.com/cmsis_pack/repo/NXP.LPCXpresso54114_BSP.13.0.0.pack
+                NXP.LPCXpresso54114_BSP.13.0.0
+                Board Support Pack for LPCXPRESSO54114
+
+<h2>Collection of Component include folders:</h2>
+  ./RTE/Board_Support/LPC54114J256BD64_cm4
+  ./RTE/Device/LPC54114J256BD64_cm4
+  ./RTE/_debug_lpcxpresso54114_a8974
+  C:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+  C:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include
+  C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0
+  C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/cmsis_drivers
+  C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/lists
+  C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/serial_manager
+  C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/components/uart
+  C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/drivers
+  C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/debug_console
+  C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/utilities/str
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ::CMSIS Driver:I2C:2.4.0 (API)
+      Include file:  CMSIS/Driver/Include/Driver_I2C.h
+
+   * Component: ::CMSIS Driver:SPI:2.3.0 (API)
+      Include file:  CMSIS/Driver/Include/Driver_SPI.h
+
+   * Component: ::CMSIS Driver:USART:2.4.0 (API)
+      Include file:  CMSIS/Driver/Include/Driver_USART.h
+
+   * Component: ARM::CMSIS:CORE:5.6.0
+
+   * Component: NXP::Board Support:SDK Project Template:project_template:LPC54114:1.0.0
+      Source file:   project_template/pin_mux.c
+      Include file:  project_template/board.h
+      Include file:  project_template/pin_mux.h
+      Source file:   project_template/board.c
+      Source file:   project_template/clock_config.c
+      Include file:  project_template/peripherals.h
+      Source file:   project_template/peripherals.c
+      Include file:  project_template/clock_config.h
+
+   * Component: NXP::CMSIS Driver:I2C:flexcomm_i2c_cmsis:2.2.0
+      Include file:  cmsis_drivers/fsl_i2c_cmsis.h
+      Source file:   cmsis_drivers/fsl_i2c_cmsis.c
+
+   * Component: NXP::CMSIS Driver:SPI:flexcomm_spi_cmsis:2.4.0
+      Source file:   cmsis_drivers/fsl_spi_cmsis.c
+      Include file:  cmsis_drivers/fsl_spi_cmsis.h
+
+   * Component: NXP::CMSIS Driver:USART:flexcomm_usart_cmsis:2.2.0
+      Source file:   cmsis_drivers/fsl_usart_cmsis.c
+      Include file:  cmsis_drivers/fsl_usart_cmsis.h
+
+   * Component: NXP::Device:CMSIS:LPC54114_header:1.0.0
+      Include file:  fsl_device_registers.h
+      Include file:  LPC54114_cm4_features.h
+      Include file:  LPC54114_cm4.h
+
+   * Component: NXP::Device:CMSIS:LPC54114_system:1.0.0
+      Source file:   system_LPC54114_cm4.c
+      Include file:  system_LPC54114_cm4.h
+
+   * Component: NXP::Device:SDK Drivers:clock:2.2.0
+      Include file:  drivers/fsl_clock.h
+      Source file:   drivers/fsl_clock.c
+
+   * Component: NXP::Device:SDK Drivers:common:2.2.9
+      Include file:  drivers/fsl_common.h
+      Source file:   drivers/fsl_common.c
+
+   * Component: NXP::Device:SDK Drivers:dma:2.4.2
+      Include file:  drivers/fsl_dma.h
+      Source file:   drivers/fsl_dma.c
+
+   * Component: NXP::Device:SDK Drivers:flexcomm:2.0.2
+      Include file:  drivers/fsl_flexcomm.h
+      Source file:   drivers/fsl_flexcomm.c
+
+   * Component: NXP::Device:SDK Drivers:gint:2.0.3
+      Include file:  drivers/fsl_gint.h
+      Source file:   drivers/fsl_gint.c
+
+   * Component: NXP::Device:SDK Drivers:gpio:2.1.7
+      Include file:  drivers/fsl_gpio.h
+      Source file:   drivers/fsl_gpio.c
+
+   * Component: NXP::Device:SDK Drivers:i2c:2.1.0
+      Include file:  drivers/fsl_i2c.h
+      Source file:   drivers/fsl_i2c.c
+
+   * Component: NXP::Device:SDK Drivers:i2c_dma:2.1.0
+      Include file:  drivers/fsl_i2c_dma.h
+      Source file:   drivers/fsl_i2c_dma.c
+
+   * Component: NXP::Device:SDK Drivers:inputmux:2.0.3
+      Include file:  drivers/fsl_inputmux.h
+      Source file:   drivers/fsl_inputmux.c
+
+   * Component: NXP::Device:SDK Drivers:inputmux_connections:2.0.1
+      Include file:  drivers/fsl_inputmux_connections.h
+
+   * Component: NXP::Device:SDK Drivers:iocon:2.1.2
+      Include file:  drivers/fsl_iocon.h
+
+   * Component: NXP::Device:SDK Drivers:lists:1.0.0
+      Include file:  components/lists/fsl_component_generic_list.h
+      Source file:   components/lists/fsl_component_generic_list.c
+
+   * Component: NXP::Device:SDK Drivers:power:2.0.0
+      Include file:  drivers/fsl_power.h
+      Source file:   drivers/fsl_power.c
+      Library file:  arm/keil_lib_power.lib
+
+   * Component: NXP::Device:SDK Drivers:reset:2.0.1
+      Include file:  drivers/fsl_reset.h
+      Source file:   drivers/fsl_reset.c
+
+   * Component: NXP::Device:SDK Drivers:spi:2.2.1
+      Include file:  drivers/fsl_spi.h
+      Source file:   drivers/fsl_spi.c
+
+   * Component: NXP::Device:SDK Drivers:spi_dma:2.1.1
+      Include file:  drivers/fsl_spi_dma.h
+      Source file:   drivers/fsl_spi_dma.c
+
+   * Component: NXP::Device:SDK Drivers:usart:2.4.0
+      Source file:   drivers/fsl_usart.c
+      Include file:  drivers/fsl_usart.h
+
+   * Component: NXP::Device:SDK Drivers:usart_adapter:1.0.0
+      Source file:   components/uart/fsl_adapter_usart.c
+      Include file:  components/uart/fsl_adapter_uart.h
+
+   * Component: NXP::Device:SDK Drivers:usart_dma:2.3.1
+      Include file:  drivers/fsl_usart_dma.h
+      Source file:   drivers/fsl_usart_dma.c
+
+   * Component: NXP::Device:SDK Project Template:RTE_Device:1.0.0
+      Include file:  template/RTE_Device.h
+
+   * Component: NXP::Device:SDK Utilities:assert:1.0.0
+      Source file:   utilities/fsl_assert.c
+
+   * Component: NXP::Device:SDK Utilities:debug_console:1.0.0
+      Source file:   utilities/str/fsl_str.c
+      Include file:  utilities/str/fsl_str.h
+      Source file:   utilities/debug_console/fsl_debug_console.c
+      Include file:  utilities/debug_console/fsl_debug_console.h
+      Include file:  utilities/debug_console/fsl_debug_console_conf.h
+
+   * Component: NXP::Device:SDK Utilities:serial_manager:1.0.0
+      Include file:  components/serial_manager/fsl_component_serial_manager.h
+      Include file:  components/serial_manager/fsl_component_serial_port_internal.h
+      Source file:   components/serial_manager/fsl_component_serial_manager.c
+
+   * Component: NXP::Device:SDK Utilities:serial_manager_uart:1.0.0
+      Include file:  components/serial_manager/fsl_component_serial_port_uart.h
+      Source file:   components/serial_manager/fsl_component_serial_port_uart.c
+
+   * Component: NXP::Device:Startup:1.1.0
+      Source file:   arm/startup_LPC54114_cm4.S
+Target not created.
+Build Time Elapsed:  00:00:07
+</pre>
+</body>
+</html>

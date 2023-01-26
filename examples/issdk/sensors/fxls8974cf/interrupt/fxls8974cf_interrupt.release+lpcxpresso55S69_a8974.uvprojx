@@ -583,6 +583,11 @@
           <targetInfo name="release+lpcxpresso55S69_a8974" versionMatchMode="fixed"/>
         </targetInfos>
       </package>
+      <package name="wolfSSL" schemaVersion="1.4" url="http://www.wolfSSL.com/files/ide" vendor="wolfSSL" version="5.5.3">
+        <targetInfos>
+          <targetInfo name="release+lpcxpresso55S69_a8974"/>
+        </targetInfos>
+      </package>
     </packages>
     <boards>
       <board Bname="LPCXpresso55S69" Bvendor="NXP" Bversion="">
@@ -930,6 +935,12 @@
         <targetInfos>
           <targetInfo name="release+lpcxpresso55S69_a8974"/>
         </targetInfos>
+      </file>
+      <file attr="config" category="header" name="wolfssl\IDE\MDK5-ARM\Conf\user_settings.h" version="5.5.3">
+        <instance index="0" removed="1">RTE\wolfSSL\user_settings.h</instance>
+        <component Cbundle="wolfSSL" Cclass="wolfSSL" Cgroup="wolfCrypt" Csub="CORE" Cvendor="wolfSSL" Cversion="5.5.3" condition="wolfCrypt-Core"/>
+        <package name="wolfSSL" schemaVersion="1.4" url="http://www.wolfSSL.com/files/ide" vendor="wolfSSL" version="5.5.3"/>
+        <targetInfos/>
       </file>
     </files>
   </RTE>

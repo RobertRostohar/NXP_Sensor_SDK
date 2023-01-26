@@ -9,7 +9,7 @@ layer:
     - connect: LPCXpresso55S69 Board
       provides:
         - ARDUINO_UNO_UART: 0
-        - ARDUINO_UNO_SPI: 5
+        - ARDUINO_UNO_SPI: 7
         - ARDUINO_UNO_I2C: 4
         - ARDUINO_UNO_D2
         - ARDUINO_UNO_D3
@@ -37,9 +37,9 @@ layer:
   components:
     - component: NXP::Board Support:SDK Project Template:project_template&LPC55S69
     - component: ARM::CMSIS:CORE
-    - component: ARM::CMSIS Driver:SPI:Custom #Needed to add?
-    - component: ARM::CMSIS Driver:I2C:Custom #Needed to add?
-    - component: ARM::CMSIS Driver:USART:Custom #Needed to add?
+    #- component: ARM::CMSIS Driver:SPI:Custom #Needed to add?
+    #- component: ARM::CMSIS Driver:I2C:Custom #Needed to add?
+    #- component: ARM::CMSIS Driver:USART:Custom #Needed to add?
     - component: NXP::CMSIS Driver:I2C:flexcomm_i2c_cmsis
     - component: NXP::CMSIS Driver:SPI:flexcomm_spi_cmsis
     - component: NXP::CMSIS Driver:USART:flexcomm_usart_cmsis
@@ -82,4 +82,7 @@ layer:
       files:
         - file: ./lpc55S69.c
         - file: ./lpc55S69.h
-        - file: ./RTE/Device/LPC55S69JBD100_cm33_core0/LPC55S69JBD100_cm33_core0.scf
+        - file: ./RTE/Device/LPC55S69_cm33_core0/LPC55S69_cm33_core0_flash.scf
+        - file: ./RTE/Device/LPC55S69_cm33_core0/LPC55S69_cm33_core0_flash_ns.scf
+        - file: ./RTE/Device/LPC55S69_cm33_core0/LPC55S69_cm33_core0_flash_s.scf
+        - file: ./RTE/Device/LPC55S69_cm33_core0/LPC55S69_cm33_core0_ram.scf        

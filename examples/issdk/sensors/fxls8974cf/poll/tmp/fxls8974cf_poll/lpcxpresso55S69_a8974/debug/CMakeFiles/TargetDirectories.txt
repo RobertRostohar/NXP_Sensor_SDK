@@ -1,0 +1,4 @@
+C:/GIT/NXP_Sensor_SDK/examples/issdk/sensors/fxls8974cf/poll/tmp/fxls8974cf_poll/lpcxpresso55S69_a8974/debug/CMakeFiles/database.dir
+C:/GIT/NXP_Sensor_SDK/examples/issdk/sensors/fxls8974cf/poll/tmp/fxls8974cf_poll/lpcxpresso55S69_a8974/debug/CMakeFiles/fxls8974cf_poll.debug+lpcxpresso55S69_a8974.dir
+C:/GIT/NXP_Sensor_SDK/examples/issdk/sensors/fxls8974cf/poll/tmp/fxls8974cf_poll/lpcxpresso55S69_a8974/debug/CMakeFiles/edit_cache.dir
+C:/GIT/NXP_Sensor_SDK/examples/issdk/sensors/fxls8974cf/poll/tmp/fxls8974cf_poll/lpcxpresso55S69_a8974/debug/CMakeFiles/rebuild_cache.dir

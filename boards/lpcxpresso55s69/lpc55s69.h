@@ -16,7 +16,11 @@
 #include "fsl_power.h"
 #include "RTE_Device.h"
 #include "gpio_driver.h"
-#include "clock_config.h"
+#include "Driver_I2C.h" // Added by dando-dev I2C is detailed by PACK
+#include "Driver_SPI.h" // Added by dando-dev SPI is detailed by PACK
+#include "Driver_USART.h"  // Added by dando-dev USART is detailed by PACK
+
+#include "clock_config.h" //NOT IN LPC544114?
 
 #define PORT0 0
 #define PORT1 1
@@ -34,17 +38,26 @@ extern gpioHandleKSDK_t D13;
 extern gpioHandleKSDK_t D0;
 extern gpioHandleKSDK_t D1;
 
+//Arduino Connector Handles
+extern gpioHandleKSDK_t D2;
+
 // LPCXpresso54114 Internal Peripheral Pin Definitions
 extern gpioHandleKSDK_t RED_LED;
 extern gpioHandleKSDK_t GREEN_LED;
 extern gpioHandleKSDK_t BLUE_LED;
 
+// CMSIS Drivers
+extern ARM_DRIVER_I2C Driver_I2C4;      // Added by dando-dev to declare i2c4
+extern ARM_DRIVER_SPI Driver_SPI7;      // Added by dando-dev to declare SPI7 listed in prior file below
+extern ARM_DRIVER_USART Driver_USART0;  // Added by dando-dev to declare USART0
+extern ARM_DRIVER_USART Driver_USART1;  // Added by dando-dev to declare USART1
+
 // I2C_S1: Pin mapping and driver information for default I2C brought to shield
-#define I2C_S1_SCL_PIN D15
-#define I2C_S1_SDA_PIN D14
-#define I2C_S1_DRIVER Driver_I2C4
-#define I2C_S1_DEVICE_INDEX I2C4_INDEX
-#define I2C_S1_SIGNAL_EVENT I2C4_SignalEvent_t
+#define I2C_S_SCL_PIN D15
+#define I2C_S_SDA_PIN D14
+#define I2C_S_DRIVER Driver_I2C4
+#define I2C_S_DEVICE_INDEX I2C4_INDEX
+#define I2C_S_SIGNAL_EVENT I2C4_SignalEvent_t
 
 // SPI_S: Pin mapping and driver information default SPI brought to shield
 #define SPI_S_DRIVER Driver_SPI7

@@ -59,6 +59,12 @@ gpioHandleKSDK_t D1 = {.base = GPIO,
                        .mask = 1 << (30),
                        .clockName = kCLOCK_Gpio0,
                        .portNumber = kGINT_Port0};
+/* [PIO0_15] (coords: 94) configured as D2 for Arduino */                       
+gpioHandleKSDK_t D2 = {.base = GPIO, 
+                        .pinNumber = 15, 
+                        .mask = 1 << (15), 
+                        .clockName = kCLOCK_Gpio0, 
+                        .portNumber = kGINT_Port0};
 
 // LPCXpresso55s69 Internal Peripheral Pin Definitions
 gpioHandleKSDK_t RED_LED = {.base = GPIO,
@@ -132,7 +138,7 @@ status_t SMC_SetPowerModeVlpr(void *arg)
  */
 uint32_t USART0_GetFreq(void)
 {
-    return CLOCK_GetFreq(kCLOCK_Flexcomm0);
+    return CLOCK_GetFreq(kCLOCK_FlexComm0);
 }
 
 /*! @brief       Determines the Clock Frequency feature.
@@ -144,7 +150,7 @@ uint32_t USART0_GetFreq(void)
  */
 uint32_t I2C4_GetFreq(void)
 {
-    return CLOCK_GetFreq(kCLOCK_Flexcomm4);
+    return CLOCK_GetFreq(kCLOCK_FlexComm4);
 }
 
 /*! @brief       Determines the Clock Frequency feature.
@@ -156,5 +162,5 @@ uint32_t I2C4_GetFreq(void)
  */
 uint32_t SPI7_GetFreq(void)
 {
-    return CLOCK_GetFreq(kCLOCK_Flexcomm7);
+    return CLOCK_GetFreq(kCLOCK_FlexComm7);
 }
