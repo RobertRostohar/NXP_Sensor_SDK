@@ -1,0 +1,95 @@
+# CMSIS Build Audit File generated on 2023-01-26T08:33:41
+
+# Project Description File: C:/GIT/NXP_Sensor_SDK/examples/issdk/sensors/fxls8974cf/interrupt/fxls8974cf_interrupt.release+lpcxpresso54114_a8974.cprj
+
+# Toolchain Configuration File: C:/Ctools/cmsis-toolbox-windows64/etc/AC6.6.18.0.cmake
+
+# Package: ARM.CMSIS.5.9.0
+  Location: C:/Users/nxf81111/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/
+
+  * Component: ARM::CMSIS.CORE:5.6.0
+
+  * API: CMSIS Driver.I2C(API):2.4.0
+
+  * API: CMSIS Driver.SPI(API):2.3.0
+
+  * API: CMSIS Driver.USART(API):2.4.0
+
+# Package: NXP.LPC54114_DFP.13.0.0
+  Location: C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPC54114_DFP/13.0.0/
+
+  * Component: NXP::Board Support.SDK Project Template.project_template:LPC54114:1.0.0
+    - ConfigFile: C:/GIT/NXP_Sensor_SDK/boards/lpcxpresso54114/RTE/Board_Support/LPC54114J256BD64_cm4/board.c:1.0.0
+    - ConfigFile: C:/GIT/NXP_Sensor_SDK/boards/lpcxpresso54114/RTE/Board_Support/LPC54114J256BD64_cm4/board.h:1.0.0
+    - ConfigFile: C:/GIT/NXP_Sensor_SDK/boards/lpcxpresso54114/RTE/Board_Support/LPC54114J256BD64_cm4/clock_config.c:1.0.0
+    - ConfigFile: C:/GIT/NXP_Sensor_SDK/boards/lpcxpresso54114/RTE/Board_Support/LPC54114J256BD64_cm4/clock_config.h:1.0.0
+    - ConfigFile: C:/GIT/NXP_Sensor_SDK/boards/lpcxpresso54114/RTE/Board_Support/LPC54114J256BD64_cm4/peripherals.c:1.0.0
+    - ConfigFile: C:/GIT/NXP_Sensor_SDK/boards/lpcxpresso54114/RTE/Board_Support/LPC54114J256BD64_cm4/peripherals.h:1.0.0
+    - ConfigFile: C:/GIT/NXP_Sensor_SDK/boards/lpcxpresso54114/RTE/Board_Support/LPC54114J256BD64_cm4/pin_mux.c:1.0.0
+    - ConfigFile: C:/GIT/NXP_Sensor_SDK/boards/lpcxpresso54114/RTE/Board_Support/LPC54114J256BD64_cm4/pin_mux.h:1.0.0
+
+  * Component: NXP::CMSIS Driver.I2C.flexcomm_i2c_cmsis:2.2.0
+
+  * Component: NXP::CMSIS Driver.SPI.flexcomm_spi_cmsis:2.4.0
+
+  * Component: NXP::CMSIS Driver.USART.flexcomm_usart_cmsis:2.2.0
+
+  * Component: NXP::Device.CMSIS.LPC54114_header:1.0.0
+
+  * Component: NXP::Device.CMSIS.LPC54114_system:1.0.0
+
+  * Component: NXP::Device.SDK Drivers.clock:2.2.0
+
+  * Component: NXP::Device.SDK Drivers.common:2.2.9
+
+  * Component: NXP::Device.SDK Drivers.dma:2.4.2
+
+  * Component: NXP::Device.SDK Drivers.flexcomm:2.0.2
+
+  * Component: NXP::Device.SDK Drivers.gint:2.0.3
+
+  * Component: NXP::Device.SDK Drivers.gpio:2.1.7
+
+  * Component: NXP::Device.SDK Drivers.i2c:2.1.0
+
+  * Component: NXP::Device.SDK Drivers.i2c_dma:2.1.0
+
+  * Component: NXP::Device.SDK Drivers.inputmux:2.0.3
+
+  * Component: NXP::Device.SDK Drivers.inputmux_connections:2.0.1
+
+  * Component: NXP::Device.SDK Drivers.iocon:2.1.2
+
+  * Component: NXP::Device.SDK Drivers.lists:1.0.0
+
+  * Component: NXP::Device.SDK Drivers.power:2.0.0
+
+  * Component: NXP::Device.SDK Drivers.reset:2.0.1
+
+  * Component: NXP::Device.SDK Drivers.spi:2.2.1
+
+  * Component: NXP::Device.SDK Drivers.spi_dma:2.1.1
+
+  * Component: NXP::Device.SDK Drivers.usart:2.4.0
+
+  * Component: NXP::Device.SDK Drivers.usart_adapter:1.0.0
+
+  * Component: NXP::Device.SDK Drivers.usart_dma:2.3.1
+
+  * Component: NXP::Device.SDK Project Template.RTE_Device:1.0.0
+    - ConfigFile: C:/GIT/NXP_Sensor_SDK/boards/lpcxpresso54114/RTE/Device/LPC54114J256BD64_cm4/RTE_Device.h:1.0.0
+
+  * Component: NXP::Device.SDK Utilities.assert:1.0.0
+
+  * Component: NXP::Device.SDK Utilities.debug_console:1.0.0
+
+  * Component: NXP::Device.SDK Utilities.serial_manager:1.0.0
+
+  * Component: NXP::Device.SDK Utilities.serial_manager_uart:1.0.0
+
+  * Component: NXP::Device.Startup:1.1.0
+    - ConfigFile: C:/GIT/NXP_Sensor_SDK/boards/lpcxpresso54114/RTE/Device/LPC54114J256BD64_cm4/LPC54114J256_cm4.scf:1.1.0
+    - ConfigFile: C:/GIT/NXP_Sensor_SDK/boards/lpcxpresso54114/RTE/Device/LPC54114J256BD64_cm4/LPC54114J256_cm4_ram.scf:1.1.0
+
+# Package: NXP.LPCXpresso54114_BSP.13.0.0
+  Location: C:/Users/nxf81111/AppData/Local/Arm/Packs/NXP/LPCXpresso54114_BSP/13.0.0/

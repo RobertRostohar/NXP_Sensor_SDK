@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<cprj schemaVersion="1.0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CPRJ.xsd">
+  <created timestamp="2023-01-26T08:21:44" tool="csolution 1.4.0"/>
+
+  <info isLayer="false">
+    <description>Automatically generated project</description>
+  </info>
+
+  <packages>
+    <package name="CMSIS" vendor="ARM" version="5.9.0:5.9.0"/>
+    <package name="FRDM-K22F_BSP" vendor="NXP" version="15.0.1:15.0.1"/>
+    <package name="MK22F51212_DFP" vendor="NXP" version="15.0.0:15.0.0"/>
+  </packages>
+
+  <compilers>
+    <compiler name="AC6" version="6.18.0"/>
+  </compilers>
+
+  <target Bname="FRDM-K22F" Bvendor="NXP" Dendian="Little-endian" Dfpu="SP_FPU" Dname="MK22FN512VLH12" Dsecure="Non-secure" Dvendor="NXP:11">
+    <output intdir="tmp/mpl3115_altitude/frdmk22f_agmp03/debug" name="mpl3115_altitude.debug+frdmk22f_agmp03" outdir="out/mpl3115_altitude/frdmk22f_agmp03/debug" rtedir="RTE" type="exe"/>
+    <options debug="on" optimize="none"/>
+    <cflags add="-std=c99 -fno-builtin -fno-rtti -fshort-enums -fshort-wchar" compiler="AC6"/>
+    <cxxflags add="-fno-builtin -fno-rtti -fshort-enums -fshort-wchar" compiler="AC6"/>
+    <ldflags add="--entry=Reset_Handler --strict --info summarysizes --remove --keep=*(.crp) --keep=*(.FlashConfig) --diag_suppress 6314,6319" compiler="AC6" file="../../../../../boards/frdmk22f/RTE/Device/MK22FN512VLH12/MK22FN512xxx12_flash.scf"/>
+    <defines>MCUXPRESSO_SDK;PRINTF_ADVANCED_ENABLE;SERIAL_PORT_TYPE_UART=1;BOARD_HEADER=&quot;frdm_k22f.h&quot;;SHIELD_HEADER=&quot;frdm_stbc_agmp03_shield.h&quot;;CPU_MK22FN512VLH12;FRDM_K22F;FREEDOM;DEBUG</defines>
+  </target>
+
+  <components>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Csub="Custom" Cvendor="ARM" Cversion="1.0.0"/>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="Custom" Cvendor="ARM" Cversion="1.0.0"/>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Csub="Custom" Cvendor="ARM" Cversion="1.0.0"/>
+    <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="5.6.0"/>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MK22F51212" Cvendor="NXP" Cversion="1.0.0" rtedir="../../../../../boards/frdmk22f/RTE">
+      <file attr="config" category="sourceC" name="project_template/board.c" version="1.0.0"/>
+      <file attr="config" category="header" name="project_template/board.h" version="1.0.0"/>
+      <file attr="config" category="sourceC" name="project_template/clock_config.c" version="1.0.0"/>
+      <file attr="config" category="header" name="project_template/clock_config.h" version="1.0.0"/>
+      <file attr="config" category="sourceC" name="project_template/peripherals.c" version="1.0.0"/>
+      <file attr="config" category="header" name="project_template/peripherals.h" version="1.0.0"/>
+      <file attr="config" category="sourceC" name="project_template/pin_mux.c" version="1.0.0"/>
+      <file attr="config" category="header" name="project_template/pin_mux.h" version="1.0.0"/>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Csub="i2c_cmsis" Cvendor="NXP" Cversion="2.2.0"/>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="dspi_cmsis" Cvendor="NXP" Cversion="2.3.0"/>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Csub="uart_cmsis" Cvendor="NXP" Cversion="2.1.0"/>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="MK22F51212_header" Cvendor="NXP" Cversion="1.0.0"/>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="MK22F51212_system" Cvendor="NXP" Cversion="1.0.0"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="adc" Cvendor="NXP" Cversion="2.3.0"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="clock" Cvendor="NXP" Cversion="2.3.0"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="common" Cvendor="NXP" Cversion="2.3.2"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux" Cvendor="NXP" Cversion="2.0.5"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dspi" Cvendor="NXP" Cversion="2.2.4"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dspi_edma" Cvendor="NXP" Cversion="2.2.4"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="edma" Cvendor="NXP" Cversion="2.4.3"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flash" Cvendor="NXP" Cversion="3.0.0"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio" Cvendor="NXP" Cversion="2.6.0"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c" Cvendor="NXP" Cversion="2.0.9"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_edma" Cvendor="NXP" Cversion="2.0.9"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lists" Cvendor="NXP" Cversion="1.0.0"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr" Cvendor="NXP" Cversion="2.1.1"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart" Cvendor="NXP" Cversion="2.5.3"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="port" Cvendor="NXP" Cversion="2.3.0"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rtc" Cvendor="NXP" Cversion="2.2.1"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="smc" Cvendor="NXP" Cversion="2.0.7"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart" Cvendor="NXP" Cversion="2.5.1"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter" Cvendor="NXP" Cversion="1.0.0"/>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart_edma" Cvendor="NXP" Cversion="2.5.3"/>
+    <component Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device" Cvendor="NXP" Cversion="1.0.0" rtedir="../../../../../boards/frdmk22f/RTE">
+      <file attr="config" category="header" name="template/RTE_Device.h" version="1.0.0"/>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert" Cvendor="NXP" Cversion="1.0.0"/>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console" Cvendor="NXP" Cversion="1.0.1"/>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager" Cvendor="NXP" Cversion="1.0.1"/>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart" Cvendor="NXP" Cversion="1.0.0"/>
+    <component Cclass="Device" Cgroup="Startup" Cvendor="NXP" Cversion="1.1.0" rtedir="../../../../../boards/frdmk22f/RTE">
+      <file attr="config" category="linkerScript" name="arm/MK22FN512xxx12_flash.scf" version="1.1.0"/>
+      <file attr="config" category="linkerScript" name="arm/MK22FN512xxx12_ram.scf" version="1.1.0"/>
+      <file attr="config" category="sourceAsm" name="arm/startup_MK22F51212.S" version="1.1.0"/>
+    </component>
+  </components>
+
+  <files>
+    <group name="source">
+      <file category="sourceC" name="./mpl3115_altitude.c"/>
+    </group>
+    <group name="doc">
+      <file category="doc" name="./readme.txt"/>
+    </group>
+    <group name="hal">
+      <file category="header" name="../../../../../middleware/issdk/hal/issdk_hal.h"/>
+    </group>
+    <group name="utilities">
+      <file category="sourceC" name="../../../../../middleware/issdk/drivers/systick/systick_utils.c"/>
+      <file category="header" name="../../../../../middleware/issdk/drivers/systick/systick_utils.h"/>
+    </group>
+    <group name="interfaces">
+      <file category="sourceC" name="../../../../../middleware/issdk/sensors/register_io_i2c.c"/>
+      <file category="sourceC" name="../../../../../middleware/issdk/sensors/register_io_spi.c"/>
+      <file category="sourceC" name="../../../../../middleware/issdk/sensors/sensor_io_spi.c"/>
+      <file category="sourceC" name="../../../../../middleware/issdk/sensors/sensor_io_i2c.c"/>
+      <file category="header" name="../../../../../middleware/issdk/sensors/register_io_i2c.h"/>
+      <file category="header" name="../../../../../middleware/issdk/sensors/register_io_spi.h"/>
+      <file category="header" name="../../../../../middleware/issdk/sensors/sensor_io_spi.h"/>
+      <file category="header" name="../../../../../middleware/issdk/sensors/sensor_io_i2c.h"/>
+      <file category="header" name="../../../../../middleware/issdk/sensors/sensor_drv.h"/>
+    </group>
+    <group name="sensors">
+      <file category="header" name="../../../../../middleware/issdk/sensors/mpl3115.h"/>
+      <file category="header" name="../../../../../middleware/issdk/sensors/mpl3115_drv.h"/>
+      <file category="sourceC" name="../../../../../middleware/issdk/sensors/mpl3115_drv.c"/>
+    </group>
+    <group name="gpio_driver">
+      <file category="sourceC" name="../../../../../middleware/issdk/drivers/gpio/kinetis/gpio_driver_irq.c"/>
+      <file category="sourceC" name="../../../../../middleware/issdk/drivers/gpio/kinetis/gpio_driver.c"/>
+      <file category="header" name="../../../../../middleware/issdk/drivers/gpio/kinetis/gpio_driver.h"/>
+      <file category="header" name="../../../../../middleware/issdk/drivers/gpio/Driver_GPIO.h"/>
+    </group>
+    <group name="board">
+      <file category="sourceC" name="../../../../../boards/frdmk22f/frdm_k22f.c"/>
+      <file category="header" name="../../../../../boards/frdmk22f/frdm_k22f.h"/>
+      <file category="linkerScript" name="../../../../../boards/frdmk22f/RTE/Device/MK22FN512VLH12/MK22FN512xxx12_flash.scf"/>
+    </group>
+    <group name="shield">
+      <file category="header" name="../../../../../shields/agmp03/frdm_stbc_agmp03_shield.h"/>
+    </group>
+  </files>
+</cprj>
+

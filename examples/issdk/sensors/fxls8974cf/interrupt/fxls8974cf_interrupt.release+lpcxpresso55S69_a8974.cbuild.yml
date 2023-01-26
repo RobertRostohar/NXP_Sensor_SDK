@@ -395,7 +395,13 @@ build:
           category: sourceC
         - file: ../../../../../boards/lpcxpresso55s69/lpc55s69.h
           category: header
-        - file: ../../../../../boards/lpcxpresso55s69/RTE/Device/LPC55S69JBD100_cm33_core0/LPC55S69JBD100_cm33_core0.scf
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Device/LPC55S69_cm33_core0/LPC55S69_cm33_core0_flash.scf
+          category: linkerScript
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Device/LPC55S69_cm33_core0/LPC55S69_cm33_core0_flash_ns.scf
+          category: linkerScript
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Device/LPC55S69_cm33_core0/LPC55S69_cm33_core0_flash_s.scf
+          category: linkerScript
+        - file: ../../../../../boards/lpcxpresso55s69/RTE/Device/LPC55S69_cm33_core0/LPC55S69_cm33_core0_ram.scf
           category: linkerScript
     - group: shield
       files:
