@@ -82,7 +82,4 @@ layer:
       files:
         - file: ./lpc55S69.c
         - file: ./lpc55S69.h
-        - file: ./RTE/Device/LPC55S69_cm33_core0/LPC55S69_cm33_core0_flash.scf
-        - file: ./RTE/Device/LPC55S69_cm33_core0/LPC55S69_cm33_core0_flash_ns.scf
-        - file: ./RTE/Device/LPC55S69_cm33_core0/LPC55S69_cm33_core0_flash_s.scf
-        - file: ./RTE/Device/LPC55S69_cm33_core0/LPC55S69_cm33_core0_ram.scf        
+        - file: ./RTE/Device/LPC55S69JBD100_cm33_core0/LPC55S69_cm33_core0_flash.scf

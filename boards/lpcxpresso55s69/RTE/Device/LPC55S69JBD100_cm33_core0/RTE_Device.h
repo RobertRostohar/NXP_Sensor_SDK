@@ -109,7 +109,7 @@
 #define RTE_I2C2_DMA_EN 0
 #define RTE_I2C3        0
 #define RTE_I2C3_DMA_EN 0
-#define RTE_I2C4        0
+#define RTE_I2C4        1
 #define RTE_I2C4_DMA_EN 0
 #define RTE_I2C5        0
 #define RTE_I2C5_DMA_EN 0
