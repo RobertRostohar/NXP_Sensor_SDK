@@ -1,4 +1,0 @@
-C:/GIT/NXP_Sensor_SDK/examples/issdk/sensors/fxls8974cf/interrupt/tmp/fxls8974cf_interrupt/lpcxpresso55S69_a8974/release/CMakeFiles/database.dir
-C:/GIT/NXP_Sensor_SDK/examples/issdk/sensors/fxls8974cf/interrupt/tmp/fxls8974cf_interrupt/lpcxpresso55S69_a8974/release/CMakeFiles/fxls8974cf_interrupt.release+lpcxpresso55S69_a8974.dir
-C:/GIT/NXP_Sensor_SDK/examples/issdk/sensors/fxls8974cf/interrupt/tmp/fxls8974cf_interrupt/lpcxpresso55S69_a8974/release/CMakeFiles/edit_cache.dir
-C:/GIT/NXP_Sensor_SDK/examples/issdk/sensors/fxls8974cf/interrupt/tmp/fxls8974cf_interrupt/lpcxpresso55S69_a8974/release/CMakeFiles/rebuild_cache.dir

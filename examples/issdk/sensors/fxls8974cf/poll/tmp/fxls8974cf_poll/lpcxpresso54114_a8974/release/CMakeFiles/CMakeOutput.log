@@ -1,8 +1,0 @@
-The target system is: Generic -  - cortex-m0
-The host system is: Windows - 10.0.19044 - AMD64
-Checking whether the ASM compiler is ARMClang using "--version" matched "armclang":
-Product: MDK Professional 5.37 (Flex)
-Component: Arm Compiler for Embedded 6.18
-Tool: armclang [5e4cca00]
-
-Target: unspecified-arm-none-unspecified
