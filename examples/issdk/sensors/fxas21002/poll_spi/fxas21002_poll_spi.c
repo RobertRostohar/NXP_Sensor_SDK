@@ -69,13 +69,13 @@ int app_main(void)
     uint8_t data[FXAS21002_GYRO_DATA_SIZE];
     fxas21002_gyrodata_t rawData;
 
-    ARM_DRIVER_SPI *pSPIdriver = &SPI_S_DRIVER;
+    ARM_DRIVER_SPI *pSPIdriver = &FXAS21002_SPI_DRIVER;
     fxas21002_spi_sensorhandle_t fxas21002Driver;
 
     PRINTF("\r\n ISSDK FXAS21002 sensor driver example demonstration for SPI with Poll Mode.\r\n");
 
     /*! Initialize the SPI driver. */
-    status = pSPIdriver->Initialize(SPI_S_SIGNAL_EVENT);
+    status = pSPIdriver->Initialize(FXAS21002_SPI_EVENT);
     if (ARM_DRIVER_OK != status)
     {
         PRINTF("\r\n SPI Initialization Failed\r\n");
@@ -91,7 +91,7 @@ int app_main(void)
     }
 
     /*! Set the SPI Slave speed. */
-    status = pSPIdriver->Control(ARM_SPI_MODE_MASTER | ARM_SPI_CPOL0_CPHA0, SPI_S_BAUDRATE);
+    status = pSPIdriver->Control(ARM_SPI_MODE_MASTER | ARM_SPI_CPOL0_CPHA0, FXAS21002_SPI_BAUDRATE);
     if (ARM_DRIVER_OK != status)
     {
         PRINTF("\r\n SPI Control Mode setting Failed\r\n");
@@ -99,7 +99,7 @@ int app_main(void)
     }
 
     /*! Initialize the FXAS21002 sensor driver. */
-    status = FXAS21002_SPI_Initialize(&fxas21002Driver, &SPI_S_DRIVER, SPI_S_DEVICE_INDEX, &FXAS21002_CS,
+    status = FXAS21002_SPI_Initialize(&fxas21002Driver, &FXAS21002_SPI_DRIVER, FXAS21002_SPI_INDEX, &FXAS21002_CS,
                                       FXAS21002_WHO_AM_I_WHOAMI_PROD_VALUE);
     if (SENSOR_ERROR_NONE != status)
     {

@@ -422,7 +422,7 @@ int app_main(void)
     uint8_t regdata;
     float sensitivity = ACCEL_4G_SENS;
 
-    ARM_DRIVER_I2C *I2Cdrv = &I2C_S_DRIVER; // Now using the shield.h value!!!
+    ARM_DRIVER_I2C *I2Cdrv = &FXLS8962_I2C_DRIVER;
     GENERIC_DRIVER_GPIO *pGpioDriver = &Driver_GPIO_KSDK;
     fxls8962_i2c_sensorhandle_t fxls8962Driver;
 
@@ -436,7 +436,7 @@ int app_main(void)
     init_freemaster_uart();
 
     /*! Initialize the I2C driver. */
-    status = I2Cdrv->Initialize(I2C_S_SIGNAL_EVENT);
+    status = I2Cdrv->Initialize(FXLS8962_I2C_EVENT);
     if (ARM_DRIVER_OK != status)
     {
         return -1;
@@ -457,7 +457,7 @@ int app_main(void)
     }
 
     /*! Initialize FXLS8962 sensor driver. */
-    status = FXLS8962_I2C_Initialize(&fxls8962Driver, &I2C_S_DRIVER, I2C_S_DEVICE_INDEX, FXLS8962_I2C_ADDR,
+    status = FXLS8962_I2C_Initialize(&fxls8962Driver, &FXLS8962_I2C_DRIVER, FXLS8962_I2C_INDEX, FXLS8962_I2C_ADDR,
                                      &whoami);
     if (SENSOR_ERROR_NONE != status)
     {
@@ -942,7 +942,7 @@ int32_t perform_selftest(fxls8962_i2c_sensorhandle_t fxls8962Driver, fxls896x_se
 			}
 
 			/*! Set device to Standby mode. */
-			Register_I2C_Write(&I2C_S_DRIVER,&(fxls8962Driver.deviceInfo),FXLS8962_I2C_ADDR, FXLS8962_SENS_CONFIG1,0x00,0x00,0x00);
+			Register_I2C_Write(&FXLS8962_I2C_DRIVER,&(fxls8962Driver.deviceInfo),FXLS8962_I2C_ADDR, FXLS8962_SENS_CONFIG1,0x00,0x00,0x00);
 			if (ARM_DRIVER_OK != status)
 			{
 				return SENSOR_ERROR_WRITE;

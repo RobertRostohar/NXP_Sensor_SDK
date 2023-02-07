@@ -16,13 +16,20 @@
 #define SHIELD_NAME "FRDM-STBI-A8974"
 
 // FXLS8974 Sensor Information
-#define FXLS8974_I2C_ADDR 0x18
-#define FXLS8974_CS       D10
-#define FXLS8974_MOSI     D11
-#define FXLS8974_MISO     D12
-#define FXLS8974_SCLK     D13
-#define FXLS8974_INT1     D2
-#define FXLS8974_INT2     A0
+#define FXLS8974_I2C_DRIVER     I2C_S_DRIVER
+#define FXLS8974_I2C_INDEX      I2C_S_DEVICE_INDEX
+#define FXLS8974_I2C_EVENT      I2C_S_SIGNAL_EVENT
+#define FXLS8974_I2C_ADDR       0x18
+#define FXLS8974_SPI_DRIVER     SPI_S_DRIVER
+#define FXLS8974_SPI_INDEX      SPI_S_DEVICE_INDEX
+#define FXLS8974_SPI_EVENT      SPI_S_SIGNAL_EVENT
+#define FXLS8974_SPI_BAUDRATE   SPI_S_BAUDRATE
+#define FXLS8974_CS             D10
+#define FXLS8974_MOSI           D11
+#define FXLS8974_MISO           D12
+#define FXLS8974_SCLK           D13
+#define FXLS8974_INT1           D2
+#define FXLS8974_INT2           A0
 
 // FRDM-STBI-A8974 Shield Reset
 #define RESET_GPIO A3

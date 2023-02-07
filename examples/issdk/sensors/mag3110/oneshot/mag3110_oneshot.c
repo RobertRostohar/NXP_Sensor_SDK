@@ -69,14 +69,14 @@ int app_main(void)
     uint8_t data[MAG3110_DATA_SIZE];
     mag3110_magdata_t rawData;
 
-    ARM_DRIVER_I2C *I2Cdrv = &I2C_S_DRIVER; // Now using the shield.h value!!!
+    ARM_DRIVER_I2C *I2Cdrv = &MAG3110_I2C_DRIVER;
     mag3110_i2c_sensorhandle_t mag3110Driver;
     registerDeviceInfo_t deviceInfo;
 
     PRINTF("\r\n ISSDK MAG3110 sensor driver example demonstration with oneshot mode\r\n");
 
     /*! Initialize the I2C driver. */
-    status = I2Cdrv->Initialize(I2C_S_SIGNAL_EVENT);
+    status = I2Cdrv->Initialize(MAG3110_I2C_EVENT);
     if (ARM_DRIVER_OK != status)
     {
         PRINTF("\r\n I2C Initialization Failed\r\n");
@@ -100,7 +100,7 @@ int app_main(void)
     }
 
     /*! Initialize MAG3110 sensor driver. */
-    status = MAG3110_I2C_Initialize(&mag3110Driver, &I2C_S_DRIVER, I2C_S_DEVICE_INDEX, MAG3110_I2C_ADDR,
+    status = MAG3110_I2C_Initialize(&mag3110Driver, &MAG3110_I2C_DRIVER, MAG3110_I2C_INDEX, MAG3110_I2C_ADDR,
                                     MAG3110_WHOAMI_VALUE);
     if (SENSOR_ERROR_NONE != status)
     {
@@ -111,7 +111,7 @@ int app_main(void)
 
     /*! We do not need to call MAG3110_I2C_Configure() in this case as we are going to read samples on demand.
      *  Instead we directly write register settings for One-Shot Mode... */
-    deviceInfo.deviceInstance = I2C_S_DEVICE_INDEX;
+    deviceInfo.deviceInstance = MAG3110_I2C_INDEX;
     deviceInfo.functionParam = SMC;
     deviceInfo.idleFunction = (registeridlefunction_t)SMC_SetPowerModeWait;
     status = Sensor_I2C_Write(mag3110Driver.pCommDrv, &deviceInfo, mag3110Driver.slaveAddress, cMag3110ConfigOneShot);

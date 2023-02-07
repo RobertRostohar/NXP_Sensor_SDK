@@ -74,13 +74,13 @@ int app_main(void)
     uint8_t data[FXLS8962_DATA_SIZE];
     fxls8962_acceldata_t rawData;
 
-    ARM_DRIVER_SPI *pSPIdriver = &SPI_S_DRIVER;
+    ARM_DRIVER_SPI *pSPIdriver = &FXLS8962_SPI_DRIVER;
     fxls8962_spi_sensorhandle_t fxls8962Driver;
 
     PRINTF("\r\n ISSDK FXLS896x sensor driver example demonstration for SPI with Poll Mode.\r\n");
 
     /*! Initialize the SPI driver. */
-    status = pSPIdriver->Initialize(SPI_S_SIGNAL_EVENT);
+    status = pSPIdriver->Initialize(FXLS8962_SPI_EVENT);
     if (ARM_DRIVER_OK != status)
     {
         PRINTF("\r\n SPI Initialization Failed\r\n");
@@ -96,7 +96,7 @@ int app_main(void)
     }
 
     /*! Set the SPI Slave speed. */
-    status = pSPIdriver->Control(ARM_SPI_MODE_MASTER | ARM_SPI_CPOL0_CPHA0, SPI_S_BAUDRATE);
+    status = pSPIdriver->Control(ARM_SPI_MODE_MASTER | ARM_SPI_CPOL0_CPHA0, FXLS8962_SPI_BAUDRATE);
     if (ARM_DRIVER_OK != status)
     {
         PRINTF("\r\n SPI Control Mode setting Failed\r\n");
@@ -104,7 +104,7 @@ int app_main(void)
     }
 
     /*! Initialize the fxls8962 sensor driver. */
-    status = FXLS8962_SPI_Initialize(&fxls8962Driver, &SPI_S_DRIVER, SPI_S_DEVICE_INDEX, &FXLS8962_CS,
+    status = FXLS8962_SPI_Initialize(&fxls8962Driver, &FXLS8962_SPI_DRIVER, FXLS8962_SPI_INDEX, &FXLS8962_CS,
     		&whoami);
     if (SENSOR_ERROR_NONE != status)
     {

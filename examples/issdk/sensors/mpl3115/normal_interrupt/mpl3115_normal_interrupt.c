@@ -103,7 +103,7 @@ int app_main(void)
     uint8_t data[MPL3115_DATA_SIZE];
     mpl3115_pressuredata_t rawData;
 
-    ARM_DRIVER_I2C *I2Cdrv = &I2C_S_DRIVER; // Now using the shield.h value!!!
+    ARM_DRIVER_I2C *I2Cdrv = &MPL3115_I2C_DRIVER;
     mpl3115_i2c_sensorhandle_t mpl3115Driver;
     GENERIC_DRIVER_GPIO *pGpioDriver = &Driver_GPIO_KSDK;
 
@@ -116,7 +116,7 @@ int app_main(void)
     pGpioDriver->pin_init(&GREEN_LED, GPIO_DIRECTION_OUT, NULL, NULL, NULL);
 
     /*! Initialize the I2C driver. */
-    status = I2Cdrv->Initialize(I2C_S_SIGNAL_EVENT);
+    status = I2Cdrv->Initialize(MPL3115_I2C_EVENT);
     if (ARM_DRIVER_OK != status)
     {
         PRINTF("\r\n I2C Initialization Failed\r\n");
@@ -140,7 +140,7 @@ int app_main(void)
     }
 
     /*! Initialize MPL3115 sensor driver. */
-    status = MPL3115_I2C_Initialize(&mpl3115Driver, &I2C_S_DRIVER, I2C_S_DEVICE_INDEX, MPL3115_I2C_ADDR,
+    status = MPL3115_I2C_Initialize(&mpl3115Driver, &MPL3115_I2C_DRIVER, MPL3115_I2C_INDEX, MPL3115_I2C_ADDR,
                                     MPL3115_WHOAMI_VALUE);
     if (SENSOR_ERROR_NONE != status)
     {

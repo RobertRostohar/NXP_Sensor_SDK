@@ -15,7 +15,11 @@
 #ifndef __ISSDK_HAL_H__
 #define __ISSDK_HAL_H__
 
+#ifdef   TARGET_HEADER
+#include TARGET_HEADER
+#else
 #include BOARD_HEADER               //Include appropriate MCU board header file
 #include SHIELD_HEADER              //Include appropriate sensor shield board header file
+#endif
 
 #endif // __ISSDK_HAL_H__

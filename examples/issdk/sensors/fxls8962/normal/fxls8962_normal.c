@@ -61,13 +61,13 @@ int app_main(void)
     uint8_t data[FXLS8962_DATA_SIZE];
     fxls8962_acceldata_t rawData;
 
-    ARM_DRIVER_I2C *I2Cdrv = &I2C_S_DRIVER; // Now using the shield.h value!!!
+    ARM_DRIVER_I2C *I2Cdrv = &FXLS8962_I2C_DRIVER;
     fxls8962_i2c_sensorhandle_t fxls8962Driver;
 
     PRINTF("\r\n ISSDK FXLS896x sensor driver example demonstration with poll mode\r\n");
 
     /*! Initialize the I2C driver. */
-    status = I2Cdrv->Initialize(I2C_S_SIGNAL_EVENT);
+    status = I2Cdrv->Initialize(FXLS8962_I2C_EVENT);
     if (ARM_DRIVER_OK != status)
     {
         PRINTF("\r\n I2C Initialization Failed\r\n");
@@ -91,7 +91,7 @@ int app_main(void)
     }
 
     /*! Initialize FXLS8962 sensor driver. */
-    status = FXLS8962_I2C_Initialize(&fxls8962Driver, &I2C_S_DRIVER, I2C_S_DEVICE_INDEX, FXLS8962_I2C_ADDR,
+    status = FXLS8962_I2C_Initialize(&fxls8962Driver, &FXLS8962_I2C_DRIVER, FXLS8962_I2C_INDEX, FXLS8962_I2C_ADDR,
                                      &whoami);
     if (ARM_DRIVER_OK != status)
     {

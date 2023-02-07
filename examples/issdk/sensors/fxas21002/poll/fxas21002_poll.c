@@ -57,13 +57,13 @@ int app_main(void)
     uint8_t data[FXAS21002_GYRO_DATA_SIZE];
     fxas21002_gyrodata_t rawData;
 
-    ARM_DRIVER_I2C *I2Cdrv = &I2C_S_DRIVER; // Now using the shield.h value!!!
+    ARM_DRIVER_I2C *I2Cdrv = &FXAS21002_I2C_DRIVER;
     fxas21002_i2c_sensorhandle_t FXAS21002drv;
 
     PRINTF("\r\n ISSDK FXAS21002 sensor driver example demonstration with poll mode\r\n");
 
     /*! Initialize the I2C driver. */
-    status = I2Cdrv->Initialize(I2C_S_SIGNAL_EVENT);
+    status = I2Cdrv->Initialize(FXAS21002_I2C_EVENT);
     if (ARM_DRIVER_OK != status)
     {
         PRINTF("\r\n I2C Initialization Failed\r\n");
@@ -87,7 +87,7 @@ int app_main(void)
     }
 
     /*! Initialize the FXAS21002 sensor driver. */
-    status = FXAS21002_I2C_Initialize(&FXAS21002drv, &I2C_S_DRIVER, I2C_S_DEVICE_INDEX, FXAS21002_I2C_ADDR,
+    status = FXAS21002_I2C_Initialize(&FXAS21002drv, &FXAS21002_I2C_DRIVER, FXAS21002_I2C_INDEX, FXAS21002_I2C_ADDR,
                                       FXAS21002_WHO_AM_I_WHOAMI_PROD_VALUE);
     if (SENSOR_ERROR_NONE != status)
     {
