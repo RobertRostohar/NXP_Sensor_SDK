@@ -38,14 +38,16 @@ The projects consists of:
 
 ### Building the examples
 
-1. Go to directory `examples/issdk/sensors/<sensor_name>/<sensor_example>`
+1. Go to directory `examples/issdk/sensors/<sensor_name>`
 
-2. Use the `csolution` command to create `.cprj` project files for all build and target types.
+2. Use the `csolution` command to create `.cprj` project files for examples (all build and target types).
    ```
-   csolution convert -s <sensor_example>.csolution.yml
+   csolution convert -s <sensor_name>.csolution.yml
    ```
 
-3. Use the `cbuild` command to create executable file for specified build and target type.
+3. Go to sub-directory `<sensor_example>`
+
+4. Use the `cbuild` command to create executable file for specified build and target type.
    ```
-   cbuild <sensor_example>.<build_type>+<target_type>.cprj
+   cbuild <sensor_project>.<build_type>+<target_type>.cprj
    ```
