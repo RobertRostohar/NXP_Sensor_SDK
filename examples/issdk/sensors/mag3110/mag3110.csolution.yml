@@ -62,4 +62,6 @@ solution:
             - --diag_suppress 6314,6319
 
   projects:
-    - project: mpl3115_oneshot.cproject.yml
+    - project: ./normal/mag3110_normal.cproject.yml
+    - project: ./normal_interrupt/mag3110_normal_interrupt.cproject.yml
+    - project: ./oneshot/mag3110_oneshot.cproject.yml

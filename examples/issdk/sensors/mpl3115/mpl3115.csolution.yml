@@ -3,7 +3,7 @@
 solution:
 
   target-types:
-    - type: frdmk22f_a8974
+    - type: frdmk22f_agmp03
       board: NXP::FRDM-K22F
    #  device: NXP::MK22FN512VLH12
       define:
@@ -12,15 +12,15 @@ solution:
         - FREEDOM
       variables:
         - Board-Layer:  ../../../../../boards/frdmk22f/frdmk22f.clayer.yml
-        - Shield-Layer: ../../../../../shields/a8974/a8974.clayer.yml
-    - type: lpcxpresso54114_a8974
+        - Shield-Layer: ../../../../../shields/agmp03/agmp03.clayer.yml
+    - type: lpcxpresso54114_agmp03
       board: NXP::LPCXpresso54114
       device: NXP::LPC54114J256BD64:cm4
       define:
         - CPU_LPC54114J256BD64_cm4
       variables:
         - Board-Layer:  ../../../../../boards/lpcxpresso54114/lpcxpresso54114.clayer.yml
-        - Shield-Layer: ../../../../../shields/a8974/a8974.clayer.yml
+        - Shield-Layer: ../../../../../shields/agmp03/agmp03.clayer.yml
 
   build-types:
     - type: debug
@@ -62,4 +62,9 @@ solution:
             - --diag_suppress 6314,6319
 
   projects:
-    - project: fxls8974cf_poll.cproject.yml
+    - project: ./altitude/mpl3115_altitude.cproject.yml
+    - project: ./fifo/mpl3115_fifo.cproject.yml
+    - project: ./fifo_interrupt/mpl3115_fifo_interrupt.cproject.yml
+    - project: ./normal/mpl3115_normal.cproject.yml
+    - project: ./normal_interrupt/mpl3115_normal_interrupt.cproject.yml
+    - project: ./oneshot/mpl3115_oneshot.cproject.yml

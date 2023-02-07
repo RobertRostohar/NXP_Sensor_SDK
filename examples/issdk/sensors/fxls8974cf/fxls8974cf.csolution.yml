@@ -13,14 +13,6 @@ solution:
       variables:
         - Board-Layer:  ../../../../../boards/frdmk22f/frdmk22f.clayer.yml
         - Shield-Layer: ../../../../../shields/a8974/a8974.clayer.yml
-    - type: lpcxpresso54114_a8974
-      board: NXP::LPCXpresso54114
-      device: NXP::LPC54114J256BD64:cm4
-      define:
-        - CPU_LPC54114J256BD64_cm4
-      variables:
-        - Board-Layer:  ../../../../../boards/lpcxpresso54114/lpcxpresso54114.clayer.yml
-        - Shield-Layer: ../../../../../shields/a8974/a8974.clayer.yml
 
   build-types:
     - type: debug
@@ -62,4 +54,8 @@ solution:
             - --diag_suppress 6314,6319
 
   projects:
-    - project: fxls8974cf_spi.cproject.yml
+    - project: ./freemaster_demo/fxls8974cf_freemaster_demo.cproject.yml
+    - project: ./interrupt/fxls8974cf_interrupt.cproject.yml
+    - project: ./motion_wakeup/fxls8974cf_motion_wakeup.cproject.yml
+    - project: ./poll/fxls8974cf_poll.cproject.yml
+    - project: ./spi/fxls8974cf_spi.cproject.yml

@@ -62,4 +62,7 @@ solution:
             - --diag_suppress 6314,6319
 
   projects:
-    - project: mpl3115_fifo_interrupt.cproject.yml
+    - project: ./fifo/fxas21002_fifo.cproject.yml
+    - project: ./interrupt/fxas21002_interrupt.cproject.yml
+    - project: ./poll/fxas21002_poll.cproject.yml
+    - project: ./poll_spi/fxas21002_poll_spi.cproject.yml
