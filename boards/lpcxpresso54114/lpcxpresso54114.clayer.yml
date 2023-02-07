@@ -5,6 +5,11 @@ layer:
 # name: LPCXpresso54114
   description: LPCXpresso54114 Development Board
 
+  packs:
+    - pack: NXP::LPC54114_DFP@13.0.0
+    - pack: NXP::LPCXpresso54114_BSP@13.0.0
+    - pack: ARM::CMSIS@5.9.0
+
   connections:
     - connect: LPCXpresso54114 Board
       provides:
