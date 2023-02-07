@@ -32,7 +32,7 @@ The projects consists of:
  - shield software layer
 
 ### Software Prerequisites
- - [CMSIS-Toolbox 1.4.0](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/releases/tag/1.4.0) or later
+ - [CMSIS-Toolbox 1.5.0-dev3](https://github.com/brondani/cmsis-toolbox/releases/tag/1.5.0-dev3) or later
  - Arm Compiler 6.18 or later
  - CMSIS software packs listed in the project `<sensor_example>.csolution.yml` file
 
