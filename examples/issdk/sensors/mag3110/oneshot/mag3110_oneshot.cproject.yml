@@ -2,13 +2,6 @@
 
 project:
 
-  # add-path:
-  #   - ../../../../../middleware/issdk/hal
-  #   - ../../../../../middleware/issdk/drivers/gpio
-  #   - ../../../../../middleware/issdk/drivers/gpio/kinetis
-  #   - ../../../../../middleware/issdk/drivers/systick
-  #   - ../../../../../middleware/issdk/sensors
-
   connections:
     - connect: MAG3110 Sensor
       consumes:

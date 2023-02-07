@@ -2,17 +2,6 @@
 
 project:
 
-  # add-path:
-  #   - ../../../../../middleware/freemaster/src/common
-  #   - ../../../../../middleware/freemaster/src/drivers/mcuxsdk/can
-  #   - ../../../../../middleware/freemaster/src/drivers/mcuxsdk/serial
-  #   - ../../../../../middleware/freemaster/src/platforms/gen32le
-  #   - ../../../../../middleware/issdk/hal
-  #   - ../../../../../middleware/issdk/drivers/gpio
-  #   - ../../../../../middleware/issdk/drivers/gpio/kinetis
-  #   - ../../../../../middleware/issdk/drivers/systick
-  #   - ../../../../../middleware/issdk/sensors
-
   connections:
     - connect: FXLS8974 Sensor
       consumes:
