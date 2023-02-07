@@ -10,6 +10,7 @@ layer:
     - pack: NXP::LPC54114_DFP@13.0.0
     - pack: NXP::LPCXpresso54114_BSP@13.0.0
     - pack: ARM::CMSIS@5.9.0
+    - pack: Keil::ARM_Compiler
 
   connections:
     - connect: LPCXpresso54114 Board
@@ -70,6 +71,9 @@ layer:
     - component: NXP::Device:SDK Utilities:serial_manager
     - component: NXP::Device:SDK Utilities:serial_manager_uart
     - component: NXP::Device:Startup
+    - component: Keil::Compiler&ARM Compiler:I/O:STDERR&User
+    - component: Keil::Compiler&ARM Compiler:I/O:STDOUT&User
+    - component: Keil::Compiler&ARM Compiler:I/O:STDIN&User
 
   groups:
     - group: gpio_driver
@@ -80,6 +84,8 @@ layer:
         - file: ../../middleware/issdk/drivers/gpio/Driver_GPIO.h
     - group: board
       files:
+        - file: ./main.c
+        - file: ./retarget_stdio.c
         - file: ./lpc54114.c
         - file: ./lpc54114.h
         - file: ./RTE/Device/LPC54114J256BD64_cm4/LPC54114J256_cm4.scf
