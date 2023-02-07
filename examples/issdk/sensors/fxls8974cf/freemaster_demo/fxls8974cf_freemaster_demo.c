@@ -14,11 +14,8 @@
 //-----------------------------------------------------------------------
 // SDK Includes
 //-----------------------------------------------------------------------
-#include "pin_mux.h"
-#include "clock_config.h"
-#include "board.h"
-#include "fsl_debug_console.h"
-#include "math.h"
+#include <stdio.h>
+#include <math.h>
 #include "fsl_uart.h"
 #include "fsl_common.h"
 #include "freemaster.h"
@@ -39,6 +36,8 @@
 //-----------------------------------------------------------------------
 // Macros
 //-----------------------------------------------------------------------
+#define PRINTF  printf
+#define GETCHAR getchar
 #define FXLS8974_NUM_REGISTERS (FXLS8974_SELF_TEST_CONFIG2 + 1)
 #define FF_A_FFMT_THS          (0x08)       /* FreeFall Threshold Value. */
 #define A_FFMT_COUNT           (0x18)       /* Freefall/motion debounce count value. */
@@ -416,7 +415,7 @@ void FRM_Recorder_Init()
  * @brief Main function
  */
 
-int main(void)
+int app_main(void)
 {
     int32_t status;
     uint8_t whoami = 0;
@@ -427,16 +426,10 @@ int main(void)
     GENERIC_DRIVER_GPIO *pGpioDriver = &Driver_GPIO_KSDK;
     fxls8974_i2c_sensorhandle_t fxls8974Driver;
 
-    /*! Initialize the MCU hardware. */
-    BOARD_InitPins();
-    BOARD_BootClockRUN();
-    BOARD_SystickEnable();
-    BOARD_InitDebugConsole();
-
-    /*! Initialize FXLS8974_INT1 pin used by FRDM board */
+    /*! Initialize FXLS8974_INT1 pin used by board */
     pGpioDriver->pin_init(&FXLS8974_INT1, GPIO_DIRECTION_IN, NULL, &fxls8974_isr_callback, NULL);
 
-    /*! Initialize RGB LED pin used by FRDM board */
+    /*! Initialize LED pin used by board */
     pGpioDriver->pin_init(&GREEN_LED, GPIO_DIRECTION_OUT, NULL, NULL, NULL);
 
     /*! FreeMASTER communication layer initialization */

@@ -12,11 +12,8 @@
  *        example demonstration with polling mode.
  */
 
-/*  SDK Includes */
-#include "pin_mux.h"
-#include "clock_config.h"
-#include "board.h"
-#include "fsl_debug_console.h"
+/* C Library Includes */
+#include <stdio.h>
 
 /* CMSIS Includes */
 #include "Driver_I2C.h"
@@ -24,6 +21,12 @@
 /* ISSDK Includes */
 #include "issdk_hal.h"
 #include "fxas21002_drv.h"
+
+//-----------------------------------------------------------------------
+// Macros
+//-----------------------------------------------------------------------
+#define PRINTF  printf
+#define GETCHAR getchar
 
 /*******************************************************************************
  * Constants
@@ -47,7 +50,7 @@ const registerreadlist_t fxas21002_Output_Values[] = {
 /*!
  * @brief Main function
  */
-int main(void)
+int app_main(void)
 {
     int32_t status;
     uint8_t dataReady;
@@ -56,11 +59,6 @@ int main(void)
 
     ARM_DRIVER_I2C *I2Cdrv = &I2C_S_DRIVER; // Now using the shield.h value!!!
     fxas21002_i2c_sensorhandle_t FXAS21002drv;
-
-    /*! Initialize the MCU hardware. */
-    BOARD_InitPins();
-    BOARD_BootClockRUN();
-    BOARD_InitDebugConsole();
 
     PRINTF("\r\n ISSDK FXAS21002 sensor driver example demonstration with poll mode\r\n");
 

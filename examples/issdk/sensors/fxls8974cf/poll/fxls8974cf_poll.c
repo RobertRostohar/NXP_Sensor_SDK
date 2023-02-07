@@ -11,11 +11,8 @@
  *        example demonstration with polling mode.
  */
 
-/*  SDK Includes */
-#include "pin_mux.h"
-#include "clock_config.h"
-#include "board.h"
-#include "fsl_debug_console.h"
+/* C Library Includes */
+#include <stdio.h>
 
 /* CMSIS Includes */
 #include "Driver_I2C.h"
@@ -23,11 +20,12 @@
 /* ISSDK Includes */
 #include "issdk_hal.h"
 #include "fxls8974_drv.h"
-#include "systick_utils.h"
 
 /*******************************************************************************
  * Macros
  ******************************************************************************/
+#define PRINTF  printf
+#define GETCHAR getchar
 #define FXLS8974_DATA_SIZE 6
 
 /*******************************************************************************
@@ -54,7 +52,7 @@ const registerreadlist_t cFxls8974OutputNormal[] = {{.readFrom = FXLS8974_OUT_X_
 /*!
  * @brief Main function
  */
-int main(void)
+int app_main(void)
 {
     int32_t status;
     uint8_t whoami;
@@ -64,12 +62,6 @@ int main(void)
 
     ARM_DRIVER_I2C *I2Cdrv = &I2C_S_DRIVER; // Now using the shield.h value!!!
     fxls8974_i2c_sensorhandle_t fxls8974Driver;
-
-    /*! Initialize the MCU hardware. */
-    BOARD_InitPins();
-    BOARD_BootClockRUN();
-    BOARD_SystickEnable();
-    BOARD_InitDebugConsole();
 
     PRINTF("\r\n ISSDK FXLS8974 sensor driver example demonstration with poll mode\r\n");
 

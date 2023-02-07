@@ -13,12 +13,9 @@
  */
 
 //-----------------------------------------------------------------------
-// SDK Includes
+// C Library Includes
 //-----------------------------------------------------------------------
-#include "pin_mux.h"
-#include "clock_config.h"
-#include "board.h"
-#include "fsl_debug_console.h"
+#include <stdio.h>
 
 //-----------------------------------------------------------------------
 // CMSIS Includes
@@ -32,6 +29,8 @@
 //-----------------------------------------------------------------------
 // Macros
 //-----------------------------------------------------------------------
+#define PRINTF  printf
+#define GETCHAR getchar
 #define MPL3115_DATA_SIZE (5) /* 3 byte Pressure/Altitude and 2 byte Temperature. */
 
 //-----------------------------------------------------------------------
@@ -62,7 +61,7 @@ const registerreadlist_t cMpl3115OutputNormal[] = {{.readFrom = MPL3115_OUT_P_MS
 /*!
  * @brief Main function
  */
-int main(void)
+int app_main(void)
 {
     int16_t tempInDegrees;
     int32_t altitudeInMeters;
@@ -74,10 +73,6 @@ int main(void)
     ARM_DRIVER_I2C *I2Cdrv = &I2C_S_DRIVER; // Now using the shield.h value!!!
     mpl3115_i2c_sensorhandle_t mpl3115Driver;
     registerDeviceInfo_t deviceInfo;
-
-    BOARD_InitPins();
-    BOARD_BootClockRUN();
-    BOARD_InitDebugConsole();
 
     PRINTF("\r\n ISSDK MPL3115 sensor driver example demonstration with oneshot mode\r\n");
 

@@ -13,12 +13,9 @@
  */
 
 //-----------------------------------------------------------------------
-// SDK Includes
+// C Library Includes
 //-----------------------------------------------------------------------
-#include "pin_mux.h"
-#include "clock_config.h"
-#include "board.h"
-#include "fsl_debug_console.h"
+#include <stdio.h>
 
 //-----------------------------------------------------------------------
 // CMSIS Includes
@@ -32,6 +29,8 @@
 //-----------------------------------------------------------------------
 // Macros
 //-----------------------------------------------------------------------
+#define PRINTF  printf
+#define GETCHAR getchar
 #define MAG3110_DATA_SIZE (6) /* 2 byte X,Y,Z Axis Data each. */
 
 //-----------------------------------------------------------------------
@@ -63,7 +62,7 @@ const registerreadlist_t cMag3110OutputNormal[] = {{.readFrom = MAG3110_OUT_X_MS
 /*!
  * @brief Main function
  */
-int main(void)
+int app_main(void)
 {
     int32_t status;
     uint8_t dataReady;
@@ -73,10 +72,6 @@ int main(void)
     ARM_DRIVER_I2C *I2Cdrv = &I2C_S_DRIVER; // Now using the shield.h value!!!
     mag3110_i2c_sensorhandle_t mag3110Driver;
     registerDeviceInfo_t deviceInfo;
-
-    BOARD_InitPins();
-    BOARD_BootClockRUN();
-    BOARD_InitDebugConsole();
 
     PRINTF("\r\n ISSDK MAG3110 sensor driver example demonstration with oneshot mode\r\n");
 

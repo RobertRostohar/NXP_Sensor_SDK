@@ -15,10 +15,7 @@
 //-----------------------------------------------------------------------
 // SDK Includes
 //-----------------------------------------------------------------------
-#include "pin_mux.h"
-#include "clock_config.h"
-#include "board.h"
-#include "fsl_debug_console.h"
+#include <stdio.h>
 
 //-----------------------------------------------------------------------
 // CMSIS Includes
@@ -29,11 +26,12 @@
 #include "issdk_hal.h"
 #include "gpio_driver.h"
 #include "fxls8962_drv.h"
-#include "systick_utils.h"
 
 //-----------------------------------------------------------------------
 // Macros
 //-----------------------------------------------------------------------
+#define PRINTF  printf
+#define GETCHAR getchar
 /* SDCD free-fall counter register values.
  * These values have been derived form the Application Note AN4070 for MMA8451 (the same is applicable to FXLS8962 too).
  * http://cache.freescale.com/files/sensors/doc/app_note/AN4070.pdf */
@@ -96,7 +94,7 @@ void fxls8962_int_event_ready_callback(void *pUserData)
 /*!
  * @brief Main function
  */
-int main(void)
+int app_main(void)
 {
     int32_t status;
     uint8_t whoami;
@@ -105,14 +103,9 @@ int main(void)
     fxls8962_i2c_sensorhandle_t fxls8962Driver;
     GENERIC_DRIVER_GPIO *pGpioDriver = &Driver_GPIO_KSDK;
 
-    BOARD_InitPins();
-    BOARD_BootClockRUN();
-    BOARD_SystickEnable();
-    BOARD_InitDebugConsole();
-
     PRINTF("\r\n ISSDK FXLS8962 sensor driver example for Freefall Detection. \r\n");
 
-    /*! Initialize FXLS8962 pin used by FRDM board */
+    /*! Initialize FXLS8962 pin used by board */
     pGpioDriver->pin_init(&FXLS8962_INT1, GPIO_DIRECTION_IN, NULL, &fxls8962_int_event_ready_callback, NULL);
 
     /*! Initialize the I2C driver. */

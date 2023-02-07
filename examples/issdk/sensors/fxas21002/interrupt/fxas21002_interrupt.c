@@ -13,12 +13,9 @@
  */
 
 //-----------------------------------------------------------------------
-// SDK Includes
+// C Library Includes
 //-----------------------------------------------------------------------
-#include "pin_mux.h"
-#include "clock_config.h"
-#include "board.h"
-#include "fsl_debug_console.h"
+#include <stdio.h>
 
 //-----------------------------------------------------------------------
 // CMSIS Includes
@@ -31,6 +28,12 @@
 #include "issdk_hal.h"
 #include "gpio_driver.h"
 #include "fxas21002_drv.h"
+
+//-----------------------------------------------------------------------
+// Macros
+//-----------------------------------------------------------------------
+#define PRINTF  printf
+#define GETCHAR getchar
 
 //-----------------------------------------------------------------------
 // Constants
@@ -73,15 +76,15 @@ void fxas21002_isr(void *pUserData)
 }
 
 /*! -----------------------------------------------------------------------
- *  @brief       This is the The main function implementation.
- *  @details     This function invokes board initializes routines, then then brings up the sensor and
- *               finally enters an endless loop to continuously read available samples.
+ *  @brief       This is the The application main function implementation.
+ *  @details     This function brings up the sensor and enters an endless loop
+ *               to continuously read available samples.
  *  @param[in]   void This is no input parameter.
  *  @return      void  There is no return value.
  *  @constraints None
  *  @reeentrant  No
  *  -----------------------------------------------------------------------*/
-int main(void)
+int app_main(void)
 {
     int32_t status;
     uint8_t data[FXAS21002_GYRO_DATA_SIZE];
@@ -91,17 +94,12 @@ int main(void)
     fxas21002_i2c_sensorhandle_t FXAS21002drv;
     GENERIC_DRIVER_GPIO *gpioDriver = &Driver_GPIO_KSDK;
 
-    /*! Initialize the MCU hardware. */
-    BOARD_InitPins();
-    BOARD_BootClockRUN();
-    BOARD_InitDebugConsole();
-
     PRINTF("\r\n ISSDK FXAS21002 sensor driver example demonstration with interrupt mode.\r\n");
 
-    /*! Initialize INT1_FXAS21002 pin used by FRDM board */
+    /*! Initialize INT1_FXAS21002 pin used by board */
     gpioDriver->pin_init(&FXAS21002_INT1, GPIO_DIRECTION_IN, NULL, &fxas21002_isr, NULL);
 
-    /*! Initialize RGB LED pin used by FRDM board */
+    /*! Initialize LED pin used by board */
     gpioDriver->pin_init(&GREEN_LED, GPIO_DIRECTION_OUT, NULL, NULL, NULL);
 
     /*! Initialize the I2C driver. */

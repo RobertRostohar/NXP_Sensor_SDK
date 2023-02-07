@@ -13,12 +13,9 @@
  */
 
 //-----------------------------------------------------------------------
-// SDK Includes
+// C Library Includes
 //-----------------------------------------------------------------------
-#include "pin_mux.h"
-#include "clock_config.h"
-#include "board.h"
-#include "fsl_debug_console.h"
+#include <stdio.h>
 
 //-----------------------------------------------------------------------
 // CMSIS Includes
@@ -35,6 +32,8 @@
 //-----------------------------------------------------------------------
 // Macros
 //-----------------------------------------------------------------------
+#define PRINTF  printf
+#define GETCHAR getchar
 #define MPL3115_DATA_SIZE (5) /* 3 byte Pressure/Altitude and 2 byte Temperature. */
 /*! In MPL3115 the Auto Acquisition Time Step (ODR) can be set only in powers of 2 (i.e. 2^x, where x is the
  *  SAMPLING_EXPONENT).
@@ -88,15 +87,15 @@ void mpl3115_int_data_ready_callback(void *pUserData)
 }
 
 /*! -----------------------------------------------------------------------
- *  @brief       This is the The main function implementation.
- *  @details     This function invokes board initializes routines, then then brings up the sensor and
- *               finally enters an endless loop to continuously read available samples.
+ *  @brief       This is the The application main function implementation.
+ *  @details     This function brings up the sensor and enters an endless loop
+ *               to continuously read available samples.
  *  @param[in]   void This is no input parameter.
  *  @return      void  There is no return value.
  *  @constraints None
  *  @reeentrant  No
  *  -----------------------------------------------------------------------*/
-int main(void)
+int app_main(void)
 {
     int16_t tempInDegrees;
     uint32_t pressureInPascals;
@@ -108,17 +107,12 @@ int main(void)
     mpl3115_i2c_sensorhandle_t mpl3115Driver;
     GENERIC_DRIVER_GPIO *pGpioDriver = &Driver_GPIO_KSDK;
 
-    /*! Initialize the MCU hardware. */
-    BOARD_InitPins();
-    BOARD_BootClockRUN();
-    BOARD_InitDebugConsole();
-
     PRINTF("\r\n ISSDK MPL3115 sensor driver example demonstration with interrupt mode.\r\n");
 
-    /*! Initialize MAG3110 pin used by FRDM board */
+    /*! Initialize MAG3110 pin used by board */
     pGpioDriver->pin_init(&MPL3115_INT1, GPIO_DIRECTION_IN, NULL, &mpl3115_int_data_ready_callback, NULL);
 
-    /*! Initialize RGB LED pin used by FRDM board */
+    /*! Initialize LED pin used by board */
     pGpioDriver->pin_init(&GREEN_LED, GPIO_DIRECTION_OUT, NULL, NULL, NULL);
 
     /*! Initialize the I2C driver. */

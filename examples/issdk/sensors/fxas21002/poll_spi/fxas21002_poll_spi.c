@@ -12,12 +12,9 @@
  */
 
 //-----------------------------------------------------------------------
-// SDK Includes
+// C Library Includes
 //-----------------------------------------------------------------------
-#include "board.h"
-#include "pin_mux.h"
-#include "clock_config.h"
-#include "fsl_debug_console.h"
+#include <stdio.h>
 
 //-----------------------------------------------------------------------
 // ISSDK Includes
@@ -30,6 +27,12 @@
 // CMSIS Includes
 //-----------------------------------------------------------------------
 #include "Driver_SPI.h"
+
+//-----------------------------------------------------------------------
+// Macros
+//-----------------------------------------------------------------------
+#define PRINTF  printf
+#define GETCHAR getchar
 
 //-----------------------------------------------------------------------
 // Constants
@@ -51,15 +54,15 @@ const registerreadlist_t cFxas21002_Output_Values[] = {
 // Functions
 //-----------------------------------------------------------------------
 /*! -----------------------------------------------------------------------
- *  @brief       This is the The main function implementation.
- *  @details     This function invokes board initializes routines, then then brings up the sensor and
- *               finally enters an endless loop to continuously read available samples.
+ *  @brief       This is the The application main function implementation.
+ *  @details     This function brings up the sensor and enters an endless loop
+ *               to continuously read available samples.
  *  @param[in]   void This is no input parameter.
  *  @return      void  There is no return value.
  *  @constraints None
  *  @reeentrant  No
  *  -----------------------------------------------------------------------*/
-int main(void)
+int app_main(void)
 {
     int32_t status;
     uint8_t gFxas21002DataReady;
@@ -68,11 +71,6 @@ int main(void)
 
     ARM_DRIVER_SPI *pSPIdriver = &SPI_S_DRIVER;
     fxas21002_spi_sensorhandle_t fxas21002Driver;
-
-    /*! Initialize the MCU hardware. */
-    BOARD_InitPins();
-    BOARD_BootClockRUN();
-    BOARD_InitDebugConsole();
 
     PRINTF("\r\n ISSDK FXAS21002 sensor driver example demonstration for SPI with Poll Mode.\r\n");
 

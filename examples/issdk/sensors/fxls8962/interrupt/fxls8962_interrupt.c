@@ -13,12 +13,9 @@
  */
 
 //-----------------------------------------------------------------------
-// SDK Includes
+// C Library Includes
 //-----------------------------------------------------------------------
-#include "pin_mux.h"
-#include "clock_config.h"
-#include "board.h"
-#include "fsl_debug_console.h"
+#include <stdio.h>
 
 //-----------------------------------------------------------------------
 // CMSIS Includes
@@ -31,11 +28,12 @@
 #include "issdk_hal.h"
 #include "gpio_driver.h"
 #include "fxls8962_drv.h"
-#include "systick_utils.h"
 
 //-----------------------------------------------------------------------
 // Macros
 //-----------------------------------------------------------------------
+#define PRINTF  printf
+#define GETCHAR getchar
 #define FXLS8962_DATA_SIZE 6
 
 //-----------------------------------------------------------------------
@@ -77,15 +75,15 @@ void fxls8962_int_data_ready_callback(void *pUserData)
 }
 
 /*! -----------------------------------------------------------------------
- *  @brief       This is the The main function implementation.
- *  @details     This function invokes board initializes routines, then then brings up the sensor and
- *               finally enters an endless loop to continuously read available samples.
+ *  @brief       This is the The application main function implementation.
+ *  @details     This function brings up the sensor and enters an endless loop
+ *               to continuously read available samples.
  *  @param[in]   void This is no input parameter.
  *  @return      void  There is no return value.
  *  @constraints None
  *  @reeentrant  No
  *  -----------------------------------------------------------------------*/
-int main(void)
+int app_main(void)
 {
     int32_t status;
     uint8_t whoami;
@@ -96,18 +94,12 @@ int main(void)
     fxls8962_i2c_sensorhandle_t fxls8962Driver;
     GENERIC_DRIVER_GPIO *pGpioDriver = &Driver_GPIO_KSDK;
 
-    /*! Initialize the MCU hardware. */
-    BOARD_InitPins();
-    BOARD_BootClockRUN();
-    BOARD_SystickEnable();
-    BOARD_InitDebugConsole();
-
     PRINTF("\r\n ISSDK FXLS8962 sensor driver example demonstration with interrupt mode.\r\n");
 
-    /*! Initialize FXLS8962 pin used by FRDM board */
+    /*! Initialize FXLS8962 pin used by board */
     pGpioDriver->pin_init(&FXLS8962_INT1, GPIO_DIRECTION_IN, NULL, &fxls8962_int_data_ready_callback, NULL);
 
-    /*! Initialize RGB LED pin used by FRDM board */
+    /*! Initialize LED pin used by board */
     pGpioDriver->pin_init(&GREEN_LED, GPIO_DIRECTION_OUT, NULL, NULL, NULL);
 
     /*! Initialize the I2C driver. */

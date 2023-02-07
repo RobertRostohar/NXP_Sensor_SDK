@@ -12,12 +12,9 @@
  */
 
 //-----------------------------------------------------------------------
-// SDK Includes
+// C Library Includes
 //-----------------------------------------------------------------------
-#include "pin_mux.h"
-#include "clock_config.h"
-#include "board.h"
-#include "fsl_debug_console.h"
+#include <stdio.h>
 
 //-----------------------------------------------------------------------
 // ISSDK Includes
@@ -25,7 +22,6 @@
 #include "issdk_hal.h"
 #include "gpio_driver.h"
 #include "fxls8974_drv.h"
-#include "systick_utils.h"
 
 //-----------------------------------------------------------------------
 // CMSIS Includes
@@ -35,6 +31,8 @@
 //-----------------------------------------------------------------------
 // Macros
 //-----------------------------------------------------------------------
+#define PRINTF  printf
+#define GETCHAR getchar
 #define FXLS8974_DATA_SIZE (6)
 
 //-----------------------------------------------------------------------
@@ -59,15 +57,15 @@ const registerreadlist_t cfxls8974OutputNormal[] = {{.readFrom = FXLS8974_OUT_X_
 // Functions
 //-----------------------------------------------------------------------
 /*! -----------------------------------------------------------------------
- *  @brief       This is the The main function implementation.
- *  @details     This function invokes board initializes routines, then then brings up the sensor and
- *               finally enters an endless loop to continuously read available samples.
+ *  @brief       This is the The application main function implementation.
+ *  @details     This function brings up the sensor and enters an endless loop
+ *               to continuously read available samples.
  *  @param[in]   void This is no input parameter.
  *  @return      void  There is no return value.
  *  @constraints None
  *  @reeentrant  No
  *  -----------------------------------------------------------------------*/
-int main(void)
+int app_main(void)
 {
     int32_t status;
     uint8_t whoami;
@@ -77,12 +75,6 @@ int main(void)
 
     ARM_DRIVER_SPI *pSPIdriver = &SPI_S_DRIVER;
     fxls8974_spi_sensorhandle_t fxls8974Driver;
-
-    /*! Initialize the MCU hardware. */
-    BOARD_InitPins();
-    BOARD_BootClockRUN();
-    BOARD_SystickEnable();
-    BOARD_InitDebugConsole();
 
     PRINTF("\r\n ISSDK FXLS8974 sensor driver example demonstration for SPI with Poll Mode.\r\n");
 
