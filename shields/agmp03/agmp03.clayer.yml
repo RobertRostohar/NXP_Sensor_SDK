@@ -2,7 +2,6 @@
 
 layer:
   type: Shield
-# name: AGMP03
   description: FRDM-STBC-AGMP03 Sensor Shield Board
 
   connections:
@@ -116,9 +115,6 @@ layer:
 
   define:
     - SHIELD_HEADER="frdm_stbc_agmp03_shield.h"
-
-  # add-path:
-  #   - .
 
   groups:
     - group: shield

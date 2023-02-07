@@ -2,7 +2,6 @@
 
 layer:
   type: Shield
-# name: A8974
   description: FRDM-STBI-A8974 Sensor Shield Board
 
   connections:
@@ -47,9 +46,6 @@ layer:
 
   define:
     - SHIELD_HEADER="frdm_stbi_a8974_shield.h"
-
-  # add-path:
-  #   - .
 
   groups:
     - group: shield

@@ -2,7 +2,6 @@
 
 layer:
   type: Board
-# name: LPCXpresso54114
   description: LPCXpresso54114 Development Board
 
   packs:
@@ -35,9 +34,6 @@ layer:
   define:
     - SERIAL_PORT_TYPE_UART=1
     - BOARD_HEADER="lpc54114.h"
-
-  # add-path:
-  #   - .
 
   components:
     - component: NXP::Board Support:SDK Project Template:project_template&LPC54114

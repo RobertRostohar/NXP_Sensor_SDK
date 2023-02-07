@@ -2,7 +2,6 @@
 
 layer:
   type: Board
-# name: FRDM-K22F
   description: FRDM-K22F Development Board
 
   packs:
@@ -36,9 +35,6 @@ layer:
     - PRINTF_ADVANCED_ENABLE
     - SERIAL_PORT_TYPE_UART=1
     - BOARD_HEADER="frdm_k22f.h"
-
-  # add-path:
-  #   - .
 
   components:
     - component: NXP::Board Support:SDK Project Template:project_template&MK22F51212
