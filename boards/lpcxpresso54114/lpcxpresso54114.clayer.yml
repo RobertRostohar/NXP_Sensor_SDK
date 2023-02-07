@@ -2,6 +2,8 @@
 
 layer:
   type: Board
+  for-board: NXP::LPCXpresso54114
+  device: :cm4
   description: LPCXpresso54114 Development Board
 
   packs:

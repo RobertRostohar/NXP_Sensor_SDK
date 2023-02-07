@@ -2,6 +2,7 @@
 
 layer:
   type: Board
+  for-board: NXP::FRDM-K22F
   description: FRDM-K22F Development Board
 
   packs:
@@ -31,6 +32,8 @@ layer:
         - Heap: 1024
 
   define:
+    - FREEDOM
+    - FRDM_K22F
     - MCUXPRESSO_SDK
     - PRINTF_ADVANCED_ENABLE
     - SERIAL_PORT_TYPE_UART=1

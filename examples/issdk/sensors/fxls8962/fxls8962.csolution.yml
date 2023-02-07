@@ -5,19 +5,12 @@ solution:
   target-types:
     - type: frdmk22f_agmp03
       board: NXP::FRDM-K22F
-   #  device: NXP::MK22FN512VLH12
-      define:
-        - CPU_MK22FN512VLH12
-        - FRDM_K22F
-        - FREEDOM
       variables:
         - Board-Layer:  ../../../../../boards/frdmk22f/frdmk22f.clayer.yml
         - Shield-Layer: ../../../../../shields/agmp03/agmp03.clayer.yml
     - type: lpcxpresso54114_agmp03
       board: NXP::LPCXpresso54114
-      device: NXP::LPC54114J256BD64:cm4
-      define:
-        - CPU_LPC54114J256BD64_cm4
+      device: NXP::LPC54114J256BD64
       variables:
         - Board-Layer:  ../../../../../boards/lpcxpresso54114/lpcxpresso54114.clayer.yml
         - Shield-Layer: ../../../../../shields/agmp03/agmp03.clayer.yml
