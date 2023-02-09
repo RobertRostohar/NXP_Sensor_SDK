@@ -36,7 +36,6 @@ gpioHandleKSDK_t D1 = {
 // LPC54114 Arduino Connector Pin Defintion
 gpioHandleKSDK_t A0 = {
     .base = GPIO, .pinNumber = 30, .mask = 1 << (30), .clockName = kCLOCK_Gpio0, .portNumber = kGINT_Port0};
-gpioHandleKSDK_t A1; // No Connection
 gpioHandleKSDK_t A2 = {
     .base = GPIO, .pinNumber = 8, .mask = 1 << (8), .clockName = kCLOCK_Gpio1, .portNumber = kGINT_Port1};
 gpioHandleKSDK_t A3 = {

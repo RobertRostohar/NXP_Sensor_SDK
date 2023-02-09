@@ -37,7 +37,6 @@ extern gpioHandleKSDK_t D1;
 
 // LPCXpresso54114 Arduino Connector Pin Defintion
 extern gpioHandleKSDK_t A0;
-extern gpioHandleKSDK_t A1;
 extern gpioHandleKSDK_t A2;
 extern gpioHandleKSDK_t A3;
 extern gpioHandleKSDK_t A4;
