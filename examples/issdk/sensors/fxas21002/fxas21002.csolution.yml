@@ -30,6 +30,7 @@ solution:
 
   projects:
     - project: ./fifo/fxas21002_fifo.cproject.yml
+      not-for-context: +lpcxpresso54114_agmp03
     - project: ./interrupt/fxas21002_interrupt.cproject.yml
     - project: ./poll/fxas21002_poll.cproject.yml
     - project: ./poll_spi/fxas21002_poll_spi.cproject.yml
