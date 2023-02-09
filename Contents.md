@@ -133,6 +133,7 @@ Directory / File                                    | Description
 [examples/issdk/sensors](./examples/issdk/sensors/) | ISSDK examples for various sensors
 &emsp;`<sensor_name>`                               | Examples for specific sensor
 &emsp;&emsp;`<sensor_name>.csolution.yml`           | Examples solution file (multi-project)
+&emsp;&emsp;`<sensor_name>.cdefault.yml`            | Examples default settings (multi-project)
 &emsp;&emsp;`<sensor_example>`                      | Specific sensor example
 &emsp;&emsp;&emsp;`<sensor_project>.cproject.yml`   | Example project file
 &emsp;&emsp;&emsp;`<sensor_project>.c`              | Example main module
