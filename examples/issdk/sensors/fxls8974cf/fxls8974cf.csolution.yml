@@ -30,6 +30,7 @@ solution:
 
   projects:
     - project: ./freemaster_demo/fxls8974cf_freemaster_demo.cproject.yml
+      not-for-context: +lpcxpresso54114_agmp03
     - project: ./interrupt/fxls8974cf_interrupt.cproject.yml
     - project: ./motion_wakeup/fxls8974cf_motion_wakeup.cproject.yml
     - project: ./poll/fxls8974cf_poll.cproject.yml

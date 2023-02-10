@@ -16,6 +16,7 @@
 //-----------------------------------------------------------------------
 #include <stdio.h>
 #include <math.h>
+#include "board.h"
 #include "fsl_uart.h"
 #include "fsl_common.h"
 #include "freemaster.h"
