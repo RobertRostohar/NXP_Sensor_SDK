@@ -22,6 +22,7 @@
 #include "board.h"
 #include "systick_utils.h"
 #include "main.h"
+#include "lpc54114.h"   /* redefines BOARD_BootClockRUN */
 
 int main (void) {
 
