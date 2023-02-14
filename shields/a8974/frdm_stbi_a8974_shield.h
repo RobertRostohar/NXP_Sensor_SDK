@@ -24,14 +24,14 @@
 #define FXLS8974_SPI_INDEX      SPI_S_DEVICE_INDEX
 #define FXLS8974_SPI_EVENT      SPI_S_SIGNAL_EVENT
 #define FXLS8974_SPI_BAUDRATE   SPI_S_BAUDRATE
-#define FXLS8974_CS             D10
-#define FXLS8974_MOSI           D11
-#define FXLS8974_MISO           D12
-#define FXLS8974_SCLK           D13
-#define FXLS8974_INT1           D2
-#define FXLS8974_INT2           A0
+#define FXLS8974_CS             ARDUINO_UNO_D10
+#define FXLS8974_MOSI           ARDUINO_UNO_D11
+#define FXLS8974_MISO           ARDUINO_UNO_D12
+#define FXLS8974_SCLK           ARDUINO_UNO_D13
+#define FXLS8974_INT1           ARDUINO_UNO_D2
+#define FXLS8974_INT2           ARDUINO_UNO_A0
 
 // FRDM-STBI-A8974 Shield Reset
-#define RESET_GPIO A3
+#define RESET_GPIO              ARDUINO_UNO_A3
 
 #endif /* _FRDM_STBI_A8974_SHIELD_H_ */

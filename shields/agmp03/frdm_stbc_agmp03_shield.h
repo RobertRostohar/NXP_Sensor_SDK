@@ -25,12 +25,12 @@
 #define FXLS8962_SPI_INDEX      SPI_S_DEVICE_INDEX
 #define FXLS8962_SPI_EVENT      SPI_S_SIGNAL_EVENT
 #define FXLS8962_SPI_BAUDRATE   SPI_S_BAUDRATE
-#define FXLS8962_CS             D10
-#define FXLS8962_MOSI           D11
-#define FXLS8962_MISO           D12
-#define FXLS8962_SCLK           D13
-#define FXLS8962_INT1           D2
-#define FXLS8962_INT2           A0
+#define FXLS8962_CS             ARDUINO_UNO_D10
+#define FXLS8962_MOSI           ARDUINO_UNO_D11
+#define FXLS8962_MISO           ARDUINO_UNO_D12
+#define FXLS8962_SCLK           ARDUINO_UNO_D13
+#define FXLS8962_INT1           ARDUINO_UNO_D2
+#define FXLS8962_INT2           ARDUINO_UNO_A0
 
 // FXAS21002 Sensor Information
 #define FXAS21002_I2C_DRIVER    I2C_S_DRIVER
@@ -41,25 +41,25 @@
 #define FXAS21002_SPI_INDEX     SPI_S_DEVICE_INDEX
 #define FXAS21002_SPI_EVENT     SPI_S_SIGNAL_EVENT
 #define FXAS21002_SPI_BAUDRATE  SPI_S_BAUDRATE
-#define FXAS21002_CS            A1
-#define FXAS21002_INT1          D8
+#define FXAS21002_CS            ARDUINO_UNO_A1
+#define FXAS21002_INT1          ARDUINO_UNO_D8
 
 // MPL3115 Sensor Information
 #define MPL3115_I2C_DRIVER      I2C_S_DRIVER
 #define MPL3115_I2C_INDEX       I2C_S_DEVICE_INDEX
 #define MPL3115_I2C_EVENT       I2C_S_SIGNAL_EVENT
 #define MPL3115_I2C_ADDR        0x60
-#define MPL3115_INT1            D7
+#define MPL3115_INT1            ARDUINO_UNO_D7
 
 // MAG3110 Sensor Information
 #define MAG3110_I2C_DRIVER      I2C_S_DRIVER
 #define MAG3110_I2C_INDEX       I2C_S_DEVICE_INDEX
 #define MAG3110_I2C_EVENT       I2C_S_SIGNAL_EVENT
 #define MAG3110_I2C_ADDR        0x0E
-#define MAG3110_INT1            D5
+#define MAG3110_INT1            ARDUINO_UNO_D5
 
 // FRDM-STBC-AGMP03 Shield Reset
-#define RESET_GPIO A3
+#define RESET_GPIO              ARDUINO_UNO_A3
 
 ///@name Shield Parameters
 /// Use this section to define the shield board: 3 bit code 0 to 7 inclusive
