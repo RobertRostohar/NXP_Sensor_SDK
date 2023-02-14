@@ -58,6 +58,7 @@ layer:
     - component: NXP::Device:SDK Drivers:inputmux_connections
     - component: NXP::Device:SDK Drivers:iocon
     - component: NXP::Device:SDK Drivers:lists
+    - component: NXP::Device:SDK Drivers:pint
     - component: NXP::Device:SDK Drivers:power
     - component: NXP::Device:SDK Drivers:reset
     - component: NXP::Device:SDK Drivers:spi
@@ -78,10 +79,9 @@ layer:
   groups:
     - group: gpio_driver
       files:
-        - file: ../../middleware/issdk/drivers/gpio/lpc/gpio_driver_irq.c
-        - file: ../../middleware/issdk/drivers/gpio/lpc/gpio_driver.c
-        - file: ../../middleware/issdk/drivers/gpio/lpc/gpio_driver.h
-        - file: ../../middleware/issdk/drivers/gpio/Driver_GPIO.h
+        - file: ../../drivers/gpio/Driver_GPIO.h
+        - file: ../../drivers/gpio/LPC5411x/GPIO_LPC5411x.h
+        - file: ../../drivers/gpio/LPC5411x/GPIO_LPC5411x.c
     - group: board
       files:
         - file: ./main.c
