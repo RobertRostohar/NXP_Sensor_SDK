@@ -21,10 +21,10 @@
 // CMSIS Includes
 //-----------------------------------------------------------------------
 #include "Driver_I2C.h"
+#include "Driver_GPIO.h"
 
 /* ISSDK Includes */
 #include "issdk_hal.h"
-#include "gpio_driver.h"
 #include "fxls8962_drv.h"
 
 //-----------------------------------------------------------------------
@@ -86,7 +86,7 @@ volatile bool gFxls8962EventReady = false;
 // Functions
 //-----------------------------------------------------------------------
 /*! @brief This is the Sensor Data Ready ISR implementation. */
-void fxls8962_int_event_ready_callback(void *pUserData)
+void fxls8962_int_event_ready_callback(ARM_GPIO_Pin_t pin, uint32_t even)
 { /*! @brief Set flag to indicate Sensor has signalled data ready. */
     gFxls8962EventReady = true;
 }
@@ -101,12 +101,14 @@ int app_main(void)
     uint8_t dataReady;
     ARM_DRIVER_I2C *I2Cdrv = &FXLS8962_I2C_DRIVER;
     fxls8962_i2c_sensorhandle_t fxls8962Driver;
-    GENERIC_DRIVER_GPIO *pGpioDriver = &Driver_GPIO_KSDK;
+    ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO;
 
     PRINTF("\r\n ISSDK FXLS8962 sensor driver example for Freefall Detection. \r\n");
 
-    /*! Initialize FXLS8962 pin used by board */
-    pGpioDriver->pin_init(&FXLS8962_INT1, GPIO_DIRECTION_IN, NULL, &fxls8962_int_event_ready_callback, NULL);
+    /*! Setup FXLS8962 pin used by board */
+    pGpioDriver->Setup(FXLS8962_INT1, &fxls8962_int_event_ready_callback);
+    pGpioDriver->SetDirection(FXLS8962_INT1, ARM_GPIO_INPUT);
+    pGpioDriver->SetEventTrigger(FXLS8962_INT1, ARM_GPIO_TRIGGER_RISING_EDGE);
 
     /*! Initialize the I2C driver. */
     status = I2Cdrv->Initialize(FXLS8962_I2C_EVENT);

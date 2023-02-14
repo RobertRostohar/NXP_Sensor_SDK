@@ -104,7 +104,7 @@ int app_main(void)
     }
 
     /*! Initialize the fxls8962 sensor driver. */
-    status = FXLS8962_SPI_Initialize(&fxls8962Driver, &FXLS8962_SPI_DRIVER, FXLS8962_SPI_INDEX, &FXLS8962_CS,
+    status = FXLS8962_SPI_Initialize(&fxls8962Driver, &FXLS8962_SPI_DRIVER, FXLS8962_SPI_INDEX, FXLS8962_CS,
     		&whoami);
     if (SENSOR_ERROR_NONE != status)
     {

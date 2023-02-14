@@ -21,12 +21,12 @@
 // CMSIS Includes
 //-----------------------------------------------------------------------
 #include "Driver_I2C.h"
+#include "Driver_GPIO.h"
 
 //-----------------------------------------------------------------------
 // ISSDK Includes
 //-----------------------------------------------------------------------
 #include "issdk_hal.h"
-#include "gpio_driver.h"
 #include "mpl3115_drv.h"
 
 //-----------------------------------------------------------------------
@@ -83,12 +83,13 @@ volatile uint8_t gMpl3115DataReady;
 /*! -----------------------------------------------------------------------
  *  @brief       This is the Sensor Data Ready ISR implementation.
  *  @details     This function sets the flag which indicates if a new sample(s) is available for reading.
- *  @param[in]   pUserData This is a void pointer to the instance of the user specific data structure for the ISR.
+ *  @param[in]   pin This is the GPIO pin on which event occurred.
+ *  @param[in]   event This is the GPIO event which occurred.
  *  @return      void  There is no return value.
  *  @constraints None
  *  @reeentrant  Yes
  *  -----------------------------------------------------------------------*/
-void mpl3115_int_data_ready_callback(void *pUserData)
+void mpl3115_int_data_ready_callback(ARM_GPIO_Pin_t pin, uint32_t even)
 { /*! @brief Set flag to indicate Sensor has signalled data ready. */
     gMpl3115DataReady = true;
 }
@@ -112,15 +113,18 @@ int app_main(void)
 
     ARM_DRIVER_I2C *I2Cdrv = &MPL3115_I2C_DRIVER;
     mpl3115_i2c_sensorhandle_t mpl3115Driver;
-    GENERIC_DRIVER_GPIO *pGpioDriver = &Driver_GPIO_KSDK;
+    ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO;
 
     PRINTF("\r\n ISSDK MPL3115 sensor driver example demonstration with interrupt mode.\r\n");
 
-    /*! Initialize MAG3110 pin used by board */
-    pGpioDriver->pin_init(&MPL3115_INT1, GPIO_DIRECTION_IN, NULL, &mpl3115_int_data_ready_callback, NULL);
+    /*! Setup MAG3110 pin used by board */
+    pGpioDriver->Setup(MPL3115_INT1, &mpl3115_int_data_ready_callback);
+    pGpioDriver->SetDirection(MPL3115_INT1, ARM_GPIO_INPUT);
+    pGpioDriver->SetEventTrigger(MPL3115_INT1, ARM_GPIO_TRIGGER_RISING_EDGE);
 
-    /*! Initialize LED pin used by board */
-    pGpioDriver->pin_init(&GREEN_LED, GPIO_DIRECTION_OUT, NULL, NULL, NULL);
+    /*! Setup LED pin used by board */
+    pGpioDriver->Setup(GREEN_LED, NULL);
+    pGpioDriver->SetDirection(GREEN_LED, ARM_GPIO_OUTPUT);
 
     /*! Initialize the I2C driver. */
     status = I2Cdrv->Initialize(MPL3115_I2C_EVENT);
@@ -181,7 +185,7 @@ int app_main(void)
         else
         { /*! Clear the data ready flag, it will be set again by the ISR. */
             gMpl3115DataReady = false;
-            pGpioDriver->toggle_pin(&GREEN_LED);
+            pGpioDriver->SetOutput(GREEN_LED, pGpioDriver->GetInput(GREEN_LED) ^ 1U);
             /* Read FIFO status, to clear sensor's INT.
              * Note: This is a special step in FIFO Mode particular to MPL3115, where we have to read F_STATUS to clear
              * the sensor's internal INT.  */

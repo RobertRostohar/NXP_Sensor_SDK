@@ -21,12 +21,12 @@
 // CMSIS Includes
 //-----------------------------------------------------------------------
 #include "Driver_I2C.h"
+#include "Driver_GPIO.h"
 
 //-----------------------------------------------------------------------
 // ISSDK Includes
 //-----------------------------------------------------------------------
 #include "issdk_hal.h"
-#include "gpio_driver.h"
 #include "fxas21002_drv.h"
 
 //-----------------------------------------------------------------------
@@ -65,12 +65,13 @@ volatile bool fxas21002Interrupt = false;
 /*! -----------------------------------------------------------------------
  *  @brief       This is the Sensor Data Ready ISR implementation.
  *  @details     This function sets the flag which indicates if a new sample(s) is available for reading.
- *  @param[in]   pUserData This is a void pointer to the instance of the user specific data structure for the ISR.
+ *  @param[in]   pin This is the GPIO pin on which event occurred.
+ *  @param[in]   event This is the GPIO event which occurred.
  *  @return      void  There is no return value.
  *  @constraints None
  *  @reeentrant  Yes
  *  -----------------------------------------------------------------------*/
-void fxas21002_isr(void *pUserData)
+void fxas21002_isr(ARM_GPIO_Pin_t pin, uint32_t even)
 { /*! @brief Set flag to indicate Sensor has signalled data ready. */
     fxas21002Interrupt = true;
 }
@@ -92,15 +93,18 @@ int app_main(void)
 
     ARM_DRIVER_I2C *I2Cdrv = &FXAS21002_I2C_DRIVER;
     fxas21002_i2c_sensorhandle_t FXAS21002drv;
-    GENERIC_DRIVER_GPIO *gpioDriver = &Driver_GPIO_KSDK;
+    ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO;
 
     PRINTF("\r\n ISSDK FXAS21002 sensor driver example demonstration with interrupt mode.\r\n");
 
-    /*! Initialize INT1_FXAS21002 pin used by board */
-    gpioDriver->pin_init(&FXAS21002_INT1, GPIO_DIRECTION_IN, NULL, &fxas21002_isr, NULL);
+    /*! Setup INT1_FXAS21002 pin used by board */
+    pGpioDriver->Setup(FXAS21002_INT1, &fxas21002_isr);
+    pGpioDriver->SetDirection(FXAS21002_INT1, ARM_GPIO_INPUT);
+    pGpioDriver->SetEventTrigger(FXAS21002_INT1, ARM_GPIO_TRIGGER_RISING_EDGE);
 
-    /*! Initialize LED pin used by board */
-    gpioDriver->pin_init(&GREEN_LED, GPIO_DIRECTION_OUT, NULL, NULL, NULL);
+    /*! Setup LED pin used by board */
+    pGpioDriver->Setup(GREEN_LED, NULL);
+    pGpioDriver->SetDirection(GREEN_LED, ARM_GPIO_OUTPUT);
 
     /*! Initialize the I2C driver. */
     status = I2Cdrv->Initialize(FXAS21002_I2C_EVENT);
@@ -159,7 +163,7 @@ int app_main(void)
         else
         { /*! Clear the data ready flag, it will be set again by the ISR. */
             fxas21002Interrupt = false;
-            gpioDriver->toggle_pin(&GREEN_LED);
+            pGpioDriver->SetOutput(GREEN_LED, pGpioDriver->GetInput(GREEN_LED) ^ 1U);
         }
 
         /*! Read the raw sensor data from the FXAS21002. */

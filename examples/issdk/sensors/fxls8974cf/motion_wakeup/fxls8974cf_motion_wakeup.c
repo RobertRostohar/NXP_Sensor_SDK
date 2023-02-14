@@ -20,13 +20,13 @@
 // ISSDK Includes
 //-----------------------------------------------------------------------
 #include "issdk_hal.h"
-#include "gpio_driver.h"
 #include "fxls8974_drv.h"
 
 //-----------------------------------------------------------------------
 // CMSIS Includes
 //-----------------------------------------------------------------------
 #include "Driver_I2C.h"
+#include "Driver_GPIO.h"
 
 //-----------------------------------------------------------------------
 // Macros
@@ -80,17 +80,18 @@ volatile bool gFxls8974IntFlag = false;
 
     ARM_DRIVER_I2C *I2Cdrv = &FXLS8974_I2C_DRIVER;
     fxls8974_i2c_sensorhandle_t fxls8974Driver;
-    GENERIC_DRIVER_GPIO *pGpioDriver = &Driver_GPIO_KSDK;
+    ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO;
 //-----------------------------------------------------------------------
 // Functions
 //-----------------------------------------------------------------------
 /*! -----------------------------------------------------------------------
  *  @brief       This is the Sensor Data Ready ISR implementation.
  *  @details     This function sets the flag which indicates if a new sample(s) is available for reading.
- *  @param[in]   pUserData This is a void pointer to the instance of the user specific data structure for the ISR.
+ *  @param[in]   pin This is the GPIO pin on which event occurred.
+ *  @param[in]   event This is the GPIO event which occurred.
  *  @return      void  There is no return value.
  *  -----------------------------------------------------------------------*/
-void fxls8974_int_callback(void *pUserData)
+void fxls8974_int_callback(ARM_GPIO_Pin_t pin, uint32_t even)
 { /*! @brief Set flag to indicate Sensor has signalled data ready. */
 	gFxls8974IntFlag = true;
 }
@@ -114,11 +115,16 @@ int app_main(void)
 
     PRINTF("\r\n ISSDK FXLS8974CF sensor driver example to detect motion event & AWS\r\n");
 
-    /*! Initialize FXLS8974 pin used by board */
-    pGpioDriver->pin_init(&FXLS8974_INT1, GPIO_DIRECTION_IN, NULL, &fxls8974_int_callback, NULL);
+    /*! Setup FXLS8974 pin used by board */
+    pGpioDriver->Setup(FXLS8974_INT1, &fxls8974_int_callback);
+    pGpioDriver->SetDirection(FXLS8974_INT1, ARM_GPIO_INPUT);
+    pGpioDriver->SetEventTrigger(FXLS8974_INT1, ARM_GPIO_TRIGGER_RISING_EDGE);
 
-    /*! Initialize LED pin used by board */
-    pGpioDriver->pin_init(&GREEN_LED, GPIO_DIRECTION_OUT, NULL, NULL, NULL);
+    /*! Setup LED pin used by board */
+    pGpioDriver->Setup(RED_LED, NULL);
+    pGpioDriver->SetDirection(RED_LED, ARM_GPIO_OUTPUT);
+    pGpioDriver->Setup(GREEN_LED, NULL);
+    pGpioDriver->SetDirection(GREEN_LED, ARM_GPIO_OUTPUT);
 
     /*! Initialize the I2C driver. */
     status = I2Cdrv->Initialize(FXLS8974_I2C_EVENT);
@@ -205,8 +211,8 @@ int app_main(void)
                 PRINTF("\r\n Will enter sleep mode after expiration of ASLP counter = ~5sec\r\n\r\n");
                 sleeptowake = 0;
               }
-                pGpioDriver->set_pin(&RED_LED);
-                pGpioDriver->clr_pin(&GREEN_LED);
+                pGpioDriver->SetOutput(RED_LED, 1U);
+                pGpioDriver->SetOutput(GREEN_LED, 0U);
                 waketosleep = 1;
             }
         }
@@ -230,8 +236,8 @@ int app_main(void)
              waketosleep = 0;
              firsttransition = 0;
            }
-           pGpioDriver->set_pin(&GREEN_LED);
-           pGpioDriver->clr_pin(&RED_LED);
+           pGpioDriver->SetOutput(GREEN_LED, 1U);
+           pGpioDriver->SetOutput(RED_LED, 0U);
            sleeptowake = 1;
            gFxls8974IntFlag = false;
            SMC_SetPowerModeWait(SMC);

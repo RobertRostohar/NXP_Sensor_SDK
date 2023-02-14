@@ -99,7 +99,7 @@ int app_main(void)
     }
 
     /*! Initialize the FXAS21002 sensor driver. */
-    status = FXAS21002_SPI_Initialize(&fxas21002Driver, &FXAS21002_SPI_DRIVER, FXAS21002_SPI_INDEX, &FXAS21002_CS,
+    status = FXAS21002_SPI_Initialize(&fxas21002Driver, &FXAS21002_SPI_DRIVER, FXAS21002_SPI_INDEX, FXAS21002_CS,
                                       FXAS21002_WHO_AM_I_WHOAMI_PROD_VALUE);
     if (SENSOR_ERROR_NONE != status)
     {

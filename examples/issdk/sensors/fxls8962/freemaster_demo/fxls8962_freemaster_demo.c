@@ -25,12 +25,12 @@
 // CMSIS Includes
 //-----------------------------------------------------------------------
 #include "Driver_I2C.h"
+#include "Driver_GPIO.h"
 
 //-----------------------------------------------------------------------
 // ISSDK Includes
 //-----------------------------------------------------------------------
 #include "issdk_hal.h"
-#include "gpio_driver.h"
 #include "fxls8962_drv.h"
 #include "systick_utils.h"
 
@@ -259,10 +259,11 @@ int16_t XSTP[2]={0,0},YSTP[2]={0,0},ZSTP[2]={0,0},XSTN[2]={0,0},YSTN[2]={0,0},ZS
 static void init_freemaster_uart(void);
 /*! @brief           ISR for FXLS896x interrupt source event.
  *  @details         This function implements ISR for FXLS896x INT source.
- *  @param[in]       void *.
+ *  @param[in]       pin This is the GPIO pin on which event occurred.
+ *  @param[in]       event This is the GPIO event which occurred.
  *  @return          void.
  */
-void fxls896x_isr_callback(void *pUserData);
+void fxls896x_isr_callback(ARM_GPIO_Pin_t pin, uint32_t event);
 /*! @brief           Function to apply FXLS896x register write operation.
  *  @details         This function apply FXLS896x register write based on write trigger from host.
  *  @param[in]       fxls8962_i2c_sensorhandle_t fxls8962Driver, FXLS896x sensor I2C handle.
@@ -324,7 +325,7 @@ void FRM_Recorder_Init();
 /*******************************************************************************
  * Code
  ******************************************************************************/
-void fxls896x_isr_callback(void *pUserData)
+void fxls896x_isr_callback(ARM_GPIO_Pin_t pin, uint32_t event)
 { /*! @brief Set flag to indicate Sensor has signalled data ready. */
     bFxls896xIntFlag = true;
 }
@@ -424,14 +425,17 @@ int app_main(void)
     float sensitivity = ACCEL_4G_SENS;
 
     ARM_DRIVER_I2C *I2Cdrv = &FXLS8962_I2C_DRIVER;
-    GENERIC_DRIVER_GPIO *pGpioDriver = &Driver_GPIO_KSDK;
+    ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO;
     fxls8962_i2c_sensorhandle_t fxls8962Driver;
 
-    /*! Initialize FXLS8962_INT1 pin used by board */
-    pGpioDriver->pin_init(&FXLS8962_INT1, GPIO_DIRECTION_IN, NULL, &fxls896x_isr_callback, NULL);
+    /*! Setup FXLS8962_INT1 pin used by board */
+    pGpioDriver->Setup(FXLS8962_INT1, &fxls896x_isr_callback);
+    pGpioDriver->SetDirection(FXLS8962_INT1, ARM_GPIO_INPUT);
+    pGpioDriver->SetEventTrigger(FXLS8962_INT1, ARM_GPIO_TRIGGER_RISING_EDGE);
 
-    /*! Initialize LED pin used by board */
-    pGpioDriver->pin_init(&GREEN_LED, GPIO_DIRECTION_OUT, NULL, NULL, NULL);
+    /*! Setup LED pin used by board */
+    pGpioDriver->Setup(GREEN_LED, NULL);
+    pGpioDriver->SetDirection(GREEN_LED, ARM_GPIO_OUTPUT);
 
     /*! FreeMASTER communication layer initialization */
     init_freemaster_uart();
@@ -560,7 +564,7 @@ int app_main(void)
         else
         { /*! Clear the data ready flag, it will be set again by the ISR. */
             bFxls896xIntFlag = false;
-            pGpioDriver->toggle_pin(&GREEN_LED);
+            pGpioDriver->SetOutput(GREEN_LED, pGpioDriver->GetInput(GREEN_LED) ^ 1U);
         }
 
         /*! Calling Recorder#1 for sampling sensor data when we get sensor data ready interrupt based on ODR. */
@@ -617,7 +621,7 @@ int app_main(void)
 
         if (prev_toggle != registers.toggle)
         {
-        	pGpioDriver->toggle_pin(&GREEN_LED);
+            pGpioDriver->SetOutput(GREEN_LED, pGpioDriver->GetInput(GREEN_LED) ^ 1U);
         	prev_toggle = registers.toggle;
         }
 
@@ -951,7 +955,7 @@ int32_t perform_selftest(fxls8962_i2c_sensorhandle_t fxls8962Driver, fxls896x_se
 
 
 			bFxls896xIntFlag = false;
-			//pGpioDriver->toggle_pin(&RED_LED);
+            //pGpioDriver->SetOutput(RED_LED, pGpioDriver->GetInput(RED_LED) ^ 1U);
 
 			/*! Read new raw sensor data from the FXLS8962. */
 			status = FXLS8962_I2C_ReadData(&fxls8962Driver, cFxls8962OutputNormal, &data_.byte_data[0]);

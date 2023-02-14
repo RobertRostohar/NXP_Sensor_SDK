@@ -21,12 +21,12 @@
 // CMSIS Includes
 //-----------------------------------------------------------------------
 #include "Driver_I2C.h"
+#include "Driver_GPIO.h"
 
 //-----------------------------------------------------------------------
 // ISSDK Includes
 //-----------------------------------------------------------------------
 #include "issdk_hal.h"
-#include "gpio_driver.h"
 #include "fxls8962_drv.h"
 
 //-----------------------------------------------------------------------
@@ -64,12 +64,13 @@ volatile bool gFxls8962DataReady = false;
 /*! -----------------------------------------------------------------------
  *  @brief       This is the Sensor Data Ready ISR implementation.
  *  @details     This function sets the flag which indicates if a new sample(s) is available for reading.
- *  @param[in]   pUserData This is a void pointer to the instance of the user specific data structure for the ISR.
+ *  @param[in]   pin This is the GPIO pin on which event occurred.
+ *  @param[in]   event This is the GPIO event which occurred.
  *  @return      void  There is no return value.
  *  @constraints None
  *  @reeentrant  Yes
  *  -----------------------------------------------------------------------*/
-void fxls8962_int_data_ready_callback(void *pUserData)
+void fxls8962_int_data_ready_callback(ARM_GPIO_Pin_t pin, uint32_t even)
 { /*! @brief Set flag to indicate Sensor has signalled data ready. */
     gFxls8962DataReady = true;
 }
@@ -92,15 +93,18 @@ int app_main(void)
 
     ARM_DRIVER_I2C *I2Cdrv = &FXLS8962_I2C_DRIVER;
     fxls8962_i2c_sensorhandle_t fxls8962Driver;
-    GENERIC_DRIVER_GPIO *pGpioDriver = &Driver_GPIO_KSDK;
+    ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO;
 
     PRINTF("\r\n ISSDK FXLS8962 sensor driver example demonstration with interrupt mode.\r\n");
 
-    /*! Initialize FXLS8962 pin used by board */
-    pGpioDriver->pin_init(&FXLS8962_INT1, GPIO_DIRECTION_IN, NULL, &fxls8962_int_data_ready_callback, NULL);
+    /*! Setup FXLS8962 pin used by board */
+    pGpioDriver->Setup(FXLS8962_INT1, &fxls8962_int_data_ready_callback);
+    pGpioDriver->SetDirection(FXLS8962_INT1, ARM_GPIO_INPUT);
+    pGpioDriver->SetEventTrigger(FXLS8962_INT1, ARM_GPIO_TRIGGER_RISING_EDGE);
 
-    /*! Initialize LED pin used by board */
-    pGpioDriver->pin_init(&GREEN_LED, GPIO_DIRECTION_OUT, NULL, NULL, NULL);
+    /*! Setup LED pin used by board */
+    pGpioDriver->Setup(GREEN_LED, NULL);
+    pGpioDriver->SetDirection(GREEN_LED, ARM_GPIO_OUTPUT);
 
     /*! Initialize the I2C driver. */
     status = I2Cdrv->Initialize(FXLS8962_I2C_EVENT);
@@ -174,7 +178,7 @@ int app_main(void)
         else
         { /*! Clear the data ready flag, it will be set again by the ISR. */
             gFxls8962DataReady = false;
-            pGpioDriver->toggle_pin(&GREEN_LED);
+            pGpioDriver->SetOutput(GREEN_LED, pGpioDriver->GetInput(GREEN_LED) ^ 1U);
         }
 
         /*! Read new raw sensor data from the FXLS8962. */
