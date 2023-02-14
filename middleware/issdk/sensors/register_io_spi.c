@@ -28,7 +28,7 @@
 /*******************************************************************************
  * Variables
  ******************************************************************************/
-GENERIC_DRIVER_GPIO *pDspiGpioDriver = &Driver_GPIO_KSDK;
+ARM_DRIVER_GPIO *pDspiGpioDriver = &Driver_GPIO;
 SPI_Type *const spiBases[] = SPI_BASE_PTRS;
 volatile bool b_SPI_CompletionFlag[SPI_COUNT] = {false};
 volatile uint32_t g_SPI_ErrorEvent[SPI_COUNT] = {ARM_SPI_EVENT_TRANSFER_COMPLETE};
@@ -139,11 +139,11 @@ void register_spi_control(spiControlParams_t *ssControl)
 {
     if (ssControl->cmdCode == ssControl->activeValue)
     {
-        pDspiGpioDriver->set_pin(ssControl->pTargetSlavePinID);
+        pDspiGpioDriver->SetOutput(ssControl->TargetSlavePinID, 1U);
     }
     else
     {
-        pDspiGpioDriver->clr_pin(ssControl->pTargetSlavePinID);
+        pDspiGpioDriver->SetOutput(ssControl->TargetSlavePinID, 0U);
     }
 }
 
@@ -162,12 +162,12 @@ int32_t Register_SPI_BlockWrite(ARM_DRIVER_SPI *pCommDrv,
     spiControlParams_t ss_en_cmd = {
         .cmdCode = ARM_SPI_SS_ACTIVE,
         .activeValue = pSlaveParams->ssActiveValue,
-        .pTargetSlavePinID = pSlaveParams->pTargetSlavePinID,
+        .TargetSlavePinID = pSlaveParams->TargetSlavePinID,
     };
     spiControlParams_t ss_dis_cmd = {
         .cmdCode = ARM_SPI_SS_INACTIVE,
         .activeValue = pSlaveParams->ssActiveValue,
-        .pTargetSlavePinID = pSlaveParams->pTargetSlavePinID,
+        .TargetSlavePinID = pSlaveParams->TargetSlavePinID,
     };
 
     pSlaveParams->pWritePreprocessFN(&slaveWriteCmd, offset, bytesToWrite, (void *)pBuffer);
@@ -217,12 +217,12 @@ int32_t Register_SPI_Write(ARM_DRIVER_SPI *pCommDrv,
     spiControlParams_t ss_en_cmd = {
         .cmdCode = ARM_SPI_SS_ACTIVE,
         .activeValue = pSlaveParams->ssActiveValue,
-        .pTargetSlavePinID = pSlaveParams->pTargetSlavePinID,
+        .TargetSlavePinID = pSlaveParams->TargetSlavePinID,
     };
     spiControlParams_t ss_dis_cmd = {
         .cmdCode = ARM_SPI_SS_INACTIVE,
         .activeValue = pSlaveParams->ssActiveValue,
-        .pTargetSlavePinID = pSlaveParams->pTargetSlavePinID,
+        .TargetSlavePinID = pSlaveParams->TargetSlavePinID,
     };
 
     /*! Set the register based on the values in the register value pair configuration.*/
@@ -313,12 +313,12 @@ int32_t Register_SPI_Read(ARM_DRIVER_SPI *pCommDrv,
     spiControlParams_t ss_en_cmd = {
         .cmdCode = ARM_SPI_SS_ACTIVE,
         .activeValue = pSlaveParams->ssActiveValue,
-        .pTargetSlavePinID = pSlaveParams->pTargetSlavePinID,
+        .TargetSlavePinID = pSlaveParams->TargetSlavePinID,
     };
     spiControlParams_t ss_dis_cmd = {
         .cmdCode = ARM_SPI_SS_INACTIVE,
         .activeValue = pSlaveParams->ssActiveValue,
-        .pTargetSlavePinID = pSlaveParams->pTargetSlavePinID,
+        .TargetSlavePinID = pSlaveParams->TargetSlavePinID,
     };
 
     pSlaveParams->pReadPreprocessFN(&slaveReadCmd, offset, length);

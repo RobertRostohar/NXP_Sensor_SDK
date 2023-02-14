@@ -16,6 +16,7 @@
 
 /* Standard C Includes */
 #include <stdint.h>
+#include <string.h>
 
 /* ISSDK Includes */
 #include "diff_p.h"
@@ -139,7 +140,7 @@ int32_t DIFF_P_I2C_DeInit(diff_p_i2c_sensorhandle_t *pSensorHandle);
  *  @param[in]   pSensorHandle handle to the sensor.
  *  @param[in]   pBus          pointer to the CMSIS API compatible SPI bus object.
  *  @param[in]   index         the I2C device number.
- *  @param[in]   pSlaveSelect  slave select hndle of the device on the bus.
+ *  @param[in]   SlaveSelect   slave select pin identifier of the device on the bus.
  *  @param[in]   whoami        WHO_AM_I value of the device.
  *  @constraints This should be the first API to be called.
  *               Application has to ensure that previous instances of these APIs have exited before invocation.
@@ -147,7 +148,7 @@ int32_t DIFF_P_I2C_DeInit(diff_p_i2c_sensorhandle_t *pSensorHandle);
  *  @return      ::DIFF_P_SPI_Initialize() returns the status .
  */
 int32_t DIFF_P_SPI_Initialize(
-    diff_p_spi_sensorhandle_t *pSensorHandle, ARM_DRIVER_SPI *pBus, uint8_t index, void *pSlaveSelect, uint8_t whoAmi);
+    diff_p_spi_sensorhandle_t *pSensorHandle, ARM_DRIVER_SPI *pBus, uint8_t index, uint32_t SlaveSelect, uint8_t whoAmi);
 
 /*! @brief      :  The interface function to set the SPI Idle Task.
  *  @param[in]  :  diff_p_spi_sensorhandle_t *pSensorHandle, handle to the sensor handle.

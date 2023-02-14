@@ -16,6 +16,7 @@
 
 /* Standard C Includes */
 #include <stdint.h>
+#include <string.h>
 
 /* ISSDK Includes */
 #include "fxlc95000.h"
@@ -196,8 +197,8 @@ int32_t FXLC95000_I2C_CommandResponse(fxlc95000_i2c_sensorhandle_t *pSensorHandl
  *  @param[in]   pSensorHandle handle to the sensor.
  *  @param[in]   pBus          pointer to the CMSIS API compatible SPI bus object.
  *  @param[in]   index         the I2C device number.
- *  @param[in]   pSlaveSelect  slave select hndle of the device on the bus.
- *  @param[in]   pReset        reset handle of the device on the bus.
+ *  @param[in]   SlaveSelect   slave select pin identifier of the device on the bus.
+ *  @param[in]   Reset         reset pin identifier of the device on the bus.
  *  @param[in]   buildId       FXLC95000 firmware buid number.
  *  @constraints This should be the first API to be called.
  *               Application has to ensure that previous instances of these APIs have exited before invocation.
@@ -207,9 +208,9 @@ int32_t FXLC95000_I2C_CommandResponse(fxlc95000_i2c_sensorhandle_t *pSensorHandl
 int32_t FXLC95000_SPI_Initialize(fxlc95000_spi_sensorhandle_t *pSensorHandle,
                                  ARM_DRIVER_SPI *pBus,
                                  uint8_t index,
-                                 void *pSpiSelect,
-                                 void *pSlaveSelect,
-                                 void *pReset,
+                                 uint32_t SpiSelect,
+                                 uint32_t SlaveSelect,
+                                 uint32_t Reset,
                                  uint16_t buildId);
 
 /*! @brief      :  The interface function to set the SPI Idle Task.

@@ -15,6 +15,7 @@
 
 /* Standard C Includes */
 #include <stdint.h>
+#include <string.h>
 
 /* ISSDK Includes */
 #include "fxls8974.h"
@@ -139,7 +140,7 @@ int32_t FXLS8974_I2C_DeInit(fxls8974_i2c_sensorhandle_t *pSensorHandle);
  *  @param[in]   pSensorHandle handle to the sensor.
  *  @param[in]   pBus          pointer to the CMSIS API compatible SPI bus object.
  *  @param[in]   index         the I2C device number.
- *  @param[in]   pSlaveSelect  slave select hndle of the device on the bus.
+ *  @param[in]   SlaveSelect   slave select pin identifier of the device on the bus.
  *  @param[in]   whoami        WHO_AM_I value of the device.
  *  @constraints This should be the first API to be called.
  *               Application has to ensure that previous instances of these APIs have exited before invocation.
@@ -149,7 +150,7 @@ int32_t FXLS8974_I2C_DeInit(fxls8974_i2c_sensorhandle_t *pSensorHandle);
 int32_t FXLS8974_SPI_Initialize(fxls8974_spi_sensorhandle_t *pSensorHandle,
                                 ARM_DRIVER_SPI *pBus,
                                 uint8_t index,
-                                void *pSlaveSelect,
+                                uint32_t SlaveSelect,
                                 uint8_t *whoAmi);
 
 /*! @brief      :  The interface function to set the SPI Idle Task.

@@ -68,17 +68,17 @@ void FXLC95000_SPI_WritePreprocess(void *pCmdOut, uint32_t offset, uint32_t size
 int32_t FXLC95000_SPI_Initialize(fxlc95000_spi_sensorhandle_t *pSensorHandle,
                                  ARM_DRIVER_SPI *pBus,
                                  uint8_t index,
-                                 void *pSpiSelect,
-                                 void *pSlaveSelect,
-                                 void *pReset,
+                                 uint32_t SpiSelect,
+                                 uint32_t SlaveSelect,
+                                 uint32_t Reset,
                                  uint16_t buildId)
 {
     int32_t status;
     uint16_t readNumber[2];
-    GENERIC_DRIVER_GPIO *pGPIODriver = &Driver_GPIO_KSDK;
+    ARM_DRIVER_GPIO *pGPIODriver = &Driver_GPIO;
 
     /*! Check the input parameters. */
-    if (pSensorHandle == NULL || pBus == NULL || pSpiSelect == NULL || pSlaveSelect == NULL || pReset == NULL)
+    if (pSensorHandle == NULL || pBus == NULL)
     {
         return SENSOR_ERROR_INVALID_PARAM;
     }
@@ -87,7 +87,7 @@ int32_t FXLC95000_SPI_Initialize(fxlc95000_spi_sensorhandle_t *pSensorHandle,
     pSensorHandle->pCommDrv = pBus;
     pSensorHandle->slaveParams.pReadPreprocessFN = FXLC95000_SPI_ReadPreprocess;
     pSensorHandle->slaveParams.pWritePreprocessFN = FXLC95000_SPI_WritePreprocess;
-    pSensorHandle->slaveParams.pTargetSlavePinID = pSlaveSelect;
+    pSensorHandle->slaveParams.TargetSlavePinID = SlaveSelect;
     pSensorHandle->slaveParams.spiCmdLen = FXLC95000_SPI_CMD_LEN;
     pSensorHandle->slaveParams.ssActiveValue = FXLC95000_SS_ACTIVE_VALUE;
 
@@ -95,21 +95,24 @@ int32_t FXLC95000_SPI_Initialize(fxlc95000_spi_sensorhandle_t *pSensorHandle,
     pSensorHandle->deviceInfo.functionParam = NULL;
     pSensorHandle->deviceInfo.idleFunction = NULL;
 
-    /* Initialize the Slave Select and reset Pins. */
-    pGPIODriver->pin_init(pSlaveSelect, GPIO_DIRECTION_OUT, NULL, NULL, NULL);
-    pGPIODriver->pin_init(pSpiSelect, GPIO_DIRECTION_OUT, NULL, NULL, NULL);
-    pGPIODriver->pin_init(pReset, GPIO_DIRECTION_OUT, NULL, NULL, NULL);
+    /* Setup the Slave Select and reset Pins. */
+    pGPIODriver->Setup(SlaveSelect, NULL);
+    pGPIODriver->SetDirection(SlaveSelect, ARM_GPIO_OUTPUT);
+    pGPIODriver->Setup(SpiSelect, NULL);
+    pGPIODriver->SetDirection(SpiSelect, ARM_GPIO_OUTPUT);
+    pGPIODriver->Setup(Reset, NULL);
+    pGPIODriver->SetDirection(Reset, ARM_GPIO_OUTPUT);
 
     /* Pull down SPI Select, Pull up SS and Reset */
-    pGPIODriver->set_pin(pSlaveSelect);
-    pGPIODriver->clr_pin(pSpiSelect);
-    pGPIODriver->set_pin(pReset);
+    pGPIODriver->SetOutput(SlaveSelect, 1U);
+    pGPIODriver->SetOutput(SpiSelect, 0U);
+    pGPIODriver->SetOutput(Reset, 1U);
     BOARD_DELAY_ms(30); /* Wait for Part to Complete Reset */
 
-    pGPIODriver->clr_pin(pReset);
+    pGPIODriver->SetOutput(pReset, 0U);
     BOARD_DELAY_ms(50); /* Wait for Part to Initialize in SPI Mode */
 
-    pGPIODriver->set_pin(pSpiSelect);
+    pGPIODriver->SetOutput(SpiSelect, 1U);
     BOARD_DELAY_ms(10); /* Wait for ROM Initialization before communication */
 
     /* Verify if the SPI connection by writing command to Boot to flash and fetch Device Info.

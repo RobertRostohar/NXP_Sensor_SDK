@@ -16,6 +16,7 @@
 #define __REGISTER_IO_SPI_H__
 
 #include "Driver_SPI.h"
+#include "Driver_GPIO.h"
 #include "sensor_drv.h"
 
 #define SPI_SS_ACTIVE_LOW (ARM_SPI_SS_INACTIVE)
@@ -29,7 +30,7 @@ typedef void (*fpSpiWritePreprocessFn_t)(void *pCmdOut, uint32_t offset, uint32_
 /*! @brief The SPI Slave Control Command Params SDK2.0 Driver. */
 typedef struct
 {
-    void *pTargetSlavePinID;
+    uint32_t TargetSlavePinID;
     uint8_t activeValue;
     uint8_t cmdCode;
 } spiControlParams_t;
@@ -47,7 +48,7 @@ typedef struct
 {
     fpSpiReadPreprocessFn_t pReadPreprocessFN;
     fpSpiWritePreprocessFn_t pWritePreprocessFN;
-    void *pTargetSlavePinID;
+    uint32_t TargetSlavePinID;
     uint8_t spiCmdLen;
     uint8_t ssActiveValue;
 } spiSlaveSpecificParams_t;

@@ -65,14 +65,14 @@ void FXOS8700_SPI_WritePreprocess(void *pCmdOut, uint32_t offset, uint32_t size,
 }
 
 int32_t FXOS8700_SPI_Initialize(
-    fxos8700_spi_sensorhandle_t *pSensorHandle, ARM_DRIVER_SPI *pBus, uint8_t index, void *pSlaveSelect, uint8_t whoAmi)
+    fxos8700_spi_sensorhandle_t *pSensorHandle, ARM_DRIVER_SPI *pBus, uint8_t index, uint32_t SlaveSelect, uint8_t whoAmi)
 {
     int32_t status;
     FXOS8700_WHO_AM_I_t reg;
-    GENERIC_DRIVER_GPIO *pGPIODriver = &Driver_GPIO_KSDK;
+    ARM_DRIVER_GPIO *pGPIODriver = &Driver_GPIO;
 
     /*! Check the input parameters. */
-    if ((pSensorHandle == NULL) || (pBus == NULL) || (pSlaveSelect == NULL))
+    if ((pSensorHandle == NULL) || (pBus == NULL))
     {
         return SENSOR_ERROR_INVALID_PARAM;
     }
@@ -81,7 +81,7 @@ int32_t FXOS8700_SPI_Initialize(
     pSensorHandle->pCommDrv = pBus;
     pSensorHandle->slaveParams.pReadPreprocessFN = FXOS8700_SPI_ReadPreprocess;
     pSensorHandle->slaveParams.pWritePreprocessFN = FXOS8700_SPI_WritePreprocess;
-    pSensorHandle->slaveParams.pTargetSlavePinID = pSlaveSelect;
+    pSensorHandle->slaveParams.TargetSlavePinID = SlaveSelect;
     pSensorHandle->slaveParams.spiCmdLen = FXOS8700_SPI_CMD_LEN;
     pSensorHandle->slaveParams.ssActiveValue = FXOS8700_SS_ACTIVE_VALUE;
 
@@ -89,15 +89,16 @@ int32_t FXOS8700_SPI_Initialize(
     pSensorHandle->deviceInfo.functionParam = NULL;
     pSensorHandle->deviceInfo.idleFunction = NULL;
 
-    /* Initialize the Slave Select Pin. */
-    pGPIODriver->pin_init(pSlaveSelect, GPIO_DIRECTION_OUT, NULL, NULL, NULL);
+    /* Setup the Slave Select Pin. */
+    pGPIODriver->Setup(SlaveSelect, NULL);
+    pGPIODriver->SetDirection(SlaveSelect, ARM_GPIO_OUTPUT);
     if (pSensorHandle->slaveParams.ssActiveValue == SPI_SS_ACTIVE_LOW)
     {
-        pGPIODriver->set_pin(pSlaveSelect);
+        pGPIODriver->SetOutput(SlaveSelect, 1U);
     }
     else
     {
-        pGPIODriver->clr_pin(pSlaveSelect);
+        pGPIODriver->SetOutput(SlaveSelect, 0U);
     }
 
     /*!  Read and store the device's WHO_AM_I.*/

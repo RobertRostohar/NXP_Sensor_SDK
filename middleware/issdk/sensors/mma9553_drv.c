@@ -155,14 +155,14 @@ void MMA9553_SPI_WritePreprocess(void *pCmdOut, uint32_t offset, uint32_t size, 
 }
 
 int32_t MMA9553_SPI_Initialize(
-    mma9553_spi_sensorhandle_t *pSensorHandle, ARM_DRIVER_SPI *pBus, uint8_t index, void *pSlaveSelect, void *pReset)
+    mma9553_spi_sensorhandle_t *pSensorHandle, ARM_DRIVER_SPI *pBus, uint8_t index, uint32_t SlaveSelect, uint32_t Reset)
 {
     int32_t status;
     uint8_t cmdRespHdr[MMA9553_HDR_SIZE] = {0};
-    GENERIC_DRIVER_GPIO *pGPIODriver = &Driver_GPIO_KSDK;
+    ARM_DRIVER_GPIO *pGPIODriver = &Driver_GPIO;
 
     /*! Check the input parameters. */
-    if (pSensorHandle == NULL || pBus == NULL || pSlaveSelect == NULL || pReset == NULL)
+    if (pSensorHandle == NULL || pBus == NULL)
     {
         return SENSOR_ERROR_INVALID_PARAM;
     }
@@ -171,7 +171,7 @@ int32_t MMA9553_SPI_Initialize(
     pSensorHandle->pCommDrv = pBus;
     pSensorHandle->slaveParams.pReadPreprocessFN = MMA9553_SPI_ReadPreprocess;
     pSensorHandle->slaveParams.pWritePreprocessFN = MMA9553_SPI_WritePreprocess;
-    pSensorHandle->slaveParams.pTargetSlavePinID = pSlaveSelect;
+    pSensorHandle->slaveParams.TargetSlavePinID = SlaveSelect;
     pSensorHandle->slaveParams.spiCmdLen = MMA9553_SPI_CMD_LEN;
     pSensorHandle->slaveParams.ssActiveValue = MMA9553_SS_ACTIVE_VALUE;
 
@@ -179,19 +179,21 @@ int32_t MMA9553_SPI_Initialize(
     pSensorHandle->deviceInfo.functionParam = NULL;
     pSensorHandle->deviceInfo.idleFunction = NULL;
 
-    /* Initialize the Slave Select and reset Pins. */
-    pGPIODriver->pin_init(pSlaveSelect, GPIO_DIRECTION_OUT, NULL, NULL, NULL);
-    pGPIODriver->pin_init(pReset, GPIO_DIRECTION_OUT, NULL, NULL, NULL);
+    /* Setup the Slave Select and reset Pins. */
+    pGPIODriver->Setup(SlaveSelect, NULL);
+    pGPIODriver->SetDirection(SlaveSelect, ARM_GPIO_OUTPUT);
+    pGPIODriver->Setup(Reset, NULL);
+    pGPIODriver->SetDirection(Reset, ARM_GPIO_OUTPUT);
 
     /* Pull down SS and Reset */
-    pGPIODriver->clr_pin(pSlaveSelect);
-    pGPIODriver->set_pin(pReset);
+    pGPIODriver->SetOutput(SlaveSelect, 0U);
+    pGPIODriver->SetOutput(pReset, 1U);
 
     BOARD_DELAY_ms(1); /* Wait for Part to Complete Reset */
-    pGPIODriver->clr_pin(pReset);
+    pGPIODriver->SetOutput(pReset, 0U);
 
     BOARD_DELAY_ms(2); /* Wait for Part to Initialize in SPI Mode */
-    pGPIODriver->set_pin(pSlaveSelect);
+    pGPIODriver->SetOutput(SlaveSelect, 1U);
 
     /* Verify if the SPI connection by writing command to fetch Version Info and waiting for a sufficient duration.
      * A valid response COCO and length fields indicate command acceptance and by nature Sensor Identity. */
