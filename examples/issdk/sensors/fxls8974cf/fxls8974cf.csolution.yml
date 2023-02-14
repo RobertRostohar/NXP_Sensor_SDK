@@ -14,6 +14,11 @@ solution:
       variables:
         - Board-Layer:  ../../../../../boards/lpcxpresso54114/lpcxpresso54114.clayer.yml
         - Shield-Layer: ../../../../../shields/a8974/a8974.clayer.yml
+    - type: B-U585I-IOT02A_a8974
+      board: STMicroelectronics::B-U585I-IOT02A
+      variables:
+        - Board-Layer:  ../../../../../boards/B-U585I-IOT02A/B-U585I-IOT02A.clayer.yml
+        - Shield-Layer: ../../../../../shields/a8974/a8974.clayer.yml
 
   build-types:
     - type: debug
@@ -32,6 +37,9 @@ solution:
     - project: ./freemaster_demo/fxls8974cf_freemaster_demo.cproject.yml
       for-context: +frdmk22f_a8974
     - project: ./interrupt/fxls8974cf_interrupt.cproject.yml
+      not-for-context: +B-U585I-IOT02A_a8974
     - project: ./motion_wakeup/fxls8974cf_motion_wakeup.cproject.yml
+      not-for-context: +B-U585I-IOT02A_a8974
     - project: ./poll/fxls8974cf_poll.cproject.yml
+      not-for-context: +B-U585I-IOT02A_a8974
     - project: ./spi/fxls8974cf_spi.cproject.yml
