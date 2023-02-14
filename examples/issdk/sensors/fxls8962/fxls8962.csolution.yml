@@ -31,7 +31,7 @@ solution:
   projects:
     - project: ./freefall/fxls8962_freefall.cproject.yml
     - project: ./freemaster_demo/fxls8962_freemaster_demo.cproject.yml
-      not-for-context: +lpcxpresso54114_agmp03
+      for-context: +frdmk22f_agmp03
     - project: ./interrupt/fxls8962_interrupt.cproject.yml
     - project: ./normal/fxls8962_normal.cproject.yml
     - project: ./normal_spi/fxls8962_normal_spi.cproject.yml
