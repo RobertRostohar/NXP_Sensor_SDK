@@ -16,47 +16,43 @@
 #include "fsl_smc.h"
 #include "MK22F51212.h"
 #include "RTE_Device.h"
-#include "gpio_driver.h"
+#include "GPIO_MK22F.h"
 #include "Driver_I2C.h"
 #include "Driver_SPI.h"
 #include "Driver_USART.h"
 
-// I2C0 Handle
-extern gpioHandleKSDK_t A5;
-extern gpioHandleKSDK_t A4;
-
-// SPI1 Handle
-extern gpioHandleKSDK_t D13;
-extern gpioHandleKSDK_t D11;
-extern gpioHandleKSDK_t D12;
-
-// UART1 Handle
-extern gpioHandleKSDK_t D14;
-extern gpioHandleKSDK_t D15;
-
 // FRDM-K22F Arduino Connector Pin Defintion
-extern gpioHandleKSDK_t A0;
-extern gpioHandleKSDK_t A1;
-extern gpioHandleKSDK_t A2;
-extern gpioHandleKSDK_t A3;
-extern gpioHandleKSDK_t D0;
-extern gpioHandleKSDK_t D1;
-extern gpioHandleKSDK_t D2;
-extern gpioHandleKSDK_t D3;
-extern gpioHandleKSDK_t D4;
-extern gpioHandleKSDK_t D5;
-extern gpioHandleKSDK_t D6;
-extern gpioHandleKSDK_t D7;
-extern gpioHandleKSDK_t D8;
-extern gpioHandleKSDK_t D9;
-extern gpioHandleKSDK_t D10;
+#define ARDUINO_UNO_A0  GPIO_PORTB(0U)
+#define ARDUINO_UNO_A1  GPIO_PORTB(1U)
+#define ARDUINO_UNO_A2  GPIO_PORTC(1U)
+#define ARDUINO_UNO_A3  GPIO_PORTC(2U)
+#define ARDUINO_UNO_A4  GPIO_PORTB(3U)  /* I2C0:  SDA */
+#define ARDUINO_UNO_A5  GPIO_PORTB(2U)  /* I2C0:  SCL */
+#define ARDUINO_UNO_D0  GPIO_PORTD(2U)  /* UART2: RX  */
+#define ARDUINO_UNO_D1  GPIO_PORTD(3U)  /* UART2: TX  */
+#define ARDUINO_UNO_D2  GPIO_PORTB(16U)
+#define ARDUINO_UNO_D3  GPIO_PORTA(2U)
+#define ARDUINO_UNO_D4  GPIO_PORTA(4U)
+#define ARDUINO_UNO_D5  GPIO_PORTB(18U)
+#define ARDUINO_UNO_D6  GPIO_PORTC(3U)
+#define ARDUINO_UNO_D7  GPIO_PORTC(6U)
+#define ARDUINO_UNO_D8  GPIO_PORTB(19U)
+#define ARDUINO_UNO_D9  GPIO_PORTA(1U)
+#define ARDUINO_UNO_D10 GPIO_PORTD(4U)
+#define ARDUINO_UNO_D11 GPIO_PORTD(6U)  /* SPI1:  COPI */
+#define ARDUINO_UNO_D12 GPIO_PORTD(7U)  /* SPI1:  CIPO */
+#define ARDUINO_UNO_D13 GPIO_PORTD(5U)  /* SPI1:  SCK  */
+#define ARDUINO_UNO_D14 GPIO_PORTE(0U)  /* UART1: TX   */
+#define ARDUINO_UNO_D15 GPIO_PORTE(1U)  /* UART1: RX   */
 
 // FRDM-K22F RGB LED Pin Definitions
-extern gpioHandleKSDK_t RED_LED;
-extern gpioHandleKSDK_t GREEN_LED;
-extern gpioHandleKSDK_t BLUE_LED;
-extern gpioHandleKSDK_t INT1;
-extern gpioHandleKSDK_t INT2;
+#define RED_LED         GPIO_PORTA(1U)
+#define GREEN_LED       GPIO_PORTA(2U)
+#define BLUE_LED        GPIO_PORTD(5U)
+
+// FRDM-K22F Inertial Sensor Pin Definitions
+#define INT1            GPIO_PORTD(0U)
+#define INT2            GPIO_PORTD(1U)
 
 // CMSIS Drivers
 extern ARM_DRIVER_I2C Driver_I2C0;
@@ -65,23 +61,23 @@ extern ARM_DRIVER_USART Driver_USART1;
 extern ARM_DRIVER_USART Driver_USART2;
 
 // I2C_S: Pin mapping and driver information for default I2C brought to shield
-#define I2C_S_SCL_PIN       A5
-#define I2C_S_SDA_PIN       A4
+#define I2C_S_SCL_PIN       ARDUINO_UNO_A5
+#define I2C_S_SDA_PIN       ARDUINO_UNO_A4
 #define I2C_S_DRIVER        Driver_I2C0
 #define I2C_S_DEVICE_INDEX  I2C0_INDEX
 #define I2C_S_SIGNAL_EVENT  I2C0_SignalEvent_t
 
 // I2C_BB: PPin mapping and driver information for I2C routed on K22F base board
-#define I2C_BB_SCL_PIN      A5
-#define I2C_BB_SDA_PIN      A4
+#define I2C_BB_SCL_PIN      ARDUINO_UNO_A5
+#define I2C_BB_SDA_PIN      ARDUINO_UNO_A4
 #define I2C_BB_DRIVER       Driver_I2C0
 #define I2C_BB_DEVICE_INDEX I2C0_INDEX
 #define I2C_BB_SIGNAL_EVENT I2C0_SignalEvent_t
 
 // SPIS: Pin mapping and driver information default SPI brought to shield
-#define SPI_S_SCLK         D13
-#define SPI_S_MOSI         D11
-#define SPI_S_MISO         D12
+#define SPI_S_SCLK         ARDUINO_UNO_D13
+#define SPI_S_MOSI         ARDUINO_UNO_D11
+#define SPI_S_MISO         ARDUINO_UNO_D12
 #define SPI_S_DRIVER       Driver_SPI1
 #define SPI_S_BAUDRATE     500000U ///< Transfer baudrate - 500k
 #define SPI_S_DEVICE_INDEX SPI1_INDEX

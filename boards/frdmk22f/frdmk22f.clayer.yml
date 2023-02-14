@@ -84,10 +84,9 @@ layer:
   groups:
     - group: gpio_driver
       files:
-        - file: ../../middleware/issdk/drivers/gpio/kinetis/gpio_driver_irq.c
-        - file: ../../middleware/issdk/drivers/gpio/kinetis/gpio_driver.c
-        - file: ../../middleware/issdk/drivers/gpio/kinetis/gpio_driver.h
-        - file: ../../middleware/issdk/drivers/gpio/Driver_GPIO.h
+        - file: ../../drivers/gpio/Driver_GPIO.h
+        - file: ../../drivers/gpio/MK22F/GPIO_MK22F.h
+        - file: ../../drivers/gpio/MK22F/GPIO_MK22F.c
     - group: board
       files:
         - file: ./main.c
