@@ -143,7 +143,7 @@ static int32_t GPIO_Setup (ARM_GPIO_Pin_t pin, ARM_GPIO_SignalEvent_t cb_event) 
   int32_t  result = ARM_DRIVER_ERROR;
 
   if ((pin < GPIO_MAX_PINS) && ((cb_event == NULL) || (SignalEventCount < GPIO_MAX_IRQS))) {
-    pin_port = pin >> 1U;
+    pin_port = pin >> 5U;
     pin_num  = pin & 0x1FU;
     CLOCK_EnableClock(ClockIP[pin_port]);
     CLOCK_EnableClock(kCLOCK_Iocon);
@@ -174,7 +174,7 @@ static int32_t GPIO_SetDirection (ARM_GPIO_Pin_t pin, ARM_GPIO_DIRECTION directi
   int32_t  result = ARM_DRIVER_ERROR;
 
   if (pin < GPIO_MAX_PINS) {
-    pin_port = pin >> 1U;
+    pin_port = pin >> 5U;
     pin_num  = pin & 0x1FU;
     if (direction == ARM_GPIO_OUTPUT) {
       GPIO_PinSetDirection(GPIO, pin_port, pin_num, kGPIO_DigitalOutput);
@@ -194,7 +194,7 @@ static int32_t GPIO_SetOutputMode (ARM_GPIO_Pin_t pin, ARM_GPIO_OUTPUT_MODE mode
   int32_t  result = ARM_DRIVER_ERROR;
 
   if (pin < GPIO_MAX_PINS) {
-    pin_port = pin >> 1U;
+    pin_port = pin >> 5U;
     pin_num  = pin & 0x1FU;
     if (mode == ARM_GPIO_OPEN_DRAIN) {
       IOCON_EnablePinOpenDrain(IOCON, pin_port, pin_num, true);
@@ -214,7 +214,7 @@ static int32_t GPIO_SetPullResistor (ARM_GPIO_Pin_t pin, ARM_GPIO_PULL_RESISTOR 
   int32_t  result = ARM_DRIVER_ERROR;
 
   if (pin < GPIO_MAX_PINS) {
-    pin_port = pin >> 1U;
+    pin_port = pin >> 5U;
     pin_num  = pin & 0x1FU;
     switch (resistor) {
       case ARM_GPIO_PULL_NONE:
@@ -275,7 +275,7 @@ static void GPIO_SetOutput (ARM_GPIO_Pin_t pin, uint32_t val) {
   uint32_t pin_num;
 
   if (pin < GPIO_MAX_PINS) {
-    pin_port = pin >> 1U;
+    pin_port = pin >> 5U;
     pin_num  = pin & 0x1FU;
     GPIO_PinWrite(GPIO, pin_port, pin_num, (uint8_t)val);
   }
@@ -288,7 +288,7 @@ static uint32_t GPIO_GetInput (ARM_GPIO_Pin_t pin) {
   uint32_t val = 0U;
 
   if (pin < GPIO_MAX_PINS) {
-    pin_port = pin >> 1U;
+    pin_port = pin >> 5U;
     pin_num  = pin & 0x1FU;
     val = GPIO_PinRead(GPIO, pin_port, pin_num);
   }
