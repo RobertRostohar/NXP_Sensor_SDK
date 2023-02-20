@@ -106,7 +106,7 @@ int app_main(void)
 
     ARM_DRIVER_I2C *I2Cdrv = &MPL3115_I2C_DRIVER;
     mpl3115_i2c_sensorhandle_t mpl3115Driver;
-    ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO;
+    ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO0;
 
     PRINTF("\r\n ISSDK MPL3115 sensor driver example demonstration with interrupt mode.\r\n");
 

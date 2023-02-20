@@ -70,7 +70,7 @@ int32_t FXAS21002_SPI_Initialize(fxas21002_spi_sensorhandle_t *pSensorHandle,
 {
     int32_t status;
     uint8_t reg;
-    ARM_DRIVER_GPIO *pGPIODriver = &Driver_GPIO;
+    ARM_DRIVER_GPIO *pGPIODriver = &Driver_GPIO0;
 
     /*! Check the input parameters. */
     if ((pSensorHandle == NULL) || (pBus == NULL))

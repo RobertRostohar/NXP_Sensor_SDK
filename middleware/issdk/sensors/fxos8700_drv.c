@@ -69,7 +69,7 @@ int32_t FXOS8700_SPI_Initialize(
 {
     int32_t status;
     FXOS8700_WHO_AM_I_t reg;
-    ARM_DRIVER_GPIO *pGPIODriver = &Driver_GPIO;
+    ARM_DRIVER_GPIO *pGPIODriver = &Driver_GPIO0;
 
     /*! Check the input parameters. */
     if ((pSensorHandle == NULL) || (pBus == NULL))

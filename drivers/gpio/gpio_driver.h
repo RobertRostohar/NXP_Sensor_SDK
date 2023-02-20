@@ -16,6 +16,6 @@
 
 #include "Driver_GPIO.h"
 
-extern ARM_DRIVER_GPIO Driver_GPIO;
+extern ARM_DRIVER_GPIO Driver_GPIO0;
 
 #endif // __DRIVER_GPIO_H__

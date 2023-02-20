@@ -425,7 +425,7 @@ int app_main(void)
     float sensitivity = ACCEL_4G_SENS;
 
     ARM_DRIVER_I2C *I2Cdrv = &FXLS8962_I2C_DRIVER;
-    ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO;
+    ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO0;
     fxls8962_i2c_sensorhandle_t fxls8962Driver;
 
     /*! Setup FXLS8962_INT1 pin used by board */

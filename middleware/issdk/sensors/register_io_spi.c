@@ -28,7 +28,7 @@
 /*******************************************************************************
  * Variables
  ******************************************************************************/
-ARM_DRIVER_GPIO *pDspiGpioDriver = &Driver_GPIO;
+ARM_DRIVER_GPIO *pDspiGpioDriver = &Driver_GPIO0;
 SPI_Type *const spiBases[] = SPI_BASE_PTRS;
 volatile bool b_SPI_CompletionFlag[SPI_COUNT] = {false};
 volatile uint32_t g_SPI_ErrorEvent[SPI_COUNT] = {ARM_SPI_EVENT_TRANSFER_COMPLETE};

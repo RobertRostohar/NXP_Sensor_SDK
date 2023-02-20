@@ -92,7 +92,7 @@ int app_main(void)
 
     ARM_DRIVER_I2C *I2Cdrv = &MAG3110_I2C_DRIVER;
     mag3110_i2c_sensorhandle_t mag3110Driver;
-    ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO;
+    ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO0;
 
     PRINTF("\r\n ISSDK MAG3110 sensor driver example demonstration with interrupt mode.\r\n");
 

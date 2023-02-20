@@ -46,7 +46,7 @@ extern void PORTD_IRQHandler (void);
 extern void PORTE_IRQHandler (void);
 
 // GPIO0 Driver access structure
-extern ARM_DRIVER_GPIO Driver_GPIO;
+extern ARM_DRIVER_GPIO Driver_GPIO0;
 
 #ifdef  __cplusplus
 }

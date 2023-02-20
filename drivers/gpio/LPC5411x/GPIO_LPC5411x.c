@@ -298,7 +298,7 @@ static uint32_t GPIO_GetInput (ARM_GPIO_Pin_t pin) {
 
 
 // GPIO Driver access structure
-ARM_DRIVER_GPIO Driver_GPIO = {
+ARM_DRIVER_GPIO Driver_GPIO0 = {
   GPIO_Setup,
   GPIO_SetDirection,
   GPIO_SetOutputMode,

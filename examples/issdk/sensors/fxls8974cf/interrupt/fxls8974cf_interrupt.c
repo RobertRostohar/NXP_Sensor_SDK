@@ -92,7 +92,7 @@ int app_main(void)
 
     ARM_DRIVER_I2C *I2Cdrv = &FXLS8974_I2C_DRIVER;
     fxls8974_i2c_sensorhandle_t fxls8974Driver;
-    ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO;
+    ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO0;
 
     PRINTF("\r\n ISSDK FXLS8974 sensor driver example demonstration with interrupt mode.\r\n");
 

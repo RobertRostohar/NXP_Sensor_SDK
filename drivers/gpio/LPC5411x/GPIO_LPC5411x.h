@@ -46,7 +46,7 @@ void PIN_INT6_IRQHandler (void);
 void PIN_INT7_IRQHandler (void);
 
 // GPIO Driver access structure
-extern ARM_DRIVER_GPIO Driver_GPIO;
+extern ARM_DRIVER_GPIO Driver_GPIO0;
 
 #ifdef  __cplusplus
 }

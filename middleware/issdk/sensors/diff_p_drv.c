@@ -68,7 +68,7 @@ int32_t DIFF_P_SPI_Initialize(
 {
     int32_t status;
     uint8_t reg, retries = 1;
-    ARM_DRIVER_GPIO *pGPIODriver = &Driver_GPIO;
+    ARM_DRIVER_GPIO *pGPIODriver = &Driver_GPIO0;
 
     /*! Check the input parameters. */
     if ((pSensorHandle == NULL) || (pBus == NULL))

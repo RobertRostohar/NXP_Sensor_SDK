@@ -75,7 +75,7 @@ int32_t FXLC95000_SPI_Initialize(fxlc95000_spi_sensorhandle_t *pSensorHandle,
 {
     int32_t status;
     uint16_t readNumber[2];
-    ARM_DRIVER_GPIO *pGPIODriver = &Driver_GPIO;
+    ARM_DRIVER_GPIO *pGPIODriver = &Driver_GPIO0;
 
     /*! Check the input parameters. */
     if (pSensorHandle == NULL || pBus == NULL)

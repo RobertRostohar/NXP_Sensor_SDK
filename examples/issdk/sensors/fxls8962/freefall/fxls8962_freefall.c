@@ -101,7 +101,7 @@ int app_main(void)
     uint8_t dataReady;
     ARM_DRIVER_I2C *I2Cdrv = &FXLS8962_I2C_DRIVER;
     fxls8962_i2c_sensorhandle_t fxls8962Driver;
-    ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO;
+    ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO0;
 
     PRINTF("\r\n ISSDK FXLS8962 sensor driver example for Freefall Detection. \r\n");
 

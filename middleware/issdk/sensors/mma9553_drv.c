@@ -159,7 +159,7 @@ int32_t MMA9553_SPI_Initialize(
 {
     int32_t status;
     uint8_t cmdRespHdr[MMA9553_HDR_SIZE] = {0};
-    ARM_DRIVER_GPIO *pGPIODriver = &Driver_GPIO;
+    ARM_DRIVER_GPIO *pGPIODriver = &Driver_GPIO0;
 
     /*! Check the input parameters. */
     if (pSensorHandle == NULL || pBus == NULL)
