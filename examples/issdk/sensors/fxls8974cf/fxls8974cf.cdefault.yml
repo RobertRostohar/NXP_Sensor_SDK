@@ -12,6 +12,8 @@ default:
         - -fshort-wchar
       C:
         - -std=c99
+      ASM:
+        - -masm=auto
       Link:
         - --entry=Reset_Handler --strict --info summarysizes
         - --remove --keep=*(.crp) --keep=*(.FlashConfig)
