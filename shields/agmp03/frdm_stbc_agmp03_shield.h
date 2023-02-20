@@ -30,7 +30,7 @@
 #define FXLS8962_MISO           ARDUINO_UNO_D12
 #define FXLS8962_SCLK           ARDUINO_UNO_D13
 #define FXLS8962_INT1           ARDUINO_UNO_D2
-#define FXLS8962_INT2           ARDUINO_UNO_A0
+#define FXLS8962_INT2           ARDUINO_UNO_D14
 
 // FXAS21002 Sensor Information
 #define FXAS21002_I2C_INDEX     ARDUINO_UNO_I2C
@@ -41,7 +41,7 @@
 #define FXAS21002_SPI_DRIVER    ARM_Driver_SPI_(FXAS21002_SPI_INDEX)
 #define FXAS21002_SPI_EVENT     SPI_SignalEvent(FXAS21002_SPI_INDEX)
 #define FXAS21002_SPI_BAUDRATE  500000U
-#define FXAS21002_CS            ARDUINO_UNO_A1
+#define FXAS21002_CS            ARDUINO_UNO_D15
 #define FXAS21002_INT1          ARDUINO_UNO_D8
 
 // MPL3115 Sensor Information
@@ -59,7 +59,7 @@
 #define MAG3110_INT1            ARDUINO_UNO_D5
 
 // FRDM-STBC-AGMP03 Shield Reset
-#define RESET_GPIO              ARDUINO_UNO_A3
+#define RESET_GPIO              ARDUINO_UNO_D17
 
 ///@name Shield Parameters
 /// Use this section to define the shield board: 3 bit code 0 to 7 inclusive

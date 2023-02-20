@@ -29,9 +29,9 @@
 #define FXLS8974_MISO           ARDUINO_UNO_D12
 #define FXLS8974_SCLK           ARDUINO_UNO_D13
 #define FXLS8974_INT1           ARDUINO_UNO_D2
-#define FXLS8974_INT2           ARDUINO_UNO_A0
+#define FXLS8974_INT2           ARDUINO_UNO_D14
 
 // FRDM-STBI-A8974 Shield Reset
-#define RESET_GPIO              ARDUINO_UNO_A3
+#define RESET_GPIO              ARDUINO_UNO_D17
 
 #endif /* _FRDM_STBI_A8974_SHIELD_H_ */

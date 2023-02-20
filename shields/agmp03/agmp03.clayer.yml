@@ -37,7 +37,7 @@ layer:
       provides:
         - FXLS8962_INT2
       consumes:
-        - ARDUINO_UNO_A0
+        - ARDUINO_UNO_D14
 
     - connect: FXAS21002 I2C Bus
       set: Bus.I2C
@@ -61,7 +61,7 @@ layer:
         - FXAS21002_CS
       consumes:
         - ARDUINO_UNO_SPI
-        - ARDUINO_UNO_A1
+        - ARDUINO_UNO_D15
     - connect: FXAS21002 Interrupt 1
       provides:
         - FXAS21002_INT1
@@ -111,7 +111,7 @@ layer:
       provides:
         - AGMP03_RESET
       consumes:
-        - ARDUINO_UNO_A3
+        - ARDUINO_UNO_D17
 
   define:
     - SHIELD_HEADER="frdm_stbc_agmp03_shield.h"
