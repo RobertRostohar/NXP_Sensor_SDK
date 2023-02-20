@@ -18,6 +18,9 @@
 #include "sensor_drv.h"
 #include "Driver_I2C.h"
 
+#define _I2C_SignalEvent(n)  I2C##n##_SignalEvent_t
+#define  I2C_SignalEvent(n) _I2C_SignalEvent(n)
+
 #if defined(I2C0)
 /*! @brief The I2C0 device index. */
 #define I2C0_INDEX 0

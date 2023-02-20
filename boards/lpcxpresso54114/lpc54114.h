@@ -45,29 +45,21 @@
 #define ARDUINO_UNO_D14 GPIO_PORT0(26U)  /* I2C4:  SDA  */
 #define ARDUINO_UNO_D15 GPIO_PORT0(25U)  /* I2C4:  SCL  */
 
+// LPCXpresso54114 Arduino CMSIS Driver instances
+#define ARDUINO_UNO_I2C     4
+#define ARDUINO_UNO_SPI     5
+#define ARDUINO_UNO_UART    0
+
 // LPCXpresso54114 Internal Peripheral Pin Definitions
 #define RED_LED         GPIO_PORT0(29U)
 #define GREEN_LED       GPIO_PORT1(10U)
 #define BLUE_LED        GPIO_PORT1(9U)
 
 // CMSIS Drivers
-extern ARM_DRIVER_I2C Driver_I2C4;
-extern ARM_DRIVER_SPI Driver_SPI5;
+extern ARM_DRIVER_I2C   Driver_I2C4;
+extern ARM_DRIVER_SPI   Driver_SPI5;
 extern ARM_DRIVER_USART Driver_USART0;
 extern ARM_DRIVER_USART Driver_USART1;
-
-// I2C_S: Pin mapping and driver information for default I2C brought to shield
-#define I2C_S_SCL_PIN       ARDUINO_UNO_D15
-#define I2C_S_SDA_PIN       ARDUINO_UNO_D14
-#define I2C_S_DRIVER        Driver_I2C4
-#define I2C_S_DEVICE_INDEX  I2C4_INDEX
-#define I2C_S_SIGNAL_EVENT  I2C4_SignalEvent_t
-
-// SPIS: Pin mapping and driver information default SPI brought to shield
-#define SPI_S_DRIVER       Driver_SPI5
-#define SPI_S_BAUDRATE     500000U ///< Transfer baudrate - 500k
-#define SPI_S_DEVICE_INDEX SPI5_INDEX
-#define SPI_S_SIGNAL_EVENT SPI5_SignalEvent_t
 
 // UART: Driver information for default UART to communicate with HOST PC.
 #define HOST_S_DRIVER       Driver_USART0

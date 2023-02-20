@@ -53,6 +53,9 @@ typedef struct
     uint8_t ssActiveValue;
 } spiSlaveSpecificParams_t;
 
+#define _SPI_SignalEvent(n)  SPI##n##_SignalEvent_t
+#define  SPI_SignalEvent(n) _SPI_SignalEvent(n)
+
 #if defined(SPI0)
 /*! @brief The SPI0 device index. */
 #define SPI0_INDEX 0

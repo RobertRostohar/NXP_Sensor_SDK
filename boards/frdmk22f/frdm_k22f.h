@@ -45,6 +45,11 @@
 #define ARDUINO_UNO_D14 GPIO_PORTE(0U)  /* UART1: TX   */
 #define ARDUINO_UNO_D15 GPIO_PORTE(1U)  /* UART1: RX   */
 
+// FRDM-K22F Arduino CMSIS Driver instances
+#define ARDUINO_UNO_I2C     0
+#define ARDUINO_UNO_SPI     1
+#define ARDUINO_UNO_UART    2
+
 // FRDM-K22F RGB LED Pin Definitions
 #define RED_LED         GPIO_PORTA(1U)
 #define GREEN_LED       GPIO_PORTA(2U)
@@ -55,33 +60,10 @@
 #define INT2            GPIO_PORTD(1U)
 
 // CMSIS Drivers
-extern ARM_DRIVER_I2C Driver_I2C0;
-extern ARM_DRIVER_SPI Driver_SPI1;
+extern ARM_DRIVER_I2C   Driver_I2C0;
+extern ARM_DRIVER_SPI   Driver_SPI1;
 extern ARM_DRIVER_USART Driver_USART1;
 extern ARM_DRIVER_USART Driver_USART2;
-
-// I2C_S: Pin mapping and driver information for default I2C brought to shield
-#define I2C_S_SCL_PIN       ARDUINO_UNO_A5
-#define I2C_S_SDA_PIN       ARDUINO_UNO_A4
-#define I2C_S_DRIVER        Driver_I2C0
-#define I2C_S_DEVICE_INDEX  I2C0_INDEX
-#define I2C_S_SIGNAL_EVENT  I2C0_SignalEvent_t
-
-// I2C_BB: PPin mapping and driver information for I2C routed on K22F base board
-#define I2C_BB_SCL_PIN      ARDUINO_UNO_A5
-#define I2C_BB_SDA_PIN      ARDUINO_UNO_A4
-#define I2C_BB_DRIVER       Driver_I2C0
-#define I2C_BB_DEVICE_INDEX I2C0_INDEX
-#define I2C_BB_SIGNAL_EVENT I2C0_SignalEvent_t
-
-// SPIS: Pin mapping and driver information default SPI brought to shield
-#define SPI_S_SCLK         ARDUINO_UNO_D13
-#define SPI_S_MOSI         ARDUINO_UNO_D11
-#define SPI_S_MISO         ARDUINO_UNO_D12
-#define SPI_S_DRIVER       Driver_SPI1
-#define SPI_S_BAUDRATE     500000U ///< Transfer baudrate - 500k
-#define SPI_S_DEVICE_INDEX SPI1_INDEX
-#define SPI_S_SIGNAL_EVENT SPI1_SignalEvent_t
 
 // UART: Driver information for default UART to communicate with HOST PC.
 #define HOST_S_DRIVER       Driver_USART1
@@ -92,9 +74,12 @@ extern ARM_DRIVER_USART Driver_USART2;
 #define HOST_B_SIGNAL_EVENT HOST_SignalEvent_t
 
 // On-Board FXOS8700 Sensor Information
-#define FXOS8700_BB_I2C_ADDR 0x1C
-#define FXOS8700_BB_INT1     INT1
-#define FXOS8700_BB_INT2     INT2
+#define FXOS8700_I2C_INDEX  0
+#define FXOS8700_I2C_DRIVER ARM_Driver_I2C_(FXOS8700_I2C_INDEX)
+#define FXOS8700_I2C_EVENT  I2C_SignalEvent(FXOS8700_I2C_INDEX)
+#define FXOS8700_I2C_ADDR   0x1C
+#define FXOS8700_INT1       INT1
+#define FXOS8700_INT2       INT2
 
 /* @brief  Ask use input to resume after specified samples have been processed. */
 #define ASK_USER_TO_RESUME(x)                                                          \
