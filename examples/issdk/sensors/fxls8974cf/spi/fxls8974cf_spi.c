@@ -128,7 +128,7 @@ int app_main(void)
     }
 
     /*!  Set the task to be executed while waiting for SPI transactions to complete. */
-    FXLS8974_SPI_SetIdleTask(&fxls8974Driver, (registeridlefunction_t)SMC_SetPowerModeVlpr, SMC);
+    FXLS8974_SPI_SetIdleTask(&fxls8974Driver, (registeridlefunction_t)SENSOR_IDLE_TASK, SENSOR_IDLE_ARG);
 
     /*! Configure the FXLS8974 sensor driver. */
     status = FXLS8974_SPI_Configure(&fxls8974Driver, cfxls8974ConfigNormal);

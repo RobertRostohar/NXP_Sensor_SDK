@@ -160,7 +160,7 @@ int app_main(void)
     }
 
     /*!  Set the task to be executed while waiting for I2C transactions to complete. */
-    FXLS8962_I2C_SetIdleTask(&fxls8962Driver, (registeridlefunction_t)SMC_SetPowerModeVlpr, SMC);
+    FXLS8962_I2C_SetIdleTask(&fxls8962Driver, (registeridlefunction_t)SENSOR_IDLE_TASK, SENSOR_IDLE_ARG);
 
     /* Set data not ready, event data will be available after sensor is configured and free fall detected. */
     dataReady = 0;

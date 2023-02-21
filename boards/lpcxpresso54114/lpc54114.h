@@ -103,6 +103,10 @@ extern ARM_DRIVER_USART Driver_USART1;
     BOARD_BootClockFROHF48M()
 #endif
 
+// Sensor Communication Idle Task and Argument
+#define SENSOR_IDLE_TASK    SMC_SetPowerModeVlpr
+#define SENSOR_IDLE_ARG     NULL
+
 /* @brief dummy arguement to Power Mode Wait Wrapper. */
 #define SMC NULL
 

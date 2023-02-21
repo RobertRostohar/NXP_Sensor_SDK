@@ -81,6 +81,10 @@ extern ARM_DRIVER_USART Driver_USART2;
 #define FXOS8700_INT1       INT1
 #define FXOS8700_INT2       INT2
 
+// Sensor Communication Idle Task and Argument
+#define SENSOR_IDLE_TASK    SMC_SetPowerModeVlpr
+#define SENSOR_IDLE_ARG     SMC
+
 /* @brief  Ask use input to resume after specified samples have been processed. */
 #define ASK_USER_TO_RESUME(x)                                                          \
     static volatile bool askResume   = true;                                           \
