@@ -30,8 +30,6 @@
 //-----------------------------------------------------------------------
 // Macros
 //-----------------------------------------------------------------------
-#define PRINTF  printf
-#define GETCHAR getchar
 /* SDCD free-fall counter register values.
  * These values have been derived form the Application Note AN4070 for MMA8451 (the same is applicable to FXLS8962 too).
  * http://cache.freescale.com/files/sensors/doc/app_note/AN4070.pdf */

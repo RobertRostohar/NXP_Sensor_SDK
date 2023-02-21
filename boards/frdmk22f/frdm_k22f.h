@@ -85,17 +85,6 @@ extern ARM_DRIVER_USART Driver_USART2;
 #define SENSOR_IDLE_TASK    SMC_SetPowerModeVlpr
 #define SENSOR_IDLE_ARG     SMC
 
-/* @brief  Ask use input to resume after specified samples have been processed. */
-#define ASK_USER_TO_RESUME(x)                                                          \
-    static volatile bool askResume   = true;                                           \
-    static uint16_t samplesToProcess = x - 1;                                          \
-    if (askResume && !samplesToProcess--)                                              \
-    {                                                                                  \
-        PRINTF("\r\n Specified samples processed, press any key to continue... \r\n"); \
-        GETCHAR();                                                                     \
-        askResume = false;                                                             \
-    }
-
 /// @name Wired UART Parameters
 /// Sensor Fusion aliases are defined in terms of specific hardware features
 /// defined in MK22F51212.h.

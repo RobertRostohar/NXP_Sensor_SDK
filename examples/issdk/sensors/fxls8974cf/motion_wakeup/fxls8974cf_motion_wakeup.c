@@ -31,8 +31,6 @@
 //-----------------------------------------------------------------------
 // Macros
 //-----------------------------------------------------------------------
-#define PRINTF  printf
-#define GETCHAR getchar
 #define FXLS8974_DATA_SIZE      6
 #define FXLS8974_STANDBY_MODE   0
 #define FXLS8974_ACTIVE_MODE    1

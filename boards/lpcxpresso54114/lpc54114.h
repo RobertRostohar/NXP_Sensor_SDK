@@ -78,17 +78,6 @@ extern ARM_DRIVER_USART Driver_USART1;
 // ADS_FLASH: The next to last sector of flash.
 #define ADS_NVM_ADDR (FSL_FEATURE_SYSCON_FLASH_SIZE_BYTES - (2 * FSL_FEATURE_SYSCON_FLASH_SECTOR_SIZE_BYTES))
 
-/* @brief  Ask use input to resume after specified samples have been processed. */
-#define ASK_USER_TO_RESUME(x)                                                          \
-    static bool askResume            = true;                                           \
-    static uint16_t samplesToProcess = x - 1;                                          \
-    if (askResume && !samplesToProcess--)                                              \
-    {                                                                                  \
-        PRINTF("\r\n Specified samples processed, press any key to continue... \r\n"); \
-        GETCHAR();                                                                     \
-        askResume = false;                                                             \
-    }
-
 /* @brief  Override Kinetis style Wrapper for handling all Clock related configurations. */
 #ifdef BOARD_BootClockRUN
 #undef BOARD_BootClockRUN

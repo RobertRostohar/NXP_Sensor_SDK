@@ -37,8 +37,6 @@
 //-----------------------------------------------------------------------
 // Macros
 //-----------------------------------------------------------------------
-#define PRINTF  printf
-#define GETCHAR getchar
 #define FXLS896x_NUM_REGISTERS (FXLS8962_SELF_TEST_CONFIG2 + 1)
 #define FF_A_FFMT_THS          (0x08)       /* FreeFall Threshold Value. */
 #define A_FFMT_COUNT           (0x18)       /* Freefall/motion debounce count value. */
