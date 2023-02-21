@@ -23,13 +23,30 @@
 /*******************************************************************************
  * Types
  ******************************************************************************/
-#define SPI_COUNT (sizeof(spiBases) / sizeof(void *))
+#if   defined(SPI7)
+#define SPI_COUNT 8
+#elif defined(SPI6)
+#define SPI_COUNT 7
+#elif defined(SPI5)
+#define SPI_COUNT 6
+#elif defined(SPI4)
+#define SPI_COUNT 5
+#elif defined(SPI3)
+#define SPI_COUNT 4
+#elif defined(SPI2)
+#define SPI_COUNT 3
+#elif defined(SPI1)
+#define SPI_COUNT 2
+#elif defined(SPI0)
+#define SPI_COUNT 1
+#else
+#error "No SPI defined!"
+#endif
 
 /*******************************************************************************
  * Variables
  ******************************************************************************/
 ARM_DRIVER_GPIO *pDspiGpioDriver = &Driver_GPIO0;
-SPI_Type *const spiBases[] = SPI_BASE_PTRS;
 volatile bool b_SPI_CompletionFlag[SPI_COUNT] = {false};
 volatile uint32_t g_SPI_ErrorEvent[SPI_COUNT] = {ARM_SPI_EVENT_TRANSFER_COMPLETE};
 

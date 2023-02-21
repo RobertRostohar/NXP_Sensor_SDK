@@ -22,12 +22,31 @@
 /*******************************************************************************
  * Types
  ******************************************************************************/
-#define I2C_COUNT (sizeof(i2cBases) / sizeof(void *))
+#if defined(MIMXRT500_AGM01) && defined(IC11)
+#define I2C_COUNT 12
+#elif defined(I2C7)
+#define I2C_COUNT 8
+#elif defined(I2C6)
+#define I2C_COUNT 7
+#elif defined(I2C5)
+#define I2C_COUNT 6
+#elif defined(I2C4)
+#define I2C_COUNT 5
+#elif defined(I2C3)
+#define I2C_COUNT 4
+#elif defined(I2C2)
+#define I2C_COUNT 3
+#elif defined(I2C1)
+#define I2C_COUNT 2
+#elif defined(I2C0)
+#define I2C_COUNT 1
+#else
+#error "No I2C defined!"
+#endif
 
 /*******************************************************************************
  * Variables
  ******************************************************************************/
-I2C_Type *const i2cBases[] = I2C_BASE_PTRS;
 volatile bool b_I2C_CompletionFlag[I2C_COUNT] = {false};
 volatile uint32_t g_I2C_ErrorEvent[I2C_COUNT] = {ARM_I2C_EVENT_TRANSFER_DONE};
 
