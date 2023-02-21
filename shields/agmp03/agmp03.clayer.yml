@@ -114,7 +114,7 @@ layer:
         - ARDUINO_UNO_D17
 
   define:
-    - SHIELD_HEADER="frdm_stbc_agmp03_shield.h"
+    - CMSIS_shield_header="frdm_stbc_agmp03_shield.h"
 
   groups:
     - group: shield

@@ -36,7 +36,7 @@ layer:
 
   define:
     - SERIAL_PORT_TYPE_UART=1
-    - BOARD_HEADER="lpc54114.h"
+    - CMSIS_board_header="lpc54114.h"
 
   components:
     - component: NXP::Board Support:SDK Project Template:project_template&LPC54114

@@ -45,7 +45,7 @@ layer:
         - ARDUINO_UNO_D17
 
   define:
-    - SHIELD_HEADER="frdm_stbi_a8974_shield.h"
+    - CMSIS_shield_header="frdm_stbi_a8974_shield.h"
 
   groups:
     - group: shield

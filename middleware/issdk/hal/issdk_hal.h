@@ -15,11 +15,11 @@
 #ifndef __ISSDK_HAL_H__
 #define __ISSDK_HAL_H__
 
-#ifdef   TARGET_HEADER
-#include TARGET_HEADER
+#ifdef   CMSIS_target_header
+#include CMSIS_target_header
 #else
-#include BOARD_HEADER               //Include appropriate MCU board header file
-#include SHIELD_HEADER              //Include appropriate sensor shield board header file
+#include CMSIS_board_header     // Include appropriate MCU board header file
+#include CMSIS_shield_header    // Include appropriate sensor shield board header file
 #endif
 
 #ifndef PRINTF

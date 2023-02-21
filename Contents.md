@@ -76,11 +76,11 @@ Directory     | Description
    The project described in `<sensor_project>.cproject.yml` is split into:
     - application with middleware (hardware agnostic)
     - board specifics - moved to board layer into top-level directory `boards/<board>` with layer description in `<board>/clayer.yml`
-      >Note: `BOARD_HEADER` defines the board specific header
+      >Note: `CMSIS_board_header` defines the board specific header
     - shields specific - moved to shield layer into top-level directory `shields/<shield>` with layer description in `<shield>.clayer.yml`
-      >Note: `SHIELD_HEADER` defines the shield specific header
+      >Note: `CMSIS_shield_header` defines the shield specific header
 
-   >Note: `issdk_hal.h` is updated to be hardware agnostic by using `BOARD_HEADER` and `SHIELD_HEADER` definitions 
+   >Note: `issdk_hal.h` is updated to be hardware agnostic by using `CMSIS_board_header` and `CMSIS_shield_header` definitions 
    (moved to top-level directory `middleware/issdk/hal`).
 
    The solution described in `<sensor_project>.csolution.yml` is updated:
@@ -113,7 +113,11 @@ Directory     | Description
    Sensor examples are updated to use sensor specific defines (interface, driver, pins, ...) which are not shield or board specific 
    (could be provided by a custom target layer). Required defines are provided by the respective shield and board layer.
 
-8. Moving sensor examples 
+8. Generic GPIO API
+
+   NXP GPIO API (not completely hardware agnostic) is replaced by generic GPIO API. Driver implementations and examples are updated accordingly.
+
+9. Moving sensor examples 
 
    ISSDK sensor examples are moved from `boards/<board>_<shield>/issdk_examples/sensors` to top-level directory `examples/issdk/sensors`.
 
