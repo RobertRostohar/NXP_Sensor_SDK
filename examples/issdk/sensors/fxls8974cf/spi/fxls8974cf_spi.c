@@ -93,7 +93,7 @@ int app_main(void)
     }
 
     /*! Set the SPI Slave speed. */
-    status = pSPIdriver->Control(ARM_SPI_MODE_MASTER | ARM_SPI_CPOL0_CPHA0, FXLS8974_SPI_BAUDRATE);
+    status = pSPIdriver->Control(ARM_SPI_MODE_MASTER | ARM_SPI_CPOL0_CPHA0 | ARM_SPI_DATA_BITS(8), FXLS8974_SPI_BAUDRATE);
     if (ARM_DRIVER_OK != status)
     {
         PRINTF("\r\n SPI Control Mode setting Failed\r\n");
