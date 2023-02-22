@@ -30,6 +30,9 @@ layer:
         - ARDUINO_UNO_D15
         - ARDUINO_UNO_D16
         - ARDUINO_UNO_D17
+        - STDIN
+        - STDOUT
+        - STDERR
         - Heap: 1024
 
   define:

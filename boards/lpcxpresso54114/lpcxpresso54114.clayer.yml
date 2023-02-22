@@ -32,6 +32,9 @@ layer:
         - ARDUINO_UNO_D17
         - ARDUINO_UNO_D18
         - ARDUINO_UNO_D19
+        - STDIN
+        - STDOUT
+        - STDERR
         - Heap: 1024
 
   define:
