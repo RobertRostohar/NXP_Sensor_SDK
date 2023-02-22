@@ -55,10 +55,6 @@
 #define GREEN_LED       GPIO_PORTA(2U)
 #define BLUE_LED        GPIO_PORTD(5U)
 
-// FRDM-K22F Inertial Sensor Pin Definitions
-#define INT1            GPIO_PORTD(0U)
-#define INT2            GPIO_PORTD(1U)
-
 // CMSIS Drivers
 extern ARM_DRIVER_I2C   Driver_I2C0;
 extern ARM_DRIVER_SPI   Driver_SPI1;
@@ -78,8 +74,8 @@ extern ARM_DRIVER_USART Driver_USART2;
 #define FXOS8700_I2C_DRIVER ARM_Driver_I2C_(FXOS8700_I2C_INDEX)
 #define FXOS8700_I2C_EVENT  I2C_SignalEvent(FXOS8700_I2C_INDEX)
 #define FXOS8700_I2C_ADDR   0x1C
-#define FXOS8700_INT1       INT1
-#define FXOS8700_INT2       INT2
+#define FXOS8700_INT1       GPIO_PORTD(0U)
+#define FXOS8700_INT2       GPIO_PORTD(1U)
 
 // Sensor Communication Idle Task and Argument
 #define SENSOR_IDLE_TASK    SMC_SetPowerModeVlpr
