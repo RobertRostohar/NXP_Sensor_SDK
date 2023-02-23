@@ -30,6 +30,9 @@ layer:
         - ARDUINO_UNO_D15
         - ARDUINO_UNO_D16
         - ARDUINO_UNO_D17
+        - FXOS8700_I2C
+        - FXOS8700_INT1
+        - FXOS8700_INT2
         - STDIN
         - STDOUT
         - STDERR
