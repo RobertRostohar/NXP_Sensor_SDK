@@ -51,3 +51,4 @@ layer:
     - group: shield
       files:
         - file: ./frdm_stbi_a8974_shield.h
+        - file: ./frdm_stbi_a8974_shield.c

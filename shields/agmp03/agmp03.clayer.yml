@@ -120,3 +120,4 @@ layer:
     - group: shield
       files:
         - file: ./frdm_stbc_agmp03_shield.h
+        - file: ./frdm_stbc_agmp03_shield.c

@@ -12,6 +12,8 @@
 #ifndef _FRDM_STBI_A8974_SHIELD_H_
 #define _FRDM_STBI_A8974_SHIELD_H_
 
+#include <stdint.h>
+
 /* The shield name */
 #define SHIELD_NAME "FRDM-STBI-A8974"
 
@@ -33,5 +35,8 @@
 
 // FRDM-STBI-A8974 Shield Reset
 #define RESET_GPIO              ARDUINO_UNO_D17
+
+// Shield Setup (default configuration)
+extern int32_t shield_setup (void);
 
 #endif /* _FRDM_STBI_A8974_SHIELD_H_ */

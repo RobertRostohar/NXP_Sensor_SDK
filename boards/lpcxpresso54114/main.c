@@ -24,6 +24,13 @@
 #include "main.h"
 #include "lpc54114.h"   /* redefines BOARD_BootClockRUN */
 
+#ifdef   CMSIS_shield_header
+#include CMSIS_shield_header
+__WEAK int32_t shield_setup (void) {
+  return 0;
+}
+#endif
+
 int main (void) {
 
   /*! Initialize the MCU hardware. */
@@ -33,6 +40,10 @@ int main (void) {
   BOARD_InitDebugConsole();
 
   SystemCoreClockUpdate();
+
+#ifdef CMSIS_shield_header
+  shield_setup();
+#endif
 
   return (app_main());
 }

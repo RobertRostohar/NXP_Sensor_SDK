@@ -22,6 +22,10 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#ifdef   CMSIS_shield_header
+#include CMSIS_shield_header
+#endif
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -89,6 +93,12 @@ static void MX_USART3_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+#ifdef CMSIS_shield_header
+__WEAK int32_t shield_setup (void) {
+  return 0;
+}
+#endif
 
 /**
   * Override default HAL_GetTick function
@@ -164,7 +174,13 @@ int main(void)
   MX_ICACHE_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
+
+#ifdef CMSIS_shield_header
+  shield_setup();
+#endif
+
   app_main();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */

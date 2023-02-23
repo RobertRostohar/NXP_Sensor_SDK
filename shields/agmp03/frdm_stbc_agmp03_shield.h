@@ -13,6 +13,8 @@
 #ifndef _FRDM_STBC_AGMP03_SHIELD_H_
 #define _FRDM_STBC_AGMP03_SHIELD_H_
 
+#include <stdint.h>
+
 /* The shield name */
 #define SHIELD_NAME "FRDM-STBC-AGMP03"
 
@@ -75,5 +77,8 @@
 
 // spare 5 to 7 inclusive
 ///@}
+
+// Shield Setup (default configuration)
+extern int32_t shield_setup (void);
 
 #endif /* _FRDM_STBC_AGMP03_SHIELD_H_ */
