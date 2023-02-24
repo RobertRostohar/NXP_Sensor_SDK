@@ -272,7 +272,7 @@ static int32_t GPIO_Setup (ARM_GPIO_Pin_t pin, ARM_GPIO_SignalEvent_t cb_event) 
     gpio = GPIOx[pin_port];
     if ((gpio != NULL) && ((cb_event == NULL) || (SignalEvent[pin_num] == NULL))) {
       init.Pin       = pin_mask;
-      init.Mode      = GPIO_MODE_INPUT | GPIO_MODE_OUTPUT_PP;
+      init.Mode      = GPIO_MODE_INPUT;
       init.Pull      = GPIO_NOPULL;
       init.Speed     = GPIO_SPEED_FREQ_LOW;
       init.Alternate = 0U;
