@@ -48,7 +48,7 @@
 // Default Pin Configuration
 static const uint32_t DefaultPinConfig = (
   IOCON_PIO_FUNC(0U)      |     // Pin function  : PIO
-  IOCON_PIO_MODE(0U)      |     // Function mode : Inctive (no pull resistor)
+  IOCON_PIO_MODE(0U)      |     // Function mode : Inactive (no pull resistor)
   IOCON_PIO_INVERT(0U)    |     // Input polarity: Disabled
   IOCON_PIO_DIGIMODE(1U)  |     // Select mode   : Digital
   IOCON_PIO_FILTEROFF(1U) |     // Glitch filter : Disabled
