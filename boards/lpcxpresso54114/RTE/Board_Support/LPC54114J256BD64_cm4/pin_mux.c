@@ -37,12 +37,6 @@ PinsProfile:
 /*
  * TEXT BELOW IS USED AS SETTING FOR THE PINS TOOL *****************************
 BOARD_InitPins:
-- options: {prefix: BOARD_, coreID: cm4, enableClock: 'true'}
-- pin_list:
-  - {pin_num: '31', peripheral: FLEXCOMM0, signal: RXD_SDA_MOSI, pin_signal: PIO0_0/FC0_RXD_SDA_MOSI/FC3_CTS_SDA_SSEL0/CTIMER0_CAP0/SCT0_OUT3, mode: inactive, invert: disabled,
-    glitch_filter: disabled, slew_rate: standard, open_drain: disabled}
-  - {pin_num: '32', peripheral: FLEXCOMM0, signal: TXD_SCL_MISO, pin_signal: PIO0_1/FC0_TXD_SCL_MISO/FC3_RTS_SCL_SSEL1/CTIMER0_CAP1/SCT0_OUT1, mode: inactive, invert: disabled,
-    glitch_filter: disabled, slew_rate: standard, open_drain: disabled}
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR THE PINS TOOL ***
  */
 
@@ -53,28 +47,9 @@ BOARD_InitPins:
  *
  *END**************************************************************************/
 void BOARD_InitPins(void) { /* Function assigned for the Core #0 (ARM Cortex-M4) */
-  CLOCK_EnableClock(kCLOCK_Iocon);                           /* Enables the clock for the IOCON block. 0 = Disable; 1 = Enable.: 0x01u */
-
-  const uint32_t port0_pin0_config = (
-    IOCON_PIO_FUNC1 |                                        /* Pin is configured as FC0_RXD_SDA_MOSI */
-    IOCON_PIO_MODE_INACT |                                   /* No addition pin function */
-    IOCON_PIO_INV_DI |                                       /* Input function is not inverted */
-    IOCON_PIO_DIGITAL_EN |                                   /* Enables digital function */
-    IOCON_PIO_INPFILT_OFF |                                  /* Input filter disabled */
-    IOCON_PIO_SLEW_STANDARD |                                /* Standard mode, output slew rate control is enabled */
-    IOCON_PIO_OPENDRAIN_DI                                   /* Open drain is disabled */
-  );
-  IOCON_PinMuxSet(IOCON, PORT0_IDX, PIN0_IDX, port0_pin0_config); /* PORT0 PIN0 (coords: 31) is configured as FC0_RXD_SDA_MOSI */
-  const uint32_t port0_pin1_config = (
-    IOCON_PIO_FUNC1 |                                        /* Pin is configured as FC0_TXD_SCL_MISO */
-    IOCON_PIO_MODE_INACT |                                   /* No addition pin function */
-    IOCON_PIO_INV_DI |                                       /* Input function is not inverted */
-    IOCON_PIO_DIGITAL_EN |                                   /* Enables digital function */
-    IOCON_PIO_INPFILT_OFF |                                  /* Input filter disabled */
-    IOCON_PIO_SLEW_STANDARD |                                /* Standard mode, output slew rate control is enabled */
-    IOCON_PIO_OPENDRAIN_DI                                   /* Open drain is disabled */
-  );
-  IOCON_PinMuxSet(IOCON, PORT0_IDX, PIN1_IDX, port0_pin1_config); /* PORT0 PIN1 (coords: 32) is configured as FC0_TXD_SCL_MISO */
+  USART0_InitPins();
+  I2C4_InitPins();
+  SPI5_InitPins();
 }
 
 
@@ -395,7 +370,7 @@ void SPI3_InitPins(void) { /* Function assigned for the Core #0 (ARM Cortex-M4) 
 
   const uint32_t port0_pin11_config = (
     IOCON_PIO_FUNC1 |                                        /* Pin is configured as FC3_SCK */
-    IOCON_PIO_MODE_PULLUP |                                  /* Selects pull-up function */
+    IOCON_PIO_MODE_INACT |                                   /* No addition pin function */
     IOCON_PIO_INV_DI |                                       /* Input function is not inverted */
     IOCON_PIO_DIGITAL_EN |                                   /* Enables digital function */
     IOCON_PIO_INPFILT_OFF |                                  /* Input filter disabled */
@@ -405,7 +380,7 @@ void SPI3_InitPins(void) { /* Function assigned for the Core #0 (ARM Cortex-M4) 
   IOCON_PinMuxSet(IOCON, PORT0_IDX, PIN11_IDX, port0_pin11_config); /* PORT0 PIN11 (coords: 46) is configured as FC3_SCK */
   const uint32_t port0_pin12_config = (
     IOCON_PIO_FUNC1 |                                        /* Pin is configured as FC3_RXD_SDA_MOSI */
-    IOCON_PIO_MODE_PULLUP |                                  /* Selects pull-up function */
+    IOCON_PIO_MODE_INACT |                                   /* No addition pin function */
     IOCON_PIO_INV_DI |                                       /* Input function is not inverted */
     IOCON_PIO_DIGITAL_EN |                                   /* Enables digital function */
     IOCON_PIO_INPFILT_OFF |                                  /* Input filter disabled */
@@ -415,7 +390,7 @@ void SPI3_InitPins(void) { /* Function assigned for the Core #0 (ARM Cortex-M4) 
   IOCON_PinMuxSet(IOCON, PORT0_IDX, PIN12_IDX, port0_pin12_config); /* PORT0 PIN12 (coords: 47) is configured as FC3_RXD_SDA_MOSI */
   const uint32_t port0_pin13_config = (
     IOCON_PIO_FUNC1 |                                        /* Pin is configured as FC3_TXD_SCL_MISO */
-    IOCON_PIO_MODE_PULLUP |                                  /* Selects pull-up function */
+    IOCON_PIO_MODE_INACT |                                   /* No addition pin function */
     IOCON_PIO_INV_DI |                                       /* Input function is not inverted */
     IOCON_PIO_DIGITAL_EN |                                   /* Enables digital function */
     IOCON_PIO_INPFILT_OFF |                                  /* Input filter disabled */
@@ -425,7 +400,7 @@ void SPI3_InitPins(void) { /* Function assigned for the Core #0 (ARM Cortex-M4) 
   IOCON_PinMuxSet(IOCON, PORT0_IDX, PIN13_IDX, port0_pin13_config); /* PORT0 PIN13 (coords: 48) is configured as FC3_TXD_SCL_MISO */
   const uint32_t port0_pin4_config = (
     IOCON_PIO_FUNC2 |                                        /* Pin is configured as FC3_SSEL2 */
-    IOCON_PIO_MODE_PULLUP |                                  /* Selects pull-up function */
+    IOCON_PIO_MODE_INACT |                                   /* No addition pin function */
     IOCON_PIO_INV_DI |                                       /* Input function is not inverted */
     IOCON_PIO_DIGITAL_EN |                                   /* Enables digital function */
     IOCON_PIO_INPFILT_OFF |                                  /* Input filter disabled */
@@ -572,7 +547,7 @@ void SPI5_InitPins(void) { /* Function assigned for the Core #0 (ARM Cortex-M4) 
 
   const uint32_t port0_pin18_config = (
     IOCON_PIO_FUNC1 |                                        /* Pin is configured as FC5_TXD_SCL_MISO */
-    IOCON_PIO_MODE_PULLUP |                                  /* Selects pull-up function */
+    IOCON_PIO_MODE_INACT |                                   /* No addition pin function */
     IOCON_PIO_INV_DI |                                       /* Input function is not inverted */
     IOCON_PIO_DIGITAL_EN |                                   /* Enables digital function */
     IOCON_PIO_INPFILT_OFF |                                  /* Input filter disabled */
@@ -582,7 +557,7 @@ void SPI5_InitPins(void) { /* Function assigned for the Core #0 (ARM Cortex-M4) 
   IOCON_PinMuxSet(IOCON, PORT0_IDX, PIN18_IDX, port0_pin18_config); /* PORT0 PIN18 (coords: 58) is configured as FC5_TXD_SCL_MISO */
   const uint32_t port0_pin19_config = (
     IOCON_PIO_FUNC1 |                                        /* Pin is configured as FC5_SCK */
-    IOCON_PIO_MODE_PULLUP |                                  /* Selects pull-up function */
+    IOCON_PIO_MODE_INACT |                                   /* No addition pin function */
     IOCON_PIO_INV_DI |                                       /* Input function is not inverted */
     IOCON_PIO_DIGITAL_EN |                                   /* Enables digital function */
     IOCON_PIO_INPFILT_OFF |                                  /* Input filter disabled */
@@ -592,7 +567,7 @@ void SPI5_InitPins(void) { /* Function assigned for the Core #0 (ARM Cortex-M4) 
   IOCON_PinMuxSet(IOCON, PORT0_IDX, PIN19_IDX, port0_pin19_config); /* PORT0 PIN19 (coords: 59) is configured as FC5_SCK */
   const uint32_t port0_pin20_config = (
     IOCON_PIO_FUNC1 |                                        /* Pin is configured as FC5_RXD_SDA_MOSI */
-    IOCON_PIO_MODE_PULLUP |                                  /* Selects pull-up function */
+    IOCON_PIO_MODE_INACT |                                   /* No addition pin function */
     IOCON_PIO_INV_DI |                                       /* Input function is not inverted */
     IOCON_PIO_DIGITAL_EN |                                   /* Enables digital function */
     IOCON_PIO_INPFILT_OFF |                                  /* Input filter disabled */
@@ -602,7 +577,7 @@ void SPI5_InitPins(void) { /* Function assigned for the Core #0 (ARM Cortex-M4) 
   IOCON_PinMuxSet(IOCON, PORT0_IDX, PIN20_IDX, port0_pin20_config); /* PORT0 PIN20 (coords: 60) is configured as FC5_RXD_SDA_MOSI */
   const uint32_t port1_pin1_config = (
     IOCON_PIO_FUNC4 |                                        /* Pin is configured as FC5_SSEL2 */
-    IOCON_PIO_MODE_PULLUP |                                  /* Selects pull-up function */
+    IOCON_PIO_MODE_INACT |                                   /* No addition pin function */
     IOCON_PIO_INV_DI |                                       /* Input function is not inverted */
     IOCON_PIO_DIGITAL_EN |                                   /* Enables digital function */
     IOCON_PIO_INPFILT_OFF |                                  /* Input filter disabled */

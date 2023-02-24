@@ -23,8 +23,8 @@
 #include "Driver_USART.h"
 
 // LPCXpresso54114 Arduino Connector Pin Defintion
-#define ARDUINO_UNO_D0  GPIO_PORT0(8U)  /* UART0: RX */
-#define ARDUINO_UNO_D1  GPIO_PORT0(9U)  /* UART0: TX */
+#define ARDUINO_UNO_D0  GPIO_PORT0(8U)  /* UART1: RX */
+#define ARDUINO_UNO_D1  GPIO_PORT0(9U)  /* UART1: TX */
 #define ARDUINO_UNO_D2  GPIO_PORT0(10U)
 #define ARDUINO_UNO_D3  GPIO_PORT1(12U)
 #define ARDUINO_UNO_D4  GPIO_PORT1(13U)
