@@ -92,12 +92,12 @@ extern ARM_DRIVER_USART Driver_USART1;
     BOARD_BootClockFROHF48M()
 #endif
 
-// Sensor Communication Idle Task and Argument
-#define SENSOR_IDLE_TASK    SMC_SetPowerModeVlpr
-#define SENSOR_IDLE_ARG     NULL
+// I2C/SPI Communication Idle Task and Argument
+#define COMM_IDLE_TASK      SMC_SetPowerModeVlpr
+#define COMM_IDLE_ARG       NULL
 
-/* @brief dummy arguement to Power Mode Wait Wrapper. */
-#define SMC NULL
+// Enter Sleep (Power Down)
+#define ENTER_SLEEP()       POWER_EnterSleep()
 
 /* @brief Kinetis style Wrapper API for Power Mode Wait (Wait for Interrupt). */
 status_t SMC_SetPowerModeWait(void *);

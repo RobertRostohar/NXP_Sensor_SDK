@@ -114,7 +114,7 @@ int app_main(void)
     }
 
     /*!  Set the task to be executed while waiting for I2C transactions to complete. */
-    FXLS8974_I2C_SetIdleTask(&fxls8974Driver, (registeridlefunction_t)SENSOR_IDLE_TASK, SENSOR_IDLE_ARG);
+    FXLS8974_I2C_SetIdleTask(&fxls8974Driver, (registeridlefunction_t)COMM_IDLE_TASK, COMM_IDLE_ARG);
 
     /*! Configure the FXLS8974 sensor. */
     status = FXLS8974_I2C_Configure(&fxls8974Driver, cFxls8974ConfigNormal);

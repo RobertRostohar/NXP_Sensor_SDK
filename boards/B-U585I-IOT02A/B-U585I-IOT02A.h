@@ -75,8 +75,11 @@ extern ARM_DRIVER_USART Driver_USART3;
 #define HOST_B_DRIVER       Driver_USART1
 #define HOST_B_SIGNAL_EVENT HOST_SignalEvent_t
 
-// Sensor Communication Idle Task and Argument
-#define SENSOR_IDLE_TASK    NULL
-#define SENSOR_IDLE_ARG     NULL
+// I2C/SPI Communication Idle Task and Argument
+#define COMM_IDLE_TASK      NULL
+#define COMM_IDLE_ARG       NULL
+
+// Enter Sleep (Power Down)
+#define ENTER_SLEEP()       HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI)
 
 #endif /* B_U585I_IOT02A_H_ */

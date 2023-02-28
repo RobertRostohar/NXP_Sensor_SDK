@@ -138,7 +138,7 @@ int app_main(void)
     PRINTF("\r\n Successfully Initiliazed Sensor\r\n");
 
     /*!  Set the task to be executed while waiting for I2C transactions to complete. */
-    MAG3110_I2C_SetIdleTask(&mag3110Driver, (registeridlefunction_t)SENSOR_IDLE_TASK, SENSOR_IDLE_ARG);
+    MAG3110_I2C_SetIdleTask(&mag3110Driver, (registeridlefunction_t)COMM_IDLE_TASK, COMM_IDLE_ARG);
 
     gMag3110DataReady = true; /* Since, INT for MAG3110 is by default High after Power ON, we have to directly read the
                                  first sample for MAG3110 to clear INT. */
@@ -157,7 +157,7 @@ int app_main(void)
               * The receipt of interrupt will indicate data is ready. */
         if (false == gMag3110DataReady)
         { /* Loop, if new sample is not available. */
-            SMC_SetPowerModeWait(SMC);
+            ENTER_SLEEP();
             continue;
         }
         else

@@ -110,8 +110,8 @@ int app_main(void)
     /*! We do not need to call MAG3110_I2C_Configure() in this case as we are going to read samples on demand.
      *  Instead we directly write register settings for One-Shot Mode... */
     deviceInfo.deviceInstance = MAG3110_I2C_INDEX;
-    deviceInfo.functionParam = SMC;
-    deviceInfo.idleFunction = (registeridlefunction_t)SMC_SetPowerModeWait;
+    deviceInfo.functionParam = COMM_IDLE_ARG;
+    deviceInfo.idleFunction = (registeridlefunction_t)COMM_IDLE_TASK;
     status = Sensor_I2C_Write(mag3110Driver.pCommDrv, &deviceInfo, mag3110Driver.slaveAddress, cMag3110ConfigOneShot);
     if (ARM_DRIVER_OK != status)
     {

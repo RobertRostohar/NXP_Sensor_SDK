@@ -115,7 +115,7 @@ int app_main(void)
     PRINTF("\r\n Successfully Initiliazed Sensor\r\n");
 
     /*!  Set the task to be executed while waiting for I2C transactions to complete. */
-    MPL3115_I2C_SetIdleTask(&mpl3115Driver, (registeridlefunction_t)SENSOR_IDLE_TASK, SENSOR_IDLE_ARG);
+    MPL3115_I2C_SetIdleTask(&mpl3115Driver, (registeridlefunction_t)COMM_IDLE_TASK, COMM_IDLE_ARG);
 
     /*! Configure the MPL3115 sensor. */
     status = MPL3115_I2C_Configure(&mpl3115Driver, cMpl3115ConfigFIFO);

@@ -154,7 +154,7 @@ int app_main(void)
     }
 
     /*!  Set the task to be executed while waiting for I2C transactions to complete. */
-    FXLS8962_I2C_SetIdleTask(&fxls8962Driver, (registeridlefunction_t)SENSOR_IDLE_TASK, SENSOR_IDLE_ARG);
+    FXLS8962_I2C_SetIdleTask(&fxls8962Driver, (registeridlefunction_t)COMM_IDLE_TASK, COMM_IDLE_ARG);
 
     /*! Configure the FXLS8962 sensor. */
     status = FXLS8962_I2C_Configure(&fxls8962Driver, cFxls8962ConfigNormal);
@@ -170,7 +170,7 @@ int app_main(void)
               * The receipt of interrupt will indicate data is ready. */
         if (false == gFxls8962DataReady)
         { /* Loop, if new sample is not available. */
-            SMC_SetPowerModeWait(SMC);
+            ENTER_SLEEP();
             continue;
         }
         else

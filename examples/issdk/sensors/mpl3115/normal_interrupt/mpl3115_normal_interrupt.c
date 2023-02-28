@@ -152,7 +152,7 @@ int app_main(void)
     PRINTF("\r\n Successfully Initiliazed Sensor\r\n");
 
     /*!  Set the task to be executed while waiting for I2C transactions to complete. */
-    MPL3115_I2C_SetIdleTask(&mpl3115Driver, (registeridlefunction_t)SENSOR_IDLE_TASK, SENSOR_IDLE_ARG);
+    MPL3115_I2C_SetIdleTask(&mpl3115Driver, (registeridlefunction_t)COMM_IDLE_TASK, COMM_IDLE_ARG);
 
     gMpl3115DataReady = false;
 
@@ -170,7 +170,7 @@ int app_main(void)
               * The receipt of interrupt will indicate data is ready. */
         if (false == gMpl3115DataReady)
         { /* Loop, if new sample is not available. */
-            SMC_SetPowerModeWait(SMC);
+            ENTER_SLEEP();
             continue;
         }
         else

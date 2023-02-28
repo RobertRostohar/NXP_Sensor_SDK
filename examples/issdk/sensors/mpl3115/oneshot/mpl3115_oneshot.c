@@ -111,8 +111,8 @@ int app_main(void)
     /*! We do not need to call MPL3115_I2C_Configure() in this case as we are going to read samples on demand.
      *  Instead we directly write register settings for One-Shot Mode... */
     deviceInfo.deviceInstance = MPL3115_I2C_INDEX;
-    deviceInfo.functionParam = SMC;
-    deviceInfo.idleFunction = (registeridlefunction_t)SMC_SetPowerModeWait;
+    deviceInfo.functionParam = COMM_IDLE_ARG;
+    deviceInfo.idleFunction = (registeridlefunction_t)COMM_IDLE_TASK;
     status = Sensor_I2C_Write(mpl3115Driver.pCommDrv, &deviceInfo, mpl3115Driver.slaveAddress, cMpl3115ConfigAltitude);
     if (ARM_DRIVER_OK != status)
     {

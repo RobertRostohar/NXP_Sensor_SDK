@@ -106,7 +106,7 @@ int app_main(void)
     PRINTF("\r\n Successfully Initiliazed Sensor\r\n");
 
     /*!  Set the task to be executed while waiting for I2C transactions to complete. */
-    MAG3110_I2C_SetIdleTask(&mag3110Driver, (registeridlefunction_t)SENSOR_IDLE_TASK, SENSOR_IDLE_ARG);
+    MAG3110_I2C_SetIdleTask(&mag3110Driver, (registeridlefunction_t)COMM_IDLE_TASK, COMM_IDLE_ARG);
 
     /*! Configure the MAG3110 sensor driver. */
     status = MAG3110_I2C_Configure(&mag3110Driver, cMag3110ConfigNormal);
