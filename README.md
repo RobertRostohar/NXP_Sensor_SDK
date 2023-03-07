@@ -34,7 +34,13 @@ The projects consists of:
 ### Software Prerequisites
  - [CMSIS-Toolbox 1.5.0](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/releases/tag/1.5.0) or later
  - Arm Compiler 6.18 or later
- - CMSIS software packs listed in the project `<sensor_example>.csolution.yml` file
+ - CMSIS packs required by examples  
+   Packs can be installed by executing the following `csolution` and `cpackget` commands:
+   ```
+   csolution list packs -s <sensor_example>.csolution.yml -m >packs.txt
+   cpackget add -f packs.txt
+   ```
+
 
 ### Building the examples
 
