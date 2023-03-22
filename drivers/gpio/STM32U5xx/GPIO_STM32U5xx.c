@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * $Date:        10. February 2023
+ * $Date:        22. March 2023
  * $Revision:    V1.0
  *
  * Project:      GPIO Driver for STM32U5xx
@@ -133,6 +133,14 @@ static void GPIO_ClockEnable (GPIO_TypeDef *gpio) {
 #endif
 }
 
+
+// EXTI Line Parameters
+static uint32_t EXTI_input[16] = {
+  LL_EXTI_EXTI_LINE0,  LL_EXTI_EXTI_LINE1,  LL_EXTI_EXTI_LINE2,  LL_EXTI_EXTI_LINE3,
+  LL_EXTI_EXTI_LINE4,  LL_EXTI_EXTI_LINE5,  LL_EXTI_EXTI_LINE6,  LL_EXTI_EXTI_LINE7,
+  LL_EXTI_EXTI_LINE8,  LL_EXTI_EXTI_LINE9,  LL_EXTI_EXTI_LINE10, LL_EXTI_EXTI_LINE11,
+  LL_EXTI_EXTI_LINE12, LL_EXTI_EXTI_LINE13, LL_EXTI_EXTI_LINE14, LL_EXTI_EXTI_LINE15,
+};
 
 // EXTIx IRQ Numbers
 static IRQn_Type const EXTIx_IRQn[16] = {
@@ -263,29 +271,36 @@ static int32_t GPIO_Setup (ARM_GPIO_Pin_t pin, ARM_GPIO_SignalEvent_t cb_event) 
   uint32_t         pin_port;
   uint32_t         pin_num;
   uint32_t         pin_mask;
-  int32_t          result = ARM_DRIVER_ERROR;
+  int32_t          result = ARM_DRIVER_OK;
 
   if (pin < GPIO_MAX_PINS) {
     pin_port = pin >> 4U;
     pin_num  = pin & 0x0FU;
     pin_mask = 1U << pin_num;
     gpio = GPIOx[pin_port];
-    if ((gpio != NULL) && ((cb_event == NULL) || (SignalEvent[pin_num] == NULL))) {
-      init.Pin       = pin_mask;
-      init.Mode      = GPIO_MODE_INPUT;
-      init.Pull      = GPIO_NOPULL;
-      init.Speed     = GPIO_SPEED_FREQ_LOW;
-      init.Alternate = 0U;
-      GPIO_ClockEnable(gpio);
-      HAL_GPIO_WritePin(gpio, (uint16_t)pin_mask, GPIO_PIN_RESET);
-      HAL_GPIO_Init(gpio, &init);
-      if (cb_event != NULL) {
-        SignalEvent[pin_num] = cb_event;
-        SignalPort [pin_num] = (uint8_t)pin_port;
-        NVIC_EnableIRQ(EXTIx_IRQn[pin_num]);
+    if (gpio != NULL) {
+      if ((cb_event == NULL) || (SignalEvent[pin_num] == NULL)) {
+        init.Pin       = pin_mask;
+        init.Mode      = GPIO_MODE_INPUT;
+        init.Pull      = GPIO_NOPULL;
+        init.Speed     = GPIO_SPEED_FREQ_LOW;
+        init.Alternate = 0U;
+        GPIO_ClockEnable(gpio);
+        HAL_GPIO_WritePin(gpio, (uint16_t)pin_mask, GPIO_PIN_RESET);
+        HAL_GPIO_Init(gpio, &init);
+        if (cb_event != NULL) {
+          SignalEvent[pin_num] = cb_event;
+          SignalPort [pin_num] = (uint8_t)pin_port;
+          NVIC_EnableIRQ(EXTIx_IRQn[pin_num]);
+        }
+      } else {
+        result = ARM_DRIVER_ERROR;
       }
-      result = ARM_DRIVER_OK;
+    } else {
+      result = ARM_GPIO_ERROR_PIN;
     }
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
   }
 
   return result;
@@ -296,20 +311,29 @@ static int32_t GPIO_SetDirection (ARM_GPIO_Pin_t pin, ARM_GPIO_DIRECTION directi
   GPIO_TypeDef *gpio;
   uint32_t      pin_port;
   uint32_t      pin_mask;
-  int32_t       result = ARM_DRIVER_ERROR;
+  int32_t       result = ARM_DRIVER_OK;
 
   if (pin < GPIO_MAX_PINS) {
     pin_port = pin >> 4U;
     pin_mask = 1U << (pin & 0x0FU);
     gpio = GPIOx[pin_port];
     if (gpio != NULL) {
-      if (direction == ARM_GPIO_OUTPUT) {
-        LL_GPIO_SetPinMode(gpio, pin_mask, LL_GPIO_MODE_OUTPUT);
-      } else {
-        LL_GPIO_SetPinMode(gpio, pin_mask, LL_GPIO_MODE_INPUT);
+      switch (direction) {
+        case ARM_GPIO_INPUT:
+          LL_GPIO_SetPinMode(gpio, pin_mask, LL_GPIO_MODE_INPUT);
+          break;
+        case ARM_GPIO_OUTPUT:
+          LL_GPIO_SetPinMode(gpio, pin_mask, LL_GPIO_MODE_OUTPUT);
+          break;
+        default:
+          result = ARM_DRIVER_ERROR_PARAMETER;
+          break;
       }
-      result = ARM_DRIVER_OK;
+    } else {
+      result = ARM_GPIO_ERROR_PIN;
     }
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
   }
 
   return result;
@@ -320,20 +344,29 @@ static int32_t GPIO_SetOutputMode (ARM_GPIO_Pin_t pin, ARM_GPIO_OUTPUT_MODE mode
   GPIO_TypeDef *gpio;
   uint32_t      pin_port;
   uint32_t      pin_mask;
-  int32_t       result = ARM_DRIVER_ERROR;
+  int32_t       result = ARM_DRIVER_OK;
 
   if (pin < GPIO_MAX_PINS) {
     pin_port = pin >> 4U;
     pin_mask = 1U << (pin & 0x0FU);
     gpio = GPIOx[pin_port];
     if (gpio != NULL) {
-      if (mode == ARM_GPIO_OPEN_DRAIN) {
-        LL_GPIO_SetPinOutputType(gpio, pin_mask, LL_GPIO_OUTPUT_OPENDRAIN);
-      } else {
-        LL_GPIO_SetPinOutputType(gpio, pin_mask, LL_GPIO_OUTPUT_PUSHPULL);
+      switch (mode) {
+        case ARM_GPIO_PUSH_PULL:
+          LL_GPIO_SetPinOutputType(gpio, pin_mask, LL_GPIO_OUTPUT_PUSHPULL);
+          break;
+        case ARM_GPIO_OPEN_DRAIN:
+          LL_GPIO_SetPinOutputType(gpio, pin_mask, LL_GPIO_OUTPUT_OPENDRAIN);
+          break;
+        default:
+          result = ARM_DRIVER_ERROR_PARAMETER;
+          break;
       }
-      result = ARM_DRIVER_OK;
+    } else {
+      result = ARM_GPIO_ERROR_PIN;
     }
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
   }
 
   return result;
@@ -344,7 +377,7 @@ static int32_t GPIO_SetPullResistor (ARM_GPIO_Pin_t pin, ARM_GPIO_PULL_RESISTOR 
   GPIO_TypeDef *gpio;
   uint32_t      pin_port;
   uint32_t      pin_mask;
-  int32_t       result = ARM_DRIVER_ERROR;
+  int32_t       result = ARM_DRIVER_OK;
 
   if (pin < GPIO_MAX_PINS) {
     pin_port = pin >> 4U;
@@ -354,20 +387,22 @@ static int32_t GPIO_SetPullResistor (ARM_GPIO_Pin_t pin, ARM_GPIO_PULL_RESISTOR 
       switch (resistor) {
         case ARM_GPIO_PULL_NONE:
           LL_GPIO_SetPinPull(gpio, pin_mask, LL_GPIO_PULL_NO);
-          result = ARM_DRIVER_OK;
           break;
         case ARM_GPIO_PULL_UP:
           LL_GPIO_SetPinPull(gpio, pin_mask, LL_GPIO_PULL_UP);
-          result = ARM_DRIVER_OK;
           break;
         case ARM_GPIO_PULL_DOWN:
           LL_GPIO_SetPinPull(gpio, pin_mask, LL_GPIO_PULL_DOWN);
-          result = ARM_DRIVER_OK;
           break;
         default:
+          result = ARM_DRIVER_ERROR_PARAMETER;
           break;
       }
+    } else {
+      result = ARM_GPIO_ERROR_PIN;
     }
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
   }
 
   return result;
@@ -379,7 +414,7 @@ static int32_t GPIO_SetEventTrigger (ARM_GPIO_Pin_t pin, ARM_GPIO_EVENT_TRIGGER 
   uint32_t      pin_port;
   uint32_t      pin_num;
   uint32_t      pin_mask;
-  int32_t       result = ARM_DRIVER_ERROR;
+  int32_t       result = ARM_DRIVER_OK;
 
   if (pin < GPIO_MAX_PINS) {
     pin_port = pin >> 4U;
@@ -392,41 +427,42 @@ static int32_t GPIO_SetEventTrigger (ARM_GPIO_Pin_t pin, ARM_GPIO_EVENT_TRIGGER 
           if (SignalPort[pin_num] == (uint8_t)pin_port) {
             LL_EXTI_DisableFallingTrig_0_31(pin_mask);
             LL_EXTI_EnableRisingTrig_0_31(pin_mask);
-            LL_EXTI_DisableIT_0_31(pin_num);
-            result = ARM_DRIVER_OK;
+            LL_EXTI_DisableIT_0_31(pin_mask);
           }
           break;
         case ARM_GPIO_TRIGGER_RISING_EDGE:
           if (SignalPort[pin_num] == (uint8_t)pin_port) {
-            LL_EXTI_SetEXTISource(pin_port, (8U*(pin_num & 0x03U)) | (pin_num >> 2U));
+            LL_EXTI_SetEXTISource(pin_port, EXTI_input[pin_num]);
             LL_EXTI_DisableFallingTrig_0_31(pin_mask);
             LL_EXTI_EnableRisingTrig_0_31(pin_mask);
-            LL_EXTI_EnableIT_0_31(pin_num);
-            result = ARM_DRIVER_OK;
+            LL_EXTI_EnableIT_0_31(pin_mask);
           }
           break;
         case ARM_GPIO_TRIGGER_FALLING_EDGE:
           if (SignalPort[pin_num] == (uint8_t)pin_port) {
-            LL_EXTI_SetEXTISource(pin_port, (8U*(pin_num & 0x03U)) | (pin_num >> 2U));
+            LL_EXTI_SetEXTISource(pin_port, EXTI_input[pin_num]);
             LL_EXTI_DisableRisingTrig_0_31(pin_mask);
             LL_EXTI_EnableFallingTrig_0_31(pin_mask);
-            LL_EXTI_EnableIT_0_31(pin_num);
-            result = ARM_DRIVER_OK;
+            LL_EXTI_EnableIT_0_31(pin_mask);
           }
           break;
         case ARM_GPIO_TRIGGER_EITHER_EDGE:
           if (SignalPort[pin_num] == (uint8_t)pin_port) {
-            LL_EXTI_SetEXTISource(pin_port, (8U*(pin_num & 0x03U)) | (pin_num >> 2U));
+            LL_EXTI_SetEXTISource(pin_port, EXTI_input[pin_num]);
             LL_EXTI_EnableRisingTrig_0_31(pin_mask);
             LL_EXTI_EnableFallingTrig_0_31(pin_mask);
-            LL_EXTI_EnableIT_0_31(pin_num);
-            result = ARM_DRIVER_OK;
+            LL_EXTI_EnableIT_0_31(pin_mask);
           }
           break;
         default:
+          result = ARM_DRIVER_ERROR_PARAMETER;
           break;
       }
+    } else {
+      result = ARM_GPIO_ERROR_PIN;
     }
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
   }
 
   return result;

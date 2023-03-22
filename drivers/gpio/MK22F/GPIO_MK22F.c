@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * $Date:        10. February 2023
+ * $Date:        20. March 2023
  * $Revision:    V1.0
  *
  * Project:      GPIO Driver for Kinetis K22F
@@ -33,12 +33,103 @@
 // Pin mapping
 //   0 ..  31: PORTA 0..31
 //  32 ..  63: PORTB 0..31
-//  64 ..  95: PORTC 0..31
+//  64 ..  91: PORTC 0..31
 //  96 .. 127: PORTD 0..31
 // 128 .. 159: PORTE 0..31
 
 #define GPIO_MAX_PORTS          5U
 #define GPIO_MAX_PINS           160U
+
+#if   defined(CPU_MK22FN512VDC12)
+// Pin mapping: XFBGA 121 package
+static const uint32_t PinMapping[GPIO_MAX_PORTS] = {
+  0x200FFC3FU,  // PORTA  0.. 5, 10..19, 29
+  0x00FF0FCFU,  // PORTB  0.. 3,  6..11, 16..23
+  0x000FFFFFU,  // PORTC  0..19
+  0x0000FFFFU,  // PORTD  0..15
+  0x0700007FU   // PORTE  0.. 6, 24..26
+};
+
+#elif defined(CPU_MK22FN256VDC12)
+// Pin mapping: XFBGA 121 package
+static const uint32_t PinMapping[GPIO_MAX_PORTS] = {
+  0x000FF03FU,  // PORTA  0.. 5, 12..19
+  0x00FF0FCFU,  // PORTB  0.. 3,  6..11, 16..23
+  0x000FFFFFU,  // PORTC  0..19
+  0x000000FFU,  // PORTD  0.. 7
+  0x0700007FU   // PORTE  0.. 6, 24..26
+};
+
+#elif defined(CPU_MK22FN128VDC10)
+// Pin mapping: XFBGA 121 package
+static const uint32_t PinMapping[GPIO_MAX_PORTS] = {
+  0x000FF03FU,  // PORTA  0.. 5, 12..19
+  0x00FF0F0FU,  // PORTB  0.. 3,  8..11, 16..23
+  0x0007FFFFU,  // PORTC  0..18
+  0x000000FFU,  // PORTD  0.. 7
+  0x0700007FU   // PORTE  0.. 6, 24..26
+};
+
+#elif defined(CPU_MK22FN512VLL12) || \
+      defined(CPU_MK22FN256VLL12) || \
+      defined(CPU_MK22FN128VLL10)
+// Pin mapping: LQFP 100 package
+static const uint32_t PinMapping[GPIO_MAX_PORTS] = {
+  0x000FF03FU,  // PORTA  0.. 5, 12..19
+  0x00FF0E0FU,  // PORTB  0.. 3,  9..11, 16..23
+  0x0007FFFFU,  // PORTC  0..18
+  0x000000FFU,  // PORTD  0.. 7
+  0x0700007FU   // PORTE  0.. 6, 24..26
+};
+
+#elif defined(CPU_MK22FN512VFX12)
+// Pin mapping: QFN 88 package
+static const uint32_t PinMapping[GPIO_MAX_PORTS] = {
+  0x000FF03FU,  // PORTA  0.. 5, 12..19
+  0x000F0FCFU,  // PORTB  0.. 3,  6..11, 16..19
+  0x000FF1FFU,  // PORTC  0.. 8, 12..19
+  0x000000FFU,  // PORTD  0.. 7
+  0x0000007FU   // PORTE  0.. 6
+};
+
+#elif defined(CPU_MK22FN512CAP12)
+// Pin mapping: WLCSP 80 package
+static const uint32_t PinMapping[GPIO_MAX_PORTS] = {
+  0x000FF03FU,  // PORTA  0.. 5, 12..19
+  0x000F0C0FU,  // PORTB  0.. 3, 10..11, 16..19
+  0x00030FFFU,  // PORTC  0..11, 16..17
+  0x000000FFU,  // PORTD  0.. 7
+  0x0000003FU   // PORTE  0.. 5
+};
+
+#elif defined(CPU_MK22FN512VLH12) || \
+      defined(CPU_MK22FN256VLH12) || \
+      defined(CPU_MK22FN128VLH10) || \
+      defined(CPU_MK22FN512VMP12) || \
+      defined(CPU_MK22FN256VMP12) || \
+      defined(CPU_MK22FN128VMP10) || \
+      defined(CPU_MK22FN256CAH12) || \
+      defined(CPU_MK22FN128CAH12)
+// Pin mapping: LQFP/MAPBGA/WLSCP 64 package
+static const uint32_t PinMapping[GPIO_MAX_PORTS] = {
+  0x000C303FU,  // PORTA  0.. 5, 12..13, 18..19
+  0x000F000FU,  // PORTB  0.. 3, 16..19
+  0x00000FFFU,  // PORTC  0..11
+  0x000000FFU,  // PORTD  0.. 7
+  0x0000003FU   // PORTE  0.. 1
+};
+
+#else
+// Pin mapping: default (all pins)
+static const uint32_t PinMapping[GPIO_MAX_PORTS] = {
+  0xFFFFFFFFU,  // PORTA  0..31
+  0xFFFFFFFFU,  // PORTB  0..31
+  0xFFFFFFFFU,  // PORTC  0..31
+  0xFFFFFFFFU,  // PORTD  0..31
+  0xFFFFFFFFU   // PORTE  0..31
+};
+#endif
+
 
 // Default Pin Configuration
 static const port_pin_config_t DefaultPinConfig = {
@@ -144,20 +235,23 @@ static int32_t GPIO_Setup (ARM_GPIO_Pin_t pin, ARM_GPIO_SignalEvent_t cb_event) 
   GPIO_Type *gpio;
   uint32_t   pin_port;
   uint32_t   pin_num;
-  int32_t    result = ARM_DRIVER_ERROR;
+  int32_t    result = ARM_DRIVER_OK;
 
-  if (pin < GPIO_MAX_PINS) {
-    pin_port = pin >> 5U;
-    pin_num  = pin & 0x1FU;
+  pin_port = pin >> 5U;
+  pin_num  = pin & 0x1FU;
+  if ((PinMapping[pin_port] & (1U << pin_num)) != 0U) {
     port = PortBase[pin_port];
     gpio = GPIOBase[pin_port];
-    SignalEvent[pin_port][pin_num] = cb_event;
     CLOCK_EnableClock(ClockIP[pin_port]);
     PORT_SetPinInterruptConfig(port, pin_num, kPORT_InterruptOrDMADisabled);
     GPIO_PinSetDirection(gpio, pin_num, kGPIO_DigitalInput);
     PORT_SetPinConfig(port, pin_num, &DefaultPinConfig);
-    NVIC_EnableIRQ(PortIRQn[pin_port]);
-    result = ARM_DRIVER_OK;
+    if (cb_event != NULL) {
+      SignalEvent[pin_port][pin_num] = cb_event;
+      NVIC_EnableIRQ(PortIRQn[pin_port]);
+    }
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
   }
 
   return result;
@@ -168,18 +262,25 @@ static int32_t GPIO_SetDirection (ARM_GPIO_Pin_t pin, ARM_GPIO_DIRECTION directi
   GPIO_Type *gpio;
   uint32_t   pin_port;
   uint32_t   pin_num;
-  int32_t    result = ARM_DRIVER_ERROR;
+  int32_t    result = ARM_DRIVER_OK;
 
-  if (pin < GPIO_MAX_PINS) {
-    pin_port = pin >> 5U;
-    pin_num  = pin & 0x1FU;
+  pin_port = pin >> 5U;
+  pin_num  = pin & 0x1FU;
+  if ((PinMapping[pin_port] & (1U << pin_num)) != 0U) {
     gpio = GPIOBase[pin_port];
-    if (direction == ARM_GPIO_OUTPUT) {
-      GPIO_PinSetDirection(gpio, pin_num, kGPIO_DigitalOutput);
-    } else {
-      GPIO_PinSetDirection(gpio, pin_num, kGPIO_DigitalInput);
+    switch (direction) {
+      case ARM_GPIO_INPUT:
+        GPIO_PinSetDirection(gpio, pin_num, kGPIO_DigitalInput);
+        break;
+      case ARM_GPIO_OUTPUT:
+        GPIO_PinSetDirection(gpio, pin_num, kGPIO_DigitalOutput);
+        break;
+      default:
+        result = ARM_DRIVER_ERROR_PARAMETER;
+        break;
     }
-    result = ARM_DRIVER_OK;
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
   }
  
   return result;
@@ -190,18 +291,25 @@ static int32_t GPIO_SetOutputMode (ARM_GPIO_Pin_t pin, ARM_GPIO_OUTPUT_MODE mode
   PORT_Type *port;
   uint32_t   pin_port;
   uint32_t   pin_num;
-  int32_t    result = ARM_DRIVER_ERROR;
+  int32_t    result = ARM_DRIVER_OK;
 
-  if (pin < GPIO_MAX_PINS) {
-    pin_port = pin >> 5U;
-    pin_num  = pin & 0x1FU;
+  pin_port = pin >> 5U;
+  pin_num  = pin & 0x1FU;
+  if ((PinMapping[pin_port] & (1U << pin_num)) != 0U) {
     port = PortBase[pin_port];
-    if (mode == ARM_GPIO_OPEN_DRAIN) {
-      PORT_EnablePinOpenDrain(port, pin_num, true);
-    } else {
-      PORT_EnablePinOpenDrain(port, pin_num, false);
+    switch (mode) {
+      case ARM_GPIO_PUSH_PULL:
+        PORT_EnablePinOpenDrain(port, pin_num, false);
+        break;
+      case ARM_GPIO_OPEN_DRAIN:
+        PORT_EnablePinOpenDrain(port, pin_num, true);
+        break;
+      default:
+        result = ARM_DRIVER_ERROR_PARAMETER;
+        break;
     }
-    result = ARM_DRIVER_OK;
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
   }
  
   return result;
@@ -212,28 +320,28 @@ static int32_t GPIO_SetPullResistor (ARM_GPIO_Pin_t pin, ARM_GPIO_PULL_RESISTOR 
   PORT_Type *port;
   uint32_t   pin_port;
   uint32_t   pin_num;
-  int32_t    result = ARM_DRIVER_ERROR;
+  int32_t    result = ARM_DRIVER_OK;
 
-  if (pin < GPIO_MAX_PINS) {
-    pin_port = pin >> 5U;
-    pin_num  = pin & 0x1FU;
+  pin_port = pin >> 5U;
+  pin_num  = pin & 0x1FU;
+  if ((PinMapping[pin_port] & (1U << pin_num)) != 0U) {
     port = PortBase[pin_port];
     switch (resistor) {
       case ARM_GPIO_PULL_NONE:
         PORT_SetPinPullConfig(port, pin_num, kPORT_PullDisable);
-        result = ARM_DRIVER_OK;
         break;
       case ARM_GPIO_PULL_UP:
-        PORT_SetPinPullConfig(port, pin_num, kPORT_PullDown);
-        result = ARM_DRIVER_OK;
+        PORT_SetPinPullConfig(port, pin_num, kPORT_PullUp);
         break;
       case ARM_GPIO_PULL_DOWN:
-        PORT_SetPinPullConfig(port, pin_num, kPORT_PullUp);
-        result = ARM_DRIVER_OK;
+        PORT_SetPinPullConfig(port, pin_num, kPORT_PullDown);
         break;
       default:
+        result = ARM_DRIVER_ERROR_PARAMETER;
         break;
     }
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
   }
  
   return result;
@@ -244,32 +352,31 @@ static int32_t GPIO_SetEventTrigger (ARM_GPIO_Pin_t pin, ARM_GPIO_EVENT_TRIGGER 
   PORT_Type *port;
   uint32_t   pin_port;
   uint32_t   pin_num;
-  int32_t    result = ARM_DRIVER_ERROR;
+  int32_t    result = ARM_DRIVER_OK;
 
-  if (pin < GPIO_MAX_PINS) {
-    pin_port = pin >> 5U;
-    pin_num  = pin & 0x1FU;
+  pin_port = pin >> 5U;
+  pin_num  = pin & 0x1FU;
+  if ((PinMapping[pin_port] & (1U << pin_num)) != 0U) {
     port = PortBase[pin_port];
     switch (trigger) {
       case ARM_GPIO_TRIGGER_NONE:
         PORT_SetPinInterruptConfig(port, pin_num, kPORT_InterruptOrDMADisabled);
-        result = ARM_DRIVER_OK;
         break;
       case ARM_GPIO_TRIGGER_RISING_EDGE:
         PORT_SetPinInterruptConfig(port, pin_num, kPORT_InterruptRisingEdge);
-        result = ARM_DRIVER_OK;
         break;
       case ARM_GPIO_TRIGGER_FALLING_EDGE:
         PORT_SetPinInterruptConfig(port, pin_num, kPORT_InterruptFallingEdge);
-        result = ARM_DRIVER_OK;
         break;
       case ARM_GPIO_TRIGGER_EITHER_EDGE:
         PORT_SetPinInterruptConfig(port, pin_num, kPORT_InterruptEitherEdge);
-        result = ARM_DRIVER_OK;
         break;
       default:
+        result = ARM_DRIVER_ERROR_PARAMETER;
         break;
     }
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
   }
  
   return result;

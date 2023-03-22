@@ -54,14 +54,15 @@ static inline void IOCON_EnablePinOpenDrain (IOCON_Type *base, uint32_t port, ui
  * @param   port        : GPIO port to mux
  * @param   pin         : GPIO pin to mux
  * @param   value       : PORT pin pull value
- *        - IOCON_MODE_INACT    = 0U - Internal pull-up/down resistor is disabled.
- *        - IOCON_MODE_PULLDOWN = 1U - Internal pull-down resistor is enabled.
- *        - IOCON_MODE_PULLUP   = 2U - Internal pull-up resistor is enabled.
- *        - IOCON_MODE_REPEATER = 3U - Internal repeater mode.
+ *  - IOCON_MODE_INACT    = (0x0 << IOCON_PIO_MODE_SHIFT) - Internal pull-up/down resistor is disabled.
+ *  - IOCON_MODE_PULLDOWN = (0x1 << IOCON_PIO_MODE_SHIFT) - Internal pull-down resistor is enabled.
+ *  - IOCON_MODE_PULLUP   = (0x2 << IOCON_PIO_MODE_SHIFT  - Internal pull-up resistor is enabled.
+ *  - IOCON_MODE_REPEATER = (0x3 << IOCON_PIO_MODE_SHIFT) - Internal repeater mode.
  */
 static inline void IOCON_SetPinPullConfig (IOCON_Type *base, uint32_t port, uint32_t pin, uint32_t value)
 {
-    base->PIO[port][pin] = (base->PIO[port][pin] & ~IOCON_PIO_MODE_MASK) | IOCON_PIO_FUNC(value);
+    value = value >> IOCON_PIO_MODE_SHIFT;
+    base->PIO[port][pin] = (base->PIO[port][pin] & ~IOCON_PIO_MODE_MASK) | IOCON_PIO_MODE(value);
 }
 
 #if defined(__cplusplus)

@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * $Date:        9. February 2023
+ * $Date:        2. March 2023
  * $Revision:    V1.0
  *
  * Project:      GPIO Driver for LPC5411x
@@ -33,17 +33,49 @@
 
 
 // Pin mapping
-//    0 .. 22: PORT0  0 .. 22
-//   23 .. 26: PORT0 23 .. 26 (I2C Support: Open-drain, No pull-resistor)
-//   27 .. 28: not mapped
-//   29 .. 31: PORT0 29 .. 31 (with ADC input)
-//   32 .. 40: PORT1  0 ..  8 (with ADC input)
-//   41 .. 49: PORT1  9 .. 17
+//    0 .. 31: PORT0  0 .. 31  [23..26: Open-drain only, No pull-resistor]
+//   32 .. 63: PORT1  0 .. 31
 
 #define GPIO_MAX_PORTS          2U
-#define GPIO_MAX_PINS           50U
+#define GPIO_MAX_PINS           64U
 
-#define GPIO_MAX_IRQS           8U
+#if   defined(CPU_LPC54113J128BD64)         || \
+      defined(CPU_LPC54113J256BD64)         || \
+      defined(CPU_LPC54114J256BD64_cm0plus) || \
+      defined(CPU_LPC54114J256BD64_cm4)
+// Pin mapping: LQFP64 package
+static const uint32_t PinMapping[GPIO_MAX_PORTS] = {
+  0xE7FFFFFFU,  // PORT0  0..26, 29..31
+  0x0003FFFFU   // PORT1  0..17
+};
+
+#elif defined(CPU_LPC54113J256UK49)         || \
+      defined(CPU_LPC54114J256UK49_cm0plus) || \
+      defined(CPU_LPC54114J256UK49_cm4)
+// Pin mapping: WLCSP49 package
+static const uint32_t PinMapping[GPIO_MAX_PORTS] = {
+  0xE7FFFFF3U,  // PORT0  0.. 1,  4..26, 29..31
+  0x000001FFU   // PORT1  0.. 8
+};
+
+#else
+// Pin mapping: default (all pins)
+static const uint32_t PinMapping[GPIO_MAX_PORTS] = {
+  0xFFFFFFFFU,  // PORT0  0..31
+  0xFFFFFFFFU   // PORT1  0..31
+};
+#endif
+
+// Open-drain only pins
+static const uint32_t PinOpenDrainOnly[GPIO_MAX_PORTS] = {
+  0x07800000U,  // PORT0 23..26
+  0x00000000U
+};
+// No pull-resistor pins
+static const uint32_t PinNoPullResistor[GPIO_MAX_PORTS] = {
+  0x07800000U,  // PORT0 23..26
+  0x00000000U
+};
 
 // Default Pin Configuration
 static const uint32_t DefaultPinConfig = (
@@ -56,11 +88,25 @@ static const uint32_t DefaultPinConfig = (
   IOCON_PIO_OD(0U)              // Open drain    : Disabled
 );
 
+
+#if   defined(CPU_LPC54114J256BD64_cm0plus) || \
+      defined(CPU_LPC54114J256UK49_cm0plus)
+#define GPIO_MAX_IRQS           4U
+
+// PINx IRQ Numbers
+static IRQn_Type const PinIRQn[GPIO_MAX_IRQS] = {
+  PIN_INT0_IRQn, PIN_INT1_IRQn, PIN_INT2_IRQn, PIN_INT3_IRQn
+};
+#else
+#define GPIO_MAX_IRQS           8U
+
 // PINx IRQ Numbers
 static IRQn_Type const PinIRQn[GPIO_MAX_IRQS] = {
   PIN_INT0_IRQn, PIN_INT1_IRQn, PIN_INT2_IRQn, PIN_INT3_IRQn,
   PIN_INT4_IRQn, PIN_INT5_IRQn, PIN_INT6_IRQn, PIN_INT7_IRQn
 };
+#endif
+
 
 // Clock IP Names
 static clock_ip_name_t const ClockIP[GPIO_MAX_PORTS] = {
@@ -77,9 +123,6 @@ static ARM_GPIO_SignalEvent_t SignalEvent[GPIO_MAX_IRQS];
 // Signal Event pins
 static uint8_t SignalEventPin[GPIO_MAX_IRQS];
 
-// Pin Interrupt numbers
-static uint8_t PinIntNum[GPIO_MAX_PINS];
-
 
 // Common PIN_INTx IRQ Handler
 static void PIN_INTx_IRQHandler (uint32_t num) {
@@ -87,11 +130,11 @@ static void PIN_INTx_IRQHandler (uint32_t num) {
 
   if (PINT_PinInterruptGetRiseFlag(PINT, (pint_pin_int_t)num)) {
     PINT_PinInterruptClrRiseFlag(PINT, (pint_pin_int_t)num);
-    event = ARM_GPIO_EVENT_RISING_EDGE;
+    event |= ARM_GPIO_EVENT_RISING_EDGE;
   }
   if (PINT_PinInterruptGetFallFlag(PINT, (pint_pin_int_t)num)) {
     PINT_PinInterruptClrFallFlag(PINT, (pint_pin_int_t)num);
-    event = ARM_GPIO_EVENT_FALLING_EDGE;
+    event |= ARM_GPIO_EVENT_FALLING_EDGE;
   }
 
   if (event != 0U) {
@@ -140,28 +183,32 @@ static int32_t GPIO_Setup (ARM_GPIO_Pin_t pin, ARM_GPIO_SignalEvent_t cb_event) 
   uint32_t pin_port;
   uint32_t pin_num;
   uint32_t n;
-  int32_t  result = ARM_DRIVER_ERROR;
+  int32_t  result = ARM_DRIVER_OK;
 
-  if ((pin < GPIO_MAX_PINS) && ((cb_event == NULL) || (SignalEventCount < GPIO_MAX_IRQS))) {
-    pin_port = pin >> 5U;
-    pin_num  = pin & 0x1FU;
-    CLOCK_EnableClock(ClockIP[pin_port]);
-    CLOCK_EnableClock(kCLOCK_Iocon);
-    GPIO_PinSetDirection(GPIO, pin_port, pin_num, kGPIO_DigitalInput);
-    IOCON_PinMuxSet(IOCON, (uint8_t)pin_port, (uint8_t)pin_num, DefaultPinConfig);
-    if (cb_event != NULL) {
-      n = SignalEventCount++;
-      PinIntNum[pin] = (uint8_t)n;
-      SignalEvent[n] = cb_event;
-      SignalEventPin[n] = (uint8_t)pin;
-      CLOCK_EnableClock(kCLOCK_InputMux);
-      INPUTMUX_AttachSignal(INPUTMUX, (pint_pin_int_t)n, pin + (PINTSEL_PMUX_ID << PMUX_SHIFT));
-      CLOCK_DisableClock(kCLOCK_InputMux);
-      CLOCK_EnableClock(kCLOCK_Pint);
-      PINT_PinInterruptConfig(PINT, (pint_pin_int_t)n, kPINT_PinIntEnableNone, NULL);
-      NVIC_EnableIRQ(PinIRQn[n]);
+  pin_port = pin >> 5U;
+  pin_num  = pin & 0x1FU;
+  if ((PinMapping[pin_port] & (1U << pin_num)) != 0U) {
+    if ((cb_event == NULL) || (SignalEventCount < GPIO_MAX_IRQS)) {
+      CLOCK_EnableClock(ClockIP[pin_port]);
+      CLOCK_EnableClock(kCLOCK_Iocon);
+      GPIO_PinSetDirection(GPIO, pin_port, pin_num, kGPIO_DigitalInput);
+      IOCON_PinMuxSet(IOCON, (uint8_t)pin_port, (uint8_t)pin_num, DefaultPinConfig);
+      if (cb_event != NULL) {
+        n = SignalEventCount++;
+        SignalEvent[n] = cb_event;
+        SignalEventPin[n] = (uint8_t)pin;
+        CLOCK_EnableClock(kCLOCK_InputMux);
+        INPUTMUX_AttachSignal(INPUTMUX, (pint_pin_int_t)n, pin + (PINTSEL_PMUX_ID << PMUX_SHIFT));
+        CLOCK_DisableClock(kCLOCK_InputMux);
+        CLOCK_EnableClock(kCLOCK_Pint);
+        PINT_PinInterruptConfig(PINT, (pint_pin_int_t)n, kPINT_PinIntEnableNone, NULL);
+        NVIC_EnableIRQ(PinIRQn[n]);
+      }
+    } else {
+      result = ARM_DRIVER_ERROR;
     }
-    result = ARM_DRIVER_OK;
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
   }
 
   return result;
@@ -171,17 +218,24 @@ static int32_t GPIO_Setup (ARM_GPIO_Pin_t pin, ARM_GPIO_SignalEvent_t cb_event) 
 static int32_t GPIO_SetDirection (ARM_GPIO_Pin_t pin, ARM_GPIO_DIRECTION direction) {
   uint32_t pin_port;
   uint32_t pin_num;
-  int32_t  result = ARM_DRIVER_ERROR;
+  int32_t  result = ARM_DRIVER_OK;
 
-  if (pin < GPIO_MAX_PINS) {
-    pin_port = pin >> 5U;
-    pin_num  = pin & 0x1FU;
-    if (direction == ARM_GPIO_OUTPUT) {
-      GPIO_PinSetDirection(GPIO, pin_port, pin_num, kGPIO_DigitalOutput);
-    } else {
-      GPIO_PinSetDirection(GPIO, pin_port, pin_num, kGPIO_DigitalInput);
+  pin_port = pin >> 5U;
+  pin_num  = pin & 0x1FU;
+  if ((PinMapping[pin_port] & (1U << pin_num)) != 0U) {
+    switch (direction) {
+      case ARM_GPIO_INPUT:
+        GPIO_PinSetDirection(GPIO, pin_port, pin_num, kGPIO_DigitalInput);
+        break;
+      case ARM_GPIO_OUTPUT:
+        GPIO_PinSetDirection(GPIO, pin_port, pin_num, kGPIO_DigitalOutput);
+        break;
+      default:
+        result = ARM_DRIVER_ERROR_PARAMETER;
+        break;
     }
-    result = ARM_DRIVER_OK;
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
   }
 
   return result;
@@ -191,17 +245,32 @@ static int32_t GPIO_SetDirection (ARM_GPIO_Pin_t pin, ARM_GPIO_DIRECTION directi
 static int32_t GPIO_SetOutputMode (ARM_GPIO_Pin_t pin, ARM_GPIO_OUTPUT_MODE mode) {
   uint32_t pin_port;
   uint32_t pin_num;
-  int32_t  result = ARM_DRIVER_ERROR;
+  uint32_t pin_mask;
+  int32_t  result = ARM_DRIVER_OK;
 
-  if (pin < GPIO_MAX_PINS) {
-    pin_port = pin >> 5U;
-    pin_num  = pin & 0x1FU;
-    if (mode == ARM_GPIO_OPEN_DRAIN) {
-      IOCON_EnablePinOpenDrain(IOCON, pin_port, pin_num, true);
-    } else {
-      IOCON_EnablePinOpenDrain(IOCON, pin_port, pin_num, false);
+  pin_port = pin >> 5U;
+  pin_num  = pin & 0x1FU;
+  pin_mask = 1U << pin_num;
+  if ((PinMapping[pin_port] & pin_mask) != 0U) {
+    switch (mode) {
+      case ARM_GPIO_PUSH_PULL:
+        if ((PinOpenDrainOnly[pin_port] & pin_mask) == 0U) {
+          IOCON_EnablePinOpenDrain(IOCON, pin_port, pin_num, false);
+        } else {
+          result = ARM_DRIVER_ERROR_UNSUPPORTED;
+        }
+        break;
+      case ARM_GPIO_OPEN_DRAIN:
+        if ((PinOpenDrainOnly[pin_port] & pin_mask) == 0U) {
+          IOCON_EnablePinOpenDrain(IOCON, pin_port, pin_num, true);
+        }
+        break;
+      default:
+        result = ARM_DRIVER_ERROR_PARAMETER;
+        break;
     }
-    result = ARM_DRIVER_OK;
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
   }
 
   return result;
@@ -211,27 +280,39 @@ static int32_t GPIO_SetOutputMode (ARM_GPIO_Pin_t pin, ARM_GPIO_OUTPUT_MODE mode
 static int32_t GPIO_SetPullResistor (ARM_GPIO_Pin_t pin, ARM_GPIO_PULL_RESISTOR resistor) {
   uint32_t pin_port;
   uint32_t pin_num;
-  int32_t  result = ARM_DRIVER_ERROR;
+  uint32_t pin_mask;
+  int32_t  result = ARM_DRIVER_OK;
 
-  if (pin < GPIO_MAX_PINS) {
-    pin_port = pin >> 5U;
-    pin_num  = pin & 0x1FU;
+  pin_port = pin >> 5U;
+  pin_num  = pin & 0x1FU;
+  pin_mask = 1U << pin_num;
+  if ((PinMapping[pin_port] & pin_mask) != 0U) {
     switch (resistor) {
       case ARM_GPIO_PULL_NONE:
-        IOCON_SetPinPullConfig(IOCON, pin_port, pin_num, IOCON_MODE_INACT);
-        result = ARM_DRIVER_OK;
+        if ((PinNoPullResistor[pin_port] & pin_mask) == 0U) {
+          IOCON_SetPinPullConfig(IOCON, pin_port, pin_num, IOCON_MODE_INACT);
+        }
         break;
       case ARM_GPIO_PULL_UP:
-        IOCON_SetPinPullConfig(IOCON, pin_port, pin_num, IOCON_MODE_PULLDOWN);
-        result = ARM_DRIVER_OK;
+        if ((PinNoPullResistor[pin_port] & pin_mask) == 0U) {
+          IOCON_SetPinPullConfig(IOCON, pin_port, pin_num, IOCON_MODE_PULLUP);
+        } else {
+          result = ARM_DRIVER_ERROR_UNSUPPORTED;
+        }
         break;
       case ARM_GPIO_PULL_DOWN:
-        IOCON_SetPinPullConfig(IOCON, pin_port, pin_num, IOCON_MODE_PULLUP);
-        result = ARM_DRIVER_OK;
+        if ((PinNoPullResistor[pin_port] & pin_mask) == 0U) {
+          IOCON_SetPinPullConfig(IOCON, pin_port, pin_num, IOCON_MODE_PULLDOWN);
+        } else {
+          result = ARM_DRIVER_ERROR_UNSUPPORTED;
+        }
         break;
       default:
+        result = ARM_DRIVER_ERROR_PARAMETER;
         break;
     }
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
   }
 
   return result;
@@ -239,31 +320,44 @@ static int32_t GPIO_SetPullResistor (ARM_GPIO_Pin_t pin, ARM_GPIO_PULL_RESISTOR 
 
 // Set GPIO Event Trigger
 static int32_t GPIO_SetEventTrigger (ARM_GPIO_Pin_t pin, ARM_GPIO_EVENT_TRIGGER trigger) {
-  uint32_t pint;
+  uint32_t pin_port;
+  uint32_t pin_num;
+  uint32_t n;
   int32_t  result = ARM_DRIVER_ERROR;
 
-  if (pin < GPIO_MAX_PINS) {
-    pint = PinIntNum[pin];
-    switch (trigger) {
-      case ARM_GPIO_TRIGGER_NONE:
-        PINT_PinInterruptConfig(PINT, (pint_pin_int_t)pint, kPINT_PinIntEnableNone, NULL);
-        result = ARM_DRIVER_OK;
-        break;
-      case ARM_GPIO_TRIGGER_RISING_EDGE:
-        PINT_PinInterruptConfig(PINT, (pint_pin_int_t)pint, kPINT_PinIntEnableRiseEdge, NULL);
-        result = ARM_DRIVER_OK;
-        break;
-      case ARM_GPIO_TRIGGER_FALLING_EDGE:
-        PINT_PinInterruptConfig(PINT, (pint_pin_int_t)pint, kPINT_PinIntEnableFallEdge, NULL);
-        result = ARM_DRIVER_OK;
-        break;
-      case ARM_GPIO_TRIGGER_EITHER_EDGE:
-        PINT_PinInterruptConfig(PINT, (pint_pin_int_t)pint, kPINT_PinIntEnableBothEdges, NULL);
-        result = ARM_DRIVER_OK;
-        break;
-      default:
-        break;
+  pin_port = pin >> 5U;
+  pin_num  = pin & 0x1FU;
+  if ((PinMapping[pin_port] & (1U << pin_num)) != 0U) {
+    for (n = 0U; n < SignalEventCount; n++) {
+      if (SignalEventPin[n] == pin) {
+        switch (trigger) {
+          case ARM_GPIO_TRIGGER_NONE:
+            PINT_PinInterruptConfig(PINT, (pint_pin_int_t)n, kPINT_PinIntEnableNone, NULL);
+            result = ARM_DRIVER_OK;
+            break;
+          case ARM_GPIO_TRIGGER_RISING_EDGE:
+            PINT_PinInterruptConfig(PINT, (pint_pin_int_t)n, kPINT_PinIntEnableRiseEdge, NULL);
+            result = ARM_DRIVER_OK;
+            break;
+          case ARM_GPIO_TRIGGER_FALLING_EDGE:
+            PINT_PinInterruptConfig(PINT, (pint_pin_int_t)n, kPINT_PinIntEnableFallEdge, NULL);
+            result = ARM_DRIVER_OK;
+            break;
+          case ARM_GPIO_TRIGGER_EITHER_EDGE:
+            PINT_PinInterruptConfig(PINT, (pint_pin_int_t)n, kPINT_PinIntEnableBothEdges, NULL);
+            result = ARM_DRIVER_OK;
+            break;
+          default:
+            result = ARM_DRIVER_ERROR_PARAMETER;
+            break;
+        }
+        if (result != ARM_DRIVER_ERROR) {
+          break;
+        }
+      }
     }
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
   }
 
   return result;
