@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * $Date:        22. March 2023
+ * $Date:        28. March 2023
  * $Revision:    V1.0
  *
  * Project:      GPIO Driver for STM32U5xx
@@ -279,7 +279,7 @@ static int32_t GPIO_Setup (ARM_GPIO_Pin_t pin, ARM_GPIO_SignalEvent_t cb_event) 
     pin_mask = 1U << pin_num;
     gpio = GPIOx[pin_port];
     if (gpio != NULL) {
-      if ((cb_event == NULL) || (SignalEvent[pin_num] == NULL)) {
+      if ((cb_event == NULL) || (SignalPort[pin_num] == 0xFFU) || (SignalPort[pin_num] == pin_port)) {
         init.Pin       = pin_mask;
         init.Mode      = GPIO_MODE_INPUT;
         init.Pull      = GPIO_NOPULL;
