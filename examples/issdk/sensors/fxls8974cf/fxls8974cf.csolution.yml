@@ -38,13 +38,7 @@ solution:
     - project: ./freemaster_demo/fxls8974cf_freemaster_demo.cproject.yml
       for-context: +frdmk22f_a8974
     - project: ./interrupt/fxls8974cf_interrupt.cproject.yml
-      not-for-context:
-        - +B-U585I-IOT02A_a8974   # currently no support for I2C
     - project: ./motion_wakeup/fxls8974cf_motion_wakeup.cproject.yml
-      not-for-context:
-        - +B-U585I-IOT02A_a8974   # currently no support for I2C
-        - +lpcxpresso54114_a8974  # RED_LED clashes with ARDUINO_UNO_D5 (overrides I2C/SPI jumper selection)
+      not-for-context: +lpcxpresso54114_a8974  # RED_LED clashes with ARDUINO_UNO_D5 (overrides I2C/SPI jumper selection)
     - project: ./poll/fxls8974cf_poll.cproject.yml
-      not-for-context:
-        - +B-U585I-IOT02A_a8974   # currently no support for I2C
     - project: ./spi/fxls8974cf_spi.cproject.yml
