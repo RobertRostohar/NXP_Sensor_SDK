@@ -10,7 +10,7 @@ layer:
       provides:
         - ARDUINO_UNO_UART: 3
         - ARDUINO_UNO_SPI: 1
-        # - ARDUINO_UNO_I2C: 1
+        - ARDUINO_UNO_I2C: 1
         - ARDUINO_UNO_D2
         - ARDUINO_UNO_D3
         - ARDUINO_UNO_D4
@@ -32,7 +32,7 @@ layer:
         - Heap: 1024
 
   packs:
-    - pack: Keil::STM32U5xx_DFP@2.0.0
+    - pack: Keil::STM32U5xx_DFP@2.1.0
     - pack: Keil::B-U585I-IOT02A_BSP@1.0.0
     - pack: ARM::CMSIS@5.9.0
     - pack: Keil::ARM_Compiler
@@ -79,7 +79,7 @@ layer:
 
     - component: ARM::CMSIS:CORE
 
-    # - component: Keil::CMSIS Driver:I2C
+    - component: Keil::CMSIS Driver:I2C
     - component: Keil::CMSIS Driver:SPI
     - component: Keil::CMSIS Driver:USART
 
