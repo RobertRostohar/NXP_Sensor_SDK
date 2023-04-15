@@ -148,3 +148,17 @@ examples/issdk/sensors/mpl3115/altitude/RTE/_debug_frdmk22f_agmp03/RTE_Component
 examples/issdk/sensors/mpl3115/altitude/RTE/_debug_lpcxpresso54114_agmp03/RTE_Components.h
 examples/issdk/sensors/mpl3115/altitude/RTE/_release_frdmk22f_agmp03/RTE_Components.h
 examples/issdk/sensors/mpl3115/altitude/RTE/_release_lpcxpresso54114_agmp03/RTE_Components.h
+boards/lpcxpresso55s69/RTE/Board_Support/LPC55S69JBD100_cm33_core0/board.c.base@1.0.0
+boards/lpcxpresso55s69/RTE/Board_Support/LPC55S69JBD100_cm33_core0/board.h.base@1.0.0
+boards/lpcxpresso55s69/RTE/Board_Support/LPC55S69JBD100_cm33_core0/clock_config.c.base@1.0.0
+boards/lpcxpresso55s69/RTE/Board_Support/LPC55S69JBD100_cm33_core0/clock_config.h.base@1.0.0
+boards/lpcxpresso55s69/RTE/Board_Support/LPC55S69JBD100_cm33_core0/peripherals.c.base@1.0.0
+boards/lpcxpresso55s69/RTE/Board_Support/LPC55S69JBD100_cm33_core0/peripherals.h.base@1.0.0
+boards/lpcxpresso55s69/RTE/Board_Support/LPC55S69JBD100_cm33_core0/pin_mux.c.base@1.0.0
+boards/lpcxpresso55s69/RTE/Board_Support/LPC55S69JBD100_cm33_core0/pin_mux.h.base@1.0.0
+boards/lpcxpresso55s69/RTE/Device/LPC55S69JBD100_cm33_core0/LPC55S69_cm33_core0_flash_ns.scf.base@1.1.0
+boards/lpcxpresso55s69/RTE/Device/LPC55S69JBD100_cm33_core0/LPC55S69_cm33_core0_flash_s.scf.base@1.1.0
+boards/lpcxpresso55s69/RTE/Device/LPC55S69JBD100_cm33_core0/LPC55S69_cm33_core0_flash.scf.base@1.1.0
+boards/lpcxpresso55s69/RTE/Device/LPC55S69JBD100_cm33_core0/LPC55S69_cm33_core0_ram.scf.base@1.1.0
+boards/lpcxpresso55s69/RTE/Device/LPC55S69JBD100_cm33_core0/startup_LPC55S69_cm33_core0.S.base@1.1.0
+examples/issdk/sensors/fxls8974cf/poll/fxls8974cf_poll.cbuild-idx.yml
