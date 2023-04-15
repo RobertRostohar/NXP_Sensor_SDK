@@ -83,3 +83,16 @@ layer:
         - file: ./lpc55S69.c
         - file: ./lpc55S69.h
         - file: ./RTE/Device/LPC55S69JBD100_cm33_core0/LPC55S69_cm33_core0_flash.scf
+
+  groups:
+    - group: gpio_driver
+      files:
+        - file: ../../middleware/issdk/drivers/gpio/lpc/gpio_driver_irq.c
+        - file: ../../middleware/issdk/drivers/gpio/lpc/gpio_driver.c
+        - file: ../../middleware/issdk/drivers/gpio/lpc/gpio_driver.h
+        - file: ../../middleware/issdk/drivers/gpio/Driver_GPIO.h
+    - group: board
+      files:
+        - file: ./lpc55S69.c
+        - file: ./lpc55S69.h
+        - file: ./RTE/Device/LPC55S69JBD100_cm33_core0/LPC55S69_cm33_core0_flash.scf

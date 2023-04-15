@@ -164,3 +164,15 @@ uint32_t SPI7_GetFreq(void)
 {
     return CLOCK_GetFreq(kCLOCK_FlexComm7);
 }
+
+/*! @brief       Determines the Clock Frequency feature.
+ *  @details     The Clock Frequecny computation API required by fsl_spi_cmsis.c.
+ *  @param[in]   void
+ *  @Constraints None
+ *  @Reentrant   Yes
+ *  @return      uint32_t Returns the clock frequency .
+ */
+uint32_t SPI7_GetFreq(void)
+{
+    return CLOCK_GetFreq(kCLOCK_FlexComm7);
+}

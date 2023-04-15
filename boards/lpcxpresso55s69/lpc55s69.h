@@ -92,3 +92,11 @@ status_t SMC_SetPowerModeVlpr(void *);
 /* @brief Kinetis style Wrapper API for handling all Clock related configurations. */
 void BOARD_BootClockRUN(void);
 #endif /* LPC55S69_CM4_H_ */
+
+/* @brief Kinetis style Wrapper API for Power Mode Wait (Wait for Interrupt). */
+status_t SMC_SetPowerModeWait(void *);
+/* @brief Kinetis style Wrapper API for Power Mode VLPR (Wait for Interrupt). */
+status_t SMC_SetPowerModeVlpr(void *);
+/* @brief Kinetis style Wrapper API for handling all Clock related configurations. */
+void BOARD_BootClockRUN(void);
+#endif /* LPC55S69_CM4_H_ */
