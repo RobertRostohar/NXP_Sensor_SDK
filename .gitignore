@@ -114,6 +114,16 @@ examples/issdk/sensors/mag3110/freemaster_demo/RTE/
 examples/issdk/sensors/mag3110/freemaster_demo/*.cprj
 examples/issdk/sensors/mag3110/freemaster_demo/*.cbuild.yml
 
+
+examples/issdk/sensors/mpl3115/altitude/tmp
+examples/issdk/sensors/mpl3115/altitude/out
+examples/issdk/sensors/mpl3115/altitude/*-idx.yml
+examples/issdk/sensors/mpl3115/altitude/packs.txt
+
+examples/issdk/sensors/mpl3115/altitude/RTE/
+examples/issdk/sensors/mpl3115/altitude/out/
+examples/issdk/sensors/mpl3115/altitude/*.cbuild.yml
+examples/issdk/sensors/mpl3115/altitude/*.cprj
 examples/issdk/sensors/mpl3115/fifo/RTE/
 examples/issdk/sensors/mpl3115/fifo/out/
 examples/issdk/sensors/mpl3115/fifo/*.cbuild.yml
@@ -134,3 +144,7 @@ examples/issdk/sensors/mpl3115/freemaster_demo/out/
 examples/issdk/sensors/mpl3115/freemaster_demo/RTE/
 examples/issdk/sensors/mpl3115/freemaster_demo/*.cprj
 examples/issdk/sensors/mpl3115/freemaster_demo/*.cbuild.yml
+examples/issdk/sensors/mpl3115/altitude/RTE/_debug_frdmk22f_agmp03/RTE_Components.h
+examples/issdk/sensors/mpl3115/altitude/RTE/_debug_lpcxpresso54114_agmp03/RTE_Components.h
+examples/issdk/sensors/mpl3115/altitude/RTE/_release_frdmk22f_agmp03/RTE_Components.h
+examples/issdk/sensors/mpl3115/altitude/RTE/_release_lpcxpresso54114_agmp03/RTE_Components.h
