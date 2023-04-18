@@ -15,15 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * $Date:        9. February 2023
+ * $Date:        17. April 2023
  * $Revision:    V1.0
  *
- * Project:      GPIO Driver for LPC55S69x
+ * Project:      GPIO Driver for LPC55S69
  */
 
 #include "fsl_clock.h"
 #include "fsl_gpio.h"
-//#include "fsl_gpio_ex.h"
+#include "fsl_gpio_ex.h"
 #include "fsl_inputmux.h"
 //#include "fsl_iocon.h"
 //#include "fsl_iocon_ex.h"
@@ -32,7 +32,8 @@
 #include "GPIO_LPC55S69.h"
 
 
-// Pin mapping
+// Pin mapping  
+//   NEED TO REVIEW FOR LPC55S69
 //    0 .. 22: PORT0  0 .. 22
 //   23 .. 26: PORT0 23 .. 26 (I2C Support: Open-drain, No pull-resistor)
 //   27 .. 28: not mapped
