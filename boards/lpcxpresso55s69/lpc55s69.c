@@ -50,7 +50,7 @@ status_t SMC_SetPowerModeVlpr(void *arg)
  */
 uint32_t USART0_GetFreq(void)
 {
-    return CLOCK_GetFreq(kCLOCK_FlexComm0);
+    return CLOCK_GetFreq(0);
 }
 
 /*! @brief       Determines the Clock Frequency feature.
@@ -62,7 +62,7 @@ uint32_t USART0_GetFreq(void)
  */
 uint32_t I2C4_GetFreq(void)
 {
-    return CLOCK_GetFreq(kCLOCK_FlexComm4);
+    return CLOCK_GetFreq(4);
 }
 
 /*! @brief       Determines the Clock Frequency feature.
@@ -74,7 +74,7 @@ uint32_t I2C4_GetFreq(void)
  */
 uint32_t SPI7_GetFreq(void)
 {
-    return CLOCK_GetFreq(kCLOCK_FlexComm7);
+    return CLOCK_GetFreq(7);
 }
 
 /*! @brief       Determines the Clock Frequency feature.

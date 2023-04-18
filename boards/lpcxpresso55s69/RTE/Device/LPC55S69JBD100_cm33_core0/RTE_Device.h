@@ -9,12 +9,18 @@
 #ifndef _RTE_DEVICE_H
 #define _RTE_DEVICE_H
 
-#include "pin_mux.h"
+//#include "pin_mux.h"
+extern void I2C4_InitPins();
+extern void I2C4_DeinitPins();
+extern void SPI7_InitPins();
+extern void SPI7_DeinitPins();
+extern void USART0_InitPins();
+extern void USART0_DeinitPins();
 
 /* UART Select, UART0-UART7. */
 /* User needs to provide the implementation of USARTX_GetFreq/USARTX_InitPins/USARTX_DeinitPins for the enabled USART
  * instance. */
-#define RTE_USART0        0
+#define RTE_USART0        1
 #define RTE_USART0_DMA_EN 0
 #define RTE_USART1        0
 #define RTE_USART1_DMA_EN 0
@@ -109,8 +115,14 @@
 #define RTE_I2C2_DMA_EN 0
 #define RTE_I2C3        0
 #define RTE_I2C3_DMA_EN 0
+
 #define RTE_I2C4        1
+#define RTE_I2C4_Master_DMA_BASE DMA0
+#define RTE_I2C4_PIN_INIT   I2C4_InitPins
+#define RTE_I2C4_PIN_DEINIT I2C4_DeinitPins
+#define RTE_I2C4_Master_DMA_CH   9
 #define RTE_I2C4_DMA_EN 0
+
 #define RTE_I2C5        0
 #define RTE_I2C5_DMA_EN 0
 #define RTE_I2C6        0
@@ -130,9 +142,6 @@
 
 #define RTE_I2C3_Master_DMA_BASE DMA0
 #define RTE_I2C3_Master_DMA_CH   7
-
-#define RTE_I2C4_Master_DMA_BASE DMA0
-#define RTE_I2C4_Master_DMA_CH   9
 
 #define RTE_I2C5_Master_DMA_BASE DMA0
 #define RTE_I2C5_Master_DMA_CH   11
@@ -160,7 +169,7 @@
 #define RTE_SPI5_DMA_EN 0
 #define RTE_SPI6        0
 #define RTE_SPI6_DMA_EN 0
-#define RTE_SPI7        0
+#define RTE_SPI7        1
 #define RTE_SPI7_DMA_EN 0
 
 /* SPI configuration. */

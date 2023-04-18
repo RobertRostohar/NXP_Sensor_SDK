@@ -63,10 +63,10 @@ extern ARM_DRIVER_USART Driver_USART0;  // Added by dando-dev to declare USART0
 extern ARM_DRIVER_USART Driver_USART1;  // Added by dando-dev to declare USART1
 
 // UART: Driver information for default UART to communicate with HOST PC.
-#define HOST_S_DRIVER Driver_USART0
-#define HOST_S_SIGNAL_EVENT HOST_SignalEvent_t
-#define HOST_B_DRIVER Driver_USART1
-#define HOST_B_SIGNAL_EVENT HOST_SignalEvent_t
+#define HOST_S_DRIVER           Driver_USART0
+#define HOST_S_SIGNAL_EVENT     HOST_SignalEvent_t
+#define HOST_B_DRIVER           Driver_USART1
+#define HOST_B_SIGNAL_EVENT     HOST_SignalEvent_t
 
 #define WIRED_USART            USART0
 #define WIRED_USART_CLK_SRC    kCLOCK_Flexcomm0
@@ -87,10 +87,10 @@ extern ARM_DRIVER_USART Driver_USART1;  // Added by dando-dev to declare USART1
     CLOCK_AttachClk(kFRO12M_to_FLEXCOMM0);               \
     /* attach 12 MHz clock to FLEXCOMM4 (I2C4) */        \
     CLOCK_AttachClk(kFRO12M_to_FLEXCOMM4);               \
-    /* attach 12 MHz clock to FLEXCOMM4 (SPI7) */        \
+    /* attach 12 MHz clock to FLEXCOMM7 (SPI7) */        \
     CLOCK_AttachClk(kFRO12M_to_FLEXCOMM7);               \
-    /* Configure FROHF48M Clock */                       \
-    BOARD_BootClockFROHF48M()
+    /* Configure FROHF96M Clock */                       \
+    BOARD_BootClockFROHF96M()
 #endif
 
 // Sensor Communication Idle Task and Argument
