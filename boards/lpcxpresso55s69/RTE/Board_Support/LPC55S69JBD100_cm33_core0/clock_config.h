@@ -19,7 +19,7 @@
  ******************************************************************************/
 #define BOARD_XTAL0_CLK_HZ 16000000U /*!< Board xtal frequency in Hz */
 #define BOARD_XTAL32K_CLK_HZ 32768U  /*!< Board xtal32K frequency in Hz */
-
+#define BOARD_BootClockRUN  BOARD_BootClockFROHF96M
 /*******************************************************************************
  ************************ BOARD_InitBootClocks function ************************
  ******************************************************************************/

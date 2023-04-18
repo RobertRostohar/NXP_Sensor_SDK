@@ -20,6 +20,8 @@
 /*! @brief The board name */
 #define BOARD_NAME "LPCXpresso55S69"
 
+#define BOARD_EXTCLKINRATE (0)
+
 /*! @brief The UART to use for debug messages. */
 /* TODO: rename UART to USART */
 #define BOARD_DEBUG_UART_TYPE kSerialPort_Uart
@@ -217,7 +219,7 @@ extern "C" {
  * API
  ******************************************************************************/
 
-void BOARD_InitDebugConsole(void);
+status_t BOARD_InitDebugConsole(void);
 void BOARD_InitDebugConsole_Core1(void);
 #if defined(SDK_I2C_BASED_COMPONENT_USED) && SDK_I2C_BASED_COMPONENT_USED
 void BOARD_I2C_Init(I2C_Type *base, uint32_t clkSrc_Hz);
