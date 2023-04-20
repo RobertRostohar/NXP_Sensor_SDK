@@ -28,16 +28,16 @@ processor_version: 0.0.0
 #include "fsl_iocon.h"
 #include "pin_mux.h"
 
-#define IOCON_PIO_DIGITAL_EN          0x80u   /*!< Enables digital function */
-#define IOCON_PIO_FUNC1               0x01u   /*!< Selects pin function 1 */
-#define IOCON_PIO_INPFILT_OFF       0x0100u   /*!< Input filter disabled */
-#define IOCON_PIO_INV_DI              0x00u   /*!< Input function is not inverted */
-#define IOCON_PIO_MODE_INACT          0x00u   /*!< No addition pin function */
-#define IOCON_PIO_OPENDRAIN_DI        0x00u   /*!< Open drain is disabled */
-#define IOCON_PIO_SLEW_STANDARD       0x00u   /*!< Standard mode, output slew rate control is enabled */
-#define PIN0_IDX                         0u   /*!< Pin number for pin 0 in a port 0 */
-#define PIN1_IDX                         1u   /*!< Pin number for pin 1 in a port 0 */
-#define PORT0_IDX                        0u   /*!< Port index */
+// #define IOCON_PIO_DIGITAL_EN          0x80u   /*!< Enables digital function */
+// #define IOCON_PIO_FUNC1               0x01u   /*!< Selects pin function 1 */
+// #define IOCON_PIO_INPFILT_OFF       0x0100u   /*!< Input filter disabled */
+// #define IOCON_PIO_INV_DI              0x00u   /*!< Input function is not inverted */
+// #define IOCON_PIO_MODE_INACT          0x00u   /*!< No addition pin function */
+// #define IOCON_PIO_OPENDRAIN_DI        0x00u   /*!< Open drain is disabled */
+// #define IOCON_PIO_SLEW_STANDARD       0x00u   /*!< Standard mode, output slew rate control is enabled */
+// #define PIN0_IDX                         0u   /*!< Pin number for pin 0 in a port 0 */
+// #define PIN1_IDX                         1u   /*!< Pin number for pin 1 in a port 0 */
+// #define PORT0_IDX                        0u   /*!< Port index */
 
 /* FUNCTION ************************************************************************************************************
  *
