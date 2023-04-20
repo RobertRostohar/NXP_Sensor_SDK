@@ -39,6 +39,7 @@ void BOARD_InitBootPins(void)
     BOARD_InitPins();
     I2C4_InitPins();
 	USART0_InitPins();
+  SPI7_InitPins();
 }
 
 /* clang-format off */
