@@ -25,8 +25,8 @@
 #include "fsl_gpio.h"
 #include "fsl_gpio_ex.h"
 #include "fsl_inputmux.h"
-//#include "fsl_iocon.h"
-//#include "fsl_iocon_ex.h"
+#include "fsl_iocon.h"
+#include "fsl_iocon_ex.h"
 #include "fsl_pint.h"
 
 #include "GPIO_LPC55S69.h"
