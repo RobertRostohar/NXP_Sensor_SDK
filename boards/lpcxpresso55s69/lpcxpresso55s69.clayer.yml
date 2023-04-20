@@ -27,11 +27,14 @@ layer:
         - ARDUINO_UNO_D8
         - ARDUINO_UNO_D9
         - ARDUINO_UNO_D10
-        - ARDUINO_UNO_A0
-        - ARDUINO_UNO_A2
-        - ARDUINO_UNO_A3
-        - ARDUINO_UNO_A4
-        - ARDUINO_UNO_A5
+        - ARDUINO_UNO_D14
+        - ARDUINO_UNO_D16
+        - ARDUINO_UNO_D17
+        - ARDUINO_UNO_D18
+        - ARDUINO_UNO_D19
+        - STDIN
+        - STDOUT
+        - STDERR
         - Heap: 1024
 
   define:
@@ -63,6 +66,7 @@ layer:
     - component: NXP::Device:SDK Drivers:inputmux_connections
     - component: NXP::Device:SDK Drivers:iocon
     - component: NXP::Device:SDK Drivers:lists
+    - component: NXP::Device:SDK Drivers:pint
     - component: NXP::Device:SDK Drivers:power
     - component: NXP::Device:SDK Drivers:reset
     - component: NXP::Device:SDK Drivers:spi

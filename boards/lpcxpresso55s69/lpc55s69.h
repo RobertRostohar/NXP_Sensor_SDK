@@ -17,7 +17,8 @@
 #include "pin_mux.h"
 #include "fsl_power.h"
 #include "RTE_Device.h"
-#include "gpio_driver.h"
+#include "GPIO_LPC55S69.h"
+//#include "gpio_driver.h"
 #include "Driver_I2C.h" // Added by dando-dev I2C is detailed by PACK
 #include "Driver_SPI.h" // Added by dando-dev SPI is detailed by PACK
 #include "Driver_USART.h"  // Added by dando-dev USART is detailed by PACK
