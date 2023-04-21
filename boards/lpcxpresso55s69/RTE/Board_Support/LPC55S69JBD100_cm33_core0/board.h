@@ -57,7 +57,7 @@
 
 #define BOARD_CODEC_I2C_BASEADDR I2C4
 #define BOARD_CODEC_I2C_CLOCK_FREQ 12000000
-
+#define BOARD_CODEC_I2C_INSTANCE   4
 #ifndef BOARD_LED_RED_GPIO
 #define BOARD_LED_RED_GPIO GPIO
 #endif
@@ -100,9 +100,9 @@
 #ifndef BOARD_SW2_GPIO_PIN
 #define BOARD_SW2_GPIO_PIN 18U
 #endif
-#define BOARD_SW2_NAME "SW2"
-#define BOARD_SW2_IRQ PIN_INT1_IRQn
-#define BOARD_SW2_IRQ_HANDLER PIN_INT1_IRQHandler
+#define BOARD_SW2_NAME              "SW2"
+#define BOARD_SW2_IRQ               PIN_INT1_IRQn
+#define BOARD_SW2_IRQ_HANDLER       PIN_INT1_IRQHandler
 #define BOARD_SW2_GPIO_PININT_INDEX 1
 
 #ifndef BOARD_SW3_GPIO
@@ -117,25 +117,30 @@
 #define BOARD_SW3_IRQ_HANDLER PIN_INT1_IRQHandler
 #define BOARD_SW3_GPIO_PININT_INDEX 1
 
-#define BOARD_SDIF_BASEADDR SDIF
-#define BOARD_SDIF_CLKSRC kCLOCK_SDio
-#define BOARD_SDIF_CLK_FREQ CLOCK_GetSdioClkFreq()
-#define BOARD_SDIF_CLK_ATTACH kMAIN_CLK_to_SDIO_CLK
-#define BOARD_SDIF_IRQ SDIO_IRQn
-#define BOARD_MMC_VCC_SUPPLY kMMC_VoltageWindows270to360
-#define BOARD_SD_CARD_DETECT_PIN 17
-#define BOARD_SD_CARD_DETECT_PORT 0
-#define BOARD_SD_CARD_DETECT_GPIO GPIO
-#define BOARD_SD_DETECT_TYPE kSDMMCHOST_DetectCardByHostCD
+/* USB PHY condfiguration */
+#define BOARD_USB_PHY_D_CAL     (0x05U)
+#define BOARD_USB_PHY_TXCAL45DP (0x0AU)
+#define BOARD_USB_PHY_TXCAL45DM (0x0AU)
 
-#define BOARD_SDIF_CD_GPIO_INIT()                                                                    \
-    {                                                                                                \
-        CLOCK_EnableClock(kCLOCK_Gpio2);                                                             \
-        GPIO_PinInit(BOARD_SD_CARD_DETECT_GPIO, BOARD_SD_CARD_DETECT_PORT, BOARD_SD_CARD_DETECT_PIN, \
-                     &(gpio_pin_config_t){kGPIO_DigitalInput, 0U});                                  \
-    }
-#define BOARD_SDIF_CD_STATUS() \
-    GPIO_PinRead(BOARD_SD_CARD_DETECT_GPIO, BOARD_SD_CARD_DETECT_PORT, BOARD_SD_CARD_DETECT_PIN)
+// #define BOARD_SDIF_BASEADDR SDIF
+// #define BOARD_SDIF_CLKSRC kCLOCK_SDio
+// #define BOARD_SDIF_CLK_FREQ CLOCK_GetSdioClkFreq()
+// #define BOARD_SDIF_CLK_ATTACH kMAIN_CLK_to_SDIO_CLK
+// #define BOARD_SDIF_IRQ SDIO_IRQn
+// #define BOARD_MMC_VCC_SUPPLY kMMC_VoltageWindows270to360
+// #define BOARD_SD_CARD_DETECT_PIN 17
+// #define BOARD_SD_CARD_DETECT_PORT 0
+// #define BOARD_SD_CARD_DETECT_GPIO GPIO
+// #define BOARD_SD_DETECT_TYPE kSDMMCHOST_DetectCardByHostCD
+
+// #define BOARD_SDIF_CD_GPIO_INIT()                                                                    \
+//     {                                                                                                \
+//         CLOCK_EnableClock(kCLOCK_Gpio2);                                                             \
+//         GPIO_PinInit(BOARD_SD_CARD_DETECT_GPIO, BOARD_SD_CARD_DETECT_PORT, BOARD_SD_CARD_DETECT_PIN, \
+//                      &(gpio_pin_config_t){kGPIO_DigitalInput, 0U});                                  \
+//     }
+// #define BOARD_SDIF_CD_STATUS() \
+//     GPIO_PinRead(BOARD_SD_CARD_DETECT_GPIO, BOARD_SD_CARD_DETECT_PORT, BOARD_SD_CARD_DETECT_PIN)
 
 /* Board led color mapping */
 #define LOGIC_LED_ON 0U
@@ -192,6 +197,17 @@
 #define LED_GREEN_TOGGLE()                                           \
     GPIO_PortToggle(BOARD_LED_GREEN_GPIO, BOARD_LED_GREEN_GPIO_PORT, \
                     1U << BOARD_LED_GREEN_GPIO_PIN) /*!< Toggle on target LED1 */
+
+/* Display. */
+#define BOARD_LCD_DC_GPIO      GPIO
+#define BOARD_LCD_DC_GPIO_PORT 1U
+#define BOARD_LCD_DC_GPIO_PIN  5U
+
+/* Serial MWM WIFI */
+#define BOARD_SERIAL_MWM_PORT_CLK_FREQ CLOCK_GetFlexCommClkFreq(2)
+#define BOARD_SERIAL_MWM_PORT          USART2
+#define BOARD_SERIAL_MWM_PORT_IRQn     FLEXCOMM2_IRQn
+#define BOARD_SERIAL_MWM_RST_WRITE(output)
 
 /*! @brief The WIFI-QCA shield pin. */
 #define BOARD_INITGT202SHIELD_PWRON_GPIO GPIO
