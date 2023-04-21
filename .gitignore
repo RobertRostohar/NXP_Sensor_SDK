@@ -32,6 +32,7 @@ examples/issdk/sensors/fxas21002/freemaster_demo/*.cbuild.yml
 examples/issdk/sensors/fxls8974cf/tmp
 examples/issdk/sensors/fxls8974cf/out
 examples/issdk/sensors/fxls8974cf/*-idx.yml
+examples/issdk/sensors/fxls8974cf/interrupt/*-idx.yml
 examples/issdk/sensors/fxls8974cf/packs.txt
 
 

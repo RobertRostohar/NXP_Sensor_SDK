@@ -35,11 +35,12 @@
 // #define ARDUINO_UNO_D7  GPIO_PORT1(14U)
 // #define ARDUINO_UNO_D8  GPIO_PORT1(16U)
 // #define ARDUINO_UNO_D9  GPIO_PORT1(15U)
-#define ARDUINO_UNO_D10 GPIO_PORT1(1U)
-#define ARDUINO_UNO_D11 GPIO_PORT0(20U)  /* SPI7:  COPI PIO0 Pin 20*/
-#define ARDUINO_UNO_D12 GPIO_PORT0(19U)  /* SPI7:  CIPO PIO0 Pin 19*/
-#define ARDUINO_UNO_D13 GPIO_PORT0(21U)  /* SPI7:  SCK  PIO0 Pin 21*/
+#define ARDUINO_UNO_D10 GPIO_PORT1(1U)   /* SPI8:  CS   PIO0 Pin 20*/
+#define ARDUINO_UNO_D11 GPIO_PORT0(26U)  /* SPI8:  MOSI PIO0 Pin 20*/
+#define ARDUINO_UNO_D12 GPIO_PORT1(3U)  /* SPI8:  MSIO PIO0 Pin 19*/
+#define ARDUINO_UNO_D13 GPIO_PORT1(2U)  /* SPI8:  SCK  PIO0 Pin 21*/
 // #define ARDUINO_UNO_D14 GPIO_PORT0(30U)
+// #define ARDUINO_UNO_D15 GPIO_PORT?(?U)
 // #define ARDUINO_UNO_D16 GPIO_PORT1(8U)
 // #define ARDUINO_UNO_D17 GPIO_PORT1(10U)
 // #define ARDUINO_UNO_D18 GPIO_PORT1(4U)
@@ -49,7 +50,7 @@
 
 // LPCXpresso55S69 Arduino CMSIS Driver instances
 #define ARDUINO_UNO_I2C     4
-#define ARDUINO_UNO_SPI     7
+#define ARDUINO_UNO_SPI     8
 #define ARDUINO_UNO_UART    0
 
 // LPCXpresso55S69 Internal Peripheral Pin Definitions
@@ -58,10 +59,23 @@
 #define BLUE_LED        GPIO_PORT1(6U)  /* PIO1 Pin 6 */
 
 // CMSIS Drivers
-extern ARM_DRIVER_I2C Driver_I2C4;      // Added by dando-dev to declare i2c4
-extern ARM_DRIVER_SPI Driver_SPI7;      // Added by dando-dev to declare SPI7 listed in prior file below
+extern ARM_DRIVER_I2C   Driver_I2C4;      // Added by dando-dev to declare i2c4
+extern ARM_DRIVER_SPI   Driver_SPI8;      // Added by dando-dev to declare SPI8 listed in prior file below
 extern ARM_DRIVER_USART Driver_USART0;  // Added by dando-dev to declare USART0
 extern ARM_DRIVER_USART Driver_USART1;  // Added by dando-dev to declare USART1
+
+// // I2C_S1: Pin mapping and driver information for default I2C brought to shield
+// #define I2C_S1_SCL_PIN D15
+// #define I2C_S1_SDA_PIN D14
+// #define I2C_S1_DRIVER Driver_I2C4
+// #define I2C_S1_DEVICE_INDEX I2C4_INDEX
+// #define I2C_S1_SIGNAL_EVENT I2C4_SignalEvent_t
+
+// // SPI_S: Pin mapping and driver information default SPI brought to shield
+// #define SPI_S_DRIVER       Driver_SPI8
+ #define SPI_S_BAUDRATE     500000U///< Transfer baudrate - 500k
+ #define SPI_S_DEVICE_INDEX SPI8_INDEX
+ #define SPI_S_SIGNAL_EVENT SPI8_SignalEvent_t
 
 // UART: Driver information for default UART to communicate with HOST PC.
 #define HOST_S_DRIVER           Driver_USART0
@@ -89,7 +103,7 @@ extern ARM_DRIVER_USART Driver_USART1;  // Added by dando-dev to declare USART1
     /* attach 12 MHz clock to FLEXCOMM4 (I2C4) */        \
     CLOCK_AttachClk(kFRO12M_to_FLEXCOMM4);               \
     /* attach 12 MHz clock to FLEXCOMM7 (SPI7) */        \
-    CLOCK_AttachClk(kFRO12M_to_FLEXCOMM7);               \
+    CLOCK_AttachClk(kFRO12M_to_HSLSPI);               \
     /* Configure FROHF96M Clock */                       \
     BOARD_BootClockFROHF96M()
 #endif

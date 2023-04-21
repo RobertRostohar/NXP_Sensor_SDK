@@ -72,15 +72,7 @@ uint32_t I2C4_GetFreq(void)
  *  @Reentrant   Yes
  *  @return      uint32_t Returns the clock frequency .
  */
-uint32_t SPI7_GetFreq(void)
+uint32_t SPI8_GetFreq(void)
 {
-    return CLOCK_GetFreq(7);
+    return CLOCK_GetHsLspiClkFreq();
 }
-
-/*! @brief       Determines the Clock Frequency feature.
- *  @details     The Clock Frequecny computation API required by fsl_spi_cmsis.c.
- *  @param[in]   void
- *  @Constraints None
- *  @Reentrant   Yes
- *  @return      uint32_t Returns the clock frequency .
- */

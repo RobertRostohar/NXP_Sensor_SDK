@@ -9,11 +9,10 @@
 #ifndef _RTE_DEVICE_H
 #define _RTE_DEVICE_H
 
-//#include "pin_mux.h"
 extern void I2C4_InitPins();
 extern void I2C4_DeinitPins();
-extern void SPI7_InitPins();
-extern void SPI7_DeinitPins();
+extern void SPI8_InitPins();
+extern void SPI8_DeinitPins();
 extern void USART0_InitPins();
 extern void USART0_DeinitPins();
 
@@ -39,7 +38,7 @@ extern void USART0_DeinitPins();
 
 /* USART configuration. */
 #define USART_RX_BUFFER_LEN     64
-#define USART0_RX_BUFFER_ENABLE 0
+#define USART0_RX_BUFFER_ENABLE 1
 #define USART1_RX_BUFFER_ENABLE 0
 #define USART2_RX_BUFFER_ENABLE 0
 #define USART3_RX_BUFFER_ENABLE 0
@@ -120,7 +119,7 @@ extern void USART0_DeinitPins();
 #define RTE_I2C4_Master_DMA_BASE DMA0
 #define RTE_I2C4_PIN_INIT   I2C4_InitPins
 #define RTE_I2C4_PIN_DEINIT I2C4_DeinitPins
-#define RTE_I2C4_Master_DMA_CH   9
+#define RTE_I2C4_Master_DMA_CH   21
 #define RTE_I2C4_DMA_EN 0
 
 #define RTE_I2C5        0
@@ -169,8 +168,10 @@ extern void USART0_DeinitPins();
 #define RTE_SPI5_DMA_EN 0
 #define RTE_SPI6        0
 #define RTE_SPI6_DMA_EN 0
-#define RTE_SPI7        1
+#define RTE_SPI7        0
 #define RTE_SPI7_DMA_EN 0
+#define RTE_SPI8        1
+#define RTE_SPI8_DMA_EN 0
 
 /* SPI configuration. */
 #define RTE_SPI0_SSEL_NUM        kSPI_Ssel0
@@ -237,4 +238,11 @@ extern void USART0_DeinitPins();
 #define RTE_SPI7_DMA_RX_CH       14
 #define RTE_SPI7_DMA_RX_DMA_BASE DMA0
 
+#define RTE_SPI8_SSEL_NUM        kSPI_Ssel1
+#define RTE_SPI8_PIN_INIT        SPI8_InitPins
+#define RTE_SPI8_PIN_DEINIT      SPI8_DeinitPins
+#define RTE_SPI8_DMA_TX_CH       3
+#define RTE_SPI8_DMA_TX_DMA_BASE DMA0
+#define RTE_SPI8_DMA_RX_CH       2
+#define RTE_SPI8_DMA_RX_DMA_BASE DMA0
 #endif /* _RTE_DEVICE_H */
