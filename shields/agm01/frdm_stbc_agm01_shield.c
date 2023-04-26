@@ -22,8 +22,6 @@
 
 extern ARM_DRIVER_GPIO Driver_GPIO0;
 
-// NOT UPDATED YET FOR AGM01  THIS IS AGMP03
-
 // Shield Setup (default configuration)
 int32_t shield_setup (void) {
   ARM_DRIVER_GPIO *pGpio = &Driver_GPIO0;
@@ -38,9 +36,9 @@ int32_t shield_setup (void) {
   pGpio->Setup(ARDUINO_UNO_D8, NULL);
   #endif
 
-  // ARDUINO_UNO_D7 - SPI_CS_G (FXAS21002): Input, No Pull Resistor
-  #ifdef ARDUINO_UNO_D7
-  pGpio->Setup(ARDUINO_UNO_D7, NULL);
+  // ARDUINO_UNO_D10 - SPI_CSB (FXAS21002): Input, No Pull Resistor
+  #ifdef ARDUINO_UNO_D10
+  pGpio->Setup(ARDUINO_UNO_D10, NULL);
   #endif
 
   // ARDUINO_UNO_D17 - RST_GPIO: Input, No Pull Resistor.  D17 ON WIFI = A3

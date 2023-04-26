@@ -18,10 +18,13 @@
 #define SHIELD_NAME "FRDM-STBC-AGM01"
 
 // FXOS8700 Sensor Information
-// #define FXOS8700_I2C_ADDR   0x1E
-// #define FXOS8700_INT1       ARDUINO_UNO_D2
-// #define FXOS8700_INT2       ARDUINO_UNO_D4
-// #define FXOS8700_CS         ARDUINO_UNO_D16     // A2 ON UNO WIFI
+//  #define FXOS8700_I2C_ADDR       0x1E
+//  #define FXOS8700_INT1           ARDUINO_UNO_D2
+//  #define FXOS8700_INT2           ARDUINO_UNO_D4
+//  #define FXOS8700_CS             ARDUINO_UNO_D16     // A2 ON UNO WIFI
+//  #define FXLS8700_I2C_INDEX      ARDUINO_UNO_I2C
+//  #define FXLS8700_I2C_DRIVER     ARM_Driver_I2C_(FXLS8700_I2C_INDEX)
+//  #define FXLS8700_I2C_EVENT      I2C_SignalEvent(FXLS8700_I2C_INDEX)
 
 // FXAS21002 Sensor Information
 #define FXAS21002_I2C_INDEX     ARDUINO_UNO_I2C

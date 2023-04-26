@@ -53,6 +53,8 @@ solution:
   projects:
     - project: ./fifo/fxas21002_fifo.cproject.yml
     - project: ./interrupt/fxas21002_interrupt.cproject.yml
+      not-for-context:
+        - +lpcxpresso55S69_agm01  # Blue_LED clashes with ARDUINO_UNO_D5 Interrupt 1
     - project: ./poll/fxas21002_poll.cproject.yml
     - project: ./poll_spi/fxas21002_poll_spi.cproject.yml
       not-for-context: +lpcxpresso54114_agmp03

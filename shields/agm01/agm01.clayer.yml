@@ -27,7 +27,7 @@ layer:
         - FXAS21002_CS
       consumes:
         - ARDUINO_UNO_SPI
-        - ARDUINO_UNO_D7
+        - ARDUINO_UNO_D10
     - connect: FXAS21002 Interrupt 1
       provides:
         - FXAS21002_INT1
