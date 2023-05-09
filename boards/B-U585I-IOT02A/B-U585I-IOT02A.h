@@ -69,12 +69,6 @@ extern ARM_DRIVER_SPI   Driver_SPI1;
 extern ARM_DRIVER_USART Driver_USART1;
 extern ARM_DRIVER_USART Driver_USART3;
 
-// UART: Driver information for default UART to communicate with HOST PC.
-#define HOST_S_DRIVER       Driver_USART3
-#define HOST_S_SIGNAL_EVENT HOST_SignalEvent_t
-#define HOST_B_DRIVER       Driver_USART1
-#define HOST_B_SIGNAL_EVENT HOST_SignalEvent_t
-
 // I2C/SPI Communication Idle Task and Argument
 #define COMM_IDLE_TASK      NULL
 #define COMM_IDLE_ARG       NULL

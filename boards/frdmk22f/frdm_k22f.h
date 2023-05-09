@@ -61,14 +61,6 @@ extern ARM_DRIVER_SPI   Driver_SPI1;
 extern ARM_DRIVER_USART Driver_USART1;
 extern ARM_DRIVER_USART Driver_USART2;
 
-// UART: Driver information for default UART to communicate with HOST PC.
-#define HOST_S_DRIVER       Driver_USART1
-#define HOST_S_SIGNAL_EVENT HOST_SignalEvent_t
-
-// Bluetooth: Driver information for default UART to communicate with HOST PC.
-#define HOST_B_DRIVER       Driver_USART2
-#define HOST_B_SIGNAL_EVENT HOST_SignalEvent_t
-
 // On-Board FXOS8700 Sensor Information
 #define FXOS8700_I2C_INDEX  0
 #define FXOS8700_I2C_DRIVER ARM_Driver_I2C_(FXOS8700_I2C_INDEX)
@@ -83,54 +75,5 @@ extern ARM_DRIVER_USART Driver_USART2;
 
 // Enter Sleep (Power Down)
 #define ENTER_SLEEP()       SMC_SetPowerModeWait(SMC)
-
-/// @name Wired UART Parameters
-/// Sensor Fusion aliases are defined in terms of specific hardware features
-/// defined in MK22F51212.h.
-///@{
-#define WIRED_UART            UART1                  ///< KSDK instance name for the debug UART
-#define WIRED_UART_PORT_CLKEN kCLOCK_PortE           ///< KDSK handle for the pin port clock enable
-#define WIRED_UART_PORT       PORTE                  ///< KDSK handle for the pin port associated with this UART
-#define WIRED_UART_RX_PIN     1U                     ///< The port number associated with RX
-#define WIRED_UART_TX_PIN     0U                     ///< The port number associated with TX
-#define WIRED_UART_MUX        kPORT_MuxAlt3          ///< KDSK pin mux selector
-#ifndef USE_ORIENT_APP_CONTROL                       ///< If Using Orient App then use Host I/O
-#define WIRED_UART_IRQHandler UART1_RX_TX_IRQHandler ///< KDSK-specified IRQ handler name
-#endif
-#define WIRED_UART_IRQn   UART1_RX_TX_IRQn ///< The interrupt number associated with this IRQ
-#define WIRED_UART_CLKSRC UART1_CLK_SRC    ///< KSDK instance name for the clock feeding this module
-#define WIRED_UART_IRQn   UART1_RX_TX_IRQn ///< KSDK interrupt vector number
-///@}
-
-/// @name Wireless UART Parameters
-/// Sensor Fusion aliases are defined in terms of specific hardware features
-/// defined in MK22F51212.h.
-///@{
-#define WIRELESS_UART            UART2                  ///< KSDK instance name for the debug UART
-#define WIRELESS_UART_PORT_CLKEN kCLOCK_PortD           ///< KDSK handle for the pin port clock enable
-#define WIRELESS_UART_PORT       PORTD                  ///< KDSK handle for the pin port associated with this UART
-#define WIRELESS_UART_RX_PIN     2U                     ///< The port number associated with RX
-#define WIRELESS_UART_TX_PIN     3U                     ///< The port number associated with TX
-#define WIRELESS_UART_MUX        kPORT_MuxAlt3          ///< KDSK pin mux selector
-#define WIRELESS_UART_IRQHandler UART2_RX_TX_IRQHandler ///< KDSK-specified IRQ handler name
-#define WIRELESS_UART_IRQn       UART2_RX_TX_IRQn       ///< The interrupt number associated with this IRQ
-#define WIRELESS_UART_CLKSRC     UART2_CLK_SRC          ///< KSDK instance name for the clock feeding this module
-#define WIRELESS_UART_IRQn       UART2_RX_TX_IRQn       ///< KSDK interrupt vector number
-///@}
-
-///@name Miscellaneous Hardware Configuration Parameters
-///@{
-#define THIS_BOARD                 9          ///< FRDM_K22F
-#define CORE_SYSTICK_HZ            80000000   ///< core and systick clock rate (Hz)
-#define CALIBRATION_NVM_ADDR       0x0007F800 ///< start of final 2K (sector size) of 512K flash
-#define ADS_NVM_ADDR               0x0007F000 ///< start of the next to last 2K (sector size) of the 512K flash
-#define FLASH_SECTOR_SIZE_PROPERTY kFLASH_PropertyPflash0SectorSize
-#define FLASH_ERASE_KEY            kFTFx_ApiEraseKey
-
-// offsets from start of NVM block for calibration coefficients
-#define MAG_NVM_OFFSET   0   // 68 bytes used
-#define GYRO_NVM_OFFSET  100 // 16 bytes used
-#define ACCEL_NVM_OFFSET 140 // 88 bytes used
-///@}
 
 #endif /* FRDM_K22F_H_ */

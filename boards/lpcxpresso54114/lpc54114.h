@@ -61,23 +61,6 @@ extern ARM_DRIVER_SPI   Driver_SPI5;
 extern ARM_DRIVER_USART Driver_USART0;
 extern ARM_DRIVER_USART Driver_USART1;
 
-// UART: Driver information for default UART to communicate with HOST PC.
-#define HOST_S_DRIVER       Driver_USART0
-#define HOST_S_SIGNAL_EVENT HOST_SignalEvent_t
-#define HOST_B_DRIVER       Driver_USART1
-#define HOST_B_SIGNAL_EVENT HOST_SignalEvent_t
-
-#define WIRED_USART            USART0
-#define WIRED_USART_CLK_SRC    kCLOCK_Flexcomm0
-#define WIRED_USART_CLK_FREQ   CLOCK_GetFlexCommClkFreq(0)
-#define WIRED_USART_IRQHandler FLEXCOMM0_IRQHandler
-#define WIRED_USART_IRQn       FLEXCOMM0_IRQn
-
-#define WIRELESS_USART USART1
-
-// ADS_FLASH: The next to last sector of flash.
-#define ADS_NVM_ADDR (FSL_FEATURE_SYSCON_FLASH_SIZE_BYTES - (2 * FSL_FEATURE_SYSCON_FLASH_SECTOR_SIZE_BYTES))
-
 /* @brief  Override Kinetis style Wrapper for handling all Clock related configurations. */
 #ifdef BOARD_BootClockRUN
 #undef BOARD_BootClockRUN
@@ -103,19 +86,5 @@ extern ARM_DRIVER_USART Driver_USART1;
 status_t SMC_SetPowerModeWait(void *);
 /* @brief Kinetis style Wrapper API for Power Mode VLPR (Wait for Interrupt). */
 status_t SMC_SetPowerModeVlpr(void *);
-
-///@name Miscellaneous Hardware Configuration Parameters
-///@{
-#define THIS_BOARD           16         ///< LPC54114
-#define CORE_SYSTICK_HZ      48000000   ///< core and systick clock rate (Hz)
-#define CALIBRATION_NVM_ADDR 0x0003FF00 ///< start of final 256 bytes of 256K flash memory (LPC54114)
-#define NVM_SECTOR_NUMBER    7          ///< Sector number in flash where we will store parameters
-#define NVM_PAGE_NUMBER      1023       ///< Page number in flash where we will store parameters
-
-// offsets from start of NVM block for calibration coefficients
-#define MAG_NVM_OFFSET   0   // 68 bytes used
-#define GYRO_NVM_OFFSET  100 // 16 bytes used
-#define ACCEL_NVM_OFFSET 140 // 88 bytes used
-///@}
 
 #endif /* LPC54114_CM4_H_ */
