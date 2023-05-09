@@ -61,20 +61,6 @@ extern ARM_DRIVER_SPI   Driver_SPI5;
 extern ARM_DRIVER_USART Driver_USART0;
 extern ARM_DRIVER_USART Driver_USART1;
 
-/* @brief  Override Kinetis style Wrapper for handling all Clock related configurations. */
-#ifdef BOARD_BootClockRUN
-#undef BOARD_BootClockRUN
-#define BOARD_BootClockRUN()                             \
-    /* attach 12 MHz clock to FLEXCOMM0 (debug/UART0) */ \
-    CLOCK_AttachClk(kFRO12M_to_FLEXCOMM0);               \
-    /* attach 12 MHz clock to FLEXCOMM4 (I2C4) */        \
-    CLOCK_AttachClk(kFRO12M_to_FLEXCOMM4);               \
-    /* attach 12 MHz clock to FLEXCOMM4 (SPI5) */        \
-    CLOCK_AttachClk(kFRO12M_to_FLEXCOMM5);               \
-    /* Configure FROHF48M Clock */                       \
-    BOARD_BootClockFROHF48M()
-#endif
-
 // I2C/SPI Communication Idle Task and Argument
 #define COMM_IDLE_TASK      SMC_SetPowerModeVlpr
 #define COMM_IDLE_ARG       NULL

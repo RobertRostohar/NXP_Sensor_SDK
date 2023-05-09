@@ -22,7 +22,6 @@
 #include "board.h"
 #include "systick_utils.h"
 #include "main.h"
-#include "lpc54114.h"   /* redefines BOARD_BootClockRUN */
 
 #ifdef   CMSIS_shield_header
 #include CMSIS_shield_header

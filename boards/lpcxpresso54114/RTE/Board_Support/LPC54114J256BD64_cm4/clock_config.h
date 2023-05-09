@@ -21,7 +21,15 @@
  ******************************************************************************/
 #define BOARD_XTAL0_CLK_HZ 12000000U /*!< Board xtal0 frequency in Hz */
 #define BOARD_XTAL32K_CLK_HZ 32768U  /*!< Board xtal32K frequency in Hz */
-#define BOARD_BootClockRUN BOARD_BootClockFROHF48M
+#define BOARD_BootClockRUN()                             \
+    /* attach 12 MHz clock to FLEXCOMM0 (debug/UART0) */ \
+    CLOCK_AttachClk(kFRO12M_to_FLEXCOMM0);               \
+    /* attach 12 MHz clock to FLEXCOMM4 (I2C4) */        \
+    CLOCK_AttachClk(kFRO12M_to_FLEXCOMM4);               \
+    /* attach 12 MHz clock to FLEXCOMM4 (SPI5) */        \
+    CLOCK_AttachClk(kFRO12M_to_FLEXCOMM5);               \
+    /* Configure FROHF48M Clock */                       \
+    BOARD_BootClockFROHF48M()
 
 /*******************************************************************************
  ************************ BOARD_InitBootClocks function ************************
