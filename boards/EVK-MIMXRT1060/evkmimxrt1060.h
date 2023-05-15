@@ -54,11 +54,6 @@
 #endif
 #define ARDUINO_UNO_UART    3
 
-// i.MXRT1060 EVK Internal Peripheral Pin Definitions
-#define RED_LED         GPIO_PORT1(9U)
-#define GREEN_LED       GPIO_PORT1(9U)
-#define BLUE_LED        GPIO_PORT1(9U)
-
 // CMSIS Drivers
 extern ARM_DRIVER_I2C   Driver_I2C1;
 #ifdef  ARDUINO_UNO_SPI_PINS

@@ -24,6 +24,7 @@
 //-----------------------------------------------------------------------
 // CMSIS Includes
 //-----------------------------------------------------------------------
+#include "cmsis_vio.h"
 #include "Driver_I2C.h"
 #include "Driver_GPIO.h"
 
@@ -425,15 +426,12 @@ int app_main(void)
     ARM_DRIVER_I2C *I2Cdrv = &FXLS8974_I2C_DRIVER;
     ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO0;
     fxls8974_i2c_sensorhandle_t fxls8974Driver;
+    uint32_t vioOut = 0U;
 
     /*! Setup FXLS8974_INT1 pin used by board */
     pGpioDriver->Setup(FXLS8974_INT1, &fxls8974_isr_callback);
     pGpioDriver->SetDirection(FXLS8974_INT1, ARM_GPIO_INPUT);
     pGpioDriver->SetEventTrigger(FXLS8974_INT1, ARM_GPIO_TRIGGER_RISING_EDGE);
-
-    /*! Setup LED pin used by board */
-    pGpioDriver->Setup(GREEN_LED, NULL);
-    pGpioDriver->SetDirection(GREEN_LED, ARM_GPIO_OUTPUT);
 
     /*! FreeMASTER communication layer initialization */
     init_freemaster_uart();
@@ -567,7 +565,8 @@ int app_main(void)
         else
         { /*! Clear the data ready flag, it will be set again by the ISR. */
             bFxls8974IntFlag = false;
-            pGpioDriver->SetOutput(GREEN_LED, pGpioDriver->GetInput(GREEN_LED) ^ 1U);
+            vioOut ^= vioLED1;
+            vioSetSignal(vioLED1, vioOut);
         }
 
         /*! Calling Recorder#1 for sampling sensor data when we get sensor data ready interrupt based on ODR. */
@@ -633,7 +632,8 @@ int app_main(void)
 
         if (prev_toggle != registers.toggle)
         {
-            pGpioDriver->SetOutput(GREEN_LED, pGpioDriver->GetInput(GREEN_LED) ^ 1U);
+            vioOut ^= vioLED1;
+            vioSetSignal(vioLED1, vioOut);
         	prev_toggle = registers.toggle;
         }
 
@@ -921,6 +921,7 @@ void selftest_init(fxls8974_selftest_t *selftest)
 int32_t perform_selftest(fxls8974_i2c_sensorhandle_t fxls8974Driver, fxls8974_selftest_t *selftest)
 {
 	int32_t status;
+    uint32_t vioOut = 0U;
 
 	axis=0;
 
@@ -967,7 +968,8 @@ int32_t perform_selftest(fxls8974_i2c_sensorhandle_t fxls8974Driver, fxls8974_se
 
 
 			bFxls8974IntFlag = false;
-            //pGpioDriver->SetOutput(RED_LED, pGpioDriver->GetInput(RED_LED) ^ 1U);
+            vioOut ^= vioLED0;
+            vioSetSignal(vioLED0, vioOut);
 
 			/*! Read new raw sensor data from the FXLS8974. */
 			status = FXLS8974_I2C_ReadData(&fxls8974Driver, cFxls8974OutputNormal, &data_.byte_data[0]);

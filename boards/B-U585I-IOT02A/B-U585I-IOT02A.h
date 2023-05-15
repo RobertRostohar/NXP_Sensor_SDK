@@ -59,10 +59,6 @@
 #define ARDUINO_UNO_SPI     1
 #define ARDUINO_UNO_UART    3
 
-// B-U585I-IOT02A LED Pin Definitions
-#define RED_LED         GPIO_PORTH(6U)
-#define GREEN_LED       GPIO_PORTH(7U)
-
 // CMSIS Drivers
 extern ARM_DRIVER_I2C   Driver_I2C1;
 extern ARM_DRIVER_SPI   Driver_SPI1;

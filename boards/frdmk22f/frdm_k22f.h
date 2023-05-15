@@ -50,11 +50,6 @@
 #define ARDUINO_UNO_SPI     1
 #define ARDUINO_UNO_UART    2
 
-// FRDM-K22F RGB LED Pin Definitions
-#define RED_LED         GPIO_PORTA(1U)
-#define GREEN_LED       GPIO_PORTA(2U)
-#define BLUE_LED        GPIO_PORTD(5U)
-
 // CMSIS Drivers
 extern ARM_DRIVER_I2C   Driver_I2C0;
 extern ARM_DRIVER_SPI   Driver_SPI1;

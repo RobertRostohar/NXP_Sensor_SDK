@@ -20,6 +20,7 @@
 //-----------------------------------------------------------------------
 // CMSIS Includes
 //-----------------------------------------------------------------------
+#include "cmsis_vio.h"
 #include "Driver_I2C.h"
 #include "Driver_GPIO.h"
 
@@ -91,6 +92,7 @@ int app_main(void)
     ARM_DRIVER_I2C *I2Cdrv = &MAG3110_I2C_DRIVER;
     mag3110_i2c_sensorhandle_t mag3110Driver;
     ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO0;
+    uint32_t vioOut = 0U;
 
     PRINTF("\r\n ISSDK MAG3110 sensor driver example demonstration with interrupt mode.\r\n");
 
@@ -98,10 +100,6 @@ int app_main(void)
     pGpioDriver->Setup(MAG3110_INT1, &mag3110_int_data_ready_callback);
     pGpioDriver->SetDirection(MAG3110_INT1, ARM_GPIO_INPUT);
     pGpioDriver->SetEventTrigger(MAG3110_INT1, ARM_GPIO_TRIGGER_RISING_EDGE);
-
-    /*! Setup LED pin used by board */
-    pGpioDriver->Setup(GREEN_LED, NULL);
-    pGpioDriver->SetDirection(GREEN_LED, ARM_GPIO_OUTPUT);
 
     /*! Initialize the I2C driver. */
     status = I2Cdrv->Initialize(MAG3110_I2C_EVENT);
@@ -163,7 +161,8 @@ int app_main(void)
         else
         { /*! Clear the data ready flag, it will be set again by the ISR. */
             gMag3110DataReady = false;
-            pGpioDriver->SetOutput(GREEN_LED, pGpioDriver->GetInput(GREEN_LED) ^ 1U);
+            vioOut ^= vioLED1;
+            vioSetSignal(vioLED1, vioOut);
         }
 
         /*! Read the raw sensor data from the MAG3110. */

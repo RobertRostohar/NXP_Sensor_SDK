@@ -25,6 +25,7 @@
 //-----------------------------------------------------------------------
 // CMSIS Includes
 //-----------------------------------------------------------------------
+#include "cmsis_vio.h"
 #include "Driver_I2C.h"
 #include "Driver_GPIO.h"
 
@@ -118,12 +119,6 @@ int app_main(void)
     pGpioDriver->SetDirection(FXLS8974_INT1, ARM_GPIO_INPUT);
     pGpioDriver->SetEventTrigger(FXLS8974_INT1, ARM_GPIO_TRIGGER_RISING_EDGE);
 
-    /*! Setup LED pin used by board */
-    pGpioDriver->Setup(RED_LED, NULL);
-    pGpioDriver->SetDirection(RED_LED, ARM_GPIO_OUTPUT);
-    pGpioDriver->Setup(GREEN_LED, NULL);
-    pGpioDriver->SetDirection(GREEN_LED, ARM_GPIO_OUTPUT);
-
     /*! Initialize the I2C driver. */
     status = I2Cdrv->Initialize(FXLS8974_I2C_EVENT);
     if (ARM_DRIVER_OK != status)
@@ -209,9 +204,9 @@ int app_main(void)
                 PRINTF("\r\n Will enter sleep mode after expiration of ASLP counter = ~5sec\r\n\r\n");
                 sleeptowake = 0;
               }
-                pGpioDriver->SetOutput(RED_LED, 1U);
-                pGpioDriver->SetOutput(GREEN_LED, 0U);
-                waketosleep = 1;
+              vioSetSignal(vioLED0, vioLEDon);
+              vioSetSignal(vioLED1, vioLEDoff);
+              waketosleep = 1;
             }
         }
         else
@@ -234,8 +229,8 @@ int app_main(void)
              waketosleep = 0;
              firsttransition = 0;
            }
-           pGpioDriver->SetOutput(GREEN_LED, 1U);
-           pGpioDriver->SetOutput(RED_LED, 0U);
+           vioSetSignal(vioLED1, vioLEDon);
+           vioSetSignal(vioLED0, vioLEDoff);
            sleeptowake = 1;
            gFxls8974IntFlag = false;
            ENTER_SLEEP();

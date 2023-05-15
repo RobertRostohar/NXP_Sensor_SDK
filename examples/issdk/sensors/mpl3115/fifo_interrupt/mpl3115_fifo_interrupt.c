@@ -20,6 +20,7 @@
 //-----------------------------------------------------------------------
 // CMSIS Includes
 //-----------------------------------------------------------------------
+#include "cmsis_vio.h"
 #include "Driver_I2C.h"
 #include "Driver_GPIO.h"
 
@@ -112,6 +113,7 @@ int app_main(void)
     ARM_DRIVER_I2C *I2Cdrv = &MPL3115_I2C_DRIVER;
     mpl3115_i2c_sensorhandle_t mpl3115Driver;
     ARM_DRIVER_GPIO *pGpioDriver = &Driver_GPIO0;
+    uint32_t vioOut = 0U;
 
     PRINTF("\r\n ISSDK MPL3115 sensor driver example demonstration with interrupt mode.\r\n");
 
@@ -119,10 +121,6 @@ int app_main(void)
     pGpioDriver->Setup(MPL3115_INT1, &mpl3115_int_data_ready_callback);
     pGpioDriver->SetDirection(MPL3115_INT1, ARM_GPIO_INPUT);
     pGpioDriver->SetEventTrigger(MPL3115_INT1, ARM_GPIO_TRIGGER_RISING_EDGE);
-
-    /*! Setup LED pin used by board */
-    pGpioDriver->Setup(GREEN_LED, NULL);
-    pGpioDriver->SetDirection(GREEN_LED, ARM_GPIO_OUTPUT);
 
     /*! Initialize the I2C driver. */
     status = I2Cdrv->Initialize(MPL3115_I2C_EVENT);
@@ -183,7 +181,8 @@ int app_main(void)
         else
         { /*! Clear the data ready flag, it will be set again by the ISR. */
             gMpl3115DataReady = false;
-            pGpioDriver->SetOutput(GREEN_LED, pGpioDriver->GetInput(GREEN_LED) ^ 1U);
+            vioOut ^= vioLED1;
+            vioSetSignal(vioLED1, vioOut);
             /* Read FIFO status, to clear sensor's INT.
              * Note: This is a special step in FIFO Mode particular to MPL3115, where we have to read F_STATUS to clear
              * the sensor's internal INT.  */

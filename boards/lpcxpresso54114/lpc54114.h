@@ -50,11 +50,6 @@
 #define ARDUINO_UNO_SPI     5
 #define ARDUINO_UNO_UART    0
 
-// LPCXpresso54114 Internal Peripheral Pin Definitions
-#define RED_LED         GPIO_PORT0(29U)
-#define GREEN_LED       GPIO_PORT1(10U)
-#define BLUE_LED        GPIO_PORT1(9U)
-
 // CMSIS Drivers
 extern ARM_DRIVER_I2C   Driver_I2C4;
 extern ARM_DRIVER_SPI   Driver_SPI5;
