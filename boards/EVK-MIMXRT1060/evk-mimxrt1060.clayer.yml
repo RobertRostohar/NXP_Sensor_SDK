@@ -1,0 +1,99 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/schemas/projmgr/1.5.0/tools/projmgr/schemas/clayer.schema.json
+
+layer:
+  type: Board
+  for-board: NXP::EVK-MIMXRT1060
+  description: EVK-MIMXRT1060 Development Board
+
+  connections:
+    - connect: EVK-MIMXRT1060 Board
+      provides:
+        - ARDUINO_UNO_UART: 3
+        # - ARDUINO_UNO_SPI: 1
+        - ARDUINO_UNO_I2C: 1
+        - ARDUINO_UNO_I2C-Alt: 1
+        - ARDUINO_UNO_D2
+        - ARDUINO_UNO_D3
+        - ARDUINO_UNO_D4
+        - ARDUINO_UNO_D5
+        - ARDUINO_UNO_D6
+        - ARDUINO_UNO_D7
+        - ARDUINO_UNO_D8
+        - ARDUINO_UNO_D9
+        # - ARDUINO_UNO_D10
+        - ARDUINO_UNO_D14
+        - ARDUINO_UNO_D15
+        - ARDUINO_UNO_D16
+        - ARDUINO_UNO_D17
+        - STDIN
+        - STDOUT
+        - STDERR
+        - Heap: 1024
+
+  packs:
+    - pack: NXP::MIMXRT1062_DFP@15.1.0
+    - pack: NXP::EVK-MIMXRT1060_BSP@15.1.0
+    - pack: ARM::CMSIS@5.9.0
+    - pack: Keil::ARM_Compiler
+
+  define:
+    - CMSIS_board_header="evkmimxrt1060.h"
+    - SKIP_SYSCLK_INIT
+    - XIP_BOOT_HEADER_DCD_ENABLE=1
+    - XIP_BOOT_HEADER_ENABLE=1
+    - XIP_EXTERNAL_FLASH=1
+    - IMX_1060
+
+  misc:
+    - for-compiler: AC6
+      Link:
+        - --predefine="-DXIP_BOOT_HEADER_ENABLE=1"
+
+  components:
+    - component: NXP::Board Support:SDK Drivers:evkmimxrt1060
+    - component: NXP::Board Support:SDK Project Template:project_template&evkmimxrt1060
+    - component: ARM::CMSIS:CORE
+    - component: ARM::CMSIS Driver:I2C:Custom
+    - component: NXP::CMSIS Driver:I2C:lpi2c_cmsis
+    - component: ARM::CMSIS Driver:USART:Custom
+    - component: NXP::CMSIS Driver:USART:lpuart_cmsis
+    - component: NXP::Device:CMSIS:MIMXRT1062_header
+    - component: NXP::Device:CMSIS:MIMXRT1062_system
+    - component: NXP::Device:SDK Drivers:clock
+    - component: NXP::Device:SDK Drivers:common
+    - component: NXP::Device:SDK Drivers:dmamux
+    - component: NXP::Device:SDK Drivers:edma
+    - component: NXP::Device:SDK Drivers:gpio
+    - component: NXP::Device:SDK Drivers:i2c
+    - component: NXP::Device:SDK Drivers:i2c_edma
+    - component: NXP::Device:SDK Drivers:iomuxc
+    - component: NXP::Device:SDK Drivers:lists
+    - component: NXP::Device:SDK Drivers:lpuart
+    - component: NXP::Device:SDK Drivers:lpuart_adapter
+    - component: NXP::Device:SDK Drivers:lpuart_edma
+    - component: NXP::Device:SDK Drivers:nic301
+    - component: NXP::Device:SDK Drivers:xip_device
+    - component: NXP::Device:SDK Project Template:RTE_Device
+    - component: NXP::Device:SDK Utilities:assert
+    - component: NXP::Device:SDK Utilities:debug_console
+    - component: NXP::Device:SDK Utilities:serial_manager
+    - component: NXP::Device:SDK Utilities:serial_manager_uart
+    - component: NXP::Device:Startup
+    - component: Keil::Compiler&ARM Compiler:I/O:STDERR&User
+    - component: Keil::Compiler&ARM Compiler:I/O:STDOUT&User
+    - component: Keil::Compiler&ARM Compiler:I/O:STDIN&User
+
+  groups:
+    - group: gpio_driver
+      files:
+        - file: ../../drivers/gpio/Driver_GPIO.h
+        - file: ../../drivers/gpio/iMXRT1060/GPIO_iMXRT1060.h
+        - file: ../../drivers/gpio/iMXRT1060/GPIO_iMXRT1060.c
+    - group: board
+      files:
+        - file: ./main.c
+        - file: ./retarget_stdio.c
+        - file: ./evkmimxrt1060.c
+        - file: ./evkmimxrt1060.h
+        - file: ./MIMXRT1060-EVK.mex
+        - file: ./RTE/Device/MIMXRT1062DVL6A/MIMXRT1062xxxxx_flexspi_nor_sdram.scf
