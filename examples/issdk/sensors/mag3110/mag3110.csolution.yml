@@ -14,6 +14,11 @@ solution:
       variables:
         - Board-Layer:  ../../../../../boards/lpcxpresso54114/lpcxpresso54114.clayer.yml
         - Shield-Layer: ../../../../../shields/agmp03/agmp03.clayer.yml
+    - type: evkmimxrt1060_agmp03
+      board: NXP::EVK-MIMXRT1060
+      variables:
+        - Board-Layer:  ../../../../../boards/EVK-MIMXRT1060/evk-mimxrt1060.clayer.yml
+        - Shield-Layer: ../../../../../shields/agmp03/agmp03.clayer.yml
 
   build-types:
     - type: debug

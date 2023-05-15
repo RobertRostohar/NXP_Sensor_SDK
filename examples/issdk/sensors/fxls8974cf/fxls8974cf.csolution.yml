@@ -20,6 +20,11 @@ solution:
       variables:
         - Board-Layer:  ../../../../../boards/B-U585I-IOT02A/B-U585I-IOT02A.clayer.yml
         - Shield-Layer: ../../../../../shields/a8974/a8974.clayer.yml
+    - type: evkmimxrt1060_a8974
+      board: NXP::EVK-MIMXRT1060
+      variables:
+        - Board-Layer:  ../../../../../boards/EVK-MIMXRT1060/evk-mimxrt1060.clayer.yml
+        - Shield-Layer: ../../../../../shields/a8974/a8974.clayer.yml
 
   build-types:
     - type: debug
@@ -39,6 +44,9 @@ solution:
       for-context: +frdmk22f_a8974
     - project: ./interrupt/fxls8974cf_interrupt.cproject.yml
     - project: ./motion_wakeup/fxls8974cf_motion_wakeup.cproject.yml
-      not-for-context: +lpcxpresso54114_a8974  # RED_LED clashes with ARDUINO_UNO_D5 (overrides I2C/SPI jumper selection)
+      not-for-context:
+        - +lpcxpresso54114_a8974  # RED LED clashes with ARDUINO_UNO_D5 (overrides I2C/SPI jumper selection)
+        - +evkmimxrt1060_a8974    # no RED LED
     - project: ./poll/fxls8974cf_poll.cproject.yml
     - project: ./spi/fxls8974cf_spi.cproject.yml
+      not-for-context: +evkmimxrt1060_a8974
