@@ -14,6 +14,7 @@ layer:
   connections:
     - connect: FRDM-K22F Board
       provides:
+        - CMSIS_VIO
         - ARDUINO_UNO_UART: 2
         - ARDUINO_UNO_SPI: 1
         - ARDUINO_UNO_I2C-Alt: 0
@@ -49,6 +50,7 @@ layer:
   components:
     - component: NXP::Board Support:SDK Project Template:project_template&MK22F51212
     - component: ARM::CMSIS:CORE
+    - component: ARM::CMSIS Driver:VIO:Custom
     - component: ARM::CMSIS Driver:I2C:Custom
     - component: NXP::CMSIS Driver:I2C:i2c_cmsis
     - component: ARM::CMSIS Driver:SPI:Custom
@@ -99,4 +101,5 @@ layer:
         - file: ./retarget_stdio.c
         - file: ./frdm_k22f.c
         - file: ./frdm_k22f.h
+        - file: ./vio_frdm_k22f.c
         - file: ./RTE/Device/MK22FN512VLH12/MK22FN512xxx12_flash.scf

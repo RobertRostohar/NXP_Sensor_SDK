@@ -8,6 +8,7 @@ layer:
   connections:
     - connect: EVK-MIMXRT1060 Board
       provides:
+        - CMSIS_VIO
         - ARDUINO_UNO_UART: 3
         # - ARDUINO_UNO_SPI: 1
         - ARDUINO_UNO_I2C: 1
@@ -53,6 +54,7 @@ layer:
     - component: NXP::Board Support:SDK Drivers:evkmimxrt1060
     - component: NXP::Board Support:SDK Project Template:project_template&evkmimxrt1060
     - component: ARM::CMSIS:CORE
+    - component: ARM::CMSIS Driver:VIO:Custom
     - component: ARM::CMSIS Driver:I2C:Custom
     - component: NXP::CMSIS Driver:I2C:lpi2c_cmsis
     - component: ARM::CMSIS Driver:USART:Custom
@@ -95,5 +97,6 @@ layer:
         - file: ./retarget_stdio.c
         - file: ./evkmimxrt1060.c
         - file: ./evkmimxrt1060.h
+        - file: ./vio_evkmimxrt1060.c
         - file: ./MIMXRT1060-EVK.mex
         - file: ./RTE/Device/MIMXRT1062DVL6A/MIMXRT1062xxxxx_flexspi_nor_sdram.scf

@@ -18,6 +18,7 @@
 
 #include "pin_mux.h"
 #include "board.h"
+#include "cmsis_vio.h"
 #include "main.h"
 
 #ifdef   CMSIS_shield_header
@@ -36,6 +37,8 @@ int main (void) {
   BOARD_InitDebugConsole();
 
   SystemCoreClockUpdate();
+
+  vioInit();
 
 #ifdef CMSIS_shield_header
  shield_setup();

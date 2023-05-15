@@ -22,6 +22,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#include "cmsis_vio.h"
+
 #ifdef   CMSIS_shield_header
 #include CMSIS_shield_header
 #endif
@@ -174,6 +176,8 @@ int main(void)
   MX_ICACHE_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
+
+  vioInit();
 
 #ifdef CMSIS_shield_header
   shield_setup();

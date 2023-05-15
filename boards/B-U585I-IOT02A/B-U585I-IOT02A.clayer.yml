@@ -8,6 +8,7 @@ layer:
   connections:
     - connect: B-U585I-IOT02A Board
       provides:
+        - CMSIS_VIO
         - ARDUINO_UNO_UART: 3
         - ARDUINO_UNO_SPI: 1
         - ARDUINO_UNO_I2C: 1
@@ -79,6 +80,7 @@ layer:
 
     - component: ARM::CMSIS:CORE
 
+    - component: ARM::CMSIS Driver:VIO:Custom
     - component: Keil::CMSIS Driver:I2C
     - component: Keil::CMSIS Driver:SPI
     - component: Keil::CMSIS Driver:USART
@@ -96,4 +98,5 @@ layer:
     - group: board
       files:
         - file: ./B-U585I-IOT02A.h
+        - file: ./vio_B-U585I-IOT02A.c
         - file: ./retarget_stdio.c

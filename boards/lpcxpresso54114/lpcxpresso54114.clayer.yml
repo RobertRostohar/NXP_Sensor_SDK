@@ -15,6 +15,7 @@ layer:
   connections:
     - connect: LPCXpresso54114 Board
       provides:
+        - CMSIS_VIO
         - ARDUINO_UNO_UART: 0
         - ARDUINO_UNO_SPI: 5
         - ARDUINO_UNO_I2C: 4
@@ -44,6 +45,7 @@ layer:
   components:
     - component: NXP::Board Support:SDK Project Template:project_template&LPC54114
     - component: ARM::CMSIS:CORE
+    - component: ARM::CMSIS Driver:VIO:Custom
     - component: NXP::CMSIS Driver:I2C:flexcomm_i2c_cmsis
     - component: NXP::CMSIS Driver:SPI:flexcomm_spi_cmsis
     - component: NXP::CMSIS Driver:USART:flexcomm_usart_cmsis
@@ -91,4 +93,5 @@ layer:
         - file: ./retarget_stdio.c
         - file: ./lpc54114.c
         - file: ./lpc54114.h
+        - file: ./vio_lpc54114.c
         - file: ./RTE/Device/LPC54114J256BD64_cm4/LPC54114J256_cm4.scf
