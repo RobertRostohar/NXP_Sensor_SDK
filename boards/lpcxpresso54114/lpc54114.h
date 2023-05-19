@@ -14,7 +14,6 @@
 #ifndef LPC54114_H_
 #define LPC54114_H_
 
-#include "pin_mux.h"
 #include "fsl_power.h"
 #include "RTE_Device.h"
 #include "GPIO_LPC5411x.h"
@@ -57,15 +56,12 @@ extern ARM_DRIVER_USART Driver_USART0;
 extern ARM_DRIVER_USART Driver_USART1;
 
 // I2C/SPI Communication Idle Task and Argument
-#define COMM_IDLE_TASK      SMC_SetPowerModeVlpr
+#define COMM_IDLE_TASK      comm_idle_task
 #define COMM_IDLE_ARG       NULL
+
+static inline void comm_idle_task(void *arg) { POWER_EnterSleep(); }
 
 // Enter Sleep (Power Down)
 #define ENTER_SLEEP()       POWER_EnterSleep()
-
-/* @brief Kinetis style Wrapper API for Power Mode Wait (Wait for Interrupt). */
-status_t SMC_SetPowerModeWait(void *);
-/* @brief Kinetis style Wrapper API for Power Mode VLPR (Wait for Interrupt). */
-status_t SMC_SetPowerModeVlpr(void *);
 
 #endif /* LPC54114_CM4_H_ */

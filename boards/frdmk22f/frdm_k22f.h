@@ -12,7 +12,6 @@
 #ifndef FRDM_K22F_H_
 #define FRDM_K22F_H_
 
-#include "pin_mux.h"
 #include "fsl_smc.h"
 #include "MK22F51212.h"
 #include "RTE_Device.h"

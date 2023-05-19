@@ -79,11 +79,12 @@ extern ARM_DRIVER_USART Driver_USART3;
 #define SPI_BASE_PTRS       LPSPI_BASE_PTRS
 
 // I2C/SPI Communication Idle Task and Argument
-#define COMM_IDLE_TASK      NULL //SMC_SetPowerModeVlpr
+#define COMM_IDLE_TASK      NULL
 #define COMM_IDLE_ARG       NULL
 
 // Enter Sleep (Power Down)
-void LPM_EnterSleepMode(clock_mode_t mode);
-#define ENTER_SLEEP()       LPM_EnterSleepMode(kCLOCK_ModeWait);
+#define ENTER_SLEEP()       LPM_EnterSleepMode(kCLOCK_ModeWait)
+
+extern void LPM_EnterSleepMode(clock_mode_t mode);
 
 #endif /* EVKBIMX1060_H_ */
