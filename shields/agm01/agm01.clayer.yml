@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/schemas/projmgr/1.5.0/tools/projmgr/schemas/clayer.schema.json
+
+layer:
+  type: Shield
+  description: FRDM-STBC-AGM01 Sensor Shield Board
+
+  connections:
+    - connect: FXAS21002 I2C Bus
+      set: Bus.I2C
+      info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
+      provides:
+        - FXAS21002_I2C
+      consumes:
+        - ARDUINO_UNO_I2C
+    - connect: FXAS21002 Alternate I2C Bus
+      set: Bus.I2C-Alt
+      info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
+      provides:
+        - FXAS21002_I2C
+      consumes:
+        - ARDUINO_UNO_I2C-Alt
+    - connect: FXAS21002 SPI Bus
+      set: Bus.SPI
+      info: "Jumper configuration: I2C/SPI=SPI"
+      provides:
+        - FXAS21002_SPI
+        - FXAS21002_CS
+      consumes:
+        - ARDUINO_UNO_SPI
+        - ARDUINO_UNO_D10
+    - connect: FXAS21002 Interrupt 1
+      provides:
+        - FXAS21002_INT1
+      consumes:
+        - ARDUINO_UNO_D5
+    - connect: FXAS21002 Interrupt 2
+      provides:
+        - FXAS21002_INT2
+      consumes:
+        - ARDUINO_UNO_D8
+
+  define:
+    - CMSIS_shield_header="frdm_stbc_agm01_shield.h"
+
+  groups:
+    - group: shield
+      files:
+        - file: ./frdm_stbc_agm01_shield.h
+        - file: ./frdm_stbc_agm01_shield.c

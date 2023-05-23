@@ -3,6 +3,11 @@
 solution:
 
   target-types:
+    - type: evkmimxrt1060_agmp03
+      board: NXP::EVK-MIMXRT1060
+      variables:
+        - Board-Layer:  ../../../../../boards/EVK-MIMXRT1060/evk-mimxrt1060.clayer.yml
+        - Shield-Layer: ../../../../../shields/agmp03/agmp03.clayer.yml
     - type: frdmk22f_agmp03
       board: NXP::FRDM-K22F
       variables:
@@ -14,11 +19,27 @@ solution:
       variables:
         - Board-Layer:  ../../../../../boards/lpcxpresso54114/lpcxpresso54114.clayer.yml
         - Shield-Layer: ../../../../../shields/agmp03/agmp03.clayer.yml
-    - type: evkmimxrt1060_agmp03
-      board: NXP::EVK-MIMXRT1060
+    - type: lpcxpresso55S69_agmp03
+      board: NXP::LPCXpresso55S69
+      device: NXP::LPC55S69JBD100:cm33_core0
+      define:
+        - CPU_LPC55S69JBD100_cm33_core0
       variables:
-        - Board-Layer:  ../../../../../boards/EVK-MIMXRT1060/evk-mimxrt1060.clayer.yml
+        - Board-Layer:  ../../../../../boards/lpcxpresso55S69/lpcxpresso55S69.clayer.yml
         - Shield-Layer: ../../../../../shields/agmp03/agmp03.clayer.yml
+    - type: frdmk22f_agm01
+      board: NXP::FRDM-K22F
+      variables:
+        - Board-Layer:  ../../../../../boards/frdmk22f/frdmk22f.clayer.yml
+        - Shield-Layer: ../../../../../shields/agm01/agm01.clayer.yml
+    - type: lpcxpresso55S69_agm01
+      board: NXP::LPCXpresso55S69
+      device: NXP::LPC55S69JBD100:cm33_core0
+      define:
+        - CPU_LPC55S69JBD100_cm33_core0
+      variables:
+        - Board-Layer:  ../../../../../boards/lpcxpresso55S69/lpcxpresso55S69.clayer.yml
+        - Shield-Layer: ../../../../../shields/agm01/agm01.clayer.yml
 
   build-types:
     - type: debug
@@ -36,8 +57,11 @@ solution:
   projects:
     - project: ./fifo/fxas21002_fifo.cproject.yml
     - project: ./interrupt/fxas21002_interrupt.cproject.yml
+      not-for-context:
+        - +lpcxpresso55S69_agm01  # Blue_LED clashes with ARDUINO_UNO_D5 Interrupt 1
     - project: ./poll/fxas21002_poll.cproject.yml
     - project: ./poll_spi/fxas21002_poll_spi.cproject.yml
       not-for-context:
-       - +lpcxpresso54114_agmp03
        - +evkmimxrt1060_agmp03
+       - +lpcxpresso54114_agmp03
+

@@ -23,7 +23,9 @@
 /*******************************************************************************
  * Types
  ******************************************************************************/
-#if   defined(SPI7)
+#if   defined(SPI8)
+#define SPI_COUNT 9
+#elif defined(SPI7)
 #define SPI_COUNT 8
 #elif defined(SPI6)
 #define SPI_COUNT 7
@@ -47,6 +49,13 @@
  * Variables
  ******************************************************************************/
 ARM_DRIVER_GPIO *pDspiGpioDriver = &Driver_GPIO0;
+
+// GENERIC_DRIVER_GPIO *pDspiGpioDriver = &Driver_GPIO_KSDK;
+// #if defined(CPU_MCXN947VDF_cm33_core0) || defined(CPU_MCXN548VDF_cm33_core0)
+// LPSPI_Type *const spiBases[] = LPSPI_BASE_PTRS;
+// #else
+// SPI_Type *const spiBases[] = SPI_BASE_PTRS;
+// #endif
 volatile bool b_SPI_CompletionFlag[SPI_COUNT] = {false};
 volatile uint32_t g_SPI_ErrorEvent[SPI_COUNT] = {ARM_SPI_EVENT_TRANSFER_COMPLETE};
 
@@ -137,7 +146,7 @@ void SPI6_SignalEvent_t(uint32_t event)
 }
 #endif
 
-#ifndef CPU_LPC55S06JBD64
+#if !defined(CPU_LPC55S06JBD64) || !defined(CPU_LPC55S69JBD100)
 #if defined(SPI7)
 /* The SPI7 Signal Event Handler function. */
 void SPI7_SignalEvent_t(uint32_t event)
@@ -147,6 +156,17 @@ void SPI7_SignalEvent_t(uint32_t event)
         g_SPI_ErrorEvent[7] = event;
     }
     b_SPI_CompletionFlag[7] = true;
+}
+#endif
+#if defined(SPI8)
+/* The SPI7 Signal Event Handler function. */
+void SPI8_SignalEvent_t(uint32_t event)
+{
+    if (event != ARM_SPI_EVENT_TRANSFER_COMPLETE)
+    {
+        g_SPI_ErrorEvent[8] = event;
+    }
+    b_SPI_CompletionFlag[8] = true;
 }
 #endif
 #endif
@@ -163,7 +183,6 @@ void register_spi_control(spiControlParams_t *ssControl)
         pDspiGpioDriver->SetOutput(ssControl->TargetSlavePinID, 0U);
     }
 }
-
 /*! The interface function to block write sensor registers. */
 int32_t Register_SPI_BlockWrite(ARM_DRIVER_SPI *pCommDrv,
                                 registerDeviceInfo_t *devInfo,
