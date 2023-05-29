@@ -13,34 +13,6 @@
 
 #include "lpc55s69.h"
 
-/*!
- * @brief Configures the system to WAIT power mode.
- *        API name used from Kinetis family to maintain compatibility.
- *
- * @param Power peripheral base address (dummy).
- * @return Configuration error code.
- */
-status_t SMC_SetPowerModeWait(void *arg)
-{
-    //POWER_EnterSleep();
-
-    return kStatus_Success;
-}
-
-/*!
- * @brief Configures the system to VLPR power mode.
- *        API name used from Kinetis family to maintain compatibility.
- *
- * @param Power peripheral base address (dummy).
- * @return Configuration error code.
- */
-status_t SMC_SetPowerModeVlpr(void *arg)
-{
-    POWER_EnterSleep();
-
-    return kStatus_Success;
-}
-
 /*! @brief       Determines the Clock Frequency feature.
  *  @details     The Clock Frequecny computation API required by fsl_uart_cmsis.c.
  *  @param[in]   void
