@@ -7,8 +7,7 @@
  */
 
 /*! File: frdm_stbc_agm01_shield.h
-* @brief The frdm_stbc_agm01_shield.h file declares mapping of the Kinetis
-         Device peripherals to the frmd-k22f and frmd-stbc-agm01 shield
+* @brief The frdm_stbc_agm01_shield.h file declares mapping for frmd-stbc-agm01 shield.
 */
 
 #ifndef _FRDM_STBC_AGM01_SHIELD_H_

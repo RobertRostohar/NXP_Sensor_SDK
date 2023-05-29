@@ -8,8 +8,7 @@
 
 /**
  * @file frdm_stbc_p3115_shield.h
-* @brief The frdm_stbc_p3115_shield.h file declares mapping of the Kinetis
-         Device peripherals to the frmd-kl25z and frmd-stbc-p3115 shield
+* @brief The frdm_stbc_p3115_shield.h file declares mapping for frmd-stbc-p3115 shield.
 */
 
 #ifndef _FRDM_STBC_P3115_SHIELD_H_
@@ -23,7 +22,7 @@
 #define MPL3115_I2C_DRIVER      ARM_Driver_I2C_(MPL3115_I2C_INDEX)
 #define MPL3115_I2C_EVENT       I2C_SignalEvent(MPL3115_I2C_INDEX)
 #define MPL3115_I2C_ADDR        0x60
-#define MPL3115_INT1            ARDUINO_UNO_D7
+#define MPL3115_INT1            ARDUINO_UNO_D5
 #define MPL3115_INT2            ARDUINO_UNO_D2
 
 // Shield Setup (default configuration)
