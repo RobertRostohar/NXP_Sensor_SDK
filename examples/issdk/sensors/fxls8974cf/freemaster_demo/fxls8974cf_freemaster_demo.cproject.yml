@@ -8,6 +8,9 @@ project:
         - FXLS8974_I2C
         - FXLS8974_INT1
 
+  define:
+    - FXLS8974_I2C
+
   groups:
     - group: source
       files:

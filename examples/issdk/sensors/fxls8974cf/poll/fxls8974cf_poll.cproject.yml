@@ -7,6 +7,9 @@ project:
       consumes:
         - FXLS8974_I2C
 
+  define:
+    - FXLS8974_I2C
+
   groups:
     - group: source
       files:
