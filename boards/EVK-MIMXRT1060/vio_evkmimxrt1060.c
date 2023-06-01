@@ -1,5 +1,5 @@
 /******************************************************************************
- * @file     vio_frdm_k22f.c
+ * @file     vio_evkmimxrt1060.c
  * @brief    Virtual I/O implementation for EVK-MIMXRT1060 Development Board
  * @version  V1.0.0
  * @date     10. May 2023
@@ -51,34 +51,42 @@ void vioInit (void) {
 #if !defined CMSIS_VOUT
   #ifdef pinLED0
     pDriverGPIO->Setup(pinLED0, NULL);
+    pDriverGPIO->SetOutput(pinLED0, 1U);
     pDriverGPIO->SetDirection(pinLED0, ARM_GPIO_OUTPUT);
   #endif
   #ifdef pinLED1
     pDriverGPIO->Setup(pinLED1, NULL);
+    pDriverGPIO->SetOutput(pinLED1, 1U);
     pDriverGPIO->SetDirection(pinLED1, ARM_GPIO_OUTPUT);
   #endif
   #ifdef pinLED2
     pDriverGPIO->Setup(pinLED2, NULL);
+    pDriverGPIO->SetOutput(pinLED2, 1U);
     pDriverGPIO->SetDirection(pinLED2, ARM_GPIO_OUTPUT);
   #endif
   #ifdef pinLED3
     pDriverGPIO->Setup(pinLED3, NULL);
+    pDriverGPIO->SetOutput(pinLED3, 1U);
     pDriverGPIO->SetDirection(pinLED3, ARM_GPIO_OUTPUT);
   #endif
   #ifdef pinLED4
     pDriverGPIO->Setup(pinLED4, NULL);
+    pDriverGPIO->SetOutput(pinLED4, 1U);
     pDriverGPIO->SetDirection(pinLED4, ARM_GPIO_OUTPUT);
   #endif
   #ifdef pinLED5
     pDriverGPIO->Setup(pinLED5, NULL);
+    pDriverGPIO->SetOutput(pinLED5, 1U);
     pDriverGPIO->SetDirection(pinLED5, ARM_GPIO_OUTPUT);
   #endif
   #ifdef pinLED6
     pDriverGPIO->Setup(pinLED6, NULL);
+    pDriverGPIO->SetOutput(pinLED6, 1U);
     pDriverGPIO->SetDirection(pinLED6, ARM_GPIO_OUTPUT);
   #endif
   #ifdef pinLED7
     pDriverGPIO->Setup(pinLED7, NULL);
+    pDriverGPIO->SetOutput(pinLED7, 1U);
     pDriverGPIO->SetDirection(pinLED7, ARM_GPIO_OUTPUT);
   #endif
 #endif
@@ -113,42 +121,42 @@ void vioSetSignal (uint32_t mask, uint32_t signal) {
   // Output signals to LEDs
   #ifdef pinLED0
     if ((mask & vioLED0) != 0U) {
-      pDriverGPIO->SetOutput(pinLED0, ((signal & vioLED0) != 0U) ? 1U : 0U);
+      pDriverGPIO->SetOutput(pinLED0, ((signal & vioLED0) != 0U) ? 0U : 1U);
     }
   #endif
   #ifdef pinLED1
     if ((mask & vioLED1) != 0U) {
-      pDriverGPIO->SetOutput(pinLED1, ((signal & vioLED1) != 0U) ? 1U : 0U);
+      pDriverGPIO->SetOutput(pinLED1, ((signal & vioLED1) != 0U) ? 0U : 1U);
     }
   #endif
   #ifdef pinLED2
     if ((mask & vioLED2) != 0U) {
-      pDriverGPIO->SetOutput(pinLED2, ((signal & vioLED2) != 0U) ? 1U : 0U);
+      pDriverGPIO->SetOutput(pinLED2, ((signal & vioLED2) != 0U) ? 0U : 1U);
     }
   #endif
   #ifdef pinLED3
     if ((mask & vioLED3) != 0U) {
-      pDriverGPIO->SetOutput(pinLED3, ((signal & vioLED3) != 0U) ? 1U : 0U);
+      pDriverGPIO->SetOutput(pinLED3, ((signal & vioLED3) != 0U) ? 0U : 1U);
     }
   #endif
   #ifdef pinLED4
     if ((mask & vioLED4) != 0U) {
-      pDriverGPIO->SetOutput(pinLED4, ((signal & vioLED4) != 0U) ? 1U : 0U);
+      pDriverGPIO->SetOutput(pinLED4, ((signal & vioLED4) != 0U) ? 0U : 1U);
     }
   #endif
   #ifdef pinLED5
     if ((mask & vioLED5) != 0U) {
-      pDriverGPIO->SetOutput(pinLED5, ((signal & vioLED5) != 0U) ? 1U : 0U);
+      pDriverGPIO->SetOutput(pinLED5, ((signal & vioLED5) != 0U) ? 0U : 1U);
     }
   #endif
   #ifdef pinLED6
     if ((mask & vioLED6) != 0U) {
-      pDriverGPIO->SetOutput(pinLED6, ((signal & vioLED6) != 0U) ? 1U : 0U);
+      pDriverGPIO->SetOutput(pinLED6, ((signal & vioLED6) != 0U) ? 0U : 1U);
     }
   #endif
   #ifdef pinLED7
     if ((mask & vioLED7) != 0U) {
-      pDriverGPIO->SetOutput(pinLED7, ((signal & vioLED7) != 0U) ? 1U : 0U);
+      pDriverGPIO->SetOutput(pinLED7, ((signal & vioLED7) != 0U) ? 0U : 1U);
     }
   #endif
 #endif
@@ -162,7 +170,7 @@ uint32_t vioGetSignal (uint32_t mask) {
   // Get input signals from buttons
   #ifdef pinBUTTON0
     if ((mask & vioBUTTON0) != 0U) {
-      if (pDriverGPIO->GetInput(pinBUTTON0) == 1U) {
+      if (pDriverGPIO->GetInput(pinBUTTON0) == 0U) {
         vioSignalIn |=  vioBUTTON0;
       } else {
         vioSignalIn &= ~vioBUTTON0;
@@ -171,7 +179,7 @@ uint32_t vioGetSignal (uint32_t mask) {
   #endif
   #ifdef pinBUTTON1
     if ((mask & vioBUTTON1) != 0U) {
-      if (pDriverGPIO->GetInput(pinBUTTON1) == 1U) {
+      if (pDriverGPIO->GetInput(pinBUTTON1) == 0U) {
         vioSignalIn |=  vioBUTTON1;
       } else {
         vioSignalIn &= ~vioBUTTON1;
@@ -180,7 +188,7 @@ uint32_t vioGetSignal (uint32_t mask) {
   #endif
   #ifdef pinBUTTON2
     if ((mask & vioBUTTON2) != 0U) {
-      if (pDriverGPIO->GetInput(pinBUTTON2) == 1U) {
+      if (pDriverGPIO->GetInput(pinBUTTON2) == 0U) {
         vioSignalIn |=  vioBUTTON2;
       } else {
         vioSignalIn &= ~vioBUTTON2;
@@ -189,7 +197,7 @@ uint32_t vioGetSignal (uint32_t mask) {
   #endif
   #ifdef pinBUTTON3
     if ((mask & vioBUTTON3) != 0U) {
-      if (pDriverGPIO->GetInput(pinBUTTON3) == 1U) {
+      if (pDriverGPIO->GetInput(pinBUTTON3) == 0U) {
         vioSignalIn |=  vioBUTTON3;
       } else {
         vioSignalIn &= ~vioBUTTON3;

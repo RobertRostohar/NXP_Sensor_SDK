@@ -1,6 +1,6 @@
 /******************************************************************************
- * @file     vio_lpc54114.c
- * @brief    Virtual I/O implementation for LPCXpresso54114 Development Board
+ * @file     vio_lpc55s69.c
+ * @brief    Virtual I/O implementation for LPCXpresso55s69 Development Board
  * @version  V1.0.0
  * @date     10. May 2023
  ******************************************************************************/
@@ -172,7 +172,7 @@ uint32_t vioGetSignal (uint32_t mask) {
   // Get input signals from buttons
   #ifdef pinBUTTON0
     if ((mask & vioBUTTON0) != 0U) {
-      if (pDriverGPIO->GetInput(pinBUTTON0) == 1U) {
+      if (pDriverGPIO->GetInput(pinBUTTON0) == 0U) {
         vioSignalIn |=  vioBUTTON0;
       } else {
         vioSignalIn &= ~vioBUTTON0;
@@ -181,7 +181,7 @@ uint32_t vioGetSignal (uint32_t mask) {
   #endif
   #ifdef pinBUTTON1
     if ((mask & vioBUTTON1) != 0U) {
-      if (pDriverGPIO->GetInput(pinBUTTON1) == 1U) {
+      if (pDriverGPIO->GetInput(pinBUTTON1) == 0U) {
         vioSignalIn |=  vioBUTTON1;
       } else {
         vioSignalIn &= ~vioBUTTON1;
@@ -190,7 +190,7 @@ uint32_t vioGetSignal (uint32_t mask) {
   #endif
   #ifdef pinBUTTON2
     if ((mask & vioBUTTON2) != 0U) {
-      if (pDriverGPIO->GetInput(pinBUTTON2) == 1U) {
+      if (pDriverGPIO->GetInput(pinBUTTON2) == 0U) {
         vioSignalIn |=  vioBUTTON2;
       } else {
         vioSignalIn &= ~vioBUTTON2;
@@ -199,7 +199,7 @@ uint32_t vioGetSignal (uint32_t mask) {
   #endif
   #ifdef pinBUTTON3
     if ((mask & vioBUTTON3) != 0U) {
-      if (pDriverGPIO->GetInput(pinBUTTON3) == 1U) {
+      if (pDriverGPIO->GetInput(pinBUTTON3) == 0U) {
         vioSignalIn |=  vioBUTTON3;
       } else {
         vioSignalIn &= ~vioBUTTON3;
