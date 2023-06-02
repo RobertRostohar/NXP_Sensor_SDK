@@ -30,7 +30,6 @@ layer:
         - ARDUINO_UNO_D10
         - ARDUINO_UNO_D14
         - ARDUINO_UNO_D16
-        - ARDUINO_UNO_D17
         - ARDUINO_UNO_D18
         - ARDUINO_UNO_D19
         - STDIN
@@ -41,6 +40,7 @@ layer:
   define:
     - SERIAL_PORT_TYPE_UART=1
     - CMSIS_board_header="lpc54114.h"
+    - LPC_54114
 
   components:
     - component: NXP::Board Support:SDK Project Template:project_template&LPC54114

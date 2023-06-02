@@ -45,7 +45,7 @@ int32_t shield_setup (void) {
   #ifdef ARDUINO_UNO_D5
   pGpio->Setup(ARDUINO_UNO_D5,  NULL);
   #if defined(FXLS8974_I2C)
-  #if defined(IMX_1060) || defined(LPC_55S69)
+  #if defined(IMX_1060) || defined(LPC_55S69) || defined(LPC_54114)
   // Manually drive pin low (shield pulldown is weaker than board pull-up)
   pGpio->SetDirection(ARDUINO_UNO_D5, ARM_GPIO_OUTPUT);
   pGpio->SetOutput(ARDUINO_UNO_D5, 0U);
