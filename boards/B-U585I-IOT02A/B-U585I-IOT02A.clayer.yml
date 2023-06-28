@@ -1,5 +1,3 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/schemas/projmgr/1.5.0/tools/projmgr/schemas/clayer.schema.json
-
 layer:
   type: Board
   for-board: B-U585I-IOT02A
@@ -42,8 +40,8 @@ layer:
     trustzone: off
 
   define:
-    - MX_WIFI_SPI_DMA=0   # Do not use DMA if TZEN=1
-    - CMSIS_board_header="B-U585I-IOT02A.h"
+    - MX_WIFI_SPI_DMA: 0   # Do not use DMA if TZEN=1
+    - CMSIS_board_header: "\"B-U585I-IOT02A.h\""
 
   components:
     - component: Keil::Device:Startup

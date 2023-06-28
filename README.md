@@ -32,7 +32,7 @@ The projects consists of:
  - shield software layer
 
 ### Software Prerequisites
- - [CMSIS-Toolbox 1.5.0](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/releases/tag/1.5.0) or later
+ - [CMSIS-Toolbox 2.0.0](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/releases/) or later
  - Arm Compiler 6.18 or later
  - CMSIS packs required by examples  
    Packs can be installed by executing the following `csolution` and `cpackget` commands:
