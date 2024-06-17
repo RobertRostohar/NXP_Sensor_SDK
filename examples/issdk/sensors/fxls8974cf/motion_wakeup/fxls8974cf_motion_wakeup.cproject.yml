@@ -1,4 +1,5 @@
 project:
+  description: FXLS8974 Sensor Demo - Motion Wake-up
 
   connections:
     - connect: FXLS8974 Sensor
@@ -10,35 +11,18 @@ project:
     - FXLS8974_I2C
 
   groups:
-    - group: source
-      files:
-        - file: ./fxls8974cf_motion_wakeup.c
     - group: doc
       files:
-        - file: ./readme.txt
-    - group: hal
+        - file: readme.txt
+    - group: source
       files:
-        - file: ../../../../../middleware/issdk/hal/issdk_hal.h
-    - group: utilities
-      files:
-        - file: ../../../../../middleware/issdk/drivers/systick/systick_utils.c
-        - file: ../../../../../middleware/issdk/drivers/systick/systick_utils.h
-    - group: interfaces
-      files:
-        - file: ../../../../../middleware/issdk/sensors/register_io_i2c.c
-        - file: ../../../../../middleware/issdk/sensors/register_io_spi.c
-        - file: ../../../../../middleware/issdk/sensors/sensor_io_spi.c
-        - file: ../../../../../middleware/issdk/sensors/sensor_io_i2c.c
-        - file: ../../../../../middleware/issdk/sensors/register_io_i2c.h
-        - file: ../../../../../middleware/issdk/sensors/register_io_spi.h
-        - file: ../../../../../middleware/issdk/sensors/sensor_io_spi.h
-        - file: ../../../../../middleware/issdk/sensors/sensor_io_i2c.h
-        - file: ../../../../../middleware/issdk/sensors/sensor_drv.h
-    - group: sensors
-      files:
-        - file: ../../../../../middleware/issdk/sensors/fxls8974.h
-        - file: ../../../../../middleware/issdk/sensors/fxls8974_drv.h
-        - file: ../../../../../middleware/issdk/sensors/fxls8974_drv.c
+        - file: ../../../issdk_hal.h
+        - file: fxls8974cf_motion_wakeup.c
+
+  components:
+    - component: NXP::Sensors:sensors:issdk_fxls8974cf
+    - component: NXP::Sensors:drivers:issdk_interfaces
+    - component: NXP::Sensors:utils:systick_utils
 
   layers:
     - layer: $Board-Layer$

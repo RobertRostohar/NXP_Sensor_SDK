@@ -2,6 +2,10 @@ solution:
   created-for: CMSIS-Toolbox@2.0.0
   cdefault:
 
+  packs:
+    - pack: NXP::ISSDK@>=3.0.0-0
+    - pack: NXP::FREEMASTER@1.0.0
+
   target-types:
     - type: frdmk22f_agmp03
       board: NXP::FRDM-K22F

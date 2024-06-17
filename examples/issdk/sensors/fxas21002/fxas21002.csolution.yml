@@ -2,6 +2,9 @@ solution:
   created-for: CMSIS-Toolbox@2.0.0
   cdefault:
 
+  packs:
+    - pack: NXP::ISSDK@>=3.0.0-0
+
   target-types:
     - type: evkmimxrt1060_agmp03
       board: NXP::EVK-MIMXRT1060

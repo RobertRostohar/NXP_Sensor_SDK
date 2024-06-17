@@ -1,4 +1,5 @@
 project:
+  description: FXAS21002 Sensor Demo - I2C Interface with Interrupt Line
 
   connections:
     - connect: FXAS21002 Sensor
@@ -7,35 +8,18 @@ project:
         - FXAS21002_INT1
 
   groups:
-    - group: source
-      files:
-        - file: ./fxas21002_interrupt.c
     - group: doc
       files:
-        - file: ./readme.txt
-    - group: hal
+        - file: readme.txt
+    - group: source
       files:
-        - file: ../../../../../middleware/issdk/hal/issdk_hal.h
-    - group: utilities
-      files:
-        - file: ../../../../../middleware/issdk/drivers/systick/systick_utils.c
-        - file: ../../../../../middleware/issdk/drivers/systick/systick_utils.h
-    - group: interfaces
-      files:
-        - file: ../../../../../middleware/issdk/sensors/register_io_i2c.c
-        - file: ../../../../../middleware/issdk/sensors/register_io_spi.c
-        - file: ../../../../../middleware/issdk/sensors/sensor_io_spi.c
-        - file: ../../../../../middleware/issdk/sensors/sensor_io_i2c.c
-        - file: ../../../../../middleware/issdk/sensors/register_io_i2c.h
-        - file: ../../../../../middleware/issdk/sensors/register_io_spi.h
-        - file: ../../../../../middleware/issdk/sensors/sensor_io_spi.h
-        - file: ../../../../../middleware/issdk/sensors/sensor_io_i2c.h
-        - file: ../../../../../middleware/issdk/sensors/sensor_drv.h
-    - group: sensors
-      files:
-        - file: ../../../../../middleware/issdk/sensors/fxas21002.h
-        - file: ../../../../../middleware/issdk/sensors/fxas21002_drv.h
-        - file: ../../../../../middleware/issdk/sensors/fxas21002_drv.c
+        - file: ../../../issdk_hal.h
+        - file: fxas21002_interrupt.c
+
+  components:
+    - component: NXP::Sensors:sensors:issdk_fxas21002
+    - component: NXP::Sensors:drivers:issdk_interfaces
+    - component: NXP::Sensors:utils:systick_utils
 
   layers:
     - layer: $Board-Layer$
