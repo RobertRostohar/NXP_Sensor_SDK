@@ -75,7 +75,7 @@ void fxls8962_int_data_ready_callback(ARM_GPIO_Pin_t pin, uint32_t even)
 }
 
 /*! -----------------------------------------------------------------------
- *  @brief       This is the The application main function implementation.
+ *  @brief       This is the application main function implementation.
  *  @details     This function brings up the sensor and enters an endless loop
  *               to continuously read available samples.
  *  @param[in]   void This is no input parameter.

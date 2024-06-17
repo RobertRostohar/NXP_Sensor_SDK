@@ -55,7 +55,7 @@ const registerreadlist_t cfxls8974OutputNormal[] = {{.readFrom = FXLS8974_OUT_X_
 // Functions
 //-----------------------------------------------------------------------
 /*! -----------------------------------------------------------------------
- *  @brief       This is the The application main function implementation.
+ *  @brief       This is the application main function implementation.
  *  @details     This function brings up the sensor and enters an endless loop
  *               to continuously read available samples.
  *  @param[in]   void This is no input parameter.
