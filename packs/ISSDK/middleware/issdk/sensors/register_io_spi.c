@@ -17,7 +17,6 @@
 
 /* ISSDK Includes */
 #include "issdk_hal.h"
-#include "gpio_driver.h"
 #include "register_io_spi.h"
 
 /*******************************************************************************
@@ -50,12 +49,6 @@
  ******************************************************************************/
 ARM_DRIVER_GPIO *pDspiGpioDriver = &Driver_GPIO0;
 
-// GENERIC_DRIVER_GPIO *pDspiGpioDriver = &Driver_GPIO_KSDK;
-// #if defined(CPU_MCXN947VDF_cm33_core0) || defined(CPU_MCXN548VDF_cm33_core0)
-// LPSPI_Type *const spiBases[] = LPSPI_BASE_PTRS;
-// #else
-// SPI_Type *const spiBases[] = SPI_BASE_PTRS;
-// #endif
 volatile bool b_SPI_CompletionFlag[SPI_COUNT] = {false};
 volatile uint32_t g_SPI_ErrorEvent[SPI_COUNT] = {ARM_SPI_EVENT_TRANSFER_COMPLETE};
 
@@ -183,6 +176,7 @@ void register_spi_control(spiControlParams_t *ssControl)
         pDspiGpioDriver->SetOutput(ssControl->TargetSlavePinID, 0U);
     }
 }
+
 /*! The interface function to block write sensor registers. */
 int32_t Register_SPI_BlockWrite(ARM_DRIVER_SPI *pCommDrv,
                                 registerDeviceInfo_t *devInfo,

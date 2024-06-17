@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 NXP
+ * Copyright 2019 - 2022 NXP
  * All rights reserved.
  *
  * SPDX-License-Identifier: BSD-3-Clause
@@ -29,22 +29,28 @@ gpioHandleKSDK_t D15 = {.base = GPIO,
 // SPI7 Handle
 /* [PIO0_20] (coords: 74) configured as SPI master-out/slave-in (MOSI) data */
 gpioHandleKSDK_t D11 = {.base = GPIO,
-                        .pinNumber = 20,
-                        .mask = 1 << (20),
+                        .pinNumber = 26,
+                        .mask = 1 << (26),
                         .clockName = kCLOCK_Gpio0,
                         .portNumber = kGINT_Port0};
 /* [PIO0_19] (coords: 90) is configured as SPI master-in/slave-out (MISO) data */
 gpioHandleKSDK_t D12 = {.base = GPIO,
-                        .pinNumber = 19,
-                        .mask = 1 << (19),
-                        .clockName = kCLOCK_Gpio0,
-                        .portNumber = kGINT_Port0};
+                        .pinNumber = 3,
+                        .mask = 1 << (3),
+                        .clockName = kCLOCK_Gpio1,
+                        .portNumber = kGINT_Port1};
 /* [PIO0_21] (coords: 76) configured as SPI SCK */
 gpioHandleKSDK_t D13 = {.base = GPIO,
-                        .pinNumber = 21,
-                        .mask = 1 << (21),
-                        .clockName = kCLOCK_Gpio0,
-                        .portNumber = kGINT_Port0};
+                        .pinNumber = 2,
+                        .mask = 1 << (2),
+                        .clockName = kCLOCK_Gpio1,
+                        .portNumber = kGINT_Port1};
+/* [PIO0_21] (coords: 76) configured as SPI CS */
+gpioHandleKSDK_t D10 = {.base = GPIO,
+                        .pinNumber = 1,
+                        .mask = 1 << (1),
+                        .clockName = kCLOCK_Gpio1,
+                        .portNumber = kGINT_Port1};
 
 // UART0 Handle
 /* [PIO0_29] (coords: 92) configured as USART RXD */
@@ -154,7 +160,7 @@ uint32_t I2C4_GetFreq(void)
  *  @Reentrant   Yes
  *  @return      uint32_t Returns the clock frequency .
  */
-uint32_t SPI7_GetFreq(void)
+uint32_t SPI8_GetFreq(void)
 {
-    return CLOCK_GetFlexCommClkFreq(7U);
+    return CLOCK_GetFlexCommClkFreq(8U);
 }

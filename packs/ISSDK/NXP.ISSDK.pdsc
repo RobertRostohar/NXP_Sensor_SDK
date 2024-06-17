@@ -1,0 +1,980 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>ISSDK</name>
+  <vendor>NXP</vendor>
+  <description>Software Pack for issdk</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="3.0.0-dev">
+      - Migrate Sensors from NXP GPIO Driver API to CMSIS-Driver GPIO API
+    </release>
+    <release version="2.0.0" date="2024-01-14">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.15.0</release>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Software Pack</keyword>
+  </keywords>
+  <requirements>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <conditions>
+    <condition id="middleware.issdk.algorithms.pedometer.common.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition">
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.4.0"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Capiversion="2.3.0"/>
+    </condition>
+    <condition id="middleware.issdk.algorithms.pedometer.lib_cm0.condition_id">
+      <require condition="allOf.core=cm0p.internal_condition"/>
+    </condition>
+    <condition id="allOf.core=cm0p.internal_condition">
+      <require condition="core.cm0p.internal_condition"/>
+    </condition>
+    <condition id="core.cm0p.internal_condition">
+      <accept Dcore="Cortex-M0+"/>
+    </condition>
+    <condition id="middleware.issdk.algorithms.pedometer.lib_cm4.condition_id">
+      <require condition="allOf.core=cm4f.internal_condition"/>
+    </condition>
+    <condition id="allOf.core=cm4f.internal_condition">
+      <require condition="core.cm4f.internal_condition"/>
+    </condition>
+    <condition id="core.cm4f.internal_condition">
+      <accept Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="middleware.issdk.algorithms.sensor_fusion_agm01.common.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.algorithms.sensor_fusion_agm04.common.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.algorithms.sensor_fusion_agmp03.common.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.algorithms.sensor_fusion_lpc_agm01.common.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.algorithms.sensor_fusion_lpc_agmp03.common.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.algorithms.sensor_fusion_mult2b.common.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="device_id.MK22FN128xxx10, MK22FN128xxx12, MK22FN256xxx12, MK22FN512xxx12, MK02FN128xxx10, MK02FN64xxx10, MKE14Z256xxx7, MKE14Z128xxx7, MKE15Z256xxx7, MKE15Z128xxx7, K32L3A60xxx.internal_condition">
+      <accept Dname="MK22FN128VDC10" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN128VLH10" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN128VLL10" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN128VMP10" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN128CAH12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN256CAH12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN256VDC12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN256VLH12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN256VLL12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN256VMP12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512CAP12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VDC12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VFX12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VLH12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VLL12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VMP12" Dvendor="NXP:11"/>
+      <accept Dname="MK02FN128VFM10" Dvendor="NXP:11"/>
+      <accept Dname="MK02FN128VLF10" Dvendor="NXP:11"/>
+      <accept Dname="MK02FN128VLH10" Dvendor="NXP:11"/>
+      <accept Dname="MK02FN64VFM10" Dvendor="NXP:11"/>
+      <accept Dname="MK02FN64VLF10" Dvendor="NXP:11"/>
+      <accept Dname="MK02FN64VLH10" Dvendor="NXP:11"/>
+      <accept Dname="MKE14Z256VLH7" Dvendor="NXP:11"/>
+      <accept Dname="MKE14Z256VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKE14Z128VLH7" Dvendor="NXP:11"/>
+      <accept Dname="MKE14Z128VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z256VLH7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z256VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z128VLH7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z128VLL7" Dvendor="NXP:11"/>
+      <accept Dname="K32L3A60VPJ1A" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="middleware.issdk.drivers.ads.condition_id">
+      <require condition="allOf.device_id=MK22FN128xxx10, MK22FN128xxx12, MK22FN256xxx12, MK22FN512xxx12, MK02FN128xxx10, MK02FN64xxx10, MKE14Z256xxx7, MKE14Z128xxx7, MKE15Z256xxx7, MKE15Z128xxx7, K32L3A60xxx.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=MK22FN128xxx10, MK22FN128xxx12, MK22FN256xxx12, MK22FN512xxx12, MK02FN128xxx10, MK02FN64xxx10, MKE14Z256xxx7, MKE14Z128xxx7, MKE15Z256xxx7, MKE15Z128xxx7, K32L3A60xxx.internal_condition">
+      <require condition="device_id.MK22FN128xxx10, MK22FN128xxx12, MK22FN256xxx12, MK22FN512xxx12, MK02FN128xxx10, MK02FN64xxx10, MKE14Z256xxx7, MKE14Z128xxx7, MKE15Z256xxx7, MKE15Z128xxx7, K32L3A60xxx.internal_condition"/>
+    </condition>
+    <condition id="device_id.LPC55S69, LPC55S66, LPC55S36, LPC5534, LPC5536, LPC55S16, LPC55S14, LPC5512, LPC5514, LPC5516, LPC5502, LPC5504, LPC5506, LPC55S04, LPC55S06.internal_condition">
+      <accept Dname="LPC55S69JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JEV98" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S66JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S66JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S66JEV98" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S36JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S36JHI48" Dvendor="NXP:11"/>
+      <accept Dname="LPC5534JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC5534JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC5534JHI48" Dvendor="NXP:11"/>
+      <accept Dname="LPC5536JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC5536JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC5536JHI48" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16JEV98" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S14JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S14JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S14JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC5512JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC5512JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC5514JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC5514JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC5514JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC5516JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC5516JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC5516JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC5516JEV98" Dvendor="NXP:11"/>
+      <accept Dname="LPC5502JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC5502JHI48" Dvendor="NXP:11"/>
+      <accept Dname="LPC5504JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC5504JHI48" Dvendor="NXP:11"/>
+      <accept Dname="LPC5506JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC5506JHI48" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S04JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S04JHI48" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S06JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S06JHI48" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="middleware.issdk.drivers.ads_lpc.condition_id">
+      <require condition="allOf.device_id=LPC55S69, LPC55S66, LPC55S36, LPC5534, LPC5536, LPC55S16, LPC55S14, LPC5512, LPC5514, LPC5516, LPC5502, LPC5504, LPC5506, LPC55S04, LPC55S06.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=LPC55S69, LPC55S66, LPC55S36, LPC5534, LPC5536, LPC55S16, LPC55S14, LPC5512, LPC5514, LPC5516, LPC5502, LPC5504, LPC5506, LPC55S04, LPC55S06.internal_condition">
+      <require condition="device_id.LPC55S69, LPC55S66, LPC55S36, LPC5534, LPC5536, LPC55S16, LPC55S14, LPC5512, LPC5514, LPC5516, LPC5502, LPC5504, LPC5506, LPC55S04, LPC55S06.internal_condition"/>
+    </condition>
+    <condition id="device_id.MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1064xxxxA, MIMXRT1064xxxxB, MIMXRT1015xxxxx, MIMXRT1011xxxxx, MIMXRT685S, MIMXRT633S, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx, MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT533S, MIMXRT555S, MIMXRT595S.internal_condition">
+      <accept Dname="MIMXRT1051CVJ5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051CVL5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051DVJ6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051DVL6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052CVJ5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052CVL5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052DVJ6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052DVL6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021CAF4A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021CAF4B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021CAG4A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021CAG4B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021DAF5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021DAF5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021DAG5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021DAG5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1024CAG4A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1024CAG4B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1024DAG5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1024DAG5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061CVJ5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061DVJ6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061CVJ5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061CVL5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061DVJ6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061DVL6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061XVN5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062CVJ5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062DVJ6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062CVJ5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062CVL5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062DVJ6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062DVL6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062DVN6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062XVN5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1041DFP6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1041DJM6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1041XFP5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1041XJM5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1042DFP6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1042DJM6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1042XFP5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1042XJM5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064CVJ5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVJ6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064CVJ5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064CVL5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVJ6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1015CAF4A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1015CAF4B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1015DAF5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1015DAF5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1011CAE4A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1011DAE5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT685SFAWBR" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT685SFFOB" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT685SFVKB" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT633SFAWBR" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT633SFFOB" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT633SFVKB" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1171AVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1171CVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1171DVMAA" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1172AVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1172CVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1172DVMAA" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1173CVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1175AVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1175CVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1175DVMAA" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1176AVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1176CVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1176DVMAA" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1165CVM5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1165DVM6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1165XVM5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1166CVM5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1166DVM6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1166XVM5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT533SFAWC" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT533SFFOC" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT555SFAWC" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT555SFFOC" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT595SFAWC" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT595SFFOC" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="middleware.issdk.drivers.gpio_imx.condition_id">
+      <require condition="allOf.device_id=MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1064xxxxA, MIMXRT1064xxxxB, MIMXRT1015xxxxx, MIMXRT1011xxxxx, MIMXRT685S, MIMXRT633S, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx, MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT533S, MIMXRT555S, MIMXRT595S.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1064xxxxA, MIMXRT1064xxxxB, MIMXRT1015xxxxx, MIMXRT1011xxxxx, MIMXRT685S, MIMXRT633S, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx, MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT533S, MIMXRT555S, MIMXRT595S.internal_condition">
+      <require condition="device_id.MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1064xxxxA, MIMXRT1064xxxxB, MIMXRT1015xxxxx, MIMXRT1011xxxxx, MIMXRT685S, MIMXRT633S, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx, MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT533S, MIMXRT555S, MIMXRT595S.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.drivers.gpio_imx8.condition_id">
+      <require condition="allOf.device_id=MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1064xxxxA, MIMXRT1064xxxxB, MIMXRT1015xxxxx, MIMXRT1011xxxxx, MIMXRT685S, MIMXRT633S, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx, MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT533S, MIMXRT555S, MIMXRT595S.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.drivers.gpio_imxrt.condition_id">
+      <require condition="allOf.device_id=MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1064xxxxA, MIMXRT1064xxxxB, MIMXRT1015xxxxx, MIMXRT1011xxxxx, MIMXRT685S, MIMXRT633S, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx, MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT533S, MIMXRT555S, MIMXRT595S.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.drivers.gpio_imxrt1180.condition_id">
+      <require condition="allOf.device_id=MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1064xxxxA, MIMXRT1064xxxxB, MIMXRT1015xxxxx, MIMXRT1011xxxxx, MIMXRT685S, MIMXRT633S, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx, MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT533S, MIMXRT555S, MIMXRT595S.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.drivers.gpio_imxrt600.condition_id">
+      <require condition="allOf.device_id=MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1064xxxxA, MIMXRT1064xxxxB, MIMXRT1015xxxxx, MIMXRT1011xxxxx, MIMXRT685S, MIMXRT633S, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx, MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT533S, MIMXRT555S, MIMXRT595S.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.drivers.gpio_kinetis.condition_id">
+      <require condition="allOf.device_id=MK22FN128xxx10, MK22FN128xxx12, MK22FN256xxx12, MK22FN512xxx12, MK02FN128xxx10, MK02FN64xxx10, MKE14Z256xxx7, MKE14Z128xxx7, MKE15Z256xxx7, MKE15Z128xxx7, K32L3A60xxx.internal_condition"/>
+    </condition>
+    <condition id="device_id.MKE14Z256xxx7, MKE14Z128xxx7, MKE15Z256xxx7, MKE15Z128xxx7.internal_condition">
+      <accept Dname="MKE14Z256VLH7" Dvendor="NXP:11"/>
+      <accept Dname="MKE14Z256VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKE14Z128VLH7" Dvendor="NXP:11"/>
+      <accept Dname="MKE14Z128VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z256VLH7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z256VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z128VLH7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z128VLL7" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="middleware.issdk.drivers.gpio_kinetis_ke15z.condition_id">
+      <require condition="allOf.device_id=MKE14Z256xxx7, MKE14Z128xxx7, MKE15Z256xxx7, MKE15Z128xxx7.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=MKE14Z256xxx7, MKE14Z128xxx7, MKE15Z256xxx7, MKE15Z128xxx7.internal_condition">
+      <require condition="device_id.MKE14Z256xxx7, MKE14Z128xxx7, MKE15Z256xxx7, MKE15Z128xxx7.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.drivers.gpio_lpc.condition_id">
+      <require condition="allOf.device_id=LPC55S69, LPC55S66, LPC55S36, LPC5534, LPC5536, LPC55S16, LPC55S14, LPC5512, LPC5514, LPC5516, LPC5502, LPC5504, LPC5506, LPC55S04, LPC55S06.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.drivers.host.condition_id">
+      <require condition="allOf.driver.common.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.allregdefs.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.fxas21002.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.fxlc95000.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.fxls8471q.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.fxls8961af.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.fxls8962.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.fxls896xaf.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.fxls8971cf.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.fxls8974cf.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.fxos8700.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.fxpq3115.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.fxps7250d4.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.interface.common.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.isl29023.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.mag3110.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.mma845x.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.mma8491q.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.mma865x.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.mma9553.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.mpl3115.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.nmh1000.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+    <condition id="middleware.issdk.sensor.nps300x.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Sensors" Cgroup="algorithms" Csub="pedometer" Cversion="1.7.0" condition="middleware.issdk.algorithms.pedometer.common.condition_id">
+      <description>ISSDK Pedometer Algorithm Common</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/algorithms/pedometer/source/pedometer.c" projectpath="pedometer"/>
+        <file category="header" name="middleware/issdk/algorithms/pedometer/include/pedometer.h" projectpath="pedometer"/>
+        <file category="header" name="middleware/issdk/algorithms/pedometer/include/libinclude/KeynetikPedometer.h" projectpath="pedometer"/>
+        <file category="include" name="middleware/issdk/algorithms/pedometer/include/"/>
+        <file category="include" name="middleware/issdk/algorithms/pedometer/include/libinclude/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="algorithms" Csub="pedometer_lib_cm0" Cversion="1.7.0" condition="middleware.issdk.algorithms.pedometer.lib_cm0.condition_id">
+      <description>ISSDK Pedometer Algorithm Library for CM0</description>
+      <files>
+        <file category="library" name="middleware/issdk/algorithms/pedometer/lib/libpedometerm0.a" projectpath="libs"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="algorithms" Csub="pedometer_lib_cm4" Cversion="1.7.0" condition="middleware.issdk.algorithms.pedometer.lib_cm4.condition_id">
+      <description>ISSDK Pedometer Algorithm Library for CM4</description>
+      <files>
+        <file category="library" name="middleware/issdk/algorithms/pedometer/lib/libpedometerm4.a" projectpath="libs"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="algorithms" Csub="sensor_fusion_agm01" Cversion="1.7.0" condition="middleware.issdk.algorithms.sensor_fusion_agm01.common.condition_id">
+      <description>ISSDK Sensor Fusion Algorithm Common for Kinetis MCU with AGM01</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/approximations.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/approximations.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/calibration_storage.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/calibration_storage.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/control.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/control.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/debug.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/debug.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/DecodeCommandBytes.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_FXAS21002.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_FXOS8700.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_MPL3115.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_KSDK_NVM.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/driver_KSDK_NVM.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_pit.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/driver_pit.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_systick.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/drivers.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/fusion.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/fusion.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/hal_frdm_fxs_mult2_b.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/magnetic.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/magnetic.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/matrix.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/matrix.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/orientation.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/orientation.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/output_stream.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/precisionAccelerometer.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/precisionAccelerometer.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/sensor_fusion.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/sensor_fusion.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/status.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/status.h" projectpath="sensor_fusion"/>
+        <file category="include" name="middleware/issdk/algorithms/sensorfusion/sources/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="algorithms" Csub="sensor_fusion_agm04" Cversion="1.7.0" condition="middleware.issdk.algorithms.sensor_fusion_agm04.common.condition_id">
+      <description>ISSDK Sensor Fusion Algorithm Common for Kinetis MCU with AGM04</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/approximations.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/approximations.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/calibration_storage.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/calibration_storage.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/control.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/control.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/debug.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/debug.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/DecodeCommandBytes.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_FXAS21002.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_MMA8652.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_MAG3110.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_KSDK_NVM.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/driver_KSDK_NVM.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_pit.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/driver_pit.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_systick.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/drivers.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/fusion.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/fusion.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/hal_frdm_fxs_mult2_b.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/magnetic.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/magnetic.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/matrix.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/matrix.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/orientation.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/orientation.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/output_stream.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/precisionAccelerometer.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/precisionAccelerometer.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/sensor_fusion.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/sensor_fusion.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/status.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/status.h" projectpath="sensor_fusion"/>
+        <file category="include" name="middleware/issdk/algorithms/sensorfusion/sources/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="algorithms" Csub="sensor_fusion_agmp03" Cversion="1.7.0" condition="middleware.issdk.algorithms.sensor_fusion_agmp03.common.condition_id">
+      <description>ISSDK Sensor Fusion Algorithm Common for Kinetis MCU with AGMP03</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/approximations.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/approximations.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/calibration_storage.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/calibration_storage.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/control.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/control.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/debug.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/debug.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/DecodeCommandBytes.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_FXAS21002.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_FXLS8962.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_MAG3110.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_MPL3115.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_KSDK_NVM.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/driver_KSDK_NVM.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_pit.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/driver_pit.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_systick.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/drivers.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/fusion.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/fusion.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/hal_frdm_fxs_mult2_b.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/magnetic.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/magnetic.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/matrix.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/matrix.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/orientation.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/orientation.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/output_stream.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/precisionAccelerometer.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/precisionAccelerometer.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/sensor_fusion.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/sensor_fusion.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/status.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/status.h" projectpath="sensor_fusion"/>
+        <file category="include" name="middleware/issdk/algorithms/sensorfusion/sources/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="algorithms" Csub="sensor_fusion_lpc_agm01" Cversion="1.7.0" condition="middleware.issdk.algorithms.sensor_fusion_lpc_agm01.common.condition_id">
+      <description>ISSDK Sensor Fusion Algorithm Common for LPC MCU with AGM01</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/approximations.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/approximations.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/calibration_storage.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/calibration_storage.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/control_lpc.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/control.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/debug.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/debug.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/DecodeCommandBytes.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_FXAS21002.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_FXOS8700.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_MPL3115.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_KSDK_NVM.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/driver_KSDK_NVM.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_systick.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/drivers.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/fusion.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/fusion.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/hal_frdm_fxs_mult2_b.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/magnetic.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/magnetic.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/matrix.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/matrix.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/orientation.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/orientation.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/output_stream.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/precisionAccelerometer.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/precisionAccelerometer.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/sensor_fusion.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/sensor_fusion.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/status.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/status.h" projectpath="sensor_fusion"/>
+        <file category="include" name="middleware/issdk/algorithms/sensorfusion/sources/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="algorithms" Csub="sensor_fusion_lpc_agmp03" Cversion="1.7.0" condition="middleware.issdk.algorithms.sensor_fusion_lpc_agmp03.common.condition_id">
+      <description>ISSDK Sensor Fusion Algorithm Common for LPC MCU with AGMP03</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/approximations.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/approximations.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/calibration_storage.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/calibration_storage.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/control_lpc.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/control.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/debug.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/debug.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/DecodeCommandBytes.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_FXAS21002.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_FXLS8962.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_MAG3110.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_MPL3115.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_KSDK_NVM.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/driver_KSDK_NVM.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_systick.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/drivers.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/fusion.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/fusion.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/hal_frdm_fxs_mult2_b.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/magnetic.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/magnetic.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/matrix.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/matrix.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/orientation.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/orientation.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/output_stream.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/precisionAccelerometer.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/precisionAccelerometer.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/sensor_fusion.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/sensor_fusion.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/status.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/status.h" projectpath="sensor_fusion"/>
+        <file category="include" name="middleware/issdk/algorithms/sensorfusion/sources/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="algorithms" Csub="sensor_fusion_mult2b" Cversion="1.7.0" condition="middleware.issdk.algorithms.sensor_fusion_mult2b.common.condition_id">
+      <description>ISSDK Sensor Fusion Algorithm Common for Kinetis MCU with MULT2B</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/approximations.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/approximations.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/calibration_storage.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/calibration_storage.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/control.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/control.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/debug.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/debug.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/DecodeCommandBytes.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_FXAS21002.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_FXOS8700.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_MPL3115.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_KSDK_NVM.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/driver_KSDK_NVM.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_pit.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/driver_pit.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/driver_systick.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/drivers.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/fusion.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/fusion.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/hal_frdm_fxs_mult2_b.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/magnetic.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/magnetic.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/matrix.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/matrix.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/orientation.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/orientation.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/output_stream.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/precisionAccelerometer.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/precisionAccelerometer.h" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/sensor_fusion.h" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/sensor_fusion.c" projectpath="sensor_fusion"/>
+        <file category="sourceC" name="middleware/issdk/algorithms/sensorfusion/sources/status.c" projectpath="sensor_fusion"/>
+        <file category="header" name="middleware/issdk/algorithms/sensorfusion/sources/status.h" projectpath="sensor_fusion"/>
+        <file category="include" name="middleware/issdk/algorithms/sensorfusion/sources/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="drivers" Csub="ads" Cversion="1.7.0" condition="middleware.issdk.drivers.ads.condition_id">
+      <description>ISSDK Auto Detection Service for Kinetis Kits</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/drivers/ads/kinetis/auto_detection_service.c" projectpath="ads"/>
+        <file category="header" name="middleware/issdk/drivers/ads/kinetis/auto_detection_service.h" projectpath="ads"/>
+        <file category="header" name="middleware/issdk/drivers/ads/auto_detection_shield.h" projectpath="ads"/>
+        <file category="include" name="middleware/issdk/drivers/ads/kinetis/"/>
+        <file category="include" name="middleware/issdk/drivers/ads/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="drivers" Csub="ads_lpc" Cversion="1.7.0" condition="middleware.issdk.drivers.ads_lpc.condition_id">
+      <description>ISSDK Auto Detection Service for LPC Kits</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/drivers/ads/lpc/auto_detection_service.c" projectpath="ads"/>
+        <file category="header" name="middleware/issdk/drivers/ads/lpc/auto_detection_service.h" projectpath="ads"/>
+        <file category="header" name="middleware/issdk/drivers/ads/auto_detection_shield.h" projectpath="ads"/>
+        <file category="include" name="middleware/issdk/drivers/ads/lpc/"/>
+        <file category="include" name="middleware/issdk/drivers/ads/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="drivers" Csub="gpio_imx" Cversion="1.8.0" condition="middleware.issdk.drivers.gpio_imx.condition_id">
+      <description>ISSDK GPIO Driver for i.MXRT10xx</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/drivers/gpio/i.mx/gpio_driver_irq.c" projectpath="gpio_driver"/>
+        <file category="sourceC" name="middleware/issdk/drivers/gpio/i.mx/gpio_driver.c" projectpath="gpio_driver"/>
+        <file category="header" name="middleware/issdk/drivers/gpio/i.mx/gpio_driver.h" projectpath="gpio_driver"/>
+        <file category="header" name="middleware/issdk/drivers/gpio/Driver_GPIO.h" projectpath="gpio_driver"/>
+        <file category="include" name="middleware/issdk/drivers/gpio/i.mx/"/>
+        <file category="include" name="middleware/issdk/drivers/gpio/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="drivers" Csub="gpio_imx8" Cversion="1.8.0" condition="middleware.issdk.drivers.gpio_imx8.condition_id">
+      <description>ISSDK GPIO Driver for i.MX8xx</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/drivers/gpio/i.mx/gpio_driver.c" projectpath="gpio_driver"/>
+        <file category="header" name="middleware/issdk/drivers/gpio/i.mx/gpio_driver.h" projectpath="gpio_driver"/>
+        <file category="header" name="middleware/issdk/drivers/gpio/Driver_GPIO.h" projectpath="gpio_driver"/>
+        <file category="include" name="middleware/issdk/drivers/gpio/i.mx/"/>
+        <file category="include" name="middleware/issdk/drivers/gpio/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="drivers" Csub="gpio_imxrt" Cversion="1.8.0" condition="middleware.issdk.drivers.gpio_imxrt.condition_id">
+      <description>ISSDK GPIO Driver for i.MXRT</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/drivers/gpio/i.mx/gpio_driver.c" projectpath="gpio_driver"/>
+        <file category="header" name="middleware/issdk/drivers/gpio/i.mx/gpio_driver.h" projectpath="gpio_driver"/>
+        <file category="header" name="middleware/issdk/drivers/gpio/Driver_GPIO.h" projectpath="gpio_driver"/>
+        <file category="include" name="middleware/issdk/drivers/gpio/i.mx/"/>
+        <file category="include" name="middleware/issdk/drivers/gpio/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="drivers" Csub="gpio_imxrt1180" Cversion="1.8.0" condition="middleware.issdk.drivers.gpio_imxrt1180.condition_id">
+      <description>ISSDK GPIO Driver for i.MXRT1180</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/drivers/gpio/i.mx/i.mxrt1180/gpio_driver.c" projectpath="gpio_driver"/>
+        <file category="header" name="middleware/issdk/drivers/gpio/i.mx/i.mxrt1180/gpio_driver.h" projectpath="gpio_driver"/>
+        <file category="header" name="middleware/issdk/drivers/gpio/Driver_GPIO.h" projectpath="gpio_driver"/>
+        <file category="include" name="middleware/issdk/drivers/gpio/i.mx/i.mxrt1180/"/>
+        <file category="include" name="middleware/issdk/drivers/gpio/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="drivers" Csub="gpio_imxrt600" Cversion="1.8.0" condition="middleware.issdk.drivers.gpio_imxrt600.condition_id">
+      <description>ISSDK GPIO Driver for i.MXRT685</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/drivers/gpio/i.mx/i.mxrt600/gpio_driver.c" projectpath="gpio_driver"/>
+        <file category="header" name="middleware/issdk/drivers/gpio/i.mx/i.mxrt600/gpio_driver.h" projectpath="gpio_driver"/>
+        <file category="header" name="middleware/issdk/drivers/gpio/Driver_GPIO.h" projectpath="gpio_driver"/>
+        <file category="include" name="middleware/issdk/drivers/gpio/i.mx/i.mxrt600/"/>
+        <file category="include" name="middleware/issdk/drivers/gpio/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="drivers" Csub="gpio_kinetis" Cversion="1.8.0" condition="middleware.issdk.drivers.gpio_kinetis.condition_id">
+      <description>ISSDK GPIO Driver for Kinetis</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/drivers/gpio/kinetis/gpio_driver_irq.c" projectpath="gpio_driver"/>
+        <file category="sourceC" name="middleware/issdk/drivers/gpio/kinetis/gpio_driver.c" projectpath="gpio_driver"/>
+        <file category="header" name="middleware/issdk/drivers/gpio/kinetis/gpio_driver.h" projectpath="gpio_driver"/>
+        <file category="header" name="middleware/issdk/drivers/gpio/Driver_GPIO.h" projectpath="gpio_driver"/>
+        <file category="include" name="middleware/issdk/drivers/gpio/kinetis/"/>
+        <file category="include" name="middleware/issdk/drivers/gpio/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="drivers" Csub="gpio_kinetis_ke15z" Cversion="1.8.0" condition="middleware.issdk.drivers.gpio_kinetis_ke15z.condition_id">
+      <description>ISSDK GPIO Driver for Kinetis FRDM-KE15Z</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/drivers/gpio/kinetis/gpio_driver_irq_ke15z.c" projectpath="gpio_driver"/>
+        <file category="sourceC" name="middleware/issdk/drivers/gpio/kinetis/gpio_driver.c" projectpath="gpio_driver"/>
+        <file category="header" name="middleware/issdk/drivers/gpio/kinetis/gpio_driver.h" projectpath="gpio_driver"/>
+        <file category="header" name="middleware/issdk/drivers/gpio/Driver_GPIO.h" projectpath="gpio_driver"/>
+        <file category="include" name="middleware/issdk/drivers/gpio/kinetis/"/>
+        <file category="include" name="middleware/issdk/drivers/gpio/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="drivers" Csub="gpio_lpc" Cversion="1.8.0" condition="middleware.issdk.drivers.gpio_lpc.condition_id">
+      <description>ISSDK GPIO Driver for LPC</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/drivers/gpio/lpc/gpio_driver_irq.c" projectpath="gpio_driver"/>
+        <file category="sourceC" name="middleware/issdk/drivers/gpio/lpc/gpio_driver.c" projectpath="gpio_driver"/>
+        <file category="header" name="middleware/issdk/drivers/gpio/lpc/gpio_driver.h" projectpath="gpio_driver"/>
+        <file category="header" name="middleware/issdk/drivers/gpio/Driver_GPIO.h" projectpath="gpio_driver"/>
+        <file category="include" name="middleware/issdk/drivers/gpio/lpc/"/>
+        <file category="include" name="middleware/issdk/drivers/gpio/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="drivers" Csub="issdk_host" Cversion="1.7.0" condition="middleware.issdk.drivers.host.condition_id">
+      <description>ISSDK Host Interface Service</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/sensors/host_io_uart.c" projectpath="host"/>
+        <file category="header" name="middleware/issdk/sensors/host_io_uart.h" projectpath="host"/>
+        <file category="sourceC" name="middleware/issdk/drivers/host/comm_if_uart.c" projectpath="host"/>
+        <file category="header" name="middleware/issdk/drivers/host/comm_interface.h" projectpath="host"/>
+        <file category="sourceC" name="middleware/issdk/drivers/host/data_format_hdlc.c" projectpath="host"/>
+        <file category="header" name="middleware/issdk/drivers/host/data_format_hdlc.h" projectpath="host"/>
+        <file category="sourceC" name="middleware/issdk/drivers/host/data_format_json.c" projectpath="host"/>
+        <file category="header" name="middleware/issdk/drivers/host/data_format_json.h" projectpath="host"/>
+        <file category="header" name="middleware/issdk/drivers/host/data_format_service.h" projectpath="host"/>
+        <file category="sourceC" name="middleware/issdk/drivers/host/host_interface_service.c" projectpath="host"/>
+        <file category="header" name="middleware/issdk/drivers/host/host_interface_service.h" projectpath="host"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+        <file category="include" name="middleware/issdk/drivers/host/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="utils" Csub="systick_utils" Cversion="1.8.0">
+      <description>ISSDK Utils</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/drivers/systick/systick_utils.c" projectpath="utilities"/>
+        <file category="header" name="middleware/issdk/drivers/systick/systick_utils.h" projectpath="utilities"/>
+        <file category="include" name="middleware/issdk/drivers/systick/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_allregdefs" Cversion="1.8.0" condition="middleware.issdk.sensor.allregdefs.condition_id">
+      <description>ISSDK Sensors RegDefs</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/fxas21002.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxos8700.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/mpl3115.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxlc95000.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxls8471q.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxls8962.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxpq3115.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/mag3110.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/mma845x.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/mma865x.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/mma8491q.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/mma9553.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/diff_p.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/dbap.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxls896x.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxls8974.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxls8961.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxls8971.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/nmh1000.h" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxas21002" Cversion="1.8.0" condition="middleware.issdk.sensor.fxas21002.condition_id">
+      <description>ISSDK FXAS21002 Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/fxas21002.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxas21002_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/fxas21002_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxlc95000" Cversion="1.8.0" condition="middleware.issdk.sensor.fxlc95000.condition_id">
+      <description>ISSDK FXLC95000 Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/fxlc95000.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxlc95000_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/fxlc95000_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxls8471q" Cversion="1.8.0" condition="middleware.issdk.sensor.fxls8471q.condition_id">
+      <description>ISSDK FXLS8471 Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/fxls8471q.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxls8471q_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/fxls8471q_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxls8961af" Cversion="1.8.0" condition="middleware.issdk.sensor.fxls8961af.condition_id">
+      <description>ISSDK FXLS8961AF Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/fxls8961.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxls8961_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/fxls8961_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxls8962" Cversion="1.8.0" condition="middleware.issdk.sensor.fxls8962.condition_id">
+      <description>ISSDK FXLS8962 Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/fxls8962.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxls8962_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/fxls8962_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxls896xaf" Cversion="1.8.0" condition="middleware.issdk.sensor.fxls896xaf.condition_id">
+      <description>ISSDK FXLS896xAF Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/fxls896x.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxls896x_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/fxls896x_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxls8971cf" Cversion="1.8.0" condition="middleware.issdk.sensor.fxls8971cf.condition_id">
+      <description>ISSDK FXLS8971CF Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/fxls8971.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxls8971_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/fxls8971_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxls8974cf" Cversion="1.8.0" condition="middleware.issdk.sensor.fxls8974cf.condition_id">
+      <description>ISSDK FXLS8974CF Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/fxls8974.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxls8974_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/fxls8974_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxos8700" Cversion="1.8.0" condition="middleware.issdk.sensor.fxos8700.condition_id">
+      <description>ISSDK FXOS8700 Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/fxos8700.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxos8700_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/fxos8700_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxpq3115" Cversion="1.8.0" condition="middleware.issdk.sensor.fxpq3115.condition_id">
+      <description>ISSDK FXPQ3115 Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/fxpq3115.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxpq3115_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/fxpq3115_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxps7250d4" Cversion="1.8.0" condition="middleware.issdk.sensor.fxps7250d4.condition_id">
+      <description>ISSDK fxps7250d4 Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/dbap.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/dbap_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/dbap_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="drivers" Csub="issdk_interfaces" Cversion="1.7.0" condition="middleware.issdk.sensor.interface.common.condition_id">
+      <description>ISSDK Sensor Interface Common</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/sensors/register_io_i2c.c" projectpath="interfaces"/>
+        <file category="sourceC" name="middleware/issdk/sensors/register_io_spi.c" projectpath="interfaces"/>
+        <file category="sourceC" name="middleware/issdk/sensors/sensor_io_spi.c" projectpath="interfaces"/>
+        <file category="sourceC" name="middleware/issdk/sensors/sensor_io_i2c.c" projectpath="interfaces"/>
+        <file category="header" name="middleware/issdk/sensors/register_io_i2c.h" projectpath="interfaces"/>
+        <file category="header" name="middleware/issdk/sensors/register_io_spi.h" projectpath="interfaces"/>
+        <file category="header" name="middleware/issdk/sensors/sensor_io_spi.h" projectpath="interfaces"/>
+        <file category="header" name="middleware/issdk/sensors/sensor_io_i2c.h" projectpath="interfaces"/>
+        <file category="header" name="middleware/issdk/sensors/sensor_drv.h" projectpath="interfaces"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_isl29023" Cversion="1.8.0" condition="middleware.issdk.sensor.isl29023.condition_id">
+      <description>ISSDK ISL29023 Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/isl29023.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/isl29023_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/isl29023_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_mag3110" Cversion="1.8.0" condition="middleware.issdk.sensor.mag3110.condition_id">
+      <description>ISSDK MAG3110 Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/mag3110.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/mag3110_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/mag3110_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_mma845x" Cversion="1.8.0" condition="middleware.issdk.sensor.mma845x.condition_id">
+      <description>ISSDK MMA845x Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/mma845x.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/mma845x_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/mma845x_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_mma8491q" Cversion="1.8.0" condition="middleware.issdk.sensor.mma8491q.condition_id">
+      <description>ISSDK MMA8491 Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/mma8491q.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/mma8491q_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/mma8491q_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_mma865x" Cversion="1.8.0" condition="middleware.issdk.sensor.mma865x.condition_id">
+      <description>ISSDK MMA865x Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/mma865x.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/mma865x_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/mma865x_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_mma9553" Cversion="1.8.0" condition="middleware.issdk.sensor.mma9553.condition_id">
+      <description>ISSDK MMA9553 Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/mma9553.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/mma9553_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/mma9553_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_mpl3115" Cversion="1.8.0" condition="middleware.issdk.sensor.mpl3115.condition_id">
+      <description>ISSDK MPL3115 Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/mpl3115.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/mpl3115_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/mpl3115_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_nmh1000" Cversion="1.8.0" condition="middleware.issdk.sensor.nmh1000.condition_id">
+      <description>ISSDK NMH1000 Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/nmh1000.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/nmh1000_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/nmh1000_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_nps300x" Cversion="1.8.0" condition="middleware.issdk.sensor.nps300x.condition_id">
+      <description>ISSDK nps300x Sensor Driver Files</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/diff_p.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/diff_p_drv.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/diff_p_drv.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="misc" Csub="issdk_tools" Cversion="1.7.0">
+      <description>ISSDK Serial to MQTT bridge application</description>
+      <files>
+        <file category="other" name="middleware/issdk/tools/Serial_To_MQTT/CloudBridgeNXPDemo.py" projectpath="issdk_senor"/>
+      </files>
+    </component>
+  </components>
+</package>

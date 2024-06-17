@@ -43,7 +43,7 @@ void BOARD_InitBootPins(void);
  * @brief Configures pin routing and optionally pin electrical features.
  *
  */
-void BOARD_InitPins(void); /* Function assigned for the Cortex-M33 (Core #0) */
+void BOARD_InitPins(void); /* Function assigned for the Cortex-M33 */
 
 #define IOCON_PIO_DIGITAL_EN 0x0100u   /*!<@brief Enables digital function */
 #define IOCON_PIO_FUNC5 0x05u          /*!<@brief Selects pin function 5 */
@@ -56,7 +56,7 @@ void BOARD_InitPins(void); /* Function assigned for the Cortex-M33 (Core #0) */
  * @brief Configures pin routing and optionally pin electrical features.
  *
  */
-void I2C4_InitPins(void); /* Function assigned for the Cortex-M33 (Core #0) */
+void I2C4_InitPins(void); /* Function assigned for the Cortex-M33 */
 
 #define IOCON_PIO_DIGITAL_EN 0x0100u  /*!<@brief Enables digital function */
 #define IOCON_PIO_FUNC0 0x00u         /*!<@brief Selects pin function 0 */
@@ -69,7 +69,7 @@ void I2C4_InitPins(void); /* Function assigned for the Cortex-M33 (Core #0) */
  * @brief Configures pin routing and optionally pin electrical features.
  *
  */
-void I2C4_DeinitPins(void); /* Function assigned for the Cortex-M33 (Core #0) */
+void I2C4_DeinitPins(void); /* Function assigned for the Cortex-M33 */
 
 #define IOCON_PIO_DIGITAL_EN 0x0100u  /*!<@brief Enables digital function */
 #define IOCON_PIO_FUNC1 0x01u         /*!<@brief Selects pin function 1 */
@@ -82,7 +82,7 @@ void I2C4_DeinitPins(void); /* Function assigned for the Cortex-M33 (Core #0) */
  * @brief Configures pin routing and optionally pin electrical features.
  *
  */
-void USART0_InitPins(void); /* Function assigned for the Cortex-M33 (Core #0) */
+void USART0_InitPins(void); /* Function assigned for the Cortex-M33 */
 
 #define IOCON_PIO_DIGITAL_EN 0x0100u  /*!<@brief Enables digital function */
 #define IOCON_PIO_FUNC0 0x00u         /*!<@brief Selects pin function 0 */
@@ -95,7 +95,7 @@ void USART0_InitPins(void); /* Function assigned for the Cortex-M33 (Core #0) */
  * @brief Configures pin routing and optionally pin electrical features.
  *
  */
-void USART0_DeinitPins(void); /* Function assigned for the Cortex-M33 (Core #0) */
+void USART0_DeinitPins(void); /* Function assigned for the Cortex-M33 */
 
 #define IOCON_PIO_DIGITAL_EN 0x0100u  /*!<@brief Enables digital function */
 #define IOCON_PIO_FUNC1 0x01u         /*!<@brief Selects pin function 1 */
@@ -109,7 +109,7 @@ void USART0_DeinitPins(void); /* Function assigned for the Cortex-M33 (Core #0) 
  * @brief Configures pin routing and optionally pin electrical features.
  *
  */
-void SPI7_InitPins(void); /* Function assigned for the Cortex-M33 (Core #0) */
+void SPI7_InitPins(void); /* Function assigned for the Cortex-M33 */
 
 #define IOCON_PIO_DIGITAL_EN 0x0100u  /*!<@brief Enables digital function */
 #define IOCON_PIO_FUNC0 0x00u         /*!<@brief Selects pin function 0 */
@@ -122,7 +122,28 @@ void SPI7_InitPins(void); /* Function assigned for the Cortex-M33 (Core #0) */
  * @brief Configures pin routing and optionally pin electrical features.
  *
  */
-void SPI7_DeinitPins(void); /* Function assigned for the Cortex-M33 (Core #0) */
+void SPI7_DeinitPins(void); /* Function assigned for the Cortex-M33 */
+
+/*!
+ * @brief Configures pin routing and optionally pin electrical features.
+ *
+ */
+void SPI8_InitPins(void); /* Function assigned for the Cortex-M33 */
+
+/*!
+ * @brief Configures pin routing and optionally pin electrical features.
+ *
+ */
+void SPI8_DeinitPins(void); /* Function assigned for the Cortex-M33 */
+
+#define IOCON_PIO_DIGITAL_EN 0x0100u   /*!<@brief Enables digital function */
+#define IOCON_PIO_FUNC5 0x05u          /*!<@brief Selects pin function 5 */
+#define IOCON_PIO_FUNC6 0x06u         /*!<@brief Selects pin function 6 */
+#define IOCON_PIO_FUNC9 0x09u         /*!<@brief Selects pin function 9 */
+#define IOCON_PIO_INV_DI 0x00u         /*!<@brief Input function is not inverted */
+#define IOCON_PIO_MODE_PULLUP 0x20u    /*!<@brief Selects pull-up function */
+#define IOCON_PIO_OPENDRAIN_EN 0x0200u /*!<@brief Open drain is enabled */
+#define IOCON_PIO_SLEW_STANDARD 0x00u  /*!<@brief Standard mode, output slew rate control is enabled */
 
 #if defined(__cplusplus)
 }

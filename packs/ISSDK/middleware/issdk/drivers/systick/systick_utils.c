@@ -15,21 +15,10 @@
 
 #include "issdk_hal.h"
 
-// Macro to convert a raw count value to microsecond
-#ifndef COUNT_TO_USEC
-#define COUNT_TO_USEC(count, clockFreqInHz) (uint64_t)((uint64_t)(count)*1000000U / (clockFreqInHz))
-#endif
-// Macro to convert a raw count value to millisecond
-#ifndef COUNT_TO_MSEC
-#define COUNT_TO_MSEC(count, clockFreqInHz) (uint64_t)((uint64_t)(count)*1000U / (clockFreqInHz))
-#endif
-
 // SysTick register definitions based on CMSIS definitions.
 #define SYST_CSR SysTick->CTRL // SysTick Control & Status Register
 #define SYST_RVR SysTick->LOAD // SysTick Reload Value Register
 #define SYST_CVR SysTick->VAL  // SysTick Current Value Register
-
-extern uint32_t SystemCoreClock;
 
 uint32_t g_ovf_stamp;
 volatile uint32_t g_ovf_counter = 0;
@@ -75,10 +64,12 @@ int32_t BOARD_SystickElapsedTicks(int32_t *pStart)
 uint32_t BOARD_SystickElapsedTime_us(int32_t *pStart)
 {
     uint32_t time_us, elapsed;
+    uint32_t systemCoreClock;
 
     elapsed = BOARD_SystickElapsedTicks(pStart);
+    systemCoreClock = CLOCK_GetFreq(kCLOCK_CoreSysClk);
 
-    time_us = COUNT_TO_USEC(elapsed, SystemCoreClock);
+    time_us = COUNT_TO_USEC(elapsed, systemCoreClock);
 
     // Update the 24 bit systick timer.
     BOARD_SystickStart(pStart);
@@ -90,10 +81,11 @@ uint32_t BOARD_SystickElapsedTime_us(int32_t *pStart)
 void BOARD_DELAY_ms(uint32_t delay_ms)
 {
     int32_t start, elapsed;
+    uint32_t systemCoreClock = CLOCK_GetFreq(kCLOCK_CoreSysClk);
 
     BOARD_SystickStart(&start);
     do // Loop for requested number of ms.
     {
         elapsed = BOARD_SystickElapsedTicks(&start);
-    } while(COUNT_TO_MSEC(elapsed, SystemCoreClock) < delay_ms);
+    } while(COUNT_TO_MSEC(elapsed, systemCoreClock) < delay_ms);
 }
