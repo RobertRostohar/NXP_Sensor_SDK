@@ -13,8 +13,6 @@
 #ifndef _FRDM_STBC_AGMP03_SHIELD_H_
 #define _FRDM_STBC_AGMP03_SHIELD_H_
 
-#include <stdint.h>
-
 /* The shield name */
 #define SHIELD_NAME "FRDM-STBC-AGMP03"
 
@@ -61,24 +59,6 @@
 #define MAG3110_INT1            ARDUINO_UNO_D5
 
 // FRDM-STBC-AGMP03 Shield Reset
-#define RESET_GPIO              ARDUINO_UNO_D17
-
-///@name Shield Parameters
-/// Use this section to define the shield board: 3 bit code 0 to 7 inclusive
-/// transmitted in bits 7-5 for display purposes only.
-///@{
-#define SHIELD_MULTIB 0
-#define SHIELD_NONE   1
-#define SHIELD_AGM01  2
-#define SHIELD_AGM02  3
-#define SHIELD_AGMP03 4
-#define SHIELD_AGM04  5
-#define THIS_SHIELD   SHIELD_AGMP03
-
-// spare 5 to 7 inclusive
-///@}
-
-// Shield Setup (default configuration)
-extern int32_t shield_setup (void);
+#define AGMP03_RESET            ARDUINO_UNO_D17
 
 #endif /* _FRDM_STBC_AGMP03_SHIELD_H_ */

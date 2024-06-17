@@ -1,5 +1,5 @@
 /*---------------------------------------------------------------------------
- * Copyright (c) 2023 Arm Limited (or its affiliates).
+ * Copyright (c) 2023-2024 Arm Limited (or its affiliates).
  * All rights reserved.
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -16,14 +16,14 @@
  * limitations under the License.
  *---------------------------------------------------------------------------*/
 
-#include CMSIS_board_header
-#include "frdm_stbc_agmp03_shield.h"
+#include CMSIS_target_header
+
 #include "Driver_GPIO.h"
 
 extern ARM_DRIVER_GPIO Driver_GPIO0;
 
 // Shield Setup (default configuration)
-int32_t shield_setup (void) {
+int shield_setup (void) {
   ARM_DRIVER_GPIO *pGpio = &Driver_GPIO0;
 
   // ARDUINO_UNO_D5  - INT1_3110 (MAG3110): Input, No Pull Resistor

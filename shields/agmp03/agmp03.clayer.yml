@@ -105,7 +105,8 @@ layer:
         - MAG3110_INT1
       consumes:
         - ARDUINO_UNO_D5
-    - connect: Shield Reset
+
+    - connect: FRDM-STBC-AGMP03 Shield Reset
       provides:
         - AGMP03_RESET
       consumes:
@@ -117,5 +118,5 @@ layer:
   groups:
     - group: shield
       files:
-        - file: ./frdm_stbc_agmp03_shield.h
-        - file: ./frdm_stbc_agmp03_shield.c
+        - file: frdm_stbc_agmp03_shield.h
+        - file: frdm_stbc_agmp03_shield.c

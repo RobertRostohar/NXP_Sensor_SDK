@@ -1,5 +1,5 @@
 /*---------------------------------------------------------------------------
- * Copyright (c) 2023 Arm Limited (or its affiliates).
+ * Copyright (c) 2023-2024 Arm Limited (or its affiliates).
  * All rights reserved.
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -16,14 +16,14 @@
  * limitations under the License.
  *---------------------------------------------------------------------------*/
 
-#include CMSIS_board_header
-#include "frdm_stbi_a8974_shield.h"
+#include CMSIS_target_header
+
 #include "Driver_GPIO.h"
 
 extern ARM_DRIVER_GPIO Driver_GPIO0;
 
 // Shield Setup (default configuration)
-int32_t shield_setup (void) {
+int shield_setup (void) {
   ARM_DRIVER_GPIO *pGpio = &Driver_GPIO0;
 
   // ARDUINO_UNO_D2  - INT1 (FXLS8974): Input, No Pull Resistor
@@ -64,7 +64,6 @@ int32_t shield_setup (void) {
   #if defined(FXLS8974_I2C)
   #if defined(LPC_55S69)
   // Manually drive pin low (shield pulldown is weaker than board-pull up)
-  pGpio->Setup(ARDUINO_UNO_D12, NULL);
   pGpio->SetDirection(ARDUINO_UNO_D12, ARM_GPIO_OUTPUT);
   pGpio->SetOutput(ARDUINO_UNO_D12, 0U);
   #endif

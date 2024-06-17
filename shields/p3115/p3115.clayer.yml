@@ -35,5 +35,5 @@ layer:
   groups:
     - group: shield
       files:
-        - file: ./frdm_stbc_p3115_shield.h
-        - file: ./frdm_stbc_p3115_shield.c
+        - file: frdm_stbc_p3115_shield.h
+        - file: frdm_stbc_p3115_shield.c

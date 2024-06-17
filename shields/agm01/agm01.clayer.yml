@@ -36,6 +36,11 @@ layer:
         - FXAS21002_INT2
       consumes:
         - ARDUINO_UNO_D8
+    - connect: FRDM-STBC-AGM01 Shield Reset
+      provides:
+        - AGM01_RESET
+      consumes:
+        - ARDUINO_UNO_D17
 
   define:
     - CMSIS_shield_header: "\"frdm_stbc_agm01_shield.h\""
@@ -43,5 +48,5 @@ layer:
   groups:
     - group: shield
       files:
-        - file: ./frdm_stbc_agm01_shield.h
-        - file: ./frdm_stbc_agm01_shield.c
+        - file: frdm_stbc_agm01_shield.h
+        - file: frdm_stbc_agm01_shield.c

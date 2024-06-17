@@ -25,7 +25,4 @@
 #define MPL3115_INT1            ARDUINO_UNO_D5
 #define MPL3115_INT2            ARDUINO_UNO_D2
 
-// Shield Setup (default configuration)
-extern int32_t shield_setup (void);
-
 #endif /* _FRDM_STBC_P3115_SHIELD_H_ */
