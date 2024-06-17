@@ -7,8 +7,8 @@ layer:
   packs:
     - pack: NXP::LPC55S69_DFP@16.0.0
     - pack: NXP::LPCXpresso55S69_BSP@16.0.0
-    - pack: ARM::CMSIS@5.9.0
-    - pack: Keil::ARM_Compiler
+    - pack: ARM::CMSIS@6.1.0
+    - pack: ARM::CMSIS-Compiler@2.1.0
 
   connections:
     - connect: LPCXpresso55S69 Board
@@ -45,6 +45,7 @@ layer:
   components:
     - component: NXP::Board Support:SDK Project Template:project_template&LPC55S69
     - component: ARM::CMSIS:CORE
+    - component: ARM::CMSIS Driver:GPIO:Custom
     - component: ARM::CMSIS Driver:VIO:Custom
     - component: ARM::CMSIS Driver:I2C:Custom
     - component: NXP::CMSIS Driver:I2C:flexcomm_i2c_cmsis
@@ -80,14 +81,15 @@ layer:
     - component: NXP::Device:SDK Utilities:serial_manager
     - component: NXP::Device:SDK Utilities:serial_manager_uart
     - component: NXP::Device:Startup
-    - component: Keil::Compiler&ARM Compiler:I/O:STDERR&User
-    - component: Keil::Compiler&ARM Compiler:I/O:STDOUT&User
-    - component: Keil::Compiler&ARM Compiler:I/O:STDIN&User
+    - component: ARM::CMSIS-Compiler:CORE
+    - component: ARM::CMSIS-Compiler:STDERR:Custom
+    - component: ARM::CMSIS-Compiler:STDOUT:Custom
+    - component: ARM::CMSIS-Compiler:STDIN:Custom
 
   groups:
     - group: gpio_driver
       files:
-        - file: ../../drivers/gpio/Driver_GPIO.h
+        - file: ../../drivers/gpio/gpio_driver.h
         - file: ../../drivers/gpio/LPC55S69/GPIO_LPC55S69.h
         - file: ../../drivers/gpio/LPC55S69/GPIO_LPC55S69.c
     - group: board
