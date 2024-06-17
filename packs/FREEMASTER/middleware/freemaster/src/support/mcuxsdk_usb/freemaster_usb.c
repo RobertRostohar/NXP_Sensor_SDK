@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2007-2015 Freescale Semiconductor, Inc.
- * Copyright 2018-2021 NXP
+ * Copyright 2018-2023 NXP
  *
  * SPDX-License-Identifier: BSD-3-Clause
  *
@@ -532,12 +532,23 @@ void USB_MCU_INT_HANDLER(void)
 {
     USB_INTERRUPT_HANDLER(_fmstr_exampleUsbCtx.deviceHandle);
 
-#ifdef __CORE_CM4_H_GENERIC
-    /* Add for ARM errata 838869, affects Cortex-M4, Cortex-M4F Store immediate overlapping
-    exception return operation might vector to incorrect interrupt */
-    __DSB();
+#ifdef SDK_ISR_EXIT_BARRIER
+    /* May be needed for ARM errata 838869 */
+    SDK_ISR_EXIT_BARRIER;
 #endif
 }
+
+#ifdef USB_MCU_INT_HANDLER_2
+void USB_MCU_INT_HANDLER_2(void)
+{
+    USB_INTERRUPT_HANDLER(_fmstr_exampleUsbCtx.deviceHandle);
+
+#ifdef SDK_ISR_EXIT_BARRIER
+    /* May be needed for ARM errata 838869 */
+    SDK_ISR_EXIT_BARRIER;
+#endif
+}
+#endif
 
 /* Most of SDK-supported parts are CortexM devices with NVIC controller.
  * All other platforms (e.g. DSC) enable the USB interrupt in the main application code. */

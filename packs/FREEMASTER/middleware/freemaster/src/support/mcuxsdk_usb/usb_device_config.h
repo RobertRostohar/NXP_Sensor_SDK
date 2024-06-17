@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2007-2015 Freescale Semiconductor, Inc.
- * Copyright 2018-2021 NXP
+ * Copyright 2018-2023 NXP
  *
  * SPDX-License-Identifier: BSD-3-Clause
  *
@@ -33,21 +33,17 @@
 #undef FSL_FEATURE_USB_KHCI_COUNT
 #endif
 
+#ifdef CPU_MCXN947VDF_cm33_core0
+/* MCXN1 has both KHCI and EHCI, force using EHCI */
+#undef FSL_FEATURE_USB_KHCI_COUNT
+#undef FSL_FEATURE_USBHS_EHCI_COUNT
+#define FSL_FEATURE_USBHS_EHCI_COUNT 1
+#endif
+
 /* Determine USB configuration automatically from the processor-specifc feature options */
 
-#if defined(FSL_FEATURE_USB_KHCI_COUNT) && FSL_FEATURE_USB_KHCI_COUNT>0
-
-    /*! brief USB interrupt vector name */
-    #define USB_MCU_INT_HANDLER USB0_IRQHandler
-
-    /*! brief USB interrupt vectors indexes */
-    #define USB_IRQS_LIST USB_IRQS
-
-    /*! brief Controller Identificator */
-    #define CONTROLLER_ID kUSB_ControllerKhci0
-
-    /*! brief Controller Peripheral Index */
-    #define USB_CONTROLLER_IX 0
+#if (defined(FSL_FEATURE_USB_KHCI_COUNT) && FSL_FEATURE_USB_KHCI_COUNT>0) ||\
+    defined(MC56F83789_SERIES) || defined(MC56F83689_SERIES)
 
     /*! @brief KHCI instance count */
     #define USB_DEVICE_CONFIG_KHCI (1U)
@@ -62,18 +58,6 @@
     #define USB_DEVICE_CONFIG_LPCIP3511HS (0U)
 
 #elif defined(FSL_FEATURE_USBHS_EHCI_COUNT) && FSL_FEATURE_USBHS_EHCI_COUNT>0
-
-    /*! brief i.MXRT USB interrupt vector name */
-    #define USB_MCU_INT_HANDLER USBHS_IRQHandler /* this is redefined to USB_OTG1_IRQHandler on some platforms */
-
-    /*! brief USB interrupt vectors indexes */
-    #define USB_IRQS_LIST USBHS_IRQS
-
-    /*! brief Controller Identificator */
-    #define CONTROLLER_ID kUSB_ControllerEhci0
-
-    /*! brief Controller Peripheral Index */
-    #define USB_CONTROLLER_IX 0
 
     /*! @brief KHCI instance count */
     #define USB_DEVICE_CONFIG_KHCI (0U)
@@ -90,47 +74,10 @@
 #elif defined(CPU_LPC54628J512ET180) || defined(LPC51U68_SERIES) || defined(LPC54018_SERIES) || \
       defined(LPC54608_SERIES) || defined(LPC54618_SERIES) || \
       defined(LPC54S018_SERIES) || defined(LPC54S018M_SERIES) || \
-      defined(LPC54114_cm4_SERIES) || defined(LPC54114_cm0plus_SERIES)
-
-    /*! brief USB interrupt vector name */
-    #define USB_MCU_INT_HANDLER USB0_IRQHandler
-
-    /*! brief USB interrupt vectors indexes */
-    #define USB_IRQS_LIST USB_IRQS
-
-    /*! brief Controller Identificator */
-    #define CONTROLLER_ID kUSB_ControllerLpcIp3511Fs0
-
-    /*! brief Controller Peripheral Index */
-    #define USB_CONTROLLER_IX 0
-
-    /*! @brief KHCI instance count */
-    #define USB_DEVICE_CONFIG_KHCI (0U)
-
-    /*! @brief EHCI instance count */
-    #define USB_DEVICE_CONFIG_EHCI (0U)
-
-    /*! @brief LPC USB IP3511 FS instance count */
-    #define USB_DEVICE_CONFIG_LPCIP3511FS (1U)
-
-    /*! @brief LPC USB IP3511 HS instance count */
-    #define USB_DEVICE_CONFIG_LPCIP3511HS (0U)
-
-#elif defined(CPU_LPC55S69JBD100_cm33_core0) || defined(CPU_LPC55S28JBD100) || defined(CPU_LPC55S36JBD100) || \
+      defined(LPC54114_cm4_SERIES) || defined(LPC54114_cm0plus_SERIES) ||\
+      defined(CPU_LPC55S69JBD100_cm33_core0) || defined(CPU_LPC55S28JBD100) || defined(CPU_LPC55S36JBD100) || \
       defined(CPU_LPC55S16JBD100)
 
-    /*! brief USB interrupt vector name */
-    #define USB_MCU_INT_HANDLER USB0_IRQHandler
-
-    /*! brief USB interrupt vectors indexes */
-    #define USB_IRQS_LIST USB_IRQS
-
-    /*! brief Controller Identificator */
-    #define CONTROLLER_ID kUSB_ControllerLpcIp3511Fs0
-
-    /*! brief Controller Peripheral Index */
-    #define USB_CONTROLLER_IX 0
-
     /*! @brief KHCI instance count */
     #define USB_DEVICE_CONFIG_KHCI (0U)
 
@@ -143,68 +90,7 @@
     /*! @brief LPC USB IP3511 HS instance count */
     #define USB_DEVICE_CONFIG_LPCIP3511HS (0U)
 
-#elif defined(MC56F83789_SERIES) || defined(MC56F83689_SERIES)
-
-    /*! brief USB interrupt vector name */
-    #define USB_MCU_INT_HANDLER USB_IRQHandler
-
-    /*! brief Controller Identificator */
-    #define CONTROLLER_ID kUSB_ControllerKhci0
-
-    /*! brief Controller Peripheral Index */
-    #define USB_CONTROLLER_IX 0
-
-    /*! @brief KHCI instance count */
-    #define USB_DEVICE_CONFIG_KHCI (1U)
-
-    /*! @brief EHCI instance count */
-    #define USB_DEVICE_CONFIG_EHCI (0U)
-
-    /*! @brief LPC USB IP3511 FS instance count */
-    #define USB_DEVICE_CONFIG_LPCIP3511FS (0U)
-
-    /*! @brief LPC USB IP3511 HS instance count */
-    #define USB_DEVICE_CONFIG_LPCIP3511HS (0U)
-
-#elif defined(MIMXRT595S_cm33_SERIES)
-
-    /*! brief USB interrupt vector name */
-    #define USB_MCU_INT_HANDLER USB0_IRQHandler
-
-    /*! brief USB interrupt vectors indexes */
-    #define USB_IRQS_LIST USBHSD_IRQS
-
-    /*! brief Controller Identificator */
-    #define CONTROLLER_ID kUSB_ControllerLpcIp3511Hs0
-
-        /*! brief Controller Peripheral Index */
-    #define USB_CONTROLLER_IX 0
-
-    /*! @brief KHCI instance count */
-    #define USB_DEVICE_CONFIG_KHCI (0U)
-
-    /*! @brief EHCI instance count */
-    #define USB_DEVICE_CONFIG_EHCI (0U)
-
-    /*! @brief LPC USB IP3511 FS instance count */
-    #define USB_DEVICE_CONFIG_LPCIP3511FS (0U)
-
-    /*! @brief LPC USB IP3511 HS instance count */
-    #define USB_DEVICE_CONFIG_LPCIP3511HS (1U)
-
-#elif defined(MIMXRT685S_cm33_SERIES)
-
-    /*! brief USB interrupt vector name */
-    #define USB_MCU_INT_HANDLER USB_IRQHandler
-
-    /*! brief USB interrupt vectors indexes */
-    #define USB_IRQS_LIST USBHSD_IRQS
-
-    /*! brief Controller Identificator */
-    #define CONTROLLER_ID kUSB_ControllerLpcIp3511Hs0
-
-        /*! brief Controller Peripheral Index */
-    #define USB_CONTROLLER_IX 0
+#elif defined(MIMXRT595S_cm33_SERIES) || defined(MIMXRT685S_cm33_SERIES)
 
     /*! @brief KHCI instance count */
     #define USB_DEVICE_CONFIG_KHCI (0U)
