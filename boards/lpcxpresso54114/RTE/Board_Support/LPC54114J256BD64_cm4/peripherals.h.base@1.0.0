@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 NXP.
+ * Copyright 2019 NXP
  * All rights reserved.
  *
  * SPDX-License-Identifier: BSD-3-Clause
@@ -20,7 +20,7 @@ extern "C" {
 /***********************************************************************************************************************
  * Initialization functions
  **********************************************************************************************************************/
-void BOARD_InitPeripherals(void);
+void BOARD_InitPeripherals_cm4(void);
 
 /***********************************************************************************************************************
  * BOARD_InitBootPeripherals function

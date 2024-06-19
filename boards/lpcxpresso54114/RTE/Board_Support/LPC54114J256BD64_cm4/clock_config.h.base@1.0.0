@@ -18,8 +18,8 @@
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
-#define BOARD_XTAL0_CLK_HZ                         12000000U  /*!< Board xtal0 frequency in Hz */
-#define BOARD_XTAL32K_CLK_HZ                          32768U  /*!< Board xtal32K frequency in Hz */
+#define BOARD_XTAL0_CLK_HZ 12000000U /*!< Board xtal0 frequency in Hz */
+#define BOARD_XTAL32K_CLK_HZ 32768U  /*!< Board xtal32K frequency in Hz */
 
 /*******************************************************************************
  ************************ BOARD_InitBootClocks function ************************
@@ -40,13 +40,37 @@ void BOARD_InitBootClocks(void);
 #endif /* __cplusplus*/
 
 /*******************************************************************************
+ ********************* Configuration BOARD_BootClockVLPR ***********************
+ ******************************************************************************/
+/*******************************************************************************
+ * Definitions for BOARD_BootClockVLPR configuration
+ ******************************************************************************/
+#define BOARD_BOOTCLOCKVLPR_CORE_CLOCK 12000000U /*!< Core clock frequency: 12000000Hz */
+
+/*******************************************************************************
+ * API for BOARD_BootClockVLPR configuration
+ ******************************************************************************/
+#if defined(__cplusplus)
+extern "C" {
+#endif /* __cplusplus*/
+
+/*!
+ * @brief This function executes configuration of clocks.
+ *
+ */
+void BOARD_BootClockVLPR(void);
+
+#if defined(__cplusplus)
+}
+#endif /* __cplusplus*/
+
+/*******************************************************************************
  ********************** Configuration BOARD_BootClockRUN ***********************
  ******************************************************************************/
 /*******************************************************************************
  * Definitions for BOARD_BootClockRUN configuration
  ******************************************************************************/
-#define BOARD_BOOTCLOCKRUN_CORE_CLOCK              12000000U  /*!< Core clock frequency: 12000000Hz */
-
+#define BOARD_BOOTCLOCKRUN_CORE_CLOCK 48000000U /*!< Core clock frequency: 48000000Hz */
 
 /*******************************************************************************
  * API for BOARD_BootClockRUN configuration
@@ -65,5 +89,29 @@ void BOARD_BootClockRUN(void);
 }
 #endif /* __cplusplus*/
 
-#endif /* _CLOCK_CONFIG_H_ */
+/*******************************************************************************
+ ********************* Configuration BOARD_BootClockHSRUN **********************
+ ******************************************************************************/
+/*******************************************************************************
+ * Definitions for BOARD_BootClockHSRUN configuration
+ ******************************************************************************/
+#define BOARD_BOOTCLOCKHSRUN_CORE_CLOCK 96000000U /*!< Core clock frequency: 96000000Hz */
 
+/*******************************************************************************
+ * API for BOARD_BootClockHSRUN configuration
+ ******************************************************************************/
+#if defined(__cplusplus)
+extern "C" {
+#endif /* __cplusplus*/
+
+/*!
+ * @brief This function executes configuration of clocks.
+ *
+ */
+void BOARD_BootClockHSRUN(void);
+
+#if defined(__cplusplus)
+}
+#endif /* __cplusplus*/
+
+#endif /* _CLOCK_CONFIG_H_ */
