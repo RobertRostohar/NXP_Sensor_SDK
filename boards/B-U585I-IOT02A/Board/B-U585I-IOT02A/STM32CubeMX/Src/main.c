@@ -24,10 +24,6 @@
 
 #include "cmsis_vio.h"
 
-#ifdef   CMSIS_shield_header
-#include CMSIS_shield_header
-#endif
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

@@ -65,6 +65,7 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
 extern int app_main (void);
+extern int shield_setup (void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
