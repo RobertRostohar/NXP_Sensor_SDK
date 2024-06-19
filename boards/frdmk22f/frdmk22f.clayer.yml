@@ -4,8 +4,8 @@ layer:
   description: FRDM-K22F Development Board
 
   packs:
-    - pack: NXP::MK22F51212_DFP@15.0.0
-    - pack: NXP::FRDM-K22F_BSP@15.0.1
+    - pack: NXP::MK22F51212_DFP@18.0.0
+    - pack: NXP::FRDM-K22F_BSP@18.0.0
     - pack: ARM::CMSIS@6.1.0
     - pack: ARM::CMSIS-Compiler@2.1.0
 
@@ -13,9 +13,9 @@ layer:
     - connect: FRDM-K22F Board
       provides:
         - CMSIS_VIO
-        - ARDUINO_UNO_UART: 2
-        - ARDUINO_UNO_SPI: 1
-        - ARDUINO_UNO_I2C-Alt: 0
+        - ARDUINO_UNO_UART
+        - ARDUINO_UNO_SPI
+        - ARDUINO_UNO_I2C-Alt
         - ARDUINO_UNO_D2
         - ARDUINO_UNO_D3
         - ARDUINO_UNO_D4
@@ -42,64 +42,76 @@ layer:
     - FRDM_K22F
     - MCUXPRESSO_SDK
     - PRINTF_ADVANCED_ENABLE
-    - SERIAL_PORT_TYPE_UART: 1
     - CMSIS_target_header: "\"frdm_k22f.h\""
 
   components:
-    - component: NXP::Board Support:SDK Project Template:project_template&MK22F51212
-    - component: ARM::CMSIS:CORE
-    - component: ARM::CMSIS Driver:GPIO:Custom
-    - component: ARM::CMSIS Driver:VIO:Custom
-    - component: ARM::CMSIS Driver:I2C:Custom
-    - component: NXP::CMSIS Driver:I2C:i2c_cmsis
-    - component: ARM::CMSIS Driver:SPI:Custom
-    - component: NXP::CMSIS Driver:SPI:dspi_cmsis
-    - component: ARM::CMSIS Driver:USART:Custom
-    - component: NXP::CMSIS Driver:USART:uart_cmsis
+    - component: NXP::Device:Startup
+
     - component: NXP::Device:CMSIS:MK22F51212_header
     - component: NXP::Device:CMSIS:MK22F51212_system
-    - component: NXP::Device:SDK Drivers:adc
+
     - component: NXP::Device:SDK Drivers:clock
     - component: NXP::Device:SDK Drivers:common
     - component: NXP::Device:SDK Drivers:dmamux
     - component: NXP::Device:SDK Drivers:dspi
     - component: NXP::Device:SDK Drivers:dspi_edma
     - component: NXP::Device:SDK Drivers:edma
-    - component: NXP::Device:SDK Drivers:flash
     - component: NXP::Device:SDK Drivers:gpio
     - component: NXP::Device:SDK Drivers:i2c
     - component: NXP::Device:SDK Drivers:i2c_edma
     - component: NXP::Device:SDK Drivers:lists
-    - component: NXP::Device:SDK Drivers:lptmr
-    - component: NXP::Device:SDK Drivers:lpuart
     - component: NXP::Device:SDK Drivers:port
     - component: NXP::Device:SDK Drivers:rtc
     - component: NXP::Device:SDK Drivers:smc
     - component: NXP::Device:SDK Drivers:uart
     - component: NXP::Device:SDK Drivers:uart_adapter
     - component: NXP::Device:SDK Drivers:uart_edma
+
     - component: NXP::Device:SDK Project Template:RTE_Device
+
+    - component: NXP::Device:SDK Utilities:MK22F51212_linker
+
     - component: NXP::Device:SDK Utilities:assert
     - component: NXP::Device:SDK Utilities:debug_console
     - component: NXP::Device:SDK Utilities:serial_manager
     - component: NXP::Device:SDK Utilities:serial_manager_uart
-    - component: NXP::Device:Startup
+
+    - component: NXP::Board Support:SDK Project Template:project_template&frdmk22f
+
+    - component: ARM::CMSIS:CORE
+
+    - component: ARM::CMSIS Driver:GPIO:Custom
+    - component: ARM::CMSIS Driver:I2C:Custom
+    - component: NXP::CMSIS Driver:I2C:i2c_cmsis
+    - component: ARM::CMSIS Driver:SPI:Custom
+    - component: NXP::CMSIS Driver:SPI:dspi_cmsis
+    - component: ARM::CMSIS Driver:USART:Custom
+    - component: NXP::CMSIS Driver:USART:uart_cmsis
+    - component: ARM::CMSIS Driver:VIO:Custom
+
     - component: ARM::CMSIS-Compiler:CORE
     - component: ARM::CMSIS-Compiler:STDERR:Custom
     - component: ARM::CMSIS-Compiler:STDOUT:Custom
     - component: ARM::CMSIS-Compiler:STDIN:Custom
 
   groups:
+    - group: board
+      files:
+        - file: frdm_k22f.h
+        - file: frdm_k22f.c
+        - file: main.c
+        - file: retarget_stdio.c
+        - file: vio_frdm_k22f.c
     - group: gpio_driver
       files:
         - file: ../../drivers/gpio/gpio_driver.h
         - file: ../../drivers/gpio/MK22F/GPIO_MK22F.h
         - file: ../../drivers/gpio/MK22F/GPIO_MK22F.c
-    - group: board
-      files:
-        - file: ./main.c
-        - file: ./retarget_stdio.c
-        - file: ./frdm_k22f.c
-        - file: ./frdm_k22f.h
-        - file: ./vio_frdm_k22f.c
-        - file: ./RTE/Device/MK22FN512VLH12/MK22FN512xxx12_flash.scf
+
+  linker:
+    - script: RTE/Device/MK22FN512VLH12/MK22FN512xxx12_flash.scf
+      for-compiler: AC6
+    - script: RTE/Device/MK22FN512VLH12/MK22FN512xxx12_flash.ld
+      for-compiler: GCC
+    - script: RTE/Device/MK22FN512VLH12/MK22FN512xxx12_flash.icf
+      for-compiler: IAR

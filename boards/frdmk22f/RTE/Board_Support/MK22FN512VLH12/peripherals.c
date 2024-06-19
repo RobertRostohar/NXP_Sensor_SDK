@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 NXP.
+ * Copyright 2018 NXP.
  * All rights reserved.
  *
  * SPDX-License-Identifier: BSD-3-Clause
@@ -13,19 +13,22 @@
 /* clang-format off */
 /* TEXT BELOW IS USED AS SETTING FOR TOOLS *************************************
 !!GlobalInfo
-product: Peripherals v6.0
+product: Peripherals v4.1
 processor: MK22FN512xxx12
+package_id: MK22FN512VLH12
 mcu_data: ksdk2_0
-processor_version: 0.0.18
+processor_version: 4.0.0
+board: FRDM-K22F
 functionalGroups:
 - name: BOARD_InitPeripherals
   called_from_default_init: true
+  selectedCore: core0
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS **********/
 
 /* TEXT BELOW IS USED AS SETTING FOR TOOLS *************************************
 component:
 - type: 'system'
-- type_id: 'system_54b53072540eeeb8f8e9343e71f28176'
+- type_id: 'system'
 - global_system_definitions: []
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS **********/
 /* clang-format on */
@@ -47,5 +50,5 @@ void BOARD_InitPeripherals(void)
  **********************************************************************************************************************/
 void BOARD_InitBootPeripherals(void)
 {
-  BOARD_InitPeripherals();
+    BOARD_InitPeripherals();
 }
