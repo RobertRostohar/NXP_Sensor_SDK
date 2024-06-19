@@ -19,9 +19,8 @@
 #ifndef MAIN_H__
 #define MAIN_H__
 
-#include <stdint.h>
-
 /* Prototypes */
 extern int app_main (void);
+extern int shield_setup (void);
 
 #endif

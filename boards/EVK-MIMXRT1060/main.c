@@ -22,13 +22,6 @@
 #include "cmsis_vio.h"
 #include "main.h"
 
-#ifdef   CMSIS_shield_header
-#include CMSIS_shield_header
-__WEAK int32_t shield_setup (void) {
-  return 0;
-}
-#endif
-
 int main (void) {
 
   /*! Initialize the MCU hardware. */
