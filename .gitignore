@@ -1,6 +1,8 @@
 /examples/**/.clangd
-/Examples/**/*.cbuild-idx.yml
 /examples/**/*.cbuild.yml
+/examples/**/*.cbuild-idx.yml
+/examples/**/*.cbuild-pack.yml
+/examples/**/*.cbuild-set.yml
 /examples/**/*.cprj
 /examples/**/RTE/_**/*
 /examples/**/tmp/
