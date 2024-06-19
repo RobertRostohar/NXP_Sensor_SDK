@@ -63,4 +63,8 @@ static inline void comm_idle_task(void *arg) { POWER_EnterSleep(); }
 // Enter Sleep (Power Down)
 #define ENTER_SLEEP()       POWER_EnterSleep()
 
+#ifdef CMSIS_shield_header
+#include CMSIS_shield_header
+#endif
+
 #endif /* LPC54114_CM4_H_ */

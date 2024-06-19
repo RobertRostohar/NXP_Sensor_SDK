@@ -43,7 +43,7 @@ layer:
     - MCUXPRESSO_SDK
     - PRINTF_ADVANCED_ENABLE
     - SERIAL_PORT_TYPE_UART: 1
-    - CMSIS_board_header: "\"frdm_k22f.h\""
+    - CMSIS_target_header: "\"frdm_k22f.h\""
 
   components:
     - component: NXP::Board Support:SDK Project Template:project_template&MK22F51212

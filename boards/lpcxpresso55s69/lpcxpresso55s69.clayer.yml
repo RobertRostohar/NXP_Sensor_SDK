@@ -39,7 +39,7 @@ layer:
     - SERIAL_PORT_TYPE_UART: 1
     - MCUXPRESSO_SDK
     - PRINTF_ADVANCED_ENABLE
-    - CMSIS_board_header: "\"lpc55s69.h\""
+    - CMSIS_target_header: "\"lpc55s69.h\""
     - LPC_55S69
 
   components:

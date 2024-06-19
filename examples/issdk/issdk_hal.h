@@ -17,9 +17,6 @@
 
 #ifdef   CMSIS_target_header
 #include CMSIS_target_header
-#else
-#include CMSIS_board_header     // Include appropriate MCU board header file
-#include CMSIS_shield_header    // Include appropriate sensor shield board header file
 #endif
 
 #ifndef PRINTF

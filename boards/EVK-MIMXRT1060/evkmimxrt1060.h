@@ -87,4 +87,8 @@ extern ARM_DRIVER_USART Driver_USART3;
 
 extern void LPM_EnterSleepMode(clock_mode_t mode);
 
+#ifdef CMSIS_shield_header
+#include CMSIS_shield_header
+#endif
+
 #endif /* EVKBIMX1060_H_ */

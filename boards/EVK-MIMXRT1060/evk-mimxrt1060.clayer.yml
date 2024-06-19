@@ -36,7 +36,7 @@ layer:
         - Heap: 1024
 
   define:
-    - CMSIS_board_header: "\"evkmimxrt1060.h\""
+    - CMSIS_target_header: "\"evkmimxrt1060.h\""
     - SKIP_SYSCLK_INIT
     - XIP_BOOT_HEADER_DCD_ENABLE: 1
     - XIP_BOOT_HEADER_ENABLE: 1

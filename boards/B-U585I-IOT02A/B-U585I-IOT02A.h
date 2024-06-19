@@ -72,4 +72,8 @@ extern ARM_DRIVER_USART Driver_USART3;
 // Enter Sleep (Power Down)
 #define ENTER_SLEEP()       HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI)
 
+#ifdef CMSIS_shield_header
+#include CMSIS_shield_header
+#endif
+
 #endif /* B_U585I_IOT02A_H_ */

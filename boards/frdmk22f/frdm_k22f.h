@@ -70,4 +70,8 @@ extern ARM_DRIVER_USART Driver_USART2;
 // Enter Sleep (Power Down)
 #define ENTER_SLEEP()       SMC_SetPowerModeWait(SMC)
 
+#ifdef CMSIS_shield_header
+#include CMSIS_shield_header
+#endif
+
 #endif /* FRDM_K22F_H_ */

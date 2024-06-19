@@ -43,7 +43,7 @@ layer:
 
   define:
     - SERIAL_PORT_TYPE_UART: 1
-    - CMSIS_board_header: "\"lpc54114.h\""
+    - CMSIS_target_header: "\"lpc54114.h\""
     - LPC_54114
 
   components:
