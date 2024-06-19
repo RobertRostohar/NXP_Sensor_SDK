@@ -6,6 +6,7 @@ project:
       consumes:
         - MPL3115_I2C
         - MPL3115_INT1
+        - CMSIS_VIO
 
   groups:
     - group: doc

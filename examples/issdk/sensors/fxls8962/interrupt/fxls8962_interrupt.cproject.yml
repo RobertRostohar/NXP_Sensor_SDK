@@ -6,6 +6,7 @@ project:
       consumes:
         - FXLS8962_I2C
         - FXLS8962_INT1
+        - CMSIS_VIO
 
   groups:
     - group: doc

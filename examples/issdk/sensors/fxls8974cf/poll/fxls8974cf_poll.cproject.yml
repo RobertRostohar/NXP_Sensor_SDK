@@ -5,6 +5,7 @@ project:
     - connect: FXLS8974 Sensor
       consumes:
         - FXLS8974_I2C
+        - CMSIS_VIO
 
   define:
     - FXLS8974_I2C
