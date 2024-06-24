@@ -103,7 +103,7 @@ int app_main(void)
     pGpioDriver->SetEventTrigger(FXAS21002_INT1, ARM_GPIO_TRIGGER_RISING_EDGE);
 
     /*! Initialize the I2C driver. */
-    status = I2Cdrv->Initialize(FXAS21002_I2C_EVENT);
+    status = I2Cdrv->Initialize(I2C_SignalEvent(FXAS21002_I2C_INDEX));
     if (ARM_DRIVER_OK != status)
     {
         PRINTF("\r\n I2C Initialization Failed\r\n");

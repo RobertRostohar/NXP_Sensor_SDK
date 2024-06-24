@@ -20,7 +20,6 @@
 // MPL3115 Sensor Information
 #define MPL3115_I2C_INDEX       ARDUINO_UNO_I2C
 #define MPL3115_I2C_DRIVER      ARM_Driver_I2C_(MPL3115_I2C_INDEX)
-#define MPL3115_I2C_EVENT       I2C_SignalEvent(MPL3115_I2C_INDEX)
 #define MPL3115_I2C_ADDR        0x60
 #define MPL3115_INT1            ARDUINO_UNO_D5
 #define MPL3115_INT2            ARDUINO_UNO_D2

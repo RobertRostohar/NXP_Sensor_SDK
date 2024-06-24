@@ -437,7 +437,7 @@ int app_main(void)
     init_freemaster_uart();
 
     /*! Initialize the I2C driver. */
-    status = I2Cdrv->Initialize(FXLS8974_I2C_EVENT);
+    status = I2Cdrv->Initialize(I2C_SignalEvent(FXLS8974_I2C_INDEX));
     if (ARM_DRIVER_OK != status)
     {
         return -1;

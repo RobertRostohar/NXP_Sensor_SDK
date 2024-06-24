@@ -78,7 +78,7 @@ int app_main(void)
     PRINTF("\r\n ISSDK FXLS896x sensor driver example demonstration for SPI with Poll Mode.\r\n");
 
     /*! Initialize the SPI driver. */
-    status = pSPIdriver->Initialize(FXLS8962_SPI_EVENT);
+    status = pSPIdriver->Initialize(SPI_SignalEvent(FXLS8962_SPI_INDEX));
     if (ARM_DRIVER_OK != status)
     {
         PRINTF("\r\n SPI Initialization Failed\r\n");

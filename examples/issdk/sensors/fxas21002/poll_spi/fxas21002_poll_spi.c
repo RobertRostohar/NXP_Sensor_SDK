@@ -73,7 +73,7 @@ int app_main(void)
     PRINTF("\r\n ISSDK FXAS21002 sensor driver example demonstration for SPI with Poll Mode.\r\n");
 
     /*! Initialize the SPI driver. */
-    status = pSPIdriver->Initialize(FXAS21002_SPI_EVENT);
+    status = pSPIdriver->Initialize(SPI_SignalEvent(FXAS21002_SPI_INDEX));
     if (ARM_DRIVER_OK != status)
     {
         PRINTF("\r\n SPI Initialization Failed\r\n");
