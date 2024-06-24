@@ -8,9 +8,6 @@ project:
         - FXLS8974_INT1
         - CMSIS_VIO
 
-  define:
-    - FXLS8974_I2C
-
   groups:
     - group: doc
       files:

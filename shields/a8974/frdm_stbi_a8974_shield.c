@@ -44,12 +44,10 @@ int shield_setup (void) {
   // ARDUINO_UNO_D5  - INTF_SEL (FXLS8974): Input, No Pull Resistor
   #ifdef ARDUINO_UNO_D5
   pGpio->Setup(ARDUINO_UNO_D5,  NULL);
-  #if defined(FXLS8974_I2C)
   #if defined(IMX_1060) || defined(LPC_55S69) || defined(LPC_54114)
   // Manually drive pin low (shield pulldown is weaker than board pull-up)
   pGpio->SetDirection(ARDUINO_UNO_D5, ARM_GPIO_OUTPUT);
   pGpio->SetOutput(ARDUINO_UNO_D5, 0U);
-  #endif
   #endif
   #endif
 
@@ -61,12 +59,10 @@ int shield_setup (void) {
   // ARDUINO_UNO_D12 - SA0_MISO (FXLS8974): Input, No Pull Resistor
   #ifdef ARDUINO_UNO_D12
   pGpio->Setup(ARDUINO_UNO_D12, NULL);
-  #if defined(FXLS8974_I2C)
   #if defined(LPC_55S69)
   // Manually drive pin low (shield pulldown is weaker than board-pull up)
   pGpio->SetDirection(ARDUINO_UNO_D12, ARM_GPIO_OUTPUT);
   pGpio->SetOutput(ARDUINO_UNO_D12, 0U);
-  #endif
   #endif
   #endif
 
