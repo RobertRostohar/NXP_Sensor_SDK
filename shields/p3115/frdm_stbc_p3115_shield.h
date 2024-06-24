@@ -18,10 +18,12 @@
 #define SHIELD_NAME "FRDMSTBC-P3115"
 
 // MPL3115 Sensor Information
+#ifndef MPL3115_ON_BOARD
 #define MPL3115_I2C_INDEX       ARDUINO_UNO_I2C
 #define MPL3115_I2C_DRIVER      ARM_Driver_I2C_(MPL3115_I2C_INDEX)
 #define MPL3115_I2C_ADDR        0x60
 #define MPL3115_INT1            ARDUINO_UNO_D5
 #define MPL3115_INT2            ARDUINO_UNO_D2
+#endif
 
 #endif /* _FRDM_STBC_P3115_SHIELD_H_ */

@@ -56,11 +56,14 @@ extern ARM_DRIVER_USART Driver_USART1;
 extern ARM_DRIVER_USART Driver_USART2;
 
 // On-Board FXOS8700 Sensor Information
+#ifndef FXOS8700_ON_BOARD_DISABLE
+#define FXOS8700_ON_BOARD
 #define FXOS8700_I2C_INDEX  0
 #define FXOS8700_I2C_DRIVER ARM_Driver_I2C_(FXOS8700_I2C_INDEX)
 #define FXOS8700_I2C_ADDR   0x1C
 #define FXOS8700_INT1       GPIO_PORTD(0U)
 #define FXOS8700_INT2       GPIO_PORTD(1U)
+#endif
 
 // I2C/SPI Communication Idle Task and Argument
 #define COMM_IDLE_TASK      SMC_SetPowerModeVlpr

@@ -24,7 +24,15 @@ extern ARM_DRIVER_GPIO Driver_GPIO0;
 
 // Shield Setup (default configuration)
 int shield_setup (void) {
+
+#ifndef FXLS8974_ON_BOARD
+
   ARM_DRIVER_GPIO *pGpio = &Driver_GPIO0;
+
+  // ARDUINO_UNO_D10 - SPI_CS_A (FXLS8974): Input, No Pull Resistor
+  #ifdef ARDUINO_UNO_D10
+  pGpio->Setup(ARDUINO_UNO_D10, NULL);
+  #endif
 
   // ARDUINO_UNO_D2  - INT1 (FXLS8974): Input, No Pull Resistor
   #ifdef ARDUINO_UNO_D2
@@ -34,11 +42,6 @@ int shield_setup (void) {
   // ARDUINO_UNO_D14 - INT2 (FXLS8974): Input, No Pull Resistor
   #ifdef ARDUINO_UNO_D14
   pGpio->Setup(ARDUINO_UNO_D14, NULL);
-  #endif
-
-  // ARDUINO_UNO_D10 - SPI_CS_A (FXLS8974): Input, No Pull Resistor
-  #ifdef ARDUINO_UNO_D10
-  pGpio->Setup(ARDUINO_UNO_D10, NULL);
   #endif
 
   // ARDUINO_UNO_D5  - INTF_SEL (FXLS8974): Input, No Pull Resistor
@@ -70,6 +73,8 @@ int shield_setup (void) {
   #ifdef ARDUINO_UNO_D17
   pGpio->Setup(ARDUINO_UNO_D17, NULL);
   #endif
+
+#endif
 
   return 0;
 }

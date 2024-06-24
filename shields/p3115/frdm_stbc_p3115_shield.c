@@ -24,17 +24,22 @@ extern ARM_DRIVER_GPIO Driver_GPIO0;
 
 // Shield Setup (default configuration)
 int shield_setup (void) {
+
+#ifndef MPL3115_ON_BOARD
+
   ARM_DRIVER_GPIO *pGpio = &Driver_GPIO0;
+
+  // ARDUINO_UNO_D5  - INT1_3115 (MPL3115A): Input, No Pull Resistor
+  #ifdef ARDUINO_UNO_D5
+  pGpio->Setup(ARDUINO_UNO_D5,  NULL);
+  #endif
 
   // ARDUINO_UNO_D2  - INT2_3115 (MPL3115A): Input, No Pull Resistor
   #ifdef ARDUINO_UNO_D2
   pGpio->Setup(ARDUINO_UNO_D2,  NULL);
   #endif
 
-  // ARDUINO_UNO_D5  - INT1_3115 (MPL3115A): Input, No Pull Resistor
-  #ifdef ARDUINO_UNO_D5
-  pGpio->Setup(ARDUINO_UNO_D5,  NULL);
-  #endif
+#endif
 
   return 0;
 }
