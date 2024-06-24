@@ -5,7 +5,6 @@ project:
     - connect: FXLS8962 Sensor
       consumes:
         - FXLS8962_SPI
-        - FXLS8962_CS
 
   groups:
     - group: doc

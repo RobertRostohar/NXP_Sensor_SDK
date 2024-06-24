@@ -5,7 +5,6 @@ project:
     - connect: FXAS21002 Sensor
       consumes:
         - FXAS21002_SPI
-        - FXAS21002_CS
 
   groups:
     - group: doc

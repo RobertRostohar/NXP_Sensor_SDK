@@ -3,31 +3,34 @@ layer:
   description: FRDM-STBC-P3115 Sensor Shield Board
 
   connections:
+    - connect: MPL3115 I2C0 Communication Interface
+      set: P3115_COMM_IF.I2C0
+      info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
+      provides:
+        - P3115_COMMUNICATION_INTERFACE
+        - MPL3115_I2C
+      consumes:
+        - ARDUINO_UNO_I2C
+    - connect: MPL3115 I2C1 Communication Interface
+      set: P3115_COMM_IF.I2C1
+      info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
+      provides:
+        - P3115_COMMUNICATION_INTERFACE
+        - MPL3115_I2C
+      consumes:
+        - ARDUINO_UNO_I2C-Alt
     - connect: MPL3115 Interrupt 1
       provides:
         - MPL3115_INT1
       consumes:
+        - P3115_COMMUNICATION_INTERFACE
         - ARDUINO_UNO_D5
     - connect: MPL3115 Interrupt 2
       provides:
         - MPL3115_INT2
       consumes:
+        - P3115_COMMUNICATION_INTERFACE
         - ARDUINO_UNO_D2
-
-    - connect: MPL3115 I2C Bus
-      set: Bus.I2C
-      info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
-      provides:
-        - MPL3115_I2C
-      consumes:
-        - ARDUINO_UNO_I2C
-    - connect: MPL3115 Alternate I2C Bus
-      set: Bus.I2C-Alt
-      info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
-      provides:
-        - MPL3115_I2C
-      consumes:
-        - ARDUINO_UNO_I2C-Alt
 
   define:
     - CMSIS_shield_header: "\"frdm_stbc_p3115_shield.h\""

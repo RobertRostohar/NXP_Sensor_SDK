@@ -3,39 +3,82 @@ layer:
   description: FRDM-STBC-AGM01 Sensor Shield Board
 
   connections:
-    - connect: FXAS21002 I2C Bus
-      set: Bus.I2C
+    - connect: FXOS8700 I2C0 Communication Interface
+      set: AGM01_COMM_IF.I2C0
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
       provides:
+        - AGM01_COMMUNICATION_INTERFACE
+        - FXOS8700_I2C
+      consumes:
+        - ARDUINO_UNO_I2C
+    - connect: FXOS8700 I2C1 Communication Interface
+      set: AGM01_COMM_IF.I2C1
+      info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
+      provides:
+        - AGM01_COMMUNICATION_INTERFACE
+        - FXOS8700_I2C
+      consumes:
+        - ARDUINO_UNO_I2C-Alt
+    - connect: FXOS8700 SPI Communication Interface
+      set: AGM01_COMM_IF.SPI
+      info: "Jumper configuration: I2C/SPI=SPI"
+      provides:
+        - AGM01_COMMUNICATION_INTERFACE
+        - FXOS8700_SPI
+      consumes:
+        - ARDUINO_UNO_SPI
+        - ARDUINO_UNO_D16
+    - connect: FXOS8700 Interrupt 1
+      provides:
+        - FXOS8700_INT1
+      consumes:
+        - AGM01_COMMUNICATION_INTERFACE
+        - ARDUINO_UNO_D2
+    - connect: FXOS8700 Interrupt 2
+      provides:
+        - FXOS8700_INT2
+      consumes:
+        - AGM01_COMMUNICATION_INTERFACE
+        - ARDUINO_UNO_D4
+
+    - connect: FXAS21002 I2C0 Communication Interface
+      set: AGM01_COMM_IF.I2C0
+      info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
+      provides:
+        - AGM01_COMMUNICATION_INTERFACE
         - FXAS21002_I2C
       consumes:
         - ARDUINO_UNO_I2C
-    - connect: FXAS21002 Alternate I2C Bus
-      set: Bus.I2C-Alt
+    - connect: FXAS21002 I2C1 Communication Interface
+      set: AGM01_COMM_IF.I2C1
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
       provides:
+        - AGM01_COMMUNICATION_INTERFACE
         - FXAS21002_I2C
       consumes:
         - ARDUINO_UNO_I2C-Alt
-    - connect: FXAS21002 SPI Bus
-      set: Bus.SPI
+    - connect: FXAS21002 SPI Communication Interface
+      set: AGM01_COMM_IF.SPI
       info: "Jumper configuration: I2C/SPI=SPI"
       provides:
+        - AGM01_COMMUNICATION_INTERFACE
         - FXAS21002_SPI
-        - FXAS21002_CS
       consumes:
         - ARDUINO_UNO_SPI
-        - ARDUINO_UNO_D10
+        - ARDUINO_UNO_D7
     - connect: FXAS21002 Interrupt 1
       provides:
         - FXAS21002_INT1
       consumes:
+        - AGM01_COMMUNICATION_INTERFACE
         - ARDUINO_UNO_D5
     - connect: FXAS21002 Interrupt 2
       provides:
         - FXAS21002_INT2
       consumes:
+        - AGM01_COMMUNICATION_INTERFACE
         - ARDUINO_UNO_D8
+
     - connect: FRDM-STBC-AGM01 Shield Reset
       provides:
         - AGM01_RESET

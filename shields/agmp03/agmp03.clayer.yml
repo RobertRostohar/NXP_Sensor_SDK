@@ -3,26 +3,28 @@ layer:
   description: FRDM-STBC-AGMP03 Sensor Shield Board
 
   connections:
-    - connect: FXLS8962 I2C Bus
-      set: Bus.I2C
+    - connect: FXLS8962 I2C0 Communication Interfaces
+      set: AGMP03_COMM_IF.I2C0
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
       provides:
+        - AGMP03_COMMUNICATION_INTERFACE
         - FXLS8962_I2C
       consumes:
         - ARDUINO_UNO_I2C
-    - connect: FXLS8962 Alternate I2C Bus
-      set: Bus.I2C-Alt
+    - connect: FXLS8962 I2C1 Communication Interfaces
+      set: AGMP03_COMM_IF.I2C0
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
       provides:
+        - AGMP03_COMMUNICATION_INTERFACE
         - FXLS8962_I2C
       consumes:
         - ARDUINO_UNO_I2C-Alt
-    - connect: FXLS8962 SPI Bus
-      set: Bus.SPI
+    - connect: FXLS8962 SPI Communication Interfaces
+      set: AGMP03_COMM_IF.SPI
       info: "Jumper configuration: I2C/SPI=SPI"
       provides:
+        - AGMP03_COMMUNICATION_INTERFACE
         - FXLS8962_SPI
-        - FXLS8962_CS
       consumes:
         - ARDUINO_UNO_SPI
         - ARDUINO_UNO_D10
@@ -30,33 +32,37 @@ layer:
       provides:
         - FXLS8962_INT1
       consumes:
+        - AGMP03_COMMUNICATION_INTERFACE
         - ARDUINO_UNO_D2
     - connect: FXLS8962 Interrupt 2
       provides:
         - FXLS8962_INT2
       consumes:
+        - AGMP03_COMMUNICATION_INTERFACE
         - ARDUINO_UNO_D14
 
-    - connect: FXAS21002 I2C Bus
-      set: Bus.I2C
+    - connect: FXAS21002 I2C0 Communication Interfaces
+      set: AGMP03_COMM_IF.I2C0
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
       provides:
+        - AGMP03_COMMUNICATION_INTERFACE
         - FXAS21002_I2C
       consumes:
         - ARDUINO_UNO_I2C
-    - connect: FXAS21002 Alternate I2C Bus
-      set: Bus.I2C-Alt
+    - connect: FXAS21002 I2C1 Communication Interfaces
+      set: AGMP03_COMM_IF.I2C1
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
       provides:
+        - AGMP03_COMMUNICATION_INTERFACE
         - FXAS21002_I2C
       consumes:
         - ARDUINO_UNO_I2C-Alt
     - connect: FXAS21002 SPI Bus
-      set: Bus.SPI
+      set: AGMP03_COMM_IF.SPI
       info: "Jumper configuration: I2C/SPI=SPI"
       provides:
+        - AGMP03_COMMUNICATION_INTERFACE
         - FXAS21002_SPI
-        - FXAS21002_CS
       consumes:
         - ARDUINO_UNO_SPI
         - ARDUINO_UNO_D15
@@ -65,18 +71,25 @@ layer:
         - FXAS21002_INT1
       consumes:
         - ARDUINO_UNO_D8
+    - connect: FXAS21002 Interrupt 2
+      provides:
+        - FXAS21002_INT2
+      consumes:
+        - ARDUINO_UNO_D16
 
-    - connect: MPL3115 I2C Bus
-      set: Bus.I2C
+    - connect: MPL3115 I2C0 Communication Interfaces
+      set: AGMP03_COMM_IF.I2C0
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
       provides:
+        - AGMP03_COMMUNICATION_INTERFACE
         - MPL3115_I2C
       consumes:
         - ARDUINO_UNO_I2C
-    - connect: MPL3115 Alternate I2C Bus
-      set: Bus.I2C-Alt
+    - connect: MPL3115 I2C1 Communication Interfaces
+      set: AGMP03_COMM_IF.I2C1
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
       provides:
+        - AGMP03_COMMUNICATION_INTERFACE
         - MPL3115_I2C
       consumes:
         - ARDUINO_UNO_I2C-Alt
@@ -84,19 +97,22 @@ layer:
       provides:
         - MPL3115_INT1
       consumes:
+        - AGMP03_COMMUNICATION_INTERFACE
         - ARDUINO_UNO_D7
 
-    - connect: MAG3110 I2C Bus
-      set: Bus.I2C
+    - connect: MAG3110 I2C0 Communication Interfaces
+      set: AGMP03_COMM_IF.I2C0
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
       provides:
+        - AGMP03_COMMUNICATION_INTERFACE
         - MAG3110_I2C
       consumes:
         - ARDUINO_UNO_I2C
-    - connect: MAG3110 Alternate I2C Bus
-      set: Bus.I2C-Alt
+    - connect: MAG3110 I2C1 Communication Interfaces
+      set: AGMP03_COMM_IF.I2C1
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
       provides:
+        - AGMP03_COMMUNICATION_INTERFACE
         - MAG3110_I2C
       consumes:
         - ARDUINO_UNO_I2C-Alt
@@ -104,6 +120,7 @@ layer:
       provides:
         - MAG3110_INT1
       consumes:
+        - AGMP03_COMMUNICATION_INTERFACE
         - ARDUINO_UNO_D5
 
     - connect: FRDM-STBC-AGMP03 Shield Reset

@@ -5,7 +5,6 @@ project:
     - connect: FXLS8974 Sensor
       consumes:
         - FXLS8974_SPI
-        - FXLS8974_CS
 
   groups:
     - group: doc
