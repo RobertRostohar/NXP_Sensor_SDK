@@ -25,7 +25,7 @@ layer:
         - ARDUINO_UNO_D7
         - ARDUINO_UNO_D8
         - ARDUINO_UNO_D9
-        # - ARDUINO_UNO_D10
+        - ARDUINO_UNO_D10
         - ARDUINO_UNO_D14
         - ARDUINO_UNO_D15
         - ARDUINO_UNO_D16

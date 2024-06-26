@@ -60,10 +60,10 @@
 #define ARDUINO_UNO_UART    3
 
 // CMSIS Drivers
-extern ARM_DRIVER_I2C   Driver_I2C1;
-extern ARM_DRIVER_SPI   Driver_SPI1;
-extern ARM_DRIVER_USART Driver_USART1;
-extern ARM_DRIVER_USART Driver_USART3;
+extern ARM_DRIVER_I2C   Driver_I2C1;    /* Arduino I2C  */
+extern ARM_DRIVER_SPI   Driver_SPI1;    /* Arduino SPI  */
+extern ARM_DRIVER_USART Driver_USART1;  /* ST-Link      */
+extern ARM_DRIVER_USART Driver_USART3;  /* Arduino UART */
 
 // Enter Sleep (Power Down)
 #define ENTER_SLEEP()       HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI)

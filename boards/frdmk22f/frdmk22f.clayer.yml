@@ -17,13 +17,13 @@ layer:
         - ARDUINO_UNO_SPI
         - ARDUINO_UNO_I2C-Alt
         - ARDUINO_UNO_D2
-        - ARDUINO_UNO_D3
+        # - ARDUINO_UNO_D3
         - ARDUINO_UNO_D4
         - ARDUINO_UNO_D5
         - ARDUINO_UNO_D6
         - ARDUINO_UNO_D7
         - ARDUINO_UNO_D8
-        - ARDUINO_UNO_D9
+        # - ARDUINO_UNO_D9
         - ARDUINO_UNO_D10
         - ARDUINO_UNO_D14
         - ARDUINO_UNO_D15

@@ -15,7 +15,6 @@
 #define LPC55S69_H_
 
 #include "fsl_power.h"
-#include "RTE_Device.h"
 #include "GPIO_LPC55S69.h"
 #include "Driver_I2C.h"
 #include "Driver_SPI.h"
@@ -25,14 +24,14 @@
 #define ARDUINO_UNO_D0  GPIO_PORT1(24U) /* UART2: RX   PIO1 Pin 24 */
 #define ARDUINO_UNO_D1  GPIO_PORT0(27U) /* UART2: TX   PIO0 Pin 27 */
 #define ARDUINO_UNO_D2  GPIO_PORT0(15U)
-#define ARDUINO_UNO_D3  GPIO_PORT1(6U)  /* LEDR:  PIO1 Pin 6 - Conflict */
-#define ARDUINO_UNO_D4  GPIO_PORT1(7U)  /* LEDG:  PIO1 Pin 7 - Conflict */
-#define ARDUINO_UNO_D5  GPIO_PORT1(4U)  /* LEDB:  PIO1 Pin 4 - Conflict */
+#define ARDUINO_UNO_D3  GPIO_PORT1(6U)  /* LED RED:    PIO1 Pin 6  */
+#define ARDUINO_UNO_D4  GPIO_PORT1(7U)  /* LED GREEN:  PIO1 Pin 7  */
+#define ARDUINO_UNO_D5  GPIO_PORT1(4U)  /* LED BLUE:   PIO1 Pin 4  */
 #define ARDUINO_UNO_D6  GPIO_PORT1(10U)
 #define ARDUINO_UNO_D7  GPIO_PORT1(9U)
 #define ARDUINO_UNO_D8  GPIO_PORT1(8U)
 #define ARDUINO_UNO_D9  GPIO_PORT1(5U)
-#define ARDUINO_UNO_D10 GPIO_PORT1(1U)  /* SPI8:  CS   PIO1 Pin 1  */
+#define ARDUINO_UNO_D10 GPIO_PORT1(1U)
 #define ARDUINO_UNO_D11 GPIO_PORT0(26U) /* SPI8:  MOSI PIO0 Pin 26 */
 #define ARDUINO_UNO_D12 GPIO_PORT1(3U)  /* SPI8:  MISO PIO1 Pin 3  */
 #define ARDUINO_UNO_D13 GPIO_PORT1(2U)  /* SPI8:  SCK  PIO1 Pin 2  */
@@ -50,16 +49,11 @@
 #define ARDUINO_UNO_SPI     8
 #define ARDUINO_UNO_UART    2
 
-// LPCXpresso55S69 Internal Peripheral Pin Definitions
-#define RED_LED         GPIO_PORT1(6U)  /* PIO1 Pin 6 */
-#define GREEN_LED       GPIO_PORT1(7U)  /* PIO1 Pin 7 */
-#define BLUE_LED        GPIO_PORT1(4U)  /* PIO1 Pin 4 */
-
 // CMSIS Drivers
-extern ARM_DRIVER_I2C   Driver_I2C4;
-extern ARM_DRIVER_SPI   Driver_SPI8;
-extern ARM_DRIVER_USART Driver_USART0;
-extern ARM_DRIVER_USART Driver_USART2;
+extern ARM_DRIVER_I2C   Driver_I2C4;    /* Arduino I2C  */
+extern ARM_DRIVER_SPI   Driver_SPI8;    /* Arduino SPI  */
+extern ARM_DRIVER_USART Driver_USART0;  /* OpenSDA      */
+extern ARM_DRIVER_USART Driver_USART2;  /* Arduino UART */
 
 // Enter Sleep (Power Down)
 #define ENTER_SLEEP()       POWER_EnterSleep()
