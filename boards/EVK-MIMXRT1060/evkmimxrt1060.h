@@ -77,10 +77,6 @@ extern ARM_DRIVER_USART Driver_USART3;
 #define SPI_Type            LPSPI_Type
 #define SPI_BASE_PTRS       LPSPI_BASE_PTRS
 
-// I2C/SPI Communication Idle Task and Argument
-#define COMM_IDLE_TASK      NULL
-#define COMM_IDLE_ARG       NULL
-
 // Enter Sleep (Power Down)
 #define ENTER_SLEEP()       LPM_EnterSleepMode(kCLOCK_ModeWait)
 

@@ -19,6 +19,12 @@
 #include CMSIS_target_header
 #endif
 
+// I2C/SPI Communication Idle Function and Argument
+#define COMM_IDLE_FUNC  comm_idle_func
+#define COMM_IDLE_ARG   NULL
+
+static inline void comm_idle_func(void *arg) { ENTER_SLEEP(); }
+
 #ifndef PRINTF
 #define PRINTF  printf
 #endif

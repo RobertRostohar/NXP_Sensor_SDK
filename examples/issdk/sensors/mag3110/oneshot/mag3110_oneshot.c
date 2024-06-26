@@ -111,7 +111,7 @@ int app_main(void)
      *  Instead we directly write register settings for One-Shot Mode... */
     deviceInfo.deviceInstance = MAG3110_I2C_INDEX;
     deviceInfo.functionParam = COMM_IDLE_ARG;
-    deviceInfo.idleFunction = (registeridlefunction_t)COMM_IDLE_TASK;
+    deviceInfo.idleFunction = (registeridlefunction_t)COMM_IDLE_FUNC;
     status = Sensor_I2C_Write(mag3110Driver.pCommDrv, &deviceInfo, mag3110Driver.slaveAddress, cMag3110ConfigOneShot);
     if (ARM_DRIVER_OK != status)
     {

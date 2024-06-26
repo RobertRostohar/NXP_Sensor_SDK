@@ -112,7 +112,7 @@ int app_main(void)
      *  Instead we directly write register settings for One-Shot Mode... */
     deviceInfo.deviceInstance = MPL3115_I2C_INDEX;
     deviceInfo.functionParam = COMM_IDLE_ARG;
-    deviceInfo.idleFunction = (registeridlefunction_t)COMM_IDLE_TASK;
+    deviceInfo.idleFunction = (registeridlefunction_t)COMM_IDLE_FUNC;
     status = Sensor_I2C_Write(mpl3115Driver.pCommDrv, &deviceInfo, mpl3115Driver.slaveAddress, cMpl3115ConfigAltitude);
     if (ARM_DRIVER_OK != status)
     {

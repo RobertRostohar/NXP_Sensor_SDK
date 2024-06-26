@@ -107,7 +107,7 @@ int app_main(void)
     PRINTF("\r\n Successfully Initiliazed FXAS21002 Sensor\r\n");
 
     /*!  Set the task to be executed while waiting for SPI transactions to complete. */
-    FXAS21002_SPI_SetIdleTask(&fxas21002Driver, (registeridlefunction_t)COMM_IDLE_TASK, COMM_IDLE_ARG);
+    FXAS21002_SPI_SetIdleTask(&fxas21002Driver, (registeridlefunction_t)COMM_IDLE_FUNC, COMM_IDLE_ARG);
 
     /*! Configure the FXAS21002 sensor driver. */
     status = FXAS21002_SPI_Configure(&fxas21002Driver, cFxas21002_Config_Normal);

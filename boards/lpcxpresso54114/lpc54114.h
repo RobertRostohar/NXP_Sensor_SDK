@@ -54,12 +54,6 @@ extern ARM_DRIVER_SPI   Driver_SPI5;
 extern ARM_DRIVER_USART Driver_USART0;
 extern ARM_DRIVER_USART Driver_USART1;
 
-// I2C/SPI Communication Idle Task and Argument
-#define COMM_IDLE_TASK      comm_idle_task
-#define COMM_IDLE_ARG       NULL
-
-static inline void comm_idle_task(void *arg) { POWER_EnterSleep(); }
-
 // Enter Sleep (Power Down)
 #define ENTER_SLEEP()       POWER_EnterSleep()
 

@@ -65,10 +65,6 @@ extern ARM_DRIVER_USART Driver_USART2;
 #define FXOS8700_INT2       GPIO_PORTD(1U)
 #endif
 
-// I2C/SPI Communication Idle Task and Argument
-#define COMM_IDLE_TASK      SMC_SetPowerModeVlpr
-#define COMM_IDLE_ARG       SMC
-
 // Enter Sleep (Power Down)
 #define ENTER_SLEEP()       SMC_SetPowerModeWait(SMC)
 

@@ -65,10 +65,6 @@ extern ARM_DRIVER_SPI   Driver_SPI1;
 extern ARM_DRIVER_USART Driver_USART1;
 extern ARM_DRIVER_USART Driver_USART3;
 
-// I2C/SPI Communication Idle Task and Argument
-#define COMM_IDLE_TASK      NULL
-#define COMM_IDLE_ARG       NULL
-
 // Enter Sleep (Power Down)
 #define ENTER_SLEEP()       HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI)
 
