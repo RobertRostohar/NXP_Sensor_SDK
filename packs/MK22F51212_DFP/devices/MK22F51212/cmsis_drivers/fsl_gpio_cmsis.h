@@ -21,8 +21,8 @@
  * Project:      GPIO Driver definitions for Kinetis K22F
  */
 
-#ifndef GPIO_MK22F_H_
-#define GPIO_MK22F_H_
+#ifndef FSL_GPIO_CMSIS_H_
+#define FSL_GPIO_CMSIS_H_
 
 #ifdef  __cplusplus
 extern "C"
@@ -52,4 +52,4 @@ extern ARM_DRIVER_GPIO Driver_GPIO0;
 }
 #endif
 
-#endif /* GPIO_MK22F_H_ */
+#endif /* FSL_GPIO_CMSIS_H_ */

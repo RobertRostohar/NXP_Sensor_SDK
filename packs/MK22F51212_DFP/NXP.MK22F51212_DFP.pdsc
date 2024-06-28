@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+<package schemaVersion="1.7.36" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.36/schema/PACK.xsd">
   <name>MK22F51212_DFP</name>
   <vendor>NXP</vendor>
   <description>Device Family Pack for MK22F51212</description>
   <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
   <license>Licenses.txt</license>
   <releases>
+    <release version="18.1.0-dev">
+      - Add GPIO CMSIS-Driver
+    </release>
     <release version="18.0.0" date="2024-01-14">NXP CMSIS Packs based on MCUXpresso SDK 2.15.0</release>
     <release version="17.0.0" date="2023-07-27">NXP CMSIS Packs based on MCUXpresso SDK 2.14.0</release>
     <release version="16.1.0" date="2023-03-23">NXP CMSIS Packs based on MCUXpresso SDK 2.13.1</release>
@@ -586,6 +589,12 @@
     </condition>
     <condition id="driver.cmp.condition_id">
       <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.cmsis_gpio.condition_id">
+      <require condition="device_id.MK22FN512xxx12.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
     </condition>
     <condition id="driver.cmsis_dspi.condition_id">
       <require condition="allOf.device_id=MK22FN512xxx12, driver.dspi_edma, CMSIS_Driver_Include.SPI, RTE_Device.internal_condition"/>
@@ -1402,6 +1411,13 @@
         <file category="sourceC" name="devices/MK22F51212/drivers/fsl_cmp.c" projectpath="drivers"/>
         <file category="header" name="devices/MK22F51212/drivers/fsl_cmp.h" projectpath="drivers"/>
         <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="GPIO" Csub="gpio_cmsis" Cversion="1.0.0" Capiversion="1.0.0" condition="driver.cmsis_gpio.condition_id">
+      <description>GPIO CMSIS Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/cmsis_drivers/fsl_gpio_cmsis.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/cmsis_drivers/fsl_gpio_cmsis.c" projectpath="drivers"/>
       </files>
     </component>
     <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="dspi_cmsis" Cversion="2.3.0" Capiversion="2.2.0" condition="driver.cmsis_dspi.condition_id">

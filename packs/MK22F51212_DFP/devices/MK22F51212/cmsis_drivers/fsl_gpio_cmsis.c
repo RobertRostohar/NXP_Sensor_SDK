@@ -27,7 +27,7 @@
 #include "fsl_port.h"
 #include "fsl_port_ex.h"
 
-#include "GPIO_MK22F.h"
+#include "fsl_gpio_cmsis.h"
 
 
 // Pin mapping
