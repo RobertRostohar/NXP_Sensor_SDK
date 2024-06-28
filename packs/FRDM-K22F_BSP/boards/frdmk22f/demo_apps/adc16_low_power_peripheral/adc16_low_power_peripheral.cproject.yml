@@ -1,0 +1,411 @@
+---
+project:
+  description: The ADC Low Power demo application demonstrates the usage of the ADC
+    peripheral while in a low power mode. Themicrocontroller is first set to very
+    low power stop (VLPS) mode. Every 500 ms, an interrupt wakes up the ADC module
+    andreads the current temperature of the microcontroller. While the temperature
+    remains within boundaries, both LEDs are on.If the core temperature is higher
+    or lower than average, the LEDs change state respectively. You can open the mex
+    file with MCUXpresso Config Tool to do further configuration of pin, clock and
+    peripheral.
+  device: MK22FN512VLH12
+  components:
+  - component: NXP::Device:SDK Utilities:debug_console_lite
+  - component: NXP::Device:SDK Utilities:assert_lite
+  - component: NXP::Device:SDK Drivers:port
+  - component: NXP::Device:SDK Drivers:lptmr
+  - component: NXP::Device:SDK Drivers:gpio
+  - component: NXP::Device:SDK Drivers:clock
+  - component: NXP::Device:SDK Drivers:adc
+  - component: NXP::Device:SDK Drivers:pmc
+  - component: NXP::Device:SDK Drivers:common
+  - component: NXP::Device:CMSIS:MK22F51212_header
+  - component: NXP::Device:SDK Drivers:uart_adapter
+  - component: NXP::Device:SDK Drivers:uart
+  - component: NXP::Device:SDK Drivers:lists
+  - component: NXP::Device:Startup
+  - component: NXP::Device:SDK Drivers:lpuart
+  - component: NXP::Device:SDK Drivers:smc
+  - component: NXP::Device:SDK Utilities:misc_utilities
+  - component: ARM::CMSIS:CORE
+  - component: NXP::Device:CMSIS:MK22F51212_system
+  groups:
+  - group: source
+    files:
+    - file: adc16_low_power_peripheral.c
+  - group: board
+    files:
+    - file: pin_mux.c
+    - file: pin_mux.h
+    - file: peripherals.c
+    - file: peripherals.h
+    - file: board.c
+    - file: board.h
+    - file: clock_config.c
+    - file: clock_config.h
+  - group: MK22F51212/iar
+    files:
+    - file: iar/MK22FN512xxx12_flash.icf
+      for-compiler:
+      - IAR
+      for-context:
+      - ".debug"
+      - ".release"
+  - group: MK22F51212/arm
+    files:
+    - file: mdk/MK22FN512xxx12_flash.scf
+      for-compiler:
+      - AC6
+      for-context:
+      - ".debug"
+      - ".release"
+  - group: MK22F51212/gcc
+    files:
+    - file: armgcc/MK22FN512xxx12_flash.ld
+      for-compiler:
+      - GCC
+      for-context:
+      - ".debug"
+      - ".release"
+  setups:
+  - setup: IAR
+    for-compiler: IAR
+    for-context: ".release"
+    misc:
+    - C:
+      - "-DNDEBUG"
+      - "-DCPU_MK22FN512VLH12"
+      - "-DFRDM_K22F"
+      - "-DFREEDOM"
+      - "-DMCUXPRESSO_SDK"
+      - "--diag_suppress Pa082,Pa050"
+      - "-e"
+      - "--use_c++_inline"
+      - "-Oh"
+      ASM:
+      - "-DNDEBUG"
+      - "-s"
+      - -M"<>"
+      - "-w+"
+      - "-j"
+      CPP:
+      - "-DNDEBUG"
+      - "-DMCUXPRESSO_SDK"
+      - "--diag_suppress Pa082,Pa050"
+      - "-e"
+      - "--c++"
+  - setup: IAR
+    for-compiler: IAR
+    for-context: ".debug"
+    misc:
+    - C:
+      - "-DDEBUG"
+      - "-DCPU_MK22FN512VLH12"
+      - "-DFRDM_K22F"
+      - "-DFREEDOM"
+      - "-DMCUXPRESSO_SDK"
+      - "-On"
+      - "--debug"
+      - "--no_cse"
+      - "--no_unroll"
+      - "--no_inline"
+      - "--no_code_motion"
+      - "--no_tbaa"
+      - "--no_clustering"
+      - "--no_scheduling"
+      - "--diag_suppress Pa082,Pa050"
+      - "-e"
+      - "--use_c++_inline"
+      ASM:
+      - "-DDEBUG"
+      - "-r"
+      - "-s"
+      - -M"<>"
+      - "-w+"
+      - "-j"
+      CPP:
+      - "-DDEBUG"
+      - "-DMCUXPRESSO_SDK"
+      - "--debug"
+      - "--no_cse"
+      - "--no_unroll"
+      - "--no_code_motion"
+      - "--no_tbaa"
+      - "--no_clustering"
+      - "--no_scheduling"
+      - "--diag_suppress Pa082,Pa050"
+      - "-e"
+      - "--c++"
+  - setup: AC6
+    for-compiler: AC6
+    for-context: ".release"
+    misc:
+    - C:
+      - "-DNDEBUG"
+      - "-DCPU_MK22FN512VLH12"
+      - "-DFRDM_K22F"
+      - "-DFREEDOM"
+      - "-DMCUXPRESSO_SDK"
+      - "-Oz"
+      - "-mcpu=cortex-m4"
+      - "-mfpu=fpv4-sp-d16"
+      - "-std=c99"
+      - "-fshort-enums"
+      - "-fshort-wchar"
+      - "-ffunction-sections"
+      - "-fno-common"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mthumb"
+      - "-fno-rtti"
+      ASM:
+      - "-DNDEBUG"
+      CPP:
+      - "-DNDEBUG"
+      - "-DMCUXPRESSO_SDK"
+      - "-Oz"
+      - "-mcpu=cortex-m4"
+      - "-mfpu=fpv4-sp-d16"
+      - "-fshort-enums"
+      - "-fshort-wchar"
+      - "-fno-common"
+      - "-ffunction-sections"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mthumb"
+      - "-fno-rtti"
+      - "-fno-exceptions"
+      Link:
+      - --keep="*(.FlashConfig)"
+      - "--remove"
+      - "--entry=Reset_Handler"
+      - "--map"
+      - "--xref"
+      - "--callgraph"
+      - "--symbols"
+      - "--info sizes"
+      - "--info totals"
+      - "--info unused"
+      - "--info veneers"
+      - "--strict"
+      - "--diag_suppress 6314"
+      - "--library_type=microlib"
+  - setup: AC6
+    for-compiler: AC6
+    for-context: ".debug"
+    misc:
+    - C:
+      - "-DDEBUG"
+      - "-DCPU_MK22FN512VLH12"
+      - "-DFRDM_K22F"
+      - "-DFREEDOM"
+      - "-DMCUXPRESSO_SDK"
+      - "-g"
+      - "-O1"
+      - "-mcpu=cortex-m4"
+      - "-mfpu=fpv4-sp-d16"
+      - "-std=c99"
+      - "-fshort-enums"
+      - "-fshort-wchar"
+      - "-ffunction-sections"
+      - "-fno-common"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mthumb"
+      - "-fno-rtti"
+      ASM:
+      - "-DDEBUG"
+      CPP:
+      - "-DDEBUG"
+      - "-DMCUXPRESSO_SDK"
+      - "-g"
+      - "-O1"
+      - "-mcpu=cortex-m4"
+      - "-mfpu=fpv4-sp-d16"
+      - "-fshort-enums"
+      - "-fshort-wchar"
+      - "-fno-common"
+      - "-ffunction-sections"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mthumb"
+      - "-fno-rtti"
+      - "-fno-exceptions"
+      Link:
+      - --keep="*(.FlashConfig)"
+      - "--remove"
+      - "--entry=Reset_Handler"
+      - "--map"
+      - "--xref"
+      - "--callgraph"
+      - "--symbols"
+      - "--info sizes"
+      - "--info totals"
+      - "--info unused"
+      - "--info veneers"
+      - "--strict"
+      - "--diag_suppress 6314"
+      - "--library_type=microlib"
+  - setup: GCC
+    for-compiler: GCC
+    for-context: ".debug"
+    misc:
+    - C:
+      - "-DDEBUG"
+      - "-DCPU_MK22FN512VLH12"
+      - "-DFRDM_K22F"
+      - "-DFREEDOM"
+      - "-DMCUXPRESSO_SDK"
+      - "-g"
+      - "-O0"
+      - "-mcpu=cortex-m4"
+      - "-Wall"
+      - "-mfloat-abi=hard"
+      - "-mfpu=fpv4-sp-d16"
+      - "-mthumb"
+      - "-MMD"
+      - "-MP"
+      - "-fno-common"
+      - "-ffunction-sections"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mapcs"
+      - "-std=gnu99"
+      ASM:
+      - "-DDEBUG"
+      - "-D__STARTUP_CLEAR_BSS"
+      - "-mcpu=cortex-m4"
+      - "-mfloat-abi=hard"
+      - "-mfpu=fpv4-sp-d16"
+      - "-mthumb"
+      CPP:
+      - "-DDEBUG"
+      - "-DCPU_MK22FN512VLH12"
+      - "-DMCUXPRESSO_SDK"
+      - "-g"
+      - "-O0"
+      - "-mcpu=cortex-m4"
+      - "-Wall"
+      - "-mfloat-abi=hard"
+      - "-mfpu=fpv4-sp-d16"
+      - "-mthumb"
+      - "-MMD"
+      - "-MP"
+      - "-fno-common"
+      - "-ffunction-sections"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mapcs"
+      - "-fno-rtti"
+      - "-fno-exceptions"
+      Link:
+      - "-g"
+      - "-mcpu=cortex-m4"
+      - "-Wall"
+      - "-mfloat-abi=hard"
+      - "-mfpu=fpv4-sp-d16"
+      - "--specs=nano.specs"
+      - "--specs=nosys.specs"
+      - "-fno-common"
+      - "-ffunction-sections"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mthumb"
+      - "-mapcs"
+      - "-Wl,--gc-sections"
+      - "-Wl,-static"
+      - "-Wl,-z"
+      - "-Wl,muldefs"
+      - "-Wl,-Map=output.map"
+      - "-Wl,--print-memory-usage"
+      Library:
+      - "-lm"
+      - "-lc"
+      - "-lgcc"
+      - "-lnosys"
+  - setup: GCC
+    for-compiler: GCC
+    for-context: ".release"
+    misc:
+    - C:
+      - "-DNDEBUG"
+      - "-DCPU_MK22FN512VLH12"
+      - "-DFRDM_K22F"
+      - "-DFREEDOM"
+      - "-DMCUXPRESSO_SDK"
+      - "-Os"
+      - "-mcpu=cortex-m4"
+      - "-Wall"
+      - "-mfloat-abi=hard"
+      - "-mfpu=fpv4-sp-d16"
+      - "-mthumb"
+      - "-MMD"
+      - "-MP"
+      - "-fno-common"
+      - "-ffunction-sections"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mapcs"
+      - "-std=gnu99"
+      ASM:
+      - "-DNDEBUG"
+      - "-D__STARTUP_CLEAR_BSS"
+      - "-mcpu=cortex-m4"
+      - "-mfloat-abi=hard"
+      - "-mfpu=fpv4-sp-d16"
+      - "-mthumb"
+      CPP:
+      - "-DNDEBUG"
+      - "-DCPU_MK22FN512VLH12"
+      - "-DMCUXPRESSO_SDK"
+      - "-Os"
+      - "-mcpu=cortex-m4"
+      - "-Wall"
+      - "-mfloat-abi=hard"
+      - "-mfpu=fpv4-sp-d16"
+      - "-mthumb"
+      - "-MMD"
+      - "-MP"
+      - "-fno-common"
+      - "-ffunction-sections"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mapcs"
+      - "-fno-rtti"
+      - "-fno-exceptions"
+      Link:
+      - "-mcpu=cortex-m4"
+      - "-Wall"
+      - "-mfloat-abi=hard"
+      - "-mfpu=fpv4-sp-d16"
+      - "--specs=nano.specs"
+      - "--specs=nosys.specs"
+      - "-fno-common"
+      - "-ffunction-sections"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mthumb"
+      - "-mapcs"
+      - "-Wl,--gc-sections"
+      - "-Wl,-static"
+      - "-Wl,-z"
+      - "-Wl,muldefs"
+      - "-Wl,-Map=output.map"
+      - "-Wl,--print-memory-usage"
+      Library:
+      - "-lm"
+      - "-lc"
+      - "-lgcc"
+      - "-lnosys"
+  rte:
+    base-dir: "./$TargetType$/RTE"
