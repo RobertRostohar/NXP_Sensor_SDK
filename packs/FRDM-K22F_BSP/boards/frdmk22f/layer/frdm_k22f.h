@@ -13,7 +13,7 @@
 #define FRDM_K22F_H_
 
 #include "fsl_smc.h"
-#include "GPIO_MK22F.h"
+#include "fsl_gpio_cmsis.h"
 #include "Driver_I2C.h"
 #include "Driver_SPI.h"
 #include "Driver_USART.h"

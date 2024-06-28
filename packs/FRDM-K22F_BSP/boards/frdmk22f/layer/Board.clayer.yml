@@ -4,8 +4,8 @@ layer:
   description: FRDM-K22F Development Board
 
   packs:
-    - pack: NXP::MK22F51212_DFP@18.0.0
-    - pack: NXP::FRDM-K22F_BSP@18.0.0
+    - pack: NXP::MK22F51212_DFP@>=18.1.0-0
+    - pack: NXP::FRDM-K22F_BSP@>=18.1.0-0
     - pack: ARM::CMSIS@6.1.0
     - pack: ARM::CMSIS-Compiler@2.1.0
 
@@ -80,7 +80,7 @@ layer:
 
     - component: ARM::CMSIS:CORE
 
-    - component: ARM::CMSIS Driver:GPIO:Custom
+    - component: NXP::CMSIS Driver:GPIO:gpio_cmsis
     - component: ARM::CMSIS Driver:I2C:Custom
     - component: NXP::CMSIS Driver:I2C:i2c_cmsis
     - component: ARM::CMSIS Driver:SPI:Custom
@@ -102,11 +102,6 @@ layer:
         - file: main.c
         - file: retarget_stdio.c
         - file: vio_frdm_k22f.c
-    - group: gpio_driver
-      files:
-        - file: ../../drivers/gpio/gpio_driver.h
-        - file: ../../drivers/gpio/MK22F/GPIO_MK22F.h
-        - file: ../../drivers/gpio/MK22F/GPIO_MK22F.c
 
   linker:
     - script: RTE/Device/MK22FN512VLH12/MK22FN512xxx12_flash.scf
