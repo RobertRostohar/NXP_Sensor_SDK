@@ -1,0 +1,1988 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>MK22F51212_DFP</name>
+  <vendor>NXP</vendor>
+  <description>Device Family Pack for MK22F51212</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="18.0.0" date="2024-01-14">NXP CMSIS Packs based on MCUXpresso SDK 2.15.0</release>
+    <release version="17.0.0" date="2023-07-27">NXP CMSIS Packs based on MCUXpresso SDK 2.14.0</release>
+    <release version="16.1.0" date="2023-03-23">NXP CMSIS Packs based on MCUXpresso SDK 2.13.1</release>
+    <release version="16.0.0" date="2023-01-16">NXP CMSIS Packs based on MCUXpresso SDK 2.13.0</release>
+    <release version="15.0.0" date="2022-07-13">NXP CMSIS Packs based on MCUXpresso SDK 2.12.0</release>
+    <release version="14.0.0" date="2022-01-05">NXP CMSIS Packs based on MCUXpresso SDK 2.11.0</release>
+    <release version="13.1.0" date="2021-07-13">NXP CMSIS Packs based on MCUXpresso SDK 2.10.0</release>
+    <release version="13.0.0" date="2021-02-05">NXP CMSIS Packs based on MCUXpresso SDK 2.9.0 with restructured startup component files</release>
+    <release version="12.3.0" date="2021-01-14">NXP CMSIS Packs based on MCUXpresso SDK 2.9.0</release>
+    <release version="12.2.0" date="2020-07-20">NXP CMSIS Packs based on MCUXpresso SDK 2.8.0</release>
+    <release version="12.1.0" date="2019-12-19">NXP CMSIS Packs based on MCUXpresso SDK 2.7.0</release>
+    <release version="12.0.0" date="2019-06-10">NXP CMSIS packs based on MCUXpresso SDK 2.6.0</release>
+    <release version="11.0.1" date="2019-04-26">Removed invalid entries from Software Content Register</release>
+    <release version="11.0.0" date="2018-12-19">NXP CMSIS packs based on MCUXpresso SDK 2.5.0</release>
+    <release version="10.0.3" date="2018-07-16">A problem with missing components from some example the projects were dependent on was fixed (KEX-4241); Incorrect path to linked libraries were fixed: a pack version was a static part of the path and hadn’t worked for pack versions other than v10.0.0 (KEX-4373); A problem with incorrectly defined XIP_BOOT_HEADER_ENABLE, XIP_BOOT_HEADER_DCD_ENABLE and XIP_EXTERNAL_FLASH preprocessor symbols was fixed (KEX-4553); Missing flash algorithms for MK27, MK28, LPC802 and LPC804 device family packs were added (KEX-4659).</release>
+    <release version="10.0.2" date="2018-05-25">NXP CMSIS packs based on MCUXpresso SDK 2.4.0</release>
+    <release version="10.0.1" date="2018-04-04">NXP CMSIS packs based on MCUXpresso SDK 2.3.1</release>
+    <release version="10.0.0" date="2018-01-19">NXP CMSIS packs with updated Clear BSD license, based on MCUXpresso SDK 2.3.0. NXP CMSIS pack will maintain independent versioning starting with 10.0.0</release>
+    <release version="2.3.0" date="2017-11-17">NXP MCUXpresso SDK 2.3.0 CMSIS packs with updated Clear BSD license</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="CMSIS" vendor="ARM" version="5.8.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <devices>
+    <family Dfamily="MK22F51212" Dvendor="NXP:11">
+      <description>Kinetis K22-120 MHz, Cost Effective, Full-Speed USB Microcontrollers (MCUs) based on ARM Cortex-M4 Core</description>
+      <device Dname="MK22FN512xxx12">
+        <processor Dcore="Cortex-M4" Dfpu="SP_FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="120000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="devices/MK22F51212/iar/MK22FN512xxx12_flash.icf"/>
+        </environment>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x080000" access="rx" default="1" startup="1"/>
+        <memory name="SRAM_LOWER" start="0x1fff0000" size="0x010000" access="rw" default="1"/>
+        <memory name="SRAM_UPPER" start="0x20000000" size="0x010000" access="rw" default="1"/>
+        <algorithm name="devices/MK22F51212/arm/MK_P512.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+        <algorithm name="devices/MK22F51212/arm/MK2x_FAC.FLM" start="0xffff0000" size="0x00000024" RAMstart="0x20000000" RAMsize="0x00001000" default="0"/>
+        <debug svd="devices/MK22F51212/MK22F51212.xml"/>
+        <variant Dvariant="MK22FN512VDC12">
+          <compile header="devices/MK22F51212/fsl_device_registers.h" define="CPU_MK22FN512VDC12"/>
+        </variant>
+        <variant Dvariant="MK22FN512VLL12">
+          <compile header="devices/MK22F51212/fsl_device_registers.h" define="CPU_MK22FN512VLL12"/>
+        </variant>
+        <variant Dvariant="MK22FN512VLH12">
+          <compile header="devices/MK22F51212/fsl_device_registers.h" define="CPU_MK22FN512VLH12"/>
+        </variant>
+        <variant Dvariant="MK22FN512VFX12">
+          <compile header="devices/MK22F51212/fsl_device_registers.h" define="CPU_MK22FN512VFX12"/>
+        </variant>
+        <variant Dvariant="MK22FN512CAP12">
+          <compile header="devices/MK22F51212/fsl_device_registers.h" define="CPU_MK22FN512CAP12"/>
+        </variant>
+        <variant Dvariant="MK22FN512VMP12">
+          <compile header="devices/MK22F51212/fsl_device_registers.h" define="CPU_MK22FN512VMP12"/>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="device_id.MK22FN512xxx12.internal_condition">
+      <accept Dname="MK22FN512CAP12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VDC12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VFX12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VLH12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VLL12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VMP12" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="DEVICES_Project_Template.MK22F51212.condition_id">
+      <require condition="allOf.component.uart_adapter, device_id=MK22FN512xxx12, device.MK22F51212_startup, driver.adc16, driver.clock, driver.common, driver.dspi, driver.gpio, driver.i2c, driver.port, driver.rtc, driver.smc, driver.uart, anyOf=allOf=component.serial_manager, utility.assert, utility.debug_console, allOf=utility.assert_lite, utility.debug_console_lite.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.uart_adapter, device_id=MK22FN512xxx12, device.MK22F51212_startup, driver.adc16, driver.clock, driver.common, driver.dspi, driver.gpio, driver.i2c, driver.port, driver.rtc, driver.smc, driver.uart, anyOf=allOf=component.serial_manager, utility.assert, utility.debug_console, allOf=utility.assert_lite, utility.debug_console_lite.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter"/>
+      <require condition="device_id.MK22FN512xxx12.internal_condition"/>
+      <require Cclass="Device" Cgroup="Startup" Csub=""/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="adc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rtc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="smc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require condition="anyOf.allOf=component.serial_manager, utility.assert, utility.debug_console, allOf=utility.assert_lite, utility.debug_console_lite.internal_condition"/>
+    </condition>
+    <condition id="anyOf.allOf=component.serial_manager, utility.assert, utility.debug_console, allOf=utility.assert_lite, utility.debug_console_lite.internal_condition">
+      <accept condition="allOf.component.serial_manager, utility.assert, utility.debug_console.internal_condition"/>
+      <accept condition="allOf.utility.assert_lite, utility.debug_console_lite.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.serial_manager, utility.assert, utility.debug_console.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="assert"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="allOf.utility.assert_lite, utility.debug_console_lite.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="assert_lite"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+    </condition>
+    <condition id="RTE_Device.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.dmamux, driver.edma.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=MK22FN512xxx12, driver.dmamux, driver.edma.internal_condition">
+      <require condition="device_id.MK22FN512xxx12.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MK22F51212.internal_condition">
+      <accept Dname="MK22FN512CAP12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VDC12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VFX12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VLH12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VLL12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VMP12" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="cmake_toolchain.condition_id">
+      <require condition="allOf.device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.device=MK22F51212.internal_condition">
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.audio_sai_edma_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.sai_edma, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.sai_edma, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="sai_edma"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.button.condition_id">
+      <require condition="allOf.driver.common, component.timer_manager, anyOf=component.gpio_adapter, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.timer_manager, anyOf=component.gpio_adapter, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="timer_manager"/>
+      <require condition="anyOf.component.gpio_adapter.internal_condition"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="anyOf.component.gpio_adapter.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="gpio_adapter"/>
+    </condition>
+    <condition id="component.codec_adapters.condition_id">
+      <require condition="anyOf.allOf=driver.codec, component.wm8904_adapter, allOf=driver.codec, component.wm8960_adapter, allOf=driver.codec, component.sgtl_adapter, allOf=driver.codec, component.da7212_adapter, allOf=driver.codec, component.cs42888_adapter.internal_condition"/>
+      <require condition="allOf.device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="anyOf.allOf=driver.codec, component.wm8904_adapter, allOf=driver.codec, component.wm8960_adapter, allOf=driver.codec, component.sgtl_adapter, allOf=driver.codec, component.da7212_adapter, allOf=driver.codec, component.cs42888_adapter.internal_condition">
+      <accept condition="allOf.driver.codec, component.wm8904_adapter.internal_condition"/>
+      <accept condition="allOf.driver.codec, component.wm8960_adapter.internal_condition"/>
+      <accept condition="allOf.driver.codec, component.sgtl_adapter.internal_condition"/>
+      <accept condition="allOf.driver.codec, component.da7212_adapter.internal_condition"/>
+      <accept condition="allOf.driver.codec, component.cs42888_adapter.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.codec, component.wm8904_adapter.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="wm8904_adapter"/>
+    </condition>
+    <condition id="allOf.driver.codec, component.wm8960_adapter.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="wm8960_adapter"/>
+    </condition>
+    <condition id="allOf.driver.codec, component.sgtl_adapter.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="sgtl_adapter"/>
+    </condition>
+    <condition id="allOf.driver.codec, component.da7212_adapter.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="da7212_adapter"/>
+    </condition>
+    <condition id="allOf.driver.codec, component.cs42888_adapter.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="cs42888_adapter"/>
+    </condition>
+    <condition id="component.codec_i2c.condition_id">
+      <require condition="allOf.driver.common, anyOf=component.i2c_adapter, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, anyOf=component.i2c_adapter, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="anyOf.component.i2c_adapter.internal_condition"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="anyOf.component.i2c_adapter.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_adapter"/>
+    </condition>
+    <condition id="component.crc_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.crc, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.crc, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="crc"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.cs42888_adapter.condition_id">
+      <require condition="allOf.driver.cs42888, driver.codec, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.cs42888, driver.codec, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="cs42888"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.da7212_adapter.condition_id">
+      <require condition="allOf.driver.dialog7212, driver.codec, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.dialog7212, driver.codec, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dialog7212"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.dspi_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.dspi, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.dspi, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.eeprom_InternalFlash.condition_id">
+      <require condition="allOf.driver.common, component.flash_adapter, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.flash_adapter, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flash_adapter"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.flash_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.flash, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.flash, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flash"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.ftm_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.ftm, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.ftm, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="ftm"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.gpio_adapter.condition_id">
+      <require condition="allOf.driver.gpio, anyOf=driver.port, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.gpio, anyOf=driver.port, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require condition="anyOf.driver.port.internal_condition"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="anyOf.driver.port.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+    </condition>
+    <condition id="component.i2c_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.i2c, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.i2c, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.led.condition_id">
+      <require condition="allOf.driver.common, component.timer_manager, anyOf=component.gpio_adapter, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.lists.condition_id">
+      <require condition="allOf.driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.log.condition_id">
+      <require condition="allOf.driver.common, utility.str, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, utility.str, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="str"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.log.backend.debugconsole.condition_id">
+      <require condition="allOf.driver.common, component.log, utility.debug_console, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.log, utility.debug_console, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="log"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.log.backend.debugconsole_lite.condition_id">
+      <require condition="allOf.driver.common, component.log, utility.debug_console_lite, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.log, utility.debug_console_lite, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="log"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.log.backend.ringbuffer.condition_id">
+      <require condition="allOf.driver.common, component.log, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.log, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="log"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.lptmr_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.lptmr, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.lptmr, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.lptmr_time_stamp_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.lptmr, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.lpuart_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.lpuart, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.lpuart, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.lpuart_dma_adapter.condition_id">
+      <require condition="allOf.component.lpuart_adapter, component.timer_manager, anyOf=driver.lpuart_edma, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.lpuart_adapter, component.timer_manager, anyOf=driver.lpuart_edma, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="timer_manager"/>
+      <require condition="anyOf.driver.lpuart_edma.internal_condition"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="anyOf.driver.lpuart_edma.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_edma"/>
+    </condition>
+    <condition id="component.mem_manager.condition_id">
+      <require condition="allOf.driver.common, component.lists, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.lists, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.mem_manager_light.condition_id">
+      <require condition="allOf.driver.common, component.lists, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.panic.condition_id">
+      <require condition="allOf.driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.pit_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.pit, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.pit, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="pit"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.pit_time_stamp_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.pit, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.pwm_ftm_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.ftm, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.reset_adapter.condition_id">
+      <require condition="allOf.driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.rnga_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.rnga, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.rnga, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rnga"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.rtc.condition_id">
+      <require condition="allOf.driver.common, driver.rtc, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.rtc, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rtc"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.serial_manager.condition_id">
+      <require condition="allOf.driver.common, component.lists, anyOf=component.serial_manager_uart, component.serial_manager_virtual, component.serial_manager_swo, component.serial_manager_spi, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.lists, anyOf=component.serial_manager_uart, component.serial_manager_virtual, component.serial_manager_swo, component.serial_manager_spi, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require condition="anyOf.component.serial_manager_uart, component.serial_manager_virtual, component.serial_manager_swo, component.serial_manager_spi.internal_condition"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="anyOf.component.serial_manager_uart, component.serial_manager_virtual, component.serial_manager_swo, component.serial_manager_spi.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_virtual"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_swo"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_spi"/>
+    </condition>
+    <condition id="component.serial_manager_spi.condition_id">
+      <require condition="allOf.component.serial_manager, anyOf=allOf=driver.dspi, component.dspi_adapter, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.serial_manager, anyOf=allOf=driver.dspi, component.dspi_adapter, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require condition="anyOf.allOf=driver.dspi, component.dspi_adapter.internal_condition"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="anyOf.allOf=driver.dspi, component.dspi_adapter.internal_condition">
+      <accept condition="allOf.driver.dspi, component.dspi_adapter.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.dspi, component.dspi_adapter.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi_adapter"/>
+    </condition>
+    <condition id="component.serial_manager_swo.condition_id">
+      <require condition="allOf.core=cm4f, driver.common, component.serial_manager, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.core=cm4f, driver.common, component.serial_manager, device=MK22F51212.internal_condition">
+      <require condition="core.cm4f.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="core.cm4f.internal_condition">
+      <accept Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="component.serial_manager_uart.condition_id">
+      <require condition="allOf.component.uart_adapter, component.serial_manager, anyOf=driver.lpuart, driver.uart, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.uart_adapter, component.serial_manager, anyOf=driver.lpuart, driver.uart, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require condition="anyOf.driver.lpuart, driver.uart.internal_condition"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="anyOf.driver.lpuart, driver.uart.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+    </condition>
+    <condition id="component.serial_manager_virtual.condition_id">
+      <require condition="allOf.component.serial_manager, driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.serial_manager, driver.common, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.sgtl_adapter.condition_id">
+      <require condition="allOf.driver.sgtl5000, driver.codec, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.sgtl5000, driver.codec, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="sgtl5000"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.software_crc_adapter.condition_id">
+      <require condition="allOf.driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.software_rng_adapter.condition_id">
+      <require condition="allOf.driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.timer_manager.condition_id">
+      <require condition="allOf.driver.common, component.lists, anyOf=component.ftm_adapter, component.lptmr_adapter, component.pit_adapter, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.lists, anyOf=component.ftm_adapter, component.lptmr_adapter, component.pit_adapter, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require condition="anyOf.component.ftm_adapter, component.lptmr_adapter, component.pit_adapter.internal_condition"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="anyOf.component.ftm_adapter, component.lptmr_adapter, component.pit_adapter.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="ftm_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="pit_adapter"/>
+    </condition>
+    <condition id="component.uart_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.uart, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.uart, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.wm8904_adapter.condition_id">
+      <require condition="allOf.driver.wm8904, driver.codec, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.wm8904, driver.codec, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="wm8904"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="component.wm8960_adapter.condition_id">
+      <require condition="allOf.driver.wm8960, driver.codec, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.wm8960, driver.codec, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="wm8960"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="device.MK22F51212_CMSIS.condition_id">
+      <require condition="allOf.CMSIS_Include_core_cm, device_id=MK22FN512xxx12.internal_condition"/>
+    </condition>
+    <condition id="allOf.CMSIS_Include_core_cm, device_id=MK22FN512xxx12.internal_condition">
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require condition="device_id.MK22FN512xxx12.internal_condition"/>
+    </condition>
+    <condition id="device.MK22F51212_linker.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=MK22FN512xxx12.internal_condition">
+      <require condition="device_id.MK22FN512xxx12.internal_condition"/>
+    </condition>
+    <condition id="device_ids.MK22FN512xxx12.internal_condition">
+      <accept Dname="MK22FN512CAP12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VDC12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VFX12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VLH12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VLL12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VMP12" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="allOf.toolchains=mdk, device_ids=MK22FN512xxx12.condition_id">
+      <require condition="toolchains.mdk.internal_condition"/>
+      <require condition="device_ids.MK22FN512xxx12.internal_condition"/>
+    </condition>
+    <condition id="toolchains.mdk.internal_condition">
+      <accept Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc, device_ids=MK22FN512xxx12.condition_id">
+      <require condition="toolchains.armgcc.internal_condition"/>
+      <require condition="device_ids.MK22FN512xxx12.internal_condition"/>
+    </condition>
+    <condition id="toolchains.armgcc.internal_condition">
+      <accept Tcompiler="GCC"/>
+    </condition>
+    <condition id="allOf.toolchains=iar, device_ids=MK22FN512xxx12.condition_id">
+      <require condition="toolchains.iar.internal_condition"/>
+      <require condition="device_ids.MK22FN512xxx12.internal_condition"/>
+    </condition>
+    <condition id="toolchains.iar.internal_condition">
+      <accept Tcompiler="IAR"/>
+    </condition>
+    <condition id="device.MK22F51212_startup.condition_id">
+      <require condition="allOf.device.MK22F51212_system, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.device.MK22F51212_system, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="CMSIS" Csub="MK22F51212_system"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=iar.condition_id">
+      <require condition="toolchains.iar.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc.condition_id">
+      <require condition="toolchains.armgcc.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=mdk.condition_id">
+      <require condition="toolchains.mdk.internal_condition"/>
+    </condition>
+    <condition id="device.MK22F51212_system.condition_id">
+      <require condition="allOf.device.MK22F51212_CMSIS, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.device.MK22F51212_CMSIS, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="CMSIS" Csub="MK22F51212_header"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.adc16.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition">
+      <require condition="device_id.MK22FN512xxx12.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="driver.clock.condition_id">
+      <require condition="allOf.driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.cmp.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.cmsis_dspi.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.dspi_edma, CMSIS_Driver_Include.SPI, RTE_Device.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=MK22FN512xxx12, driver.dspi_edma, CMSIS_Driver_Include.SPI, RTE_Device.internal_condition">
+      <require condition="device_id.MK22FN512xxx12.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi_edma"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="driver.cmsis_i2c.condition_id">
+      <require condition="allOf.driver.i2c_edma, device_id=MK22FN512xxx12, driver.i2c, CMSIS_Driver_Include.I2C, RTE_Device.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.i2c_edma, device_id=MK22FN512xxx12, driver.i2c, CMSIS_Driver_Include.I2C, RTE_Device.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_edma"/>
+      <require condition="device_id.MK22FN512xxx12.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.4.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="driver.cmsis_lpuart.condition_id">
+      <require condition="allOf.driver.lpuart_edma, device_id=MK22FN512xxx12, driver.lpuart, CMSIS_Driver_Include.USART, RTE_Device.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.lpuart_edma, device_id=MK22FN512xxx12, driver.lpuart, CMSIS_Driver_Include.USART, RTE_Device.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_edma"/>
+      <require condition="device_id.MK22FN512xxx12.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.4.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="driver.cmsis_uart.condition_id">
+      <require condition="allOf.driver.uart_edma, device_id=MK22FN512xxx12, driver.uart, CMSIS_Driver_Include.USART, RTE_Device.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.uart_edma, device_id=MK22FN512xxx12, driver.uart, CMSIS_Driver_Include.USART, RTE_Device.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_edma"/>
+      <require condition="device_id.MK22FN512xxx12.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.4.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="driver.codec.condition_id">
+      <require condition="allOf.driver.common, anyOf=component.wm8904_adapter, component.wm8960_adapter, component.sgtl_adapter, component.da7212_adapter, component.cs42888_adapter, component.codec_adapters, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, anyOf=component.wm8904_adapter, component.wm8960_adapter, component.sgtl_adapter, component.da7212_adapter, component.cs42888_adapter, component.codec_adapters, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="anyOf.component.wm8904_adapter, component.wm8960_adapter, component.sgtl_adapter, component.da7212_adapter, component.cs42888_adapter, component.codec_adapters.internal_condition"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="anyOf.component.wm8904_adapter, component.wm8960_adapter, component.sgtl_adapter, component.da7212_adapter, component.cs42888_adapter, component.codec_adapters.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="wm8904_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="wm8960_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="sgtl_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="da7212_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="cs42888_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="codec_adapters"/>
+    </condition>
+    <condition id="driver.common.condition_id">
+      <require condition="allOf.driver.clock, device.MK22F51212_CMSIS, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.clock, device.MK22F51212_CMSIS, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="CMSIS" Csub="MK22F51212_header"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.cores=cm4f.condition_id">
+      <require condition="cores.cm4f.internal_condition"/>
+    </condition>
+    <condition id="cores.cm4f.internal_condition">
+      <accept Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="driver.crc.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.cs42888.condition_id">
+      <require condition="allOf.driver.common, component.codec_i2c, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.codec_i2c, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec_i2c"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.dac.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.dbi.condition_id">
+      <require condition="allOf.driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.dialog7212.condition_id">
+      <require condition="allOf.driver.common, component.codec_i2c, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.dmamux.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.dspi.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.dspi_edma.condition_id">
+      <require condition="allOf.driver.edma, driver.dspi, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.edma, driver.dspi, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.edma.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common, driver.dmamux.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=MK22FN512xxx12, driver.common, driver.dmamux.internal_condition">
+      <require condition="device_id.MK22FN512xxx12.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux"/>
+    </condition>
+    <condition id="driver.ewm.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.flash.condition_id">
+      <require condition="allOf.driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.flexbus.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.ft5406.condition_id">
+      <require condition="allOf.driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.ft6x06.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.CMSIS_Driver_Include.I2C, device=MK22F51212.internal_condition">
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.4.0"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.ftm.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.fxos8700cq.condition_id">
+      <require condition="allOf.driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.gpio.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.i2c.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.i2c_edma.condition_id">
+      <require condition="allOf.driver.edma, driver.i2c, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.edma, driver.i2c, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.ili9341.condition_id">
+      <require condition="allOf.driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.llwu.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lptmr.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpuart.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpuart_edma.condition_id">
+      <require condition="allOf.driver.edma, driver.lpuart, device_id=MK22FN512xxx12.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.edma, driver.lpuart, device_id=MK22FN512xxx12.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require condition="device_id.MK22FN512xxx12.internal_condition"/>
+    </condition>
+    <condition id="driver.mma8451q.condition_id">
+      <require condition="allOf.driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.mx25r_flash.condition_id">
+      <require condition="allOf.device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.pdb.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.pf1550.condition_id">
+      <require condition="allOf.device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.pf3000.condition_id">
+      <require condition="allOf.device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.pit.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.pmc.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.port.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.rcm.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.rnga.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.rtc.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.sai.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.sai_edma.condition_id">
+      <require condition="allOf.driver.edma, driver.sai, device_id=MK22FN512xxx12.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.edma, driver.sai, device_id=MK22FN512xxx12.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="sai"/>
+      <require condition="device_id.MK22FN512xxx12.internal_condition"/>
+    </condition>
+    <condition id="driver.sgtl5000.condition_id">
+      <require condition="allOf.driver.common, component.codec_i2c, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.sim.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.smc.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.ssd1963.condition_id">
+      <require condition="allOf.driver.dbi, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.dbi, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dbi"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.uart.condition_id">
+      <require condition="allOf.driver.common, device_id=MK22FN512xxx12.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, device_id=MK22FN512xxx12.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device_id.MK22FN512xxx12.internal_condition"/>
+    </condition>
+    <condition id="driver.uart_edma.condition_id">
+      <require condition="allOf.driver.edma, driver.uart, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.edma, driver.uart, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.vref.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.wdog.condition_id">
+      <require condition="allOf.device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.wm8904.condition_id">
+      <require condition="allOf.driver.common, component.codec_i2c, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="driver.wm8960.condition_id">
+      <require condition="allOf.driver.common, component.codec_i2c, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="middleware.baremetal.condition_id">
+      <require condition="allOf.device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="utilities.misc_utilities.condition_id">
+      <require condition="allOf.device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc, cores=cm4f.condition_id">
+      <require condition="toolchains.armgcc.internal_condition"/>
+      <require condition="cores.cm4f.internal_condition"/>
+    </condition>
+    <condition id="utility.assert.condition_id">
+      <require condition="allOf.utility.debug_console, driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.utility.debug_console, driver.common, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="utility.assert_lite.condition_id">
+      <require condition="allOf.utility.debug_console_lite, driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.utility.debug_console_lite, driver.common, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="utility.debug_console.condition_id">
+      <require condition="allOf.component.serial_manager, driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="utility.debug_console_lite.condition_id">
+      <require condition="allOf.component.uart_adapter, device_id=MK22FN512xxx12, driver.common.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.uart_adapter, device_id=MK22FN512xxx12, driver.common.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter"/>
+      <require condition="device_id.MK22FN512xxx12.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="utility.notifier.condition_id">
+      <require condition="allOf.driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="utility.shell.condition_id">
+      <require condition="allOf.utility.str, component.lists, driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="allOf.utility.str, component.lists, driver.common, device=MK22F51212.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="str"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.MK22F51212.internal_condition"/>
+    </condition>
+    <condition id="utility.str.condition_id">
+      <require condition="allOf.driver.common, device=MK22F51212.internal_condition"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MK22F51212" Cversion="1.0.0" condition="DEVICES_Project_Template.MK22F51212.condition_id" isDefaultVariant="1">
+      <description>Devices_project_template MK22F51212</description>
+      <files>
+        <file category="header" attr="config" name="devices/MK22F51212/project_template/board.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/MK22F51212/project_template/board.c" version="1.0.0" projectpath="board"/>
+        <file category="header" attr="config" name="devices/MK22F51212/project_template/clock_config.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/MK22F51212/project_template/clock_config.c" version="1.0.0" projectpath="board"/>
+        <file category="header" attr="config" name="devices/MK22F51212/project_template/pin_mux.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/MK22F51212/project_template/pin_mux.c" version="1.0.0" projectpath="board"/>
+        <file category="header" attr="config" name="devices/MK22F51212/project_template/peripherals.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/MK22F51212/project_template/peripherals.c" version="1.0.0" projectpath="board"/>
+        <file category="include" name="devices/MK22F51212/project_template/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device" Cversion="1.0.0" condition="RTE_Device.condition_id">
+      <description>Rte_device</description>
+      <files>
+        <file category="header" attr="config" name="devices/MK22F51212/template/RTE_Device.h" version="1.0.0" projectpath="board"/>
+        <file category="include" name="devices/MK22F51212/template/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="cmake_toolchain" Cversion="1.0.0" condition="cmake_toolchain.condition_id">
+      <description>Cmake_toolchain</description>
+      <files>
+        <file category="other" name="tools/cmake_toolchain_files/armgcc.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/xcc.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/xclang.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/armgcc_force_cpp.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/mcux_config.cmake" projectpath="cmake_toolchain_files"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="audio_sai_edma_adapter" Cversion="1.0.0" condition="component.audio_sai_edma_adapter.condition_id">
+      <description>Component sai_edma_adapter</description>
+      <files>
+        <file category="header" name="components/audio/fsl_adapter_audio.h" projectpath="component/audio"/>
+        <file category="sourceC" name="components/audio/fsl_adapter_sai.c" projectpath="component/audio"/>
+        <file category="include" name="components/audio/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="button" Cversion="1.0.0" condition="component.button.condition_id">
+      <description>Component button</description>
+      <files>
+        <file category="header" name="components/button/fsl_component_button.h" projectpath="component/button"/>
+        <file category="sourceC" name="components/button/fsl_component_button.c" projectpath="component/button"/>
+        <file category="include" name="components/button/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="codec_adapters" Cversion="2.2.0" condition="component.codec_adapters.condition_id">
+      <description>Component codec adapters for multi codec</description>
+      <RTE_Components_h>
+#ifndef CODEC_MULTI_ADAPTERS
+#define CODEC_MULTI_ADAPTERS 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="sourceC" name="components/codec/port/fsl_codec_adapter.c" projectpath="codec/port"/>
+        <file category="include" name="components/codec/port/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="codec_i2c" Cversion="2.1.0" condition="component.codec_i2c.condition_id">
+      <description>Component codec_i2c</description>
+      <RTE_Components_h>
+#ifndef SDK_I2C_BASED_COMPONENT_USED
+#define SDK_I2C_BASED_COMPONENT_USED 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/codec/i2c/fsl_codec_i2c.h" projectpath="codec"/>
+        <file category="sourceC" name="components/codec/i2c/fsl_codec_i2c.c" projectpath="codec"/>
+        <file category="include" name="components/codec/i2c/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="crc_adapter" Cversion="1.0.0" condition="component.crc_adapter.condition_id">
+      <description>Component crc_adapter</description>
+      <files>
+        <file category="header" name="components/crc/fsl_adapter_crc.h" projectpath="component/crc"/>
+        <file category="sourceC" name="components/crc/fsl_adapter_crc.c" projectpath="component/crc"/>
+        <file category="include" name="components/crc/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cs42888_adapter" Cversion="2.2.1" condition="component.cs42888_adapter.condition_id">
+      <description>Component cs42888 adapter for single codec</description>
+      <files>
+        <file category="sourceC" name="components/codec/port/cs42888/fsl_codec_cs42888_adapter.c" projectpath="codec/port/cs42888"/>
+        <file category="header" name="components/codec/port/cs42888/fsl_codec_cs42888_adapter.h" projectpath="codec/port/cs42888"/>
+        <file category="header" name="components/codec/port/fsl_codec_adapter.h" projectpath="codec/port"/>
+        <file category="include" name="components/codec/port/cs42888/"/>
+        <file category="include" name="components/codec/port/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="da7212_adapter" Cversion="2.2.0" condition="component.da7212_adapter.condition_id">
+      <description>Component da7212 adapter for single codec</description>
+      <files>
+        <file category="sourceC" name="components/codec/port/da7212/fsl_codec_da7212_adapter.c" projectpath="codec/port/da7212"/>
+        <file category="header" name="components/codec/port/da7212/fsl_codec_da7212_adapter.h" projectpath="codec/port/da7212"/>
+        <file category="header" name="components/codec/port/fsl_codec_adapter.h" projectpath="codec/port"/>
+        <file category="include" name="components/codec/port/da7212/"/>
+        <file category="include" name="components/codec/port/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dspi_adapter" Cversion="1.0.0" condition="component.dspi_adapter.condition_id">
+      <description>Component dspi_adapter</description>
+      <files>
+        <file category="header" name="components/spi/fsl_adapter_spi.h" projectpath="component/spi"/>
+        <file category="sourceC" name="components/spi/fsl_adapter_dspi.c" projectpath="component/spi"/>
+        <file category="include" name="components/spi/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="eeprom_InternalFlash" Cversion="1.0.0" condition="component.eeprom_InternalFlash.condition_id">
+      <description>Component eeprom_internalflash</description>
+      <files>
+        <file category="header" name="components/extern_flash/fsl_adapter_eeprom.h" projectpath="component/extern_flash"/>
+        <file category="sourceC" name="components/extern_flash/fsl_adapter_eeprom_InternalFlash.c" projectpath="component/extern_flash"/>
+        <file category="include" name="components/extern_flash/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flash_adapter" Cversion="1.0.0" condition="component.flash_adapter.condition_id">
+      <description>Component flash_adapter</description>
+      <files>
+        <file category="header" name="components/internal_flash/fsl_adapter_flash.h" projectpath="component/internal_flash"/>
+        <file category="sourceC" name="components/internal_flash/fsl_adapter_flash.c" projectpath="component/internal_flash"/>
+        <file category="include" name="components/internal_flash/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ftm_adapter" Cversion="1.0.0" condition="component.ftm_adapter.condition_id">
+      <description>Component ftm_adapter</description>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h" projectpath="component/timer"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_ftm.c" projectpath="component/timer"/>
+        <file category="include" name="components/timer/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio_adapter" Cversion="1.0.1" condition="component.gpio_adapter.condition_id">
+      <description>Component gpio_adapter</description>
+      <files>
+        <file category="header" name="components/gpio/fsl_adapter_gpio.h" projectpath="component/gpio"/>
+        <file category="sourceC" name="components/gpio/fsl_adapter_gpio.c" projectpath="component/gpio"/>
+        <file category="include" name="components/gpio/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_adapter" Cversion="1.0.0" condition="component.i2c_adapter.condition_id">
+      <description>Component i2c_adapter</description>
+      <files>
+        <file category="header" name="components/i2c/fsl_adapter_i2c.h" projectpath="component/i2c"/>
+        <file category="sourceC" name="components/i2c/fsl_adapter_i2c.c" projectpath="component/i2c"/>
+        <file category="include" name="components/i2c/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="led" Cversion="1.0.0" condition="component.led.condition_id">
+      <description>Component led</description>
+      <files>
+        <file category="header" name="components/led/fsl_component_led.h" projectpath="component/led"/>
+        <file category="sourceC" name="components/led/fsl_component_led.c" projectpath="component/led"/>
+        <file category="include" name="components/led/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lists" Cversion="1.0.0" condition="component.lists.condition_id">
+      <description>Component lists</description>
+      <files>
+        <file category="header" name="components/lists/fsl_component_generic_list.h" projectpath="component/lists"/>
+        <file category="sourceC" name="components/lists/fsl_component_generic_list.c" projectpath="component/lists"/>
+        <file category="include" name="components/lists/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="log" Cversion="1.0.0" condition="component.log.condition_id">
+      <description>Component log</description>
+      <files>
+        <file category="header" name="components/log/fsl_component_log.h" projectpath="component/log"/>
+        <file category="header" name="components/log/fsl_component_log_config.h" projectpath="component/log"/>
+        <file category="sourceC" name="components/log/fsl_component_log.c" projectpath="component/log"/>
+        <file category="include" name="components/log/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="debugconsole" Cversion="1.0.0" condition="component.log.backend.debugconsole.condition_id">
+      <description>Component log backend debug console</description>
+      <files>
+        <file category="sourceC" name="components/log/fsl_component_log_backend_debugconsole.c" projectpath="component/log"/>
+        <file category="header" name="components/log/fsl_component_log_backend_debugconsole.h" projectpath="component/log"/>
+        <file category="include" name="components/log/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="debugconsole_lite" Cversion="1.0.0" condition="component.log.backend.debugconsole_lite.condition_id">
+      <description>Component log backend debug console lite</description>
+      <files>
+        <file category="sourceC" name="components/log/fsl_component_log_backend_debugconsole.c" projectpath="component/log"/>
+        <file category="header" name="components/log/fsl_component_log_backend_debugconsole.h" projectpath="component/log"/>
+        <file category="include" name="components/log/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ringbuffer" Cversion="1.0.0" condition="component.log.backend.ringbuffer.condition_id">
+      <description>Component log backend ring buffer</description>
+      <files>
+        <file category="sourceC" name="components/log/fsl_component_log_backend_ringbuffer.c" projectpath="component/log"/>
+        <file category="header" name="components/log/fsl_component_log_backend_ringbuffer.h" projectpath="component/log"/>
+        <file category="include" name="components/log/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr_adapter" Cversion="1.0.0" condition="component.lptmr_adapter.condition_id">
+      <description>Component lptmr_adapter</description>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h" projectpath="component/timer"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_lptmr.c" projectpath="component/timer"/>
+        <file category="include" name="components/timer/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr_time_stamp_adapter" Cversion="1.0.0" condition="component.lptmr_time_stamp_adapter.condition_id">
+      <description>Component lptmr time stamp adapter</description>
+      <files>
+        <file category="header" name="components/time_stamp/fsl_adapter_time_stamp.h" projectpath="component/time_stamp"/>
+        <file category="sourceC" name="components/time_stamp/fsl_adapter_lptmr_time_stamp.c" projectpath="component/time_stamp"/>
+        <file category="include" name="components/time_stamp/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_adapter" Cversion="1.0.0" condition="component.lpuart_adapter.condition_id">
+      <description>Component lpuart_adapter</description>
+      <files>
+        <file category="header" name="components/uart/fsl_adapter_uart.h" projectpath="component/uart"/>
+        <file category="sourceC" name="components/uart/fsl_adapter_lpuart.c" projectpath="component/uart"/>
+        <file category="include" name="components/uart/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_dma_adapter" Cversion="1.0.0" condition="component.lpuart_dma_adapter.condition_id">
+      <description>Component lpuart_dma_adapter</description>
+      <RTE_Components_h>
+#ifndef HAL_UART_DMA_ENABLE
+#define HAL_UART_DMA_ENABLE 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/uart/fsl_adapter_uart.h" projectpath="component/uart"/>
+        <file category="sourceC" name="components/uart/fsl_adapter_lpuart.c" projectpath="component/uart"/>
+        <file category="include" name="components/uart/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mem_manager" Cversion="1.0.0" condition="component.mem_manager.condition_id">
+      <description>Component mem_manager</description>
+      <files>
+        <file category="header" name="components/mem_manager/fsl_component_mem_manager.h" projectpath="component/mem_manager"/>
+        <file category="sourceC" name="components/mem_manager/fsl_component_mem_manager.c" projectpath="component/mem_manager"/>
+        <file category="include" name="components/mem_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mem_manager_light" Cversion="1.0.0" condition="component.mem_manager_light.condition_id">
+      <description>Component mem_manager_light</description>
+      <files>
+        <file category="header" name="components/mem_manager/fsl_component_mem_manager.h" projectpath="component/mem_manager"/>
+        <file category="sourceC" name="components/mem_manager/fsl_component_mem_manager_light.c" projectpath="component/mem_manager"/>
+        <file category="include" name="components/mem_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="panic" Cversion="1.0.0" condition="component.panic.condition_id">
+      <description>Component panic</description>
+      <files>
+        <file category="header" name="components/panic/fsl_component_panic.h" projectpath="component/panic"/>
+        <file category="sourceC" name="components/panic/fsl_component_panic.c" projectpath="component/panic"/>
+        <file category="include" name="components/panic/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pit_adapter" Cversion="1.0.0" condition="component.pit_adapter.condition_id">
+      <description>Component pit_adapter</description>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h" projectpath="component/timer"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_pit.c" projectpath="component/timer"/>
+        <file category="include" name="components/timer/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pit_time_stamp_adapter" Cversion="1.0.0" condition="component.pit_time_stamp_adapter.condition_id">
+      <description>Component pit time stamp adapter</description>
+      <files>
+        <file category="header" name="components/time_stamp/fsl_adapter_time_stamp.h" projectpath="component/time_stamp"/>
+        <file category="sourceC" name="components/time_stamp/fsl_adapter_pit_time_stamp.c" projectpath="component/time_stamp"/>
+        <file category="include" name="components/time_stamp/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pwm_ftm_adapter" Cversion="1.0.0" condition="component.pwm_ftm_adapter.condition_id">
+      <description>Component pwm_ftm_adapter</description>
+      <files>
+        <file category="header" name="components/pwm/fsl_adapter_pwm.h" projectpath="component/pwm"/>
+        <file category="sourceC" name="components/pwm/fsl_adapter_pwm_ftm.c" projectpath="component/pwm"/>
+        <file category="include" name="components/pwm/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="reset_adapter" Cversion="1.0.0" condition="component.reset_adapter.condition_id">
+      <description>Component reset_adapter</description>
+      <files>
+        <file category="header" name="components/reset/fsl_adapter_reset.h" projectpath="component/reset"/>
+        <file category="sourceC" name="components/reset/fsl_adapter_reset.c" projectpath="component/reset"/>
+        <file category="include" name="components/reset/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rnga_adapter" Cversion="1.0.0" condition="component.rnga_adapter.condition_id">
+      <description>Component rnga_adapter</description>
+      <files>
+        <file category="header" name="components/rng/fsl_adapter_rng.h" projectpath="component/rng"/>
+        <file category="sourceC" name="components/rng/fsl_adapter_rnga.c" projectpath="component/rng"/>
+        <file category="include" name="components/rng/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="component_rtc" Cversion="1.0.0" condition="component.rtc.condition_id">
+      <description>Component rtc</description>
+      <RTE_Components_h>
+#ifndef RTC_LEGACY_FUNCTION_PROTOTYPE
+#define RTC_LEGACY_FUNCTION_PROTOTYPE 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/rtc/fsl_adapter_rtc.h" projectpath="component/rtc"/>
+        <file category="sourceC" name="components/rtc/fsl_adapter_rtc.c" projectpath="component/rtc"/>
+        <file category="include" name="components/rtc/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager" Cversion="1.0.1" condition="component.serial_manager.condition_id">
+      <description>Component serial_manager</description>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_manager.h" projectpath="component/serial_manager"/>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_internal.h" projectpath="component/serial_manager"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_manager.c" projectpath="component/serial_manager"/>
+        <file category="include" name="components/serial_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_spi" Cversion="1.0.0" condition="component.serial_manager_spi.condition_id">
+      <description>Component serial_manager_spi</description>
+      <RTE_Components_h>
+#ifndef SERIAL_PORT_TYPE_SPI
+#define SERIAL_PORT_TYPE_SPI 1
+#endif
+#ifndef SERIAL_PORT_TYPE_SPI_MASTER
+#define SERIAL_PORT_TYPE_SPI_MASTER 1
+#endif
+#ifndef SERIAL_PORT_TYPE_SPI_SLAVE
+#define SERIAL_PORT_TYPE_SPI_SLAVE 1
+#endif
+#ifndef SERIAL_MANAGER_NON_BLOCKING_MODE
+#define SERIAL_MANAGER_NON_BLOCKING_MODE 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_spi.h" projectpath="component/serial_manager"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_spi.c" projectpath="component/serial_manager"/>
+        <file category="include" name="components/serial_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_swo" Cversion="1.0.0" condition="component.serial_manager_swo.condition_id">
+      <description>Component serial_manager_swo</description>
+      <RTE_Components_h>
+#ifndef SERIAL_PORT_TYPE_SWO
+#define SERIAL_PORT_TYPE_SWO 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_swo.h" projectpath="component/serial_manager"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_swo.c" projectpath="component/serial_manager"/>
+        <file category="include" name="components/serial_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart" Cversion="1.0.0" condition="component.serial_manager_uart.condition_id">
+      <description>Component serial_manager_uart</description>
+      <RTE_Components_h>
+#ifndef SERIAL_PORT_TYPE_UART
+#define SERIAL_PORT_TYPE_UART 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_uart.h" projectpath="component/serial_manager"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_uart.c" projectpath="component/serial_manager"/>
+        <file category="include" name="components/serial_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_virtual" Cversion="1.0.0" condition="component.serial_manager_virtual.condition_id">
+      <description>Component serial_manager_virtual</description>
+      <RTE_Components_h>
+#ifndef SERIAL_PORT_TYPE_VIRTUAL
+#define SERIAL_PORT_TYPE_VIRTUAL 1
+#endif
+#ifndef DEBUG_CONSOLE_TRANSFER_NON_BLOCKING
+#define DEBUG_CONSOLE_TRANSFER_NON_BLOCKING 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_virtual.h" projectpath="component/serial_manager"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_virtual.c" projectpath="component/serial_manager"/>
+        <file category="include" name="components/serial_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sgtl_adapter" Cversion="2.2.0" condition="component.sgtl_adapter.condition_id">
+      <description>Component sgtl5000 adapter for single codec</description>
+      <files>
+        <file category="sourceC" name="components/codec/port/sgtl5000/fsl_codec_sgtl_adapter.c" projectpath="codec/port/sgtl5000"/>
+        <file category="header" name="components/codec/port/sgtl5000/fsl_codec_sgtl_adapter.h" projectpath="codec/port/sgtl5000"/>
+        <file category="header" name="components/codec/port/fsl_codec_adapter.h" projectpath="codec/port"/>
+        <file category="include" name="components/codec/port/sgtl5000/"/>
+        <file category="include" name="components/codec/port/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="software_crc_adapter" Cversion="1.0.0" condition="component.software_crc_adapter.condition_id">
+      <description>Component software_crc_adapter</description>
+      <files>
+        <file category="header" name="components/crc/fsl_adapter_crc.h" projectpath="component/crc"/>
+        <file category="sourceC" name="components/crc/fsl_adapter_software_crc.c" projectpath="component/crc"/>
+        <file category="include" name="components/crc/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="software_rng_adapter" Cversion="1.0.0" condition="component.software_rng_adapter.condition_id">
+      <description>Component software_rng_adapter</description>
+      <files>
+        <file category="header" name="components/rng/fsl_adapter_rng.h" projectpath="component/rng"/>
+        <file category="sourceC" name="components/rng/fsl_adapter_software_rng.c" projectpath="component/rng"/>
+        <file category="include" name="components/rng/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="timer_manager" Cversion="1.0.0" condition="component.timer_manager.condition_id">
+      <description>Component timer_manager</description>
+      <files>
+        <file category="header" name="components/timer_manager/fsl_component_timer_manager.h" projectpath="component/timer_manager"/>
+        <file category="sourceC" name="components/timer_manager/fsl_component_timer_manager.c" projectpath="component/timer_manager"/>
+        <file category="include" name="components/timer_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter" Cversion="1.0.0" condition="component.uart_adapter.condition_id">
+      <description>Component uart_adapter</description>
+      <files>
+        <file category="header" name="components/uart/fsl_adapter_uart.h" projectpath="component/uart"/>
+        <file category="sourceC" name="components/uart/fsl_adapter_uart.c" projectpath="component/uart"/>
+        <file category="include" name="components/uart/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wm8904_adapter" Cversion="2.2.0" condition="component.wm8904_adapter.condition_id">
+      <description>Component wm8904 adapter for single codec</description>
+      <files>
+        <file category="sourceC" name="components/codec/port/wm8904/fsl_codec_wm8904_adapter.c" projectpath="codec/port/wm8904"/>
+        <file category="header" name="components/codec/port/wm8904/fsl_codec_wm8904_adapter.h" projectpath="codec/port/wm8904"/>
+        <file category="header" name="components/codec/port/fsl_codec_adapter.h" projectpath="codec/port"/>
+        <file category="include" name="components/codec/port/wm8904/"/>
+        <file category="include" name="components/codec/port/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wm8960_adapter" Cversion="2.2.0" condition="component.wm8960_adapter.condition_id">
+      <description>Component wm8960 adapter for single codecs</description>
+      <files>
+        <file category="sourceC" name="components/codec/port/wm8960/fsl_codec_wm8960_adapter.c" projectpath="codec/port/wm8960"/>
+        <file category="header" name="components/codec/port/wm8960/fsl_codec_wm8960_adapter.h" projectpath="codec/port/wm8960"/>
+        <file category="header" name="components/codec/port/fsl_codec_adapter.h" projectpath="codec/port"/>
+        <file category="include" name="components/codec/port/wm8960/"/>
+        <file category="include" name="components/codec/port/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="MK22F51212_header" Cversion="1.0.0" condition="device.MK22F51212_CMSIS.condition_id">
+      <description>Device MK22F51212_cmsis</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/fsl_device_registers.h" projectpath="device"/>
+        <file category="header" name="devices/MK22F51212/MK22F51212.h" projectpath="device"/>
+        <file category="header" name="devices/MK22F51212/MK22F51212_features.h" projectpath="device"/>
+        <file category="include" name="devices/MK22F51212/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="MK22F51212_linker" Cversion="1.0.0" condition="device.MK22F51212_linker.condition_id">
+      <description>Device MK22F51212_linker</description>
+      <files>
+        <file condition="allOf.toolchains=mdk, device_ids=MK22FN512xxx12.condition_id" category="linkerScript" attr="config" name="devices/MK22F51212/arm/MK22FN512xxx12_flash.scf" version="1.0.0" projectpath="MK22F51212/arm"/>
+        <file condition="allOf.toolchains=mdk, device_ids=MK22FN512xxx12.condition_id" category="linkerScript" attr="config" name="devices/MK22F51212/arm/MK22FN512xxx12_ram.scf" version="1.0.0" projectpath="MK22F51212/arm"/>
+        <file condition="allOf.toolchains=armgcc, device_ids=MK22FN512xxx12.condition_id" category="linkerScript" attr="config" name="devices/MK22F51212/gcc/MK22FN512xxx12_flash.ld" version="1.0.0" projectpath="MK22F51212/gcc"/>
+        <file condition="allOf.toolchains=armgcc, device_ids=MK22FN512xxx12.condition_id" category="linkerScript" attr="config" name="devices/MK22F51212/gcc/MK22FN512xxx12_ram.ld" version="1.0.0" projectpath="MK22F51212/gcc"/>
+        <file condition="allOf.toolchains=iar, device_ids=MK22FN512xxx12.condition_id" category="linkerScript" attr="config" name="devices/MK22F51212/iar/MK22FN512xxx12_flash.icf" version="1.0.0" projectpath="MK22F51212/iar"/>
+        <file condition="allOf.toolchains=iar, device_ids=MK22FN512xxx12.condition_id" category="linkerScript" attr="config" name="devices/MK22F51212/iar/MK22FN512xxx12_ram.icf" version="1.0.0" projectpath="MK22F51212/iar"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Csub="" Cversion="1.1.0" condition="device.MK22F51212_startup.condition_id">
+      <description>Device MK22F51212_startup</description>
+      <files>
+        <file condition="allOf.toolchains=iar.condition_id" category="sourceAsm" attr="config" name="devices/MK22F51212/iar/startup_MK22F51212.s" version="1.1.0" projectpath="startup"/>
+        <file condition="allOf.toolchains=armgcc.condition_id" category="sourceAsm" attr="config" name="devices/MK22F51212/gcc/startup_MK22F51212.S" version="1.1.0" projectpath="startup"/>
+        <file condition="allOf.toolchains=mdk.condition_id" category="sourceAsm" attr="config" name="devices/MK22F51212/arm/startup_MK22F51212.S" version="1.1.0" projectpath="startup"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="MK22F51212_system" Cversion="1.0.0" condition="device.MK22F51212_system.condition_id">
+      <description>Device MK22F51212_system</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/system_MK22F51212.c" projectpath="device"/>
+        <file category="header" name="devices/MK22F51212/system_MK22F51212.h" projectpath="device"/>
+        <file category="include" name="devices/MK22F51212/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="adc" Cversion="2.3.0" condition="driver.adc16.condition_id">
+      <description>ADC16 Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_adc16.c" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_adc16.h" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="clock" Cversion="2.3.0" condition="driver.clock.condition_id">
+      <description>Clock Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_clock.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_clock.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cmp" Cversion="2.0.3" condition="driver.cmp.condition_id">
+      <description>CMP Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_cmp.c" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_cmp.h" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="dspi_cmsis" Cversion="2.3.0" Capiversion="2.2.0" condition="driver.cmsis_dspi.condition_id">
+      <description>DSPI CMSIS Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/cmsis_drivers/fsl_dspi_cmsis.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/cmsis_drivers/fsl_dspi_cmsis.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/cmsis_drivers/"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Csub="i2c_cmsis" Cversion="2.2.0" Capiversion="2.3.0" condition="driver.cmsis_i2c.condition_id">
+      <description>I2C CMSIS Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/cmsis_drivers/fsl_i2c_cmsis.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/cmsis_drivers/fsl_i2c_cmsis.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/cmsis_drivers/"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Csub="lpuart_cmsis" Cversion="2.5.0" Capiversion="2.3.0" condition="driver.cmsis_lpuart.condition_id">
+      <description>LPUART CMSIS Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/cmsis_drivers/fsl_lpuart_cmsis.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/cmsis_drivers/fsl_lpuart_cmsis.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/cmsis_drivers/"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Csub="uart_cmsis" Cversion="2.1.0" Capiversion="2.3.0" condition="driver.cmsis_uart.condition_id">
+      <description>UART CMSIS Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/cmsis_drivers/fsl_uart_cmsis.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/cmsis_drivers/fsl_uart_cmsis.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/cmsis_drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="codec" Cversion="2.3.1" condition="driver.codec.condition_id">
+      <description>Driver codec</description>
+      <RTE_Components_h>
+#ifndef SDK_I2C_BASED_COMPONENT_USED
+#define SDK_I2C_BASED_COMPONENT_USED 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/codec/fsl_codec_common.h" projectpath="codec"/>
+        <file category="sourceC" name="components/codec/fsl_codec_common.c" projectpath="codec"/>
+        <file category="include" name="components/codec/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="common" Cversion="2.4.0" condition="driver.common.condition_id">
+      <description>COMMON Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_common.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_common.c" projectpath="drivers"/>
+        <file condition="allOf.cores=cm4f.condition_id" category="sourceC" name="devices/MK22F51212/drivers/fsl_common_arm.c" projectpath="drivers"/>
+        <file condition="allOf.cores=cm4f.condition_id" category="header" name="devices/MK22F51212/drivers/fsl_common_arm.h" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="crc" Cversion="2.0.4" condition="driver.crc.condition_id">
+      <description>CRC Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_crc.c" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_crc.h" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cs42888" Cversion="2.1.3" condition="driver.cs42888.condition_id">
+      <description>Driver cs42888</description>
+      <RTE_Components_h>
+#ifndef SDK_I2C_BASED_COMPONENT_USED
+#define SDK_I2C_BASED_COMPONENT_USED 1
+#endif
+#ifndef CODEC_CS42888_ENABLE
+#define CODEC_CS42888_ENABLE 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/codec/cs42888/fsl_cs42888.h" projectpath="codec"/>
+        <file category="sourceC" name="components/codec/cs42888/fsl_cs42888.c" projectpath="codec"/>
+        <file category="include" name="components/codec/cs42888/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dac" Cversion="2.0.2" condition="driver.dac.condition_id">
+      <description>DAC Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_dac.c" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_dac.h" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dbi" Cversion="1.0.0" condition="driver.dbi.condition_id">
+      <description>Driver dbi</description>
+      <files>
+        <file category="header" name="components/video/display/dbi/fsl_dbi.h" projectpath="video"/>
+        <file category="include" name="components/video/display/dbi/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dialog7212" Cversion="2.3.0" condition="driver.dialog7212.condition_id">
+      <description>Driver dialog7212</description>
+      <RTE_Components_h>
+#ifndef SDK_I2C_BASED_COMPONENT_USED
+#define SDK_I2C_BASED_COMPONENT_USED 1
+#endif
+#ifndef BOARD_USE_CODEC
+#define BOARD_USE_CODEC 1
+#endif
+#ifndef CODEC_DA7212_ENABLE
+#define CODEC_DA7212_ENABLE 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/codec/da7212/fsl_dialog7212.h" projectpath="codec"/>
+        <file category="sourceC" name="components/codec/da7212/fsl_dialog7212.c" projectpath="codec"/>
+        <file category="include" name="components/codec/da7212/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux" Cversion="2.1.0" condition="driver.dmamux.condition_id">
+      <description>DMAMUX Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_dmamux.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_dmamux.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dspi" Cversion="2.2.5" condition="driver.dspi.condition_id">
+      <description>DSPI Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_dspi.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_dspi.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dspi_edma" Cversion="2.2.5" condition="driver.dspi_edma.condition_id">
+      <description>DSPI Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_dspi_edma.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_dspi_edma.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="edma" Cversion="2.4.3" condition="driver.edma.condition_id">
+      <description>EDMA Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_edma.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_edma.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ewm" Cversion="2.0.3" condition="driver.ewm.condition_id">
+      <description>EWM Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_ewm.c" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_ewm.h" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flash" Cversion="3.1.3" condition="driver.flash.condition_id">
+      <description>Flash Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_ftfx_adapter.h" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_ftfx_utilities.h" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_ftfx_features.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_ftfx_controller.c" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_ftfx_controller.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_ftfx_flash.c" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_ftfx_flash.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_ftfx_cache.c" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_ftfx_cache.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_ftfx_flexnvm.c" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_ftfx_flexnvm.h" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_flash.h" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexbus" Cversion="2.1.1" condition="driver.flexbus.condition_id">
+      <description>FLEXBUS Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_flexbus.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_flexbus.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ft5406" Cversion="1.0.0" condition="driver.ft5406.condition_id">
+      <description>Driver ft5406</description>
+      <files>
+        <file category="header" name="components/ft5406/fsl_ft5406.h" projectpath="touchpanel"/>
+        <file category="sourceC" name="components/ft5406/fsl_ft5406.c" projectpath="touchpanel"/>
+        <file category="include" name="components/ft5406/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ft6x06" Cversion="1.0.0" condition="driver.ft6x06.condition_id">
+      <description>Driver ft6x06</description>
+      <files>
+        <file category="header" name="components/ft6x06/fsl_ft6x06.h" projectpath="touchpanel"/>
+        <file category="sourceC" name="components/ft6x06/fsl_ft6x06.c" projectpath="touchpanel"/>
+        <file category="include" name="components/ft6x06/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ftm" Cversion="2.6.1" condition="driver.ftm.condition_id">
+      <description>FTM Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_ftm.c" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_ftm.h" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="fxos8700cq" Cversion="1.0.0" condition="driver.fxos8700cq.condition_id">
+      <description>Driver fxos8700cq</description>
+      <files>
+        <file category="header" name="components/fxos8700cq/fsl_fxos.h" projectpath="accel"/>
+        <file category="sourceC" name="components/fxos8700cq/fsl_fxos.c" projectpath="accel"/>
+        <file category="include" name="components/fxos8700cq/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio" Cversion="2.7.3" condition="driver.gpio.condition_id">
+      <description>GPIO Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_gpio.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_gpio.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c" Cversion="2.0.9" condition="driver.i2c.condition_id">
+      <description>I2C Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_i2c.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_i2c.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_edma" Cversion="2.0.9" condition="driver.i2c_edma.condition_id">
+      <description>I2C Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_i2c_edma.c" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_i2c_edma.h" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ili9341" Cversion="1.0.2" condition="driver.ili9341.condition_id">
+      <description>Driver ili9341</description>
+      <files>
+        <file category="header" name="components/ili9341/fsl_ili9341.h" projectpath="lcd"/>
+        <file category="sourceC" name="components/ili9341/fsl_ili9341.c" projectpath="lcd"/>
+        <file category="include" name="components/ili9341/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="llwu" Cversion="2.0.5" condition="driver.llwu.condition_id">
+      <description>LLWU Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_llwu.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_llwu.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr" Cversion="2.2.0" condition="driver.lptmr.condition_id">
+      <description>LPTMR Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_lptmr.c" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_lptmr.h" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart" Cversion="2.7.6" condition="driver.lpuart.condition_id">
+      <description>LPUART Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_lpuart.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_lpuart.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_edma" Cversion="2.6.0" condition="driver.lpuart_edma.condition_id">
+      <description>LPUART Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_lpuart_edma.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_lpuart_edma.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mma8451q" Cversion="1.0.0" condition="driver.mma8451q.condition_id">
+      <description>Driver mma8451q</description>
+      <files>
+        <file category="header" name="components/mma8451q/fsl_mma.h" projectpath="accel"/>
+        <file category="sourceC" name="components/mma8451q/fsl_mma.c" projectpath="accel"/>
+        <file category="include" name="components/mma8451q/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mx25r_flash" Cversion="2.0.0" condition="driver.mx25r_flash.condition_id">
+      <description>Driver mx25r_flash</description>
+      <files>
+        <file category="header" name="components/mx25r_flash/mx25r_flash.h" projectpath="source"/>
+        <file category="sourceC" name="components/mx25r_flash/mx25r_flash.c" projectpath="source"/>
+        <file category="include" name="components/mx25r_flash/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pdb" Cversion="2.0.4" condition="driver.pdb.condition_id">
+      <description>PDB Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_pdb.c" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_pdb.h" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pf1550" Cversion="1.0.0" condition="driver.pf1550.condition_id">
+      <description>Driver pf1550</description>
+      <files>
+        <file category="header" name="components/pf1550/fsl_pf1550.h" projectpath="pmic_driver"/>
+        <file category="sourceC" name="components/pf1550/fsl_pf1550.c" projectpath="pmic_driver"/>
+        <file category="header" name="components/pf1550/fsl_pf1550_charger.h" projectpath="pmic_driver"/>
+        <file category="sourceC" name="components/pf1550/fsl_pf1550_charger.c" projectpath="pmic_driver"/>
+        <file category="include" name="components/pf1550/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pf3000" Cversion="1.0.0" condition="driver.pf3000.condition_id">
+      <description>Driver pf3000</description>
+      <files>
+        <file category="header" name="components/pf3000/fsl_pf3000.h" projectpath="pmic_driver"/>
+        <file category="sourceC" name="components/pf3000/fsl_pf3000.c" projectpath="pmic_driver"/>
+        <file category="include" name="components/pf3000/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pit" Cversion="2.0.4" condition="driver.pit.condition_id">
+      <description>PIT Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_pit.c" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_pit.h" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pmc" Cversion="2.0.3" condition="driver.pmc.condition_id">
+      <description>PMC Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_pmc.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_pmc.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="port" Cversion="2.4.1" condition="driver.port.condition_id">
+      <description>PORT Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_port.h" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rcm" Cversion="2.0.4" condition="driver.rcm.condition_id">
+      <description>RCM Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_rcm.c" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_rcm.h" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rnga" Cversion="2.0.2" condition="driver.rnga.condition_id">
+      <description>RNGA Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_rnga.c" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_rnga.h" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rtc" Cversion="2.3.0" condition="driver.rtc.condition_id">
+      <description>RTC Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_rtc.c" projectpath="drivers"/>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_rtc.h" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sai" Cversion="2.4.2" condition="driver.sai.condition_id">
+      <description>SAI Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_sai.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_sai.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sai_edma" Cversion="2.7.0" condition="driver.sai_edma.condition_id">
+      <description>SAI EDMA Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_sai_edma.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_sai_edma.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sgtl5000" Cversion="2.1.1" condition="driver.sgtl5000.condition_id">
+      <description>Driver sgtl5000</description>
+      <RTE_Components_h>
+#ifndef SDK_I2C_BASED_COMPONENT_USED
+#define SDK_I2C_BASED_COMPONENT_USED 1
+#endif
+#ifndef BOARD_USE_CODEC
+#define BOARD_USE_CODEC 1
+#endif
+#ifndef CODEC_SGTL5000_ENABLE
+#define CODEC_SGTL5000_ENABLE 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/codec/sgtl5000/fsl_sgtl5000.h" projectpath="codec"/>
+        <file category="sourceC" name="components/codec/sgtl5000/fsl_sgtl5000.c" projectpath="codec"/>
+        <file category="include" name="components/codec/sgtl5000/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sim" Cversion="2.1.3" condition="driver.sim.condition_id">
+      <description>SIM Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_sim.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_sim.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="smc" Cversion="2.0.7" condition="driver.smc.condition_id">
+      <description>SMC Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_smc.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_smc.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ssd1963" Cversion="1.1.2" condition="driver.ssd1963.condition_id">
+      <description>Driver ssd1963</description>
+      <files>
+        <file category="header" name="components/ssd1963/fsl_ssd1963.h" projectpath="lcdc"/>
+        <file category="sourceC" name="components/ssd1963/fsl_ssd1963.c" projectpath="lcdc"/>
+        <file category="include" name="components/ssd1963/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart" Cversion="2.5.1" condition="driver.uart.condition_id">
+      <description>UART Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_uart.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_uart.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart_edma" Cversion="2.5.3" condition="driver.uart_edma.condition_id">
+      <description>UART Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_uart_edma.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_uart_edma.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="vref" Cversion="2.1.2" condition="driver.vref.condition_id">
+      <description>VREF Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_vref.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_vref.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wdog" Cversion="2.0.1" condition="driver.wdog.condition_id">
+      <description>WDOG Driver</description>
+      <files>
+        <file category="header" name="devices/MK22F51212/drivers/fsl_wdog.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MK22F51212/drivers/fsl_wdog.c" projectpath="drivers"/>
+        <file category="include" name="devices/MK22F51212/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wm8904" Cversion="2.5.1" condition="driver.wm8904.condition_id">
+      <description>Driver wm8904</description>
+      <RTE_Components_h>
+#ifndef SDK_I2C_BASED_COMPONENT_USED
+#define SDK_I2C_BASED_COMPONENT_USED 1
+#endif
+#ifndef BOARD_USE_CODEC
+#define BOARD_USE_CODEC 1
+#endif
+#ifndef CODEC_WM8904_ENABLE
+#define CODEC_WM8904_ENABLE 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/codec/wm8904/fsl_wm8904.h" projectpath="codec"/>
+        <file category="sourceC" name="components/codec/wm8904/fsl_wm8904.c" projectpath="codec"/>
+        <file category="include" name="components/codec/wm8904/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wm8960" Cversion="2.2.4" condition="driver.wm8960.condition_id">
+      <description>Driver wm8960</description>
+      <RTE_Components_h>
+#ifndef SDK_I2C_BASED_COMPONENT_USED
+#define SDK_I2C_BASED_COMPONENT_USED 1
+#endif
+#ifndef BOARD_USE_CODEC
+#define BOARD_USE_CODEC 1
+#endif
+#ifndef CODEC_WM8960_ENABLE
+#define CODEC_WM8960_ENABLE 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/codec/wm8960/fsl_wm8960.h" projectpath="codec"/>
+        <file category="sourceC" name="components/codec/wm8960/fsl_wm8960.c" projectpath="codec"/>
+        <file category="include" name="components/codec/wm8960/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="baremetal" Cversion="1.0.0" condition="middleware.baremetal.condition_id">
+      <description>Middleware baremetal</description>
+      <RTE_Components_h>
+#ifndef SDK_OS_BAREMETAL
+#define SDK_OS_BAREMETAL 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="doc" name="middleware/bm/readme.txt" projectpath="middleware/bm"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="misc_utilities" Cversion="1.1.1" condition="utilities.misc_utilities.condition_id">
+      <description>Utilities which is needed for particular toolchain like the SBRK function required to address limitation between HEAP and STACK in GCC toolchain library.</description>
+      <files>
+        <file condition="allOf.toolchains=armgcc.condition_id" category="sourceC" name="devices/MK22F51212/utilities/fsl_sbrk.c" projectpath="utilities"/>
+        <file condition="allOf.toolchains=armgcc.condition_id" category="sourceC" name="devices/MK22F51212/utilities/fsl_syscall_stub.c" projectpath="utilities"/>
+        <file condition="allOf.toolchains=armgcc, cores=cm4f.condition_id" category="sourceAsm" name="devices/MK22F51212/utilities/fsl_memcpy.S" projectpath="utilities"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert" Cversion="1.0.0" condition="utility.assert.condition_id">
+      <description>Utility assert</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/utilities/fsl_assert.c" projectpath="utilities"/>
+        <file category="header" name="devices/MK22F51212/utilities/fsl_assert.h" projectpath="utilities"/>
+        <file category="include" name="devices/MK22F51212/utilities/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert_lite" Cversion="1.0.0" condition="utility.assert_lite.condition_id">
+      <description>Utility assert_lite</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/utilities/debug_console_lite/fsl_assert.c" projectpath="utilities"/>
+        <file category="header" name="devices/MK22F51212/utilities/debug_console_lite/fsl_assert.h" projectpath="utilities"/>
+        <file category="include" name="devices/MK22F51212/utilities/debug_console_lite/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console" Cversion="1.0.1" condition="utility.debug_console.condition_id">
+      <description>Utility debug_console</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/utilities/str/fsl_str.c" projectpath="utilities"/>
+        <file category="header" name="devices/MK22F51212/utilities/str/fsl_str.h" projectpath="utilities"/>
+        <file category="sourceC" name="devices/MK22F51212/utilities/debug_console/fsl_debug_console.c" projectpath="utilities"/>
+        <file category="header" name="devices/MK22F51212/utilities/debug_console/fsl_debug_console.h" projectpath="utilities"/>
+        <file category="header" name="devices/MK22F51212/utilities/debug_console/fsl_debug_console_conf.h" projectpath="utilities"/>
+        <file category="include" name="devices/MK22F51212/utilities/str/"/>
+        <file category="include" name="devices/MK22F51212/utilities/debug_console/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite" Cversion="1.0.0" condition="utility.debug_console_lite.condition_id">
+      <description>Utility debug_console_lite</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/utilities/str/fsl_str.c" projectpath="utilities"/>
+        <file category="header" name="devices/MK22F51212/utilities/str/fsl_str.h" projectpath="utilities"/>
+        <file category="sourceC" name="devices/MK22F51212/utilities/debug_console_lite/fsl_debug_console.c" projectpath="utilities"/>
+        <file category="header" name="devices/MK22F51212/utilities/debug_console_lite/fsl_debug_console.h" projectpath="utilities"/>
+        <file category="include" name="devices/MK22F51212/utilities/str/"/>
+        <file category="include" name="devices/MK22F51212/utilities/debug_console_lite/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="notifier" Cversion="1.0.0" condition="utility.notifier.condition_id">
+      <description>Utility notifier</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/utilities/fsl_notifier.c" projectpath="utilities/utilities"/>
+        <file category="header" name="devices/MK22F51212/utilities/fsl_notifier.h" projectpath="utilities/utilities"/>
+        <file category="include" name="devices/MK22F51212/utilities/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="shell" Cversion="1.0.0" condition="utility.shell.condition_id">
+      <description>Utility shell</description>
+      <RTE_Components_h>
+#ifndef DEBUG_CONSOLE_RX_ENABLE
+#define DEBUG_CONSOLE_RX_ENABLE 0
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/utilities/shell/fsl_shell.c" projectpath="utilities"/>
+        <file category="header" name="devices/MK22F51212/utilities/shell/fsl_shell.h" projectpath="utilities"/>
+        <file category="include" name="devices/MK22F51212/utilities/shell/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="str" Cversion="1.0.0" condition="utility.str.condition_id">
+      <description>Utility str</description>
+      <files>
+        <file category="sourceC" name="devices/MK22F51212/utilities/str/fsl_str.c" projectpath="utilities"/>
+        <file category="header" name="devices/MK22F51212/utilities/str/fsl_str.h" projectpath="utilities"/>
+        <file category="include" name="devices/MK22F51212/utilities/str/"/>
+      </files>
+    </component>
+  </components>
+</package>
