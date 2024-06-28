@@ -12,7 +12,7 @@ layer:
       consumes:
         - ARDUINO_UNO_I2C
     - connect: FXLS8962 I2C1 Communication Interfaces
-      set: AGMP03_COMM_IF.I2C0
+      set: COMM_IF.I2C1
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
       provides:
         - AGMP03_COMMUNICATION_INTERFACE

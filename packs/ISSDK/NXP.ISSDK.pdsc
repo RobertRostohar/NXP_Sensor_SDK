@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+<package schemaVersion="1.7.36" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.36/schema/PACK.xsd">
   <name>ISSDK</name>
   <vendor>NXP</vendor>
   <description>Software Pack for issdk</description>
@@ -977,4 +977,10 @@
       </files>
     </component>
   </components>
+  <csolution> 
+    <clayer type="Shield" path="middleware/issdk/shields/a8974"  file="Shield.clayer.yml" copy-to="Shield/FRDM-STBI-A8974"/>
+    <clayer type="Shield" path="middleware/issdk/shields/agm01"  file="Shield.clayer.yml" copy-to="Shield/FRDM-STBC-AGM01"/>
+    <clayer type="Shield" path="middleware/issdk/shields/agmp03" file="Shield.clayer.yml" copy-to="Shield/FRDM-STBC-AGMP03"/>
+    <clayer type="Shield" path="middleware/issdk/shields/p3115"  file="Shield.clayer.yml" copy-to="Shield/FRDM-STBC-P3115"/>
+  </csolution>
 </package>
