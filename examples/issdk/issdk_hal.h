@@ -15,8 +15,23 @@
 #ifndef __ISSDK_HAL_H__
 #define __ISSDK_HAL_H__
 
+#ifdef   CMSIS_device_header
+#include CMSIS_device_header
+#endif
+
 #ifdef   CMSIS_target_header
 #include CMSIS_target_header
+#endif
+
+// Enter Sleep (Power Down)
+#ifndef ENTER_SLEEP
+#define ENTER_SLEEP()                   \
+{                                       \
+  SCB->SCR &= ~SCB_SCR_SLEEPDEEP_Msk;   \
+  __DSB();                              \
+  __ISB();                              \
+  __WFI();                              \
+}
 #endif
 
 // I2C/SPI Communication Idle Function and Argument
