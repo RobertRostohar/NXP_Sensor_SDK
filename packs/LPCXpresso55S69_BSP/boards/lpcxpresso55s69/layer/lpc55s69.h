@@ -15,7 +15,7 @@
 #define LPC55S69_H_
 
 #include "fsl_power.h"
-#include "GPIO_LPC55S69.h"
+#include "fsl_gpio_cmsis.h"
 #include "Driver_I2C.h"
 #include "Driver_SPI.h"
 #include "Driver_USART.h"

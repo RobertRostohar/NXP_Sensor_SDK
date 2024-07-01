@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+<package schemaVersion="1.7.36" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.36/schema/PACK.xsd">
   <name>LPCXpresso55S69_BSP</name>
   <vendor>NXP</vendor>
   <description>Board Support Pack for LPCXpresso55S69</description>
   <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
   <license>Licenses.txt</license>
   <releases>
+    <release version="18.1.0-dev">
+      - Add board layer
+    </release>
     <release version="18.0.0" date="2024-01-14">NXP CMSIS Packs based on MCUXpresso SDK 2.15.0</release>
     <release version="17.0.0" date="2023-07-27">NXP CMSIS Packs based on MCUXpresso SDK 2.14.0</release>
     <release version="16.1.0" date="2023-03-23">NXP CMSIS Packs based on MCUXpresso SDK 2.13.1</release>
@@ -104,6 +107,9 @@
     <condition id="allOf.utility.assert_lite, utility.debug_console_lite.internal_condition">
       <require Cclass="Device" Cgroup="SDK Utilities" Csub="assert_lite"/>
       <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+    </condition>
+    <condition id="board.lpcxpresso55s69">
+      <require Bvendor="NXP" Bname="LPCXpresso55S69"/>
     </condition>
   </conditions>
   <examples>
@@ -1091,4 +1097,7 @@ Tips: This demo is to show how the various power mode can switch to each other. 
       </files>
     </component>
   </components>
+  <csolution> 
+    <clayer type="Board" path="boards/lpcxpresso55s69/layer" file="Board.clayer.yml" copy-to="Board/LPCXpresso55S69" condition="board.lpcxpresso55s69"/>
+  </csolution>
 </package>
