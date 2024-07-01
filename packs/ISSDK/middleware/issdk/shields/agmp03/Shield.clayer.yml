@@ -4,7 +4,7 @@ layer:
 
   connections:
     - connect: FXLS8962 I2C0 Communication Interfaces
-      set: AGMP03_COMM_IF.I2C0
+      set: COMM_IF.I2C0
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
       provides:
         - AGMP03_COMMUNICATION_INTERFACE
@@ -20,7 +20,7 @@ layer:
       consumes:
         - ARDUINO_UNO_I2C-Alt
     - connect: FXLS8962 SPI Communication Interfaces
-      set: AGMP03_COMM_IF.SPI
+      set: COMM_IF.SPI
       info: "Jumper configuration: I2C/SPI=SPI"
       provides:
         - AGMP03_COMMUNICATION_INTERFACE
@@ -42,7 +42,7 @@ layer:
         - ARDUINO_UNO_D14
 
     - connect: FXAS21002 I2C0 Communication Interfaces
-      set: AGMP03_COMM_IF.I2C0
+      set: COMM_IF.I2C0
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
       provides:
         - AGMP03_COMMUNICATION_INTERFACE
@@ -50,7 +50,7 @@ layer:
       consumes:
         - ARDUINO_UNO_I2C
     - connect: FXAS21002 I2C1 Communication Interfaces
-      set: AGMP03_COMM_IF.I2C1
+      set: COMM_IF.I2C1
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
       provides:
         - AGMP03_COMMUNICATION_INTERFACE
@@ -58,7 +58,7 @@ layer:
       consumes:
         - ARDUINO_UNO_I2C-Alt
     - connect: FXAS21002 SPI Bus
-      set: AGMP03_COMM_IF.SPI
+      set: COMM_IF.SPI
       info: "Jumper configuration: I2C/SPI=SPI"
       provides:
         - AGMP03_COMMUNICATION_INTERFACE
@@ -78,7 +78,7 @@ layer:
         - ARDUINO_UNO_D16
 
     - connect: MPL3115 I2C0 Communication Interfaces
-      set: AGMP03_COMM_IF.I2C0
+      set: COMM_IF.I2C0
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
       provides:
         - AGMP03_COMMUNICATION_INTERFACE
@@ -86,7 +86,7 @@ layer:
       consumes:
         - ARDUINO_UNO_I2C
     - connect: MPL3115 I2C1 Communication Interfaces
-      set: AGMP03_COMM_IF.I2C1
+      set: COMM_IF.I2C1
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
       provides:
         - AGMP03_COMMUNICATION_INTERFACE
@@ -101,7 +101,7 @@ layer:
         - ARDUINO_UNO_D7
 
     - connect: MAG3110 I2C0 Communication Interfaces
-      set: AGMP03_COMM_IF.I2C0
+      set: COMM_IF.I2C0
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
       provides:
         - AGMP03_COMMUNICATION_INTERFACE
@@ -109,7 +109,7 @@ layer:
       consumes:
         - ARDUINO_UNO_I2C
     - connect: MAG3110 I2C1 Communication Interfaces
-      set: AGMP03_COMM_IF.I2C1
+      set: COMM_IF.I2C1
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
       provides:
         - AGMP03_COMMUNICATION_INTERFACE

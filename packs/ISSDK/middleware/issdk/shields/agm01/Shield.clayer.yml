@@ -4,7 +4,7 @@ layer:
 
   connections:
     - connect: FXOS8700 I2C0 Communication Interface
-      set: AGM01_COMM_IF.I2C0
+      set: COMM_IF.I2C0
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
       provides:
         - AGM01_COMMUNICATION_INTERFACE
@@ -12,7 +12,7 @@ layer:
       consumes:
         - ARDUINO_UNO_I2C
     - connect: FXOS8700 I2C1 Communication Interface
-      set: AGM01_COMM_IF.I2C1
+      set: COMM_IF.I2C1
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
       provides:
         - AGM01_COMMUNICATION_INTERFACE
@@ -20,7 +20,7 @@ layer:
       consumes:
         - ARDUINO_UNO_I2C-Alt
     - connect: FXOS8700 SPI Communication Interface
-      set: AGM01_COMM_IF.SPI
+      set: COMM_IF.SPI
       info: "Jumper configuration: I2C/SPI=SPI"
       provides:
         - AGM01_COMMUNICATION_INTERFACE
@@ -42,7 +42,7 @@ layer:
         - ARDUINO_UNO_D4
 
     - connect: FXAS21002 I2C0 Communication Interface
-      set: AGM01_COMM_IF.I2C0
+      set: COMM_IF.I2C0
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
       provides:
         - AGM01_COMMUNICATION_INTERFACE
@@ -50,7 +50,7 @@ layer:
       consumes:
         - ARDUINO_UNO_I2C
     - connect: FXAS21002 I2C1 Communication Interface
-      set: AGM01_COMM_IF.I2C1
+      set: COMM_IF.I2C1
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
       provides:
         - AGM01_COMMUNICATION_INTERFACE
@@ -58,7 +58,7 @@ layer:
       consumes:
         - ARDUINO_UNO_I2C-Alt
     - connect: FXAS21002 SPI Communication Interface
-      set: AGM01_COMM_IF.SPI
+      set: COMM_IF.SPI
       info: "Jumper configuration: I2C/SPI=SPI"
       provides:
         - AGM01_COMMUNICATION_INTERFACE

@@ -4,7 +4,7 @@ layer:
 
   connections:
     - connect: MPL3115 I2C0 Communication Interface
-      set: P3115_COMM_IF.I2C0
+      set: COMM_IF.I2C0
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
       provides:
         - P3115_COMMUNICATION_INTERFACE
@@ -12,7 +12,7 @@ layer:
       consumes:
         - ARDUINO_UNO_I2C
     - connect: MPL3115 I2C1 Communication Interface
-      set: P3115_COMM_IF.I2C1
+      set: COMM_IF.I2C1
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
       provides:
         - P3115_COMMUNICATION_INTERFACE
