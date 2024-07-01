@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+<package schemaVersion="1.7.36" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.36/schema/PACK.xsd">
   <name>LPC54114_DFP</name>
   <vendor>NXP</vendor>
   <description>Device Family Pack for LPC54114</description>
   <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
   <license>Licenses.txt</license>
   <releases>
+    <release version="13.1.0-dev">
+      - Add GPIO CMSIS-Driver
+    </release>
     <release version="13.0.0" date="2021-02-05">NXP CMSIS Packs based on MCUXpresso SDK 2.9.0 with restructured startup component files</release>
     <release version="12.3.0" date="2021-01-14">NXP CMSIS Packs based on MCUXpresso SDK 2.9.0</release>
     <release version="12.2.0" date="2020-07-20">NXP CMSIS Packs based on MCUXpresso SDK 2.8.0</release>
@@ -592,6 +595,14 @@
       <require Cclass="Device" Cgroup="SDK Drivers" Csub="power"/>
       <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
     </condition>
+    <condition id="device.LPC54114_AND_CMSIS_Driver_Include.GPIO_AND_driver.gpio">
+      <require condition="device.LPC54114"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="inputmux"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iocon"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="pint"/>
+    </condition>
     <condition id="device.LPC54114_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.flexcomm_i2c_dma">
       <require condition="device.LPC54114"/>
       <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_dma"/>
@@ -1066,6 +1077,13 @@
       <files>
         <file category="header" name="drivers/fsl_clock.h"/>
         <file category="sourceC" name="drivers/fsl_clock.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="GPIO" Csub="gpio_cmsis" Cversion="1.0.0" condition="device.LPC54114_AND_CMSIS_Driver_Include.GPIO_AND_driver.gpio">
+      <description>GPIO CMSIS Driver; {for-development:SDK-Manifest-ID: platform.drivers.gpio_cmsis.LPC54114}</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_gpio_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_gpio_cmsis.c"/>
       </files>
     </component>
     <component Cclass="CMSIS Driver" Cgroup="I2C" Csub="flexcomm_i2c_cmsis" Cversion="2.2.0" condition="device.LPC54114_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.flexcomm_i2c_dma">

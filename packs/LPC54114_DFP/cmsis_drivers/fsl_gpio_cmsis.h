@@ -1,38 +1,56 @@
 /*
- * Copyright 2020 NXP
- * All rights reserved.
+ * Copyright (c) 2023 ARM Limited. All rights reserved.
  *
- * SPDX-License-Identifier: BSD-3-Clause
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Licensed under the Apache License, Version 2.0 (the License); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * $Date:        9. February 2023
+ * $Revision:    V1.0
+ *
+ * Project:      GPIO Driver definitions for LPC5411x
  */
 
-#ifndef _FSL_LPC_GPIO_CMSISI_H_
-#define _FSL_LPC_GPIO_CMSISI_H_
+#ifndef FSL_GPIO_CMSIS_H_
+#define FSL_GPIO_CMSIS_H_
 
-#include "fsl_common.h"
-#include "RTE_Device.h"
+#ifdef  __cplusplus
+extern "C"
+{
+#endif
+
 #include "Driver_GPIO.h"
 
-#if defined(GPIO) && defined(RTE_GPIO_PORT0) && RTE_GPIO_PORT0
-extern ARM_DRIVER_GPIO Driver_GPIO_PORT0;
+// Pin mapping
+#define GPIO_PORT0(n)   ( 0U + (n))
+#define GPIO_PORT1(n)   (32U + (n))
+
+// PORTx IRQ Handlers
+void PIN_INT0_IRQHandler (void);
+void PIN_INT1_IRQHandler (void);
+void PIN_INT2_IRQHandler (void);
+void PIN_INT3_IRQHandler (void);
+void PIN_INT4_IRQHandler (void);
+void PIN_INT5_IRQHandler (void);
+void PIN_INT6_IRQHandler (void);
+void PIN_INT7_IRQHandler (void);
+
+// GPIO Driver access structure
+extern ARM_DRIVER_GPIO Driver_GPIO0;
+
+#ifdef  __cplusplus
+}
 #endif
 
-#if defined(GPIO) && defined(RTE_GPIO_PORT1) && RTE_GPIO_PORT1
-extern ARM_DRIVER_GPIO Driver_GPIO_PORT1;
-#endif
+#endif /* FSL_GPIO_CMSIS_H_ */
 
-#if defined(GPIO) && defined(RTE_GPIO_PORT2) && RTE_GPIO_PORT2
-extern ARM_DRIVER_GPIO Driver_GPIO_PORT2;
-#endif
-
-#if defined(GPIO) && defined(RTE_GPIO_PORT3) && RTE_GPIO_PORT3
-extern ARM_DRIVER_GPIO Driver_GPIO_PORT3;
-#endif
-
-#if defined(GPIO) && defined(RTE_GPIO_PORT4) && RTE_GPIO_PORT4
-extern ARM_DRIVER_GPIO Driver_GPIO_PORT4;
-#endif
-
-#if defined(GPIO) && defined(RTE_GPIO_PORT5) && RTE_GPIO_PORT5
-extern ARM_DRIVER_GPIO Driver_GPIO_PORT5;
-#endif
-#endif

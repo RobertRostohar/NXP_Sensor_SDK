@@ -1,1049 +1,403 @@
 /*
- * Copyright 2020 NXP
- * All rights reserved.
+ * Copyright (c) 2023 ARM Limited. All rights reserved.
  *
- * SPDX-License-Identifier: BSD-3-Clause
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Licensed under the Apache License, Version 2.0 (the License); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * $Date:        2. March 2023
+ * $Revision:    V1.0
+ *
+ * Project:      GPIO Driver for LPC5411x
  */
-#include "fsl_gpio_cmsis.h"
+
+#include "fsl_clock.h"
 #include "fsl_gpio.h"
+#include "fsl_gpio_ex.h"
+#include "fsl_inputmux.h"
+#include "fsl_iocon.h"
+#include "fsl_iocon_ex.h"
 #include "fsl_pint.h"
 
-/* Component ID definition, used by tools. */
-#ifndef FSL_COMPONENT_ID
-#define FSL_COMPONENT_ID "platform.drivers.lpc_gpio_cmsis"
-#endif
+#include "fsl_gpio_cmsis.h"
 
-#if (RTE_GPIO_PORT0 && defined(GPIO)) || (RTE_GPIO_PORT1 && defined(GPIO))
 
-/*!
- * @brief Status of the GPIO inteface
- *
- */
-typedef struct _gpio_cmsis_status
-{
-    bool is_inited;
-} gpio_cmsis_status_t;
+// Pin mapping
+//    0 .. 31: PORT0  0 .. 31  [23..26: Open-drain only, No pull-resistor]
+//   32 .. 63: PORT1  0 .. 31
 
-/*!
- * @brief Type define for the pin state variable
- *
- */
-typedef uint32_t gpio_cmsis_pin_state_t;
+#define GPIO_MAX_PORTS          2U
+#define GPIO_MAX_PINS           64U
 
-/*!
- * @brief Map structure between GPIO pin and PINT instance
- *
- */
-typedef struct _gpio_cmsis_map
-{
-    uint32_t pin_index;
-    pint_pin_int_t pint_index;
-    void (*pinmux_init_func)(void);
-    void (*pinmux_deinit_func)(void);
-} gpio_cmsis_map_t;
-
-/*!
- * @brief Configuration for CMSIS GPIO Inteface instance
- *
- */
-typedef struct _gpio_cmsis_config
-{
-    GPIO_Type *gpio_base;
-    PINT_Type *pint_base;
-    uint8_t port_index;
-    uint8_t size_of_map;
-    uint8_t size_of_context;
-} gpio_cmsis_config_t;
-
-/*!
- * @brief Context for GPIO with interrupt enabled
- *
- */
-typedef struct _gpio_cmsis_contexts
-{
-    bool is_occupied;
-    uint8_t pin_index;
-    pint_pin_int_t pint_index;
-    ARM_GPIO_SignalEvent_t callback;
-} gpio_cmsis_context_t;
-
-/*!
- * @brief Handle for CMSIS GPIO inteface instance
- *
- */
-typedef struct _gpio_cmsis_handle
-{
-    gpio_cmsis_config_t const *config;
-    gpio_cmsis_status_t status;
-    gpio_cmsis_pin_state_t interrupt_pins;
-    gpio_cmsis_context_t *contexts;
-    gpio_cmsis_map_t const *maps;
-} gpio_cmsis_handle_t;
-
-/*
- * CMSIS GPIO Version
- */
-#define ARM_CMSIS_GPIO_DRV_VERSION ARM_DRIVER_VERSION_MAJOR_MINOR(1U, 0U) /* driver version */
-
-/* Driver Version */
-static const ARM_DRIVER_VERSION s_gpioDriverVersion = {ARM_GPIO_API_VERSION, ARM_CMSIS_GPIO_DRV_VERSION};
-
-/* Driver Capabilities */
-static const ARM_GPIO_CAPABILITIES s_gpioDriverCapabilities = {
-    1, /* IRQ Supported */
+#if   defined(CPU_LPC54113J128BD64)         || \
+      defined(CPU_LPC54113J256BD64)         || \
+      defined(CPU_LPC54114J256BD64_cm0plus) || \
+      defined(CPU_LPC54114J256BD64_cm4)
+// Pin mapping: LQFP64 package
+static const uint32_t PinMapping[GPIO_MAX_PORTS] = {
+  0xE7FFFFFFU,  // PORT0  0..26, 29..31
+  0x0003FFFFU   // PORT1  0..17
 };
 
-/*
- * ARMCC does not support split the data section automatically, so the driver
- * needs to split the data to separate sections explicitly, to reduce codesize.
- */
-#if defined(__CC_ARM) || defined(__ARMCC_VERSION)
-#define ARMCC_SECTION(section_name) __attribute__((section(section_name)))
-#endif /* defined(__CC_ARM) || defined(__ARMCC_VERSION) */
-
-static gpio_cmsis_map_t const *CMSIS_GPIO_GetMapResource(gpio_cmsis_handle_t *handle, uint32_t pin)
-{
-    for (uint32_t i = 0; i < handle->config->size_of_map; i++)
-    {
-        if (pin == handle->maps[i].pin_index)
-        {
-            return &(handle->maps[i]);
-        }
-    }
-
-    return NULL;
-}
-
-static gpio_cmsis_context_t *CMSIS_GPIO_GetContextResource(gpio_cmsis_handle_t *handle, uint32_t pintr)
-{
-    for (uint32_t i = 0; i < handle->config->size_of_context; i++)
-    {
-        gpio_cmsis_context_t *cxt = &(handle->contexts[i]);
-
-        if (cxt->is_occupied == false)
-        {
-            continue;
-        }
-
-        if ((pintr == (uint32_t)cxt->pint_index))
-        {
-            return cxt;
-        }
-    }
-
-    return NULL;
-}
-
-static gpio_cmsis_context_t *CMSIS_GPIO_GetEmptyContext(gpio_cmsis_handle_t *handle)
-{
-    for (uint32_t i = 0; i < handle->config->size_of_context; i++)
-    {
-        gpio_cmsis_context_t *cxt = &(handle->contexts[i]);
-
-        if (cxt->is_occupied == false)
-        {
-            return cxt;
-        }
-    }
-
-    return NULL;
-}
-
-static pint_pin_enable_t CMSIS_GPIO_MapIRQTypeToPINTType(uint32_t irq_type)
-{
-    pint_pin_enable_t pin_type = kPINT_PinIntEnableNone;
-
-    switch (irq_type)
-    {
-        case ARM_GPIO_INTERRUPT_DISABLE:
-            pin_type = kPINT_PinIntEnableNone;
-            break;
-        case ARM_GPIO_INTERRUPT_LOGIC_ONE:
-            pin_type = kPINT_PinIntEnableHighLevel;
-            break;
-        case ARM_GPIO_INTERRUPT_LOGIC_ZERO:
-            pin_type = kPINT_PinIntEnableLowLevel;
-            break;
-        case ARM_GPIO_INTERRUPT_RISING_EDGE:
-            pin_type = kPINT_PinIntEnableRiseEdge;
-            break;
-        case ARM_GPIO_INTERRUPT_FALLING_EDGE:
-            pin_type = kPINT_PinIntEnableFallEdge;
-            break;
-        case ARM_GPIO_INTERRUPT_RISING_FALLING_EDGE:
-            pin_type = kPINT_PinIntEnableBothEdges;
-            break;
-
-        default:
-            /* Must be one of the interrupt type above */
-            assert(false);
-            break;
-    }
-
-    return pin_type;
-}
-
-static int32_t CMSIS_GPIO_Initialize(gpio_cmsis_handle_t *handle)
-{
-    if (handle->status.is_inited != true)
-    {
-        GPIO_PortInit(handle->config->gpio_base, handle->config->port_index);
-        handle->status.is_inited = true;
-    }
-
-    return ARM_DRIVER_OK;
-}
-
-static int32_t CMSIS_GPIO_DeinitPin(gpio_cmsis_handle_t *handle, uint32_t pin)
-{
-    /* Do pin MUX configuration if provided pinmux funciton */
-    gpio_cmsis_map_t const *map = CMSIS_GPIO_GetMapResource(handle, pin);
-    uint32_t mask               = 0x01UL << pin;
-
-    if ((map != NULL) && (map->pinmux_deinit_func != NULL))
-    {
-        map->pinmux_deinit_func();
-    }
-
-    /* Disable Interrupt if interrupt is configured previously */
-    if ((map != NULL) && (((handle->interrupt_pins & mask) != 0U)))
-    {
-        PINT_DisableCallbackByIndex(handle->config->pint_base, map->pint_index);
-        /* Reset the software state */
-        handle->interrupt_pins &= ~mask;
-    }
-
-    return ARM_DRIVER_OK;
-}
-
-static int32_t CMSIS_GPIO_Uninitialize(gpio_cmsis_handle_t *handle)
-{
-    if (handle->status.is_inited == true)
-    {
-        for (uint32_t i = 0U; i < 8U * sizeof(gpio_cmsis_pin_state_t); i++)
-        {
-            (void)CMSIS_GPIO_DeinitPin(handle, i);
-        }
-
-        handle->status.is_inited = false;
-    }
-
-    return ARM_DRIVER_OK;
-}
-
-static int32_t CMSIS_GPIO_InitPinAsOutput(gpio_cmsis_handle_t *handle, uint32_t pin, uint32_t output_logic)
-{
-    assert(handle->status.is_inited == true);
-
-    /* Init Pin as output */
-    gpio_pin_config_t pin_config = {kGPIO_DigitalOutput, (uint8_t)output_logic};
-    GPIO_PinInit(handle->config->gpio_base, handle->config->port_index, pin, &pin_config);
-
-    /* Do pin MUX configuration if provided pinmux funciton */
-    gpio_cmsis_map_t const *map = CMSIS_GPIO_GetMapResource(handle, pin);
-    if ((map != NULL) && (map->pinmux_init_func != NULL))
-    {
-        map->pinmux_init_func();
-    }
-
-    return ARM_DRIVER_OK;
-}
-
-static void CMSIS_GPIO_Callback(gpio_cmsis_handle_t *handle, pint_pin_int_t pintr, uint32_t pmatch_status)
-{
-    /* Iterate all registered callback context */
-    gpio_cmsis_context_t *cxt = CMSIS_GPIO_GetContextResource(handle, (uint32_t)pintr);
-
-    if ((cxt != NULL) && (cxt->callback != NULL))
-    {
-        cxt->callback(cxt->pin_index); // EVENT
-    }
-}
-
-static int32_t CMSIS_GPIO_InitPinAsInput(gpio_cmsis_handle_t *handle,
-                                         uint32_t pin,
-                                         uint32_t irq_type,
-                                         ARM_GPIO_SignalEvent_t cb_event,
-                                         pint_cb_t pint_callback)
-{
-    assert(handle->status.is_inited == true);
-
-    gpio_cmsis_map_t const *map = CMSIS_GPIO_GetMapResource(handle, pin);
-
-    /* Configure the interrupt */
-    if (irq_type != ARM_GPIO_INTERRUPT_NONE)
-    {
-        /* Assert to remind user to provide the map between PORT and interrupt */
-        if (map == NULL)
-        {
-            assert(false);
-            return ARM_DRIVER_ERROR;
-        }
-
-        gpio_cmsis_context_t *cxt = CMSIS_GPIO_GetEmptyContext(handle);
-
-        /* Make sure there are still empty slot for this pin interrupt */
-        if (cxt == NULL)
-        {
-            return ARM_DRIVER_ERROR;
-        }
-
-        /* Fill the context data */
-        cxt->is_occupied = true;
-        cxt->pin_index   = (uint8_t)pin;
-        cxt->pint_index  = map->pint_index;
-        cxt->callback    = cb_event;
-
-        /* Set the state */
-        handle->interrupt_pins |= 0x01UL << pin;
-
-        /* Configure the PINT */
-        PINT_PinInterruptConfig(handle->config->pint_base, map->pint_index, CMSIS_GPIO_MapIRQTypeToPINTType(irq_type),
-                                pint_callback);
-        PINT_EnableCallbackByIndex(handle->config->pint_base, map->pint_index);
-    }
-
-    /* Do pin MUX configuration if provided pinmux funciton */
-    if ((map != NULL) && (map->pinmux_init_func != NULL))
-    {
-        map->pinmux_init_func();
-    }
-
-    return ARM_DRIVER_OK;
-}
-
-static int32_t CMSIS_GPIO_PowerControl(gpio_cmsis_handle_t *handle, ARM_POWER_STATE state)
-{
-    assert(handle->status.is_inited == true);
-    return ARM_DRIVER_OK;
-}
-
-static int32_t CMSIS_GPIO_PinWrite(gpio_cmsis_handle_t *handle, uint32_t pin, uint32_t logic_value)
-{
-    assert(handle->status.is_inited == true);
-    GPIO_PinWrite(handle->config->gpio_base, handle->config->port_index, pin, (uint8_t)logic_value);
-    return ARM_DRIVER_OK;
-}
-
-static bool CMSIS_GPIO_PinRead(gpio_cmsis_handle_t *handle, uint32_t pin)
-{
-    assert(handle->status.is_inited == true);
-    return (GPIO_PinRead(handle->config->gpio_base, handle->config->port_index, pin) != 0U);
-}
-
-static int32_t CMSIS_GPIO_PortToggle(gpio_cmsis_handle_t *handle, uint32_t ored_pins)
-{
-    assert(handle->status.is_inited == true);
-    GPIO_PortToggle(handle->config->gpio_base, handle->config->port_index, ored_pins);
-    return ARM_DRIVER_OK;
-}
-
-static int32_t CMSIS_GPIO_PinToggle(gpio_cmsis_handle_t *handle, uint32_t pin)
-{
-    assert(handle->status.is_inited == true);
-    return CMSIS_GPIO_PortToggle(handle, 0x01UL << pin);
-}
-
-static int32_t CMSIS_GPIO_PortWrite(gpio_cmsis_handle_t *handle, uint32_t ored_pins, uint32_t logic_value)
-{
-    assert(handle->status.is_inited == true);
-    if (logic_value == 0U)
-    {
-        GPIO_PortClear(handle->config->gpio_base, handle->config->port_index, ored_pins);
-    }
-    else
-    {
-        GPIO_PortSet(handle->config->gpio_base, handle->config->port_index, ored_pins);
-    }
-    return ARM_DRIVER_OK;
-}
-
-static uint32_t CMSIS_GPIO_PortRead(gpio_cmsis_handle_t *handle)
-{
-    assert(handle->status.is_inited == true);
-    return GPIO_PortRead(handle->config->gpio_base, handle->config->port_index);
-}
-
-static int32_t CMSIS_GPIO_Control(gpio_cmsis_handle_t *handle, uint32_t pin, uint32_t control, uint32_t arg)
-{
-    assert(handle->status.is_inited == true);
-    int32_t returncode = ARM_DRIVER_OK;
-
-    switch (control)
-    {
-        case ARM_GPIO_CONTROL_INTERRUPT:
-        {
-            gpio_cmsis_map_t const *map = CMSIS_GPIO_GetMapResource(handle, pin);
-
-            if (map == NULL)
-            {
-                returncode = ARM_DRIVER_ERROR_PARAMETER;
-            }
-            else
-            {
-                switch (arg)
-                {
-                    case ARM_GPIO_INTERRUPT_DISABLE:
-                        PINT_DisableCallbackByIndex(handle->config->pint_base, map->pint_index);
-                        break;
-
-                    case ARM_GPIO_INTERRUPT_ENABLE:
-                        PINT_EnableCallbackByIndex(handle->config->pint_base, map->pint_index);
-                        break;
-
-                    default:
-                        returncode = ARM_DRIVER_ERROR_PARAMETER;
-                        break;
-                }
-            }
-            break;
-        }
-
-        default:
-            returncode = ARM_DRIVER_ERROR_PARAMETER;
-            break;
-    }
-    return returncode;
-}
-
-static ARM_DRIVER_VERSION CMSIS_GPIO_GetVersion(void)
-{
-    return s_gpioDriverVersion;
-}
-
-static ARM_GPIO_CAPABILITIES CMSIS_GPIO_GetCapabilities(void)
-{
-    return s_gpioDriverCapabilities;
-}
-
-#endif //(RTE_GPIO_PORT0 && defined(GPIO)) || (RTE_GPIO_PORT1 && defined(GPIO))
-
-/******************************* GPIO PORT 0 **********************************************/
-#if defined(GPIO) && defined(RTE_GPIO_PORT0) && RTE_GPIO_PORT0
-static const gpio_cmsis_map_t s_gpio_port0_cmsis_maps[] = RTE_GPIO_PORT0_MAPS;
-
-static const gpio_cmsis_config_t s_gpio_port0_cmsis_config = {
-    .gpio_base       = GPIO,
-    .pint_base       = PINT,
-    .port_index      = 0,
-    .size_of_map     = RTE_GPIO_PORT0_SIZE_OF_MAP,
-    .size_of_context = RTE_GPIO_PORT0_MAX_INTERRUPT_CONTEXTS,
+#elif defined(CPU_LPC54113J256UK49)         || \
+      defined(CPU_LPC54114J256UK49_cm0plus) || \
+      defined(CPU_LPC54114J256UK49_cm4)
+// Pin mapping: WLCSP49 package
+static const uint32_t PinMapping[GPIO_MAX_PORTS] = {
+  0xE7FFFFF3U,  // PORT0  0.. 1,  4..26, 29..31
+  0x000001FFU   // PORT1  0.. 8
 };
 
-static gpio_cmsis_context_t s_gpio_port0_contexts[RTE_GPIO_PORT0_MAX_INTERRUPT_CONTEXTS];
-
-static gpio_cmsis_handle_t s_gpio_port0_handle = {
-    .config         = &s_gpio_port0_cmsis_config,
-    .maps           = s_gpio_port0_cmsis_maps,
-    .status         = {0},
-    .interrupt_pins = 0x0U,
-    .contexts       = s_gpio_port0_contexts,
-};
-
-static int32_t GPIO_PORT0_Initialize(void)
-{
-    return CMSIS_GPIO_Initialize(&s_gpio_port0_handle);
-}
-
-static int32_t GPIO_PORT0_Uninitialize(void)
-{
-    return CMSIS_GPIO_Uninitialize(&s_gpio_port0_handle);
-}
-
-static int32_t GPIO_PORT0_InitPinAsOutput(uint32_t pin, uint32_t output_logic)
-{
-    return CMSIS_GPIO_InitPinAsOutput(&s_gpio_port0_handle, pin, output_logic);
-}
-
-static void GPIO_PORT0_Callback(pint_pin_int_t pintr, uint32_t pmatch_status)
-{
-    CMSIS_GPIO_Callback(&s_gpio_port0_handle, pintr, pmatch_status);
-}
-
-static int32_t GPIO_PORT0_InitPinAsInput(uint32_t pin, uint32_t irq_type, ARM_GPIO_SignalEvent_t cb_event)
-{
-    return CMSIS_GPIO_InitPinAsInput(&s_gpio_port0_handle, pin, irq_type, cb_event, GPIO_PORT0_Callback);
-}
-
-static int32_t GPIO_PORT0_PowerControl(ARM_POWER_STATE state)
-{
-    return CMSIS_GPIO_PowerControl(&s_gpio_port0_handle, state);
-}
-
-static int32_t GPIO_PORT0_PinWrite(uint32_t pin, uint32_t logic_value)
-{
-    return CMSIS_GPIO_PinWrite(&s_gpio_port0_handle, pin, logic_value);
-}
-
-static int32_t GPIO_PORT0_PinToggle(uint32_t pin)
-{
-    return CMSIS_GPIO_PinToggle(&s_gpio_port0_handle, pin);
-}
-
-static bool GPIO_PORT0_PinRead(uint32_t pin)
-{
-    return CMSIS_GPIO_PinRead(&s_gpio_port0_handle, pin);
-}
-
-static int32_t GPIO_PORT0_PortWrite(uint32_t ored_pins, uint32_t logic_value)
-{
-    return CMSIS_GPIO_PortWrite(&s_gpio_port0_handle, ored_pins, logic_value);
-}
-
-static int32_t GPIO_PORT0_PortToggle(uint32_t ored_pins)
-{
-    return CMSIS_GPIO_PortToggle(&s_gpio_port0_handle, ored_pins);
-}
-
-static uint32_t GPIO_PORT0_PortRead(void)
-{
-    return CMSIS_GPIO_PortRead(&s_gpio_port0_handle);
-}
-
-static int32_t GPIO_PORT0_Control(uint32_t pin, uint32_t control, uint32_t arg)
-{
-    return CMSIS_GPIO_Control(&s_gpio_port0_handle, pin, control, arg);
-}
-
-ARM_DRIVER_GPIO Driver_GPIO_PORT0 = {
-    .GetVersion      = CMSIS_GPIO_GetVersion,
-    .GetCapabilities = CMSIS_GPIO_GetCapabilities,
-    .Initialize      = GPIO_PORT0_Initialize,
-    .Uninitialize    = GPIO_PORT0_Uninitialize,
-    .InitPinAsOutput = GPIO_PORT0_InitPinAsOutput,
-    .InitPinAsInput  = GPIO_PORT0_InitPinAsInput,
-    .PowerControl    = GPIO_PORT0_PowerControl,
-    .PinWrite        = GPIO_PORT0_PinWrite,
-    .PinRead         = GPIO_PORT0_PinRead,
-    .PinToggle       = GPIO_PORT0_PinToggle,
-    .PortWrite       = GPIO_PORT0_PortWrite,
-    .PortToggle      = GPIO_PORT0_PortToggle,
-    .PortRead        = GPIO_PORT0_PortRead,
-    .Control         = GPIO_PORT0_Control,
+#else
+// Pin mapping: default (all pins)
+static const uint32_t PinMapping[GPIO_MAX_PORTS] = {
+  0xFFFFFFFFU,  // PORT0  0..31
+  0xFFFFFFFFU   // PORT1  0..31
 };
 #endif
 
-#if defined(GPIO) && RTE_GPIO_PORT1
-static const gpio_cmsis_map_t s_gpio_port1_cmsis_maps[] = RTE_GPIO_PORT1_MAPS;
-
-static const gpio_cmsis_config_t s_gpio_port1_cmsis_config = {
-    .gpio_base       = GPIO,
-    .pint_base       = PINT,
-    .port_index      = 1,
-    .size_of_map     = RTE_GPIO_PORT1_SIZE_OF_MAP,
-    .size_of_context = RTE_GPIO_PORT1_MAX_INTERRUPT_CONTEXTS,
+// Open-drain only pins
+static const uint32_t PinOpenDrainOnly[GPIO_MAX_PORTS] = {
+  0x07800000U,  // PORT0 23..26
+  0x00000000U
+};
+// No pull-resistor pins
+static const uint32_t PinNoPullResistor[GPIO_MAX_PORTS] = {
+  0x07800000U,  // PORT0 23..26
+  0x00000000U
 };
 
-static gpio_cmsis_context_t s_gpio_port1_contexts[RTE_GPIO_PORT1_MAX_INTERRUPT_CONTEXTS];
+// Default Pin Configuration
+static const uint32_t DefaultPinConfig = (
+  IOCON_PIO_FUNC(0U)      |     // Pin function  : PIO
+  IOCON_PIO_MODE(0U)      |     // Function mode : Inactive (no pull resistor)
+  IOCON_PIO_INVERT(0U)    |     // Input polarity: Disabled
+  IOCON_PIO_DIGIMODE(1U)  |     // Select mode   : Digital
+  IOCON_PIO_FILTEROFF(1U) |     // Glitch filter : Disabled
+  IOCON_PIO_SLEW(0U)      |     // Slew rate     : Standard mode
+  IOCON_PIO_OD(0U)              // Open drain    : Disabled
+);
 
-static gpio_cmsis_handle_t s_gpio_port1_handle = {
-    .config         = &s_gpio_port1_cmsis_config,
-    .maps           = s_gpio_port1_cmsis_maps,
-    .status         = {0},
-    .interrupt_pins = 0x0U,
-    .contexts       = s_gpio_port1_contexts,
+
+#if   defined(CPU_LPC54114J256BD64_cm0plus) || \
+      defined(CPU_LPC54114J256UK49_cm0plus)
+#define GPIO_MAX_IRQS           4U
+
+// PINx IRQ Numbers
+static IRQn_Type const PinIRQn[GPIO_MAX_IRQS] = {
+  PIN_INT0_IRQn, PIN_INT1_IRQn, PIN_INT2_IRQn, PIN_INT3_IRQn
 };
+#else
+#define GPIO_MAX_IRQS           8U
 
-static int32_t GPIO_PORT1_Initialize(void)
-{
-    return CMSIS_GPIO_Initialize(&s_gpio_port1_handle);
-}
-
-static int32_t GPIO_PORT1_Uninitialize(void)
-{
-    return CMSIS_GPIO_Uninitialize(&s_gpio_port1_handle);
-}
-
-static int32_t GPIO_PORT1_InitPinAsOutput(uint32_t pin, uint32_t output_logic)
-{
-    return CMSIS_GPIO_InitPinAsOutput(&s_gpio_port1_handle, pin, output_logic);
-}
-
-static void GPIO_PORT1_Callback(pint_pin_int_t pintr, uint32_t pmatch_status)
-{
-    CMSIS_GPIO_Callback(&s_gpio_port1_handle, pintr, pmatch_status);
-}
-
-static int32_t GPIO_PORT1_InitPinAsInput(uint32_t pin, uint32_t irq_type, ARM_GPIO_SignalEvent_t cb_event)
-{
-    return CMSIS_GPIO_InitPinAsInput(&s_gpio_port1_handle, pin, irq_type, cb_event, GPIO_PORT1_Callback);
-}
-
-static int32_t GPIO_PORT1_PowerControl(ARM_POWER_STATE state)
-{
-    return CMSIS_GPIO_PowerControl(&s_gpio_port1_handle, state);
-}
-
-static int32_t GPIO_PORT1_PinWrite(uint32_t pin, uint32_t logic_value)
-{
-    return CMSIS_GPIO_PinWrite(&s_gpio_port1_handle, pin, logic_value);
-}
-
-static int32_t GPIO_PORT1_PinToggle(uint32_t pin)
-{
-    return CMSIS_GPIO_PinToggle(&s_gpio_port1_handle, pin);
-}
-
-static bool GPIO_PORT1_PinRead(uint32_t pin)
-{
-    return CMSIS_GPIO_PinRead(&s_gpio_port1_handle, pin);
-}
-
-static int32_t GPIO_PORT1_PortWrite(uint32_t ored_pins, uint32_t logic_value)
-{
-    return CMSIS_GPIO_PortWrite(&s_gpio_port1_handle, ored_pins, logic_value);
-}
-
-static int32_t GPIO_PORT1_PortToggle(uint32_t ored_pins)
-{
-    return CMSIS_GPIO_PortToggle(&s_gpio_port1_handle, ored_pins);
-}
-
-static uint32_t GPIO_PORT1_PortRead(void)
-{
-    return CMSIS_GPIO_PortRead(&s_gpio_port1_handle);
-}
-
-static int32_t GPIO_PORT1_Control(uint32_t pin, uint32_t control, uint32_t arg)
-{
-    return CMSIS_GPIO_Control(&s_gpio_port1_handle, pin, control, arg);
-}
-
-ARM_DRIVER_GPIO Driver_GPIO_PORT1 = {
-    .GetVersion      = CMSIS_GPIO_GetVersion,
-    .GetCapabilities = CMSIS_GPIO_GetCapabilities,
-    .Initialize      = GPIO_PORT1_Initialize,
-    .Uninitialize    = GPIO_PORT1_Uninitialize,
-    .InitPinAsOutput = GPIO_PORT1_InitPinAsOutput,
-    .InitPinAsInput  = GPIO_PORT1_InitPinAsInput,
-    .PowerControl    = GPIO_PORT1_PowerControl,
-    .PinWrite        = GPIO_PORT1_PinWrite,
-    .PinRead         = GPIO_PORT1_PinRead,
-    .PinToggle       = GPIO_PORT1_PinToggle,
-    .PortWrite       = GPIO_PORT1_PortWrite,
-    .PortToggle      = GPIO_PORT1_PortToggle,
-    .PortRead        = GPIO_PORT1_PortRead,
-    .Control         = GPIO_PORT1_Control,
+// PINx IRQ Numbers
+static IRQn_Type const PinIRQn[GPIO_MAX_IRQS] = {
+  PIN_INT0_IRQn, PIN_INT1_IRQn, PIN_INT2_IRQn, PIN_INT3_IRQn,
+  PIN_INT4_IRQn, PIN_INT5_IRQn, PIN_INT6_IRQn, PIN_INT7_IRQn
 };
-
 #endif
 
-#if defined(GPIO) && defined(RTE_GPIO_PORT2) && RTE_GPIO_PORT2
-static const gpio_cmsis_map_t s_gpio_port2_cmsis_maps[] = RTE_GPIO_PORT2_MAPS;
 
-static const gpio_cmsis_config_t s_gpio_port2_cmsis_config = {
-    .gpio_base       = GPIO,
-    .pint_base       = PINT,
-    .port_index      = 2,
-    .size_of_map     = RTE_GPIO_PORT2_SIZE_OF_MAP,
-    .size_of_context = RTE_GPIO_PORT2_MAX_INTERRUPT_CONTEXTS,
+// Clock IP Names
+static clock_ip_name_t const ClockIP[GPIO_MAX_PORTS] = {
+  kCLOCK_Gpio0, kCLOCK_Gpio1
 };
 
-static gpio_cmsis_context_t s_gpio_port2_contexts[RTE_GPIO_PORT2_MAX_INTERRUPT_CONTEXTS];
 
-static gpio_cmsis_handle_t s_gpio_port2_handle = {
-    .config         = &s_gpio_port2_cmsis_config,
-    .maps           = s_gpio_port2_cmsis_maps,
-    .status         = {0},
-    .interrupt_pins = 0x0U,
-    .contexts       = s_gpio_port2_contexts,
+// Number of active Event callback functions
+static uint32_t SignalEventCount = 0U;
+
+// Signal Event callback functions
+static ARM_GPIO_SignalEvent_t SignalEvent[GPIO_MAX_IRQS];
+
+// Signal Event pins
+static uint8_t SignalEventPin[GPIO_MAX_IRQS];
+
+
+// Common PIN_INTx IRQ Handler
+static void PIN_INTx_IRQHandler (uint32_t num) {
+  uint32_t event = 0U;
+
+  if (PINT_PinInterruptGetRiseFlag(PINT, (pint_pin_int_t)num)) {
+    PINT_PinInterruptClrRiseFlag(PINT, (pint_pin_int_t)num);
+    event |= ARM_GPIO_EVENT_RISING_EDGE;
+  }
+  if (PINT_PinInterruptGetFallFlag(PINT, (pint_pin_int_t)num)) {
+    PINT_PinInterruptClrFallFlag(PINT, (pint_pin_int_t)num);
+    event |= ARM_GPIO_EVENT_FALLING_EDGE;
+  }
+
+  if (event != 0U) {
+    if (SignalEvent[num] != NULL) {
+      SignalEvent[num](SignalEventPin[num], event);
+    }
+  }
+}
+
+// Pin interrupt 0 IRQ Handler
+void PIN_INT0_IRQHandler (void) {
+  PIN_INTx_IRQHandler(0U);
+}
+// Pin interrupt 1 IRQ Handler
+void PIN_INT1_IRQHandler (void) {
+  PIN_INTx_IRQHandler(1U);
+}
+// Pin interrupt 2 IRQ Handler
+void PIN_INT2_IRQHandler (void) {
+  PIN_INTx_IRQHandler(2U);
+}
+// Pin interrupt 3 IRQ Handler
+void PIN_INT3_IRQHandler (void) {
+  PIN_INTx_IRQHandler(3U);
+}
+// Pin interrupt 4 IRQ Handler
+void PIN_INT4_IRQHandler (void) {
+  PIN_INTx_IRQHandler(4U);
+}
+// Pin interrupt 5 IRQ Handler
+void PIN_INT5_IRQHandler (void) {
+  PIN_INTx_IRQHandler(5U);
+}
+// Pin interrupt 6 IRQ Handler
+void PIN_INT6_IRQHandler (void) {
+  PIN_INTx_IRQHandler(6U);
+}
+// Pin interrupt 7 IRQ Handler
+void PIN_INT7_IRQHandler (void) {
+  PIN_INTx_IRQHandler(7U);
+}
+
+
+// Setup GPIO Interface
+static int32_t GPIO_Setup (ARM_GPIO_Pin_t pin, ARM_GPIO_SignalEvent_t cb_event) {
+  uint32_t pin_port;
+  uint32_t pin_num;
+  uint32_t n;
+  int32_t  result = ARM_DRIVER_OK;
+
+  pin_port = pin >> 5U;
+  pin_num  = pin & 0x1FU;
+  if ((PinMapping[pin_port] & (1U << pin_num)) != 0U) {
+    if ((cb_event == NULL) || (SignalEventCount < GPIO_MAX_IRQS)) {
+      CLOCK_EnableClock(ClockIP[pin_port]);
+      CLOCK_EnableClock(kCLOCK_Iocon);
+      GPIO_PinSetDirection(GPIO, pin_port, pin_num, kGPIO_DigitalInput);
+      IOCON_PinMuxSet(IOCON, (uint8_t)pin_port, (uint8_t)pin_num, DefaultPinConfig);
+      if (cb_event != NULL) {
+        n = SignalEventCount++;
+        SignalEvent[n] = cb_event;
+        SignalEventPin[n] = (uint8_t)pin;
+        CLOCK_EnableClock(kCLOCK_InputMux);
+        INPUTMUX_AttachSignal(INPUTMUX, (pint_pin_int_t)n, pin + (PINTSEL_PMUX_ID << PMUX_SHIFT));
+        CLOCK_DisableClock(kCLOCK_InputMux);
+        CLOCK_EnableClock(kCLOCK_Pint);
+        PINT_PinInterruptConfig(PINT, (pint_pin_int_t)n, kPINT_PinIntEnableNone, NULL);
+        NVIC_EnableIRQ(PinIRQn[n]);
+      }
+    } else {
+      result = ARM_DRIVER_ERROR;
+    }
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
+  }
+
+  return result;
+}
+
+// Set GPIO Direction
+static int32_t GPIO_SetDirection (ARM_GPIO_Pin_t pin, ARM_GPIO_DIRECTION direction) {
+  uint32_t pin_port;
+  uint32_t pin_num;
+  int32_t  result = ARM_DRIVER_OK;
+
+  pin_port = pin >> 5U;
+  pin_num  = pin & 0x1FU;
+  if ((PinMapping[pin_port] & (1U << pin_num)) != 0U) {
+    switch (direction) {
+      case ARM_GPIO_INPUT:
+        GPIO_PinSetDirection(GPIO, pin_port, pin_num, kGPIO_DigitalInput);
+        break;
+      case ARM_GPIO_OUTPUT:
+        GPIO_PinSetDirection(GPIO, pin_port, pin_num, kGPIO_DigitalOutput);
+        break;
+      default:
+        result = ARM_DRIVER_ERROR_PARAMETER;
+        break;
+    }
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
+  }
+
+  return result;
+}
+
+// Set GPIO Output Mode
+static int32_t GPIO_SetOutputMode (ARM_GPIO_Pin_t pin, ARM_GPIO_OUTPUT_MODE mode) {
+  uint32_t pin_port;
+  uint32_t pin_num;
+  uint32_t pin_mask;
+  int32_t  result = ARM_DRIVER_OK;
+
+  pin_port = pin >> 5U;
+  pin_num  = pin & 0x1FU;
+  pin_mask = 1U << pin_num;
+  if ((PinMapping[pin_port] & pin_mask) != 0U) {
+    switch (mode) {
+      case ARM_GPIO_PUSH_PULL:
+        if ((PinOpenDrainOnly[pin_port] & pin_mask) == 0U) {
+          IOCON_EnablePinOpenDrain(IOCON, pin_port, pin_num, false);
+        } else {
+          result = ARM_DRIVER_ERROR_UNSUPPORTED;
+        }
+        break;
+      case ARM_GPIO_OPEN_DRAIN:
+        if ((PinOpenDrainOnly[pin_port] & pin_mask) == 0U) {
+          IOCON_EnablePinOpenDrain(IOCON, pin_port, pin_num, true);
+        }
+        break;
+      default:
+        result = ARM_DRIVER_ERROR_PARAMETER;
+        break;
+    }
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
+  }
+
+  return result;
+}
+
+// Set GPIO Pull Resistor
+static int32_t GPIO_SetPullResistor (ARM_GPIO_Pin_t pin, ARM_GPIO_PULL_RESISTOR resistor) {
+  uint32_t pin_port;
+  uint32_t pin_num;
+  uint32_t pin_mask;
+  int32_t  result = ARM_DRIVER_OK;
+
+  pin_port = pin >> 5U;
+  pin_num  = pin & 0x1FU;
+  pin_mask = 1U << pin_num;
+  if ((PinMapping[pin_port] & pin_mask) != 0U) {
+    switch (resistor) {
+      case ARM_GPIO_PULL_NONE:
+        if ((PinNoPullResistor[pin_port] & pin_mask) == 0U) {
+          IOCON_SetPinPullConfig(IOCON, pin_port, pin_num, IOCON_MODE_INACT);
+        }
+        break;
+      case ARM_GPIO_PULL_UP:
+        if ((PinNoPullResistor[pin_port] & pin_mask) == 0U) {
+          IOCON_SetPinPullConfig(IOCON, pin_port, pin_num, IOCON_MODE_PULLUP);
+        } else {
+          result = ARM_DRIVER_ERROR_UNSUPPORTED;
+        }
+        break;
+      case ARM_GPIO_PULL_DOWN:
+        if ((PinNoPullResistor[pin_port] & pin_mask) == 0U) {
+          IOCON_SetPinPullConfig(IOCON, pin_port, pin_num, IOCON_MODE_PULLDOWN);
+        } else {
+          result = ARM_DRIVER_ERROR_UNSUPPORTED;
+        }
+        break;
+      default:
+        result = ARM_DRIVER_ERROR_PARAMETER;
+        break;
+    }
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
+  }
+
+  return result;
+}
+
+// Set GPIO Event Trigger
+static int32_t GPIO_SetEventTrigger (ARM_GPIO_Pin_t pin, ARM_GPIO_EVENT_TRIGGER trigger) {
+  uint32_t pin_port;
+  uint32_t pin_num;
+  uint32_t n;
+  int32_t  result = ARM_DRIVER_ERROR;
+
+  pin_port = pin >> 5U;
+  pin_num  = pin & 0x1FU;
+  if ((PinMapping[pin_port] & (1U << pin_num)) != 0U) {
+    for (n = 0U; n < SignalEventCount; n++) {
+      if (SignalEventPin[n] == pin) {
+        switch (trigger) {
+          case ARM_GPIO_TRIGGER_NONE:
+            PINT_PinInterruptConfig(PINT, (pint_pin_int_t)n, kPINT_PinIntEnableNone, NULL);
+            result = ARM_DRIVER_OK;
+            break;
+          case ARM_GPIO_TRIGGER_RISING_EDGE:
+            PINT_PinInterruptConfig(PINT, (pint_pin_int_t)n, kPINT_PinIntEnableRiseEdge, NULL);
+            result = ARM_DRIVER_OK;
+            break;
+          case ARM_GPIO_TRIGGER_FALLING_EDGE:
+            PINT_PinInterruptConfig(PINT, (pint_pin_int_t)n, kPINT_PinIntEnableFallEdge, NULL);
+            result = ARM_DRIVER_OK;
+            break;
+          case ARM_GPIO_TRIGGER_EITHER_EDGE:
+            PINT_PinInterruptConfig(PINT, (pint_pin_int_t)n, kPINT_PinIntEnableBothEdges, NULL);
+            result = ARM_DRIVER_OK;
+            break;
+          default:
+            result = ARM_DRIVER_ERROR_PARAMETER;
+            break;
+        }
+        if (result != ARM_DRIVER_ERROR) {
+          break;
+        }
+      }
+    }
+  } else {
+    result = ARM_GPIO_ERROR_PIN;
+  }
+
+  return result;
+}
+
+// Set GPIO Output Level
+static void GPIO_SetOutput (ARM_GPIO_Pin_t pin, uint32_t val) {
+  uint32_t pin_port;
+  uint32_t pin_num;
+
+  if (pin < GPIO_MAX_PINS) {
+    pin_port = pin >> 5U;
+    pin_num  = pin & 0x1FU;
+    GPIO_PinWrite(GPIO, pin_port, pin_num, (uint8_t)val);
+  }
+}
+
+// Get GPIO Input Level
+static uint32_t GPIO_GetInput (ARM_GPIO_Pin_t pin) {
+  uint32_t pin_port;
+  uint32_t pin_num;
+  uint32_t val = 0U;
+
+  if (pin < GPIO_MAX_PINS) {
+    pin_port = pin >> 5U;
+    pin_num  = pin & 0x1FU;
+    val = GPIO_PinRead(GPIO, pin_port, pin_num);
+  }
+
+  return val;
+}
+
+
+// GPIO Driver access structure
+ARM_DRIVER_GPIO Driver_GPIO0 = {
+  GPIO_Setup,
+  GPIO_SetDirection,
+  GPIO_SetOutputMode,
+  GPIO_SetPullResistor,
+  GPIO_SetEventTrigger,
+  GPIO_SetOutput,
+  GPIO_GetInput
 };
-
-static int32_t GPIO_PORT2_Initialize(void)
-{
-    return CMSIS_GPIO_Initialize(&s_gpio_port2_handle);
-}
-
-static int32_t GPIO_PORT2_Uninitialize(void)
-{
-    return CMSIS_GPIO_Uninitialize(&s_gpio_port2_handle);
-}
-
-static int32_t GPIO_PORT2_InitPinAsOutput(uint32_t pin, uint32_t output_logic)
-{
-    return CMSIS_GPIO_InitPinAsOutput(&s_gpio_port2_handle, pin, output_logic);
-}
-
-static void GPIO_PORT2_Callback(pint_pin_int_t pintr, uint32_t pmatch_status)
-{
-    CMSIS_GPIO_Callback(&s_gpio_port2_handle, pintr, pmatch_status);
-}
-
-static int32_t GPIO_PORT2_InitPinAsInput(uint32_t pin, uint32_t irq_type, ARM_GPIO_SignalEvent_t cb_event)
-{
-    return CMSIS_GPIO_InitPinAsInput(&s_gpio_port2_handle, pin, irq_type, cb_event, GPIO_PORT2_Callback);
-}
-
-static int32_t GPIO_PORT2_PowerControl(ARM_POWER_STATE state)
-{
-    return CMSIS_GPIO_PowerControl(&s_gpio_port2_handle, state);
-}
-
-static int32_t GPIO_PORT2_PinWrite(uint32_t pin, uint32_t logic_value)
-{
-    return CMSIS_GPIO_PinWrite(&s_gpio_port2_handle, pin, logic_value);
-}
-
-static int32_t GPIO_PORT2_PinToggle(uint32_t pin)
-{
-    return CMSIS_GPIO_PinToggle(&s_gpio_port2_handle, pin);
-}
-
-static bool GPIO_PORT2_PinRead(uint32_t pin)
-{
-    return CMSIS_GPIO_PinRead(&s_gpio_port2_handle, pin);
-}
-
-static int32_t GPIO_PORT2_PortWrite(uint32_t ored_pins, uint32_t logic_value)
-{
-    return CMSIS_GPIO_PortWrite(&s_gpio_port2_handle, ored_pins, logic_value);
-}
-
-static int32_t GPIO_PORT2_PortToggle(uint32_t ored_pins)
-{
-    return CMSIS_GPIO_PortToggle(&s_gpio_port2_handle, ored_pins);
-}
-
-static uint32_t GPIO_PORT2_PortRead(void)
-{
-    return CMSIS_GPIO_PortRead(&s_gpio_port2_handle);
-}
-
-static int32_t GPIO_PORT2_Control(uint32_t pin, uint32_t control, uint32_t arg)
-{
-    return CMSIS_GPIO_Control(&s_gpio_port2_handle, pin, control, arg);
-}
-
-ARM_DRIVER_GPIO Driver_GPIO_PORT2 = {
-    .GetVersion      = CMSIS_GPIO_GetVersion,
-    .GetCapabilities = CMSIS_GPIO_GetCapabilities,
-    .Initialize      = GPIO_PORT2_Initialize,
-    .Uninitialize    = GPIO_PORT2_Uninitialize,
-    .InitPinAsOutput = GPIO_PORT2_InitPinAsOutput,
-    .InitPinAsInput  = GPIO_PORT2_InitPinAsInput,
-    .PowerControl    = GPIO_PORT2_PowerControl,
-    .PinWrite        = GPIO_PORT2_PinWrite,
-    .PinRead         = GPIO_PORT2_PinRead,
-    .PinToggle       = GPIO_PORT2_PinToggle,
-    .PortWrite       = GPIO_PORT2_PortWrite,
-    .PortToggle      = GPIO_PORT2_PortToggle,
-    .PortRead        = GPIO_PORT2_PortRead,
-    .Control         = GPIO_PORT2_Control,
-};
-
-#endif
-
-#if defined(GPIO) && defined(RTE_GPIO_PORT3) && RTE_GPIO_PORT3
-static const gpio_cmsis_map_t s_gpio_port3_cmsis_maps[] = RTE_GPIO_PORT3_MAPS;
-
-static const gpio_cmsis_config_t s_gpio_port3_cmsis_config = {
-    .gpio_base       = GPIO,
-    .pint_base       = PINT,
-    .port_index      = 3,
-    .size_of_map     = RTE_GPIO_PORT3_SIZE_OF_MAP,
-    .size_of_context = RTE_GPIO_PORT3_MAX_INTERRUPT_CONTEXTS,
-};
-
-static gpio_cmsis_context_t s_gpio_port3_contexts[RTE_GPIO_PORT3_MAX_INTERRUPT_CONTEXTS];
-
-static gpio_cmsis_handle_t s_gpio_port3_handle = {
-    .config         = &s_gpio_port3_cmsis_config,
-    .maps           = s_gpio_port3_cmsis_maps,
-    .status         = {0},
-    .interrupt_pins = 0x0U,
-    .contexts       = s_gpio_port3_contexts,
-};
-
-static int32_t GPIO_PORT3_Initialize(void)
-{
-    return CMSIS_GPIO_Initialize(&s_gpio_port3_handle);
-}
-
-static int32_t GPIO_PORT3_Uninitialize(void)
-{
-    return CMSIS_GPIO_Uninitialize(&s_gpio_port3_handle);
-}
-
-static int32_t GPIO_PORT3_InitPinAsOutput(uint32_t pin, uint32_t output_logic)
-{
-    return CMSIS_GPIO_InitPinAsOutput(&s_gpio_port3_handle, pin, output_logic);
-}
-
-static void GPIO_PORT3_Callback(pint_pin_int_t pintr, uint32_t pmatch_status)
-{
-    CMSIS_GPIO_Callback(&s_gpio_port3_handle, pintr, pmatch_status);
-}
-
-static int32_t GPIO_PORT3_InitPinAsInput(uint32_t pin, uint32_t irq_type, ARM_GPIO_SignalEvent_t cb_event)
-{
-    return CMSIS_GPIO_InitPinAsInput(&s_gpio_port3_handle, pin, irq_type, cb_event, GPIO_PORT3_Callback);
-}
-
-static int32_t GPIO_PORT3_PowerControl(ARM_POWER_STATE state)
-{
-    return CMSIS_GPIO_PowerControl(&s_gpio_port3_handle, state);
-}
-
-static int32_t GPIO_PORT3_PinWrite(uint32_t pin, uint32_t logic_value)
-{
-    return CMSIS_GPIO_PinWrite(&s_gpio_port3_handle, pin, logic_value);
-}
-
-static int32_t GPIO_PORT3_PinToggle(uint32_t pin)
-{
-    return CMSIS_GPIO_PinToggle(&s_gpio_port3_handle, pin);
-}
-
-static bool GPIO_PORT3_PinRead(uint32_t pin)
-{
-    return CMSIS_GPIO_PinRead(&s_gpio_port3_handle, pin);
-}
-
-static int32_t GPIO_PORT3_PortWrite(uint32_t ored_pins, uint32_t logic_value)
-{
-    return CMSIS_GPIO_PortWrite(&s_gpio_port3_handle, ored_pins, logic_value);
-}
-
-static int32_t GPIO_PORT3_PortToggle(uint32_t ored_pins)
-{
-    return CMSIS_GPIO_PortToggle(&s_gpio_port3_handle, ored_pins);
-}
-
-static uint32_t GPIO_PORT3_PortRead(void)
-{
-    return CMSIS_GPIO_PortRead(&s_gpio_port3_handle);
-}
-
-static int32_t GPIO_PORT3_Control(uint32_t pin, uint32_t control, uint32_t arg)
-{
-    return CMSIS_GPIO_Control(&s_gpio_port3_handle, pin, control, arg);
-}
-
-ARM_DRIVER_GPIO Driver_GPIO_PORT3 = {
-    .GetVersion      = CMSIS_GPIO_GetVersion,
-    .GetCapabilities = CMSIS_GPIO_GetCapabilities,
-    .Initialize      = GPIO_PORT3_Initialize,
-    .Uninitialize    = GPIO_PORT3_Uninitialize,
-    .InitPinAsOutput = GPIO_PORT3_InitPinAsOutput,
-    .InitPinAsInput  = GPIO_PORT3_InitPinAsInput,
-    .PowerControl    = GPIO_PORT3_PowerControl,
-    .PinWrite        = GPIO_PORT3_PinWrite,
-    .PinRead         = GPIO_PORT3_PinRead,
-    .PinToggle       = GPIO_PORT3_PinToggle,
-    .PortWrite       = GPIO_PORT3_PortWrite,
-    .PortToggle      = GPIO_PORT3_PortToggle,
-    .PortRead        = GPIO_PORT3_PortRead,
-    .Control         = GPIO_PORT3_Control,
-};
-
-#endif
-
-#if defined(GPIO) && defined(RTE_GPIO_PORT4) && RTE_GPIO_PORT4
-static const gpio_cmsis_map_t s_gpio_port4_cmsis_maps[] = RTE_GPIO_PORT4_MAPS;
-
-static const gpio_cmsis_config_t s_gpio_port4_cmsis_config = {
-    .gpio_base       = GPIO,
-    .pint_base       = PINT,
-    .port_index      = 4,
-    .size_of_map     = RTE_GPIO_PORT4_SIZE_OF_MAP,
-    .size_of_context = RTE_GPIO_PORT4_MAX_INTERRUPT_CONTEXTS,
-};
-
-static gpio_cmsis_context_t s_gpio_port4_contexts[RTE_GPIO_PORT4_MAX_INTERRUPT_CONTEXTS];
-
-static gpio_cmsis_handle_t s_gpio_port4_handle = {
-    .config         = &s_gpio_port4_cmsis_config,
-    .maps           = s_gpio_port4_cmsis_maps,
-    .status         = {0},
-    .interrupt_pins = 0x0U,
-    .contexts       = s_gpio_port4_contexts,
-};
-
-static int32_t GPIO_PORT4_Initialize(void)
-{
-    return CMSIS_GPIO_Initialize(&s_gpio_port4_handle);
-}
-
-static int32_t GPIO_PORT4_Uninitialize(void)
-{
-    return CMSIS_GPIO_Uninitialize(&s_gpio_port4_handle);
-}
-
-static int32_t GPIO_PORT4_InitPinAsOutput(uint32_t pin, uint32_t output_logic)
-{
-    return CMSIS_GPIO_InitPinAsOutput(&s_gpio_port4_handle, pin, output_logic);
-}
-
-static void GPIO_PORT4_Callback(pint_pin_int_t pintr, uint32_t pmatch_status)
-{
-    CMSIS_GPIO_Callback(&s_gpio_port4_handle, pintr, pmatch_status);
-}
-
-static int32_t GPIO_PORT4_InitPinAsInput(uint32_t pin, uint32_t irq_type, ARM_GPIO_SignalEvent_t cb_event)
-{
-    return CMSIS_GPIO_InitPinAsInput(&s_gpio_port4_handle, pin, irq_type, cb_event, GPIO_PORT4_Callback);
-}
-
-static int32_t GPIO_PORT4_PowerControl(ARM_POWER_STATE state)
-{
-    return CMSIS_GPIO_PowerControl(&s_gpio_port4_handle, state);
-}
-
-static int32_t GPIO_PORT4_PinWrite(uint32_t pin, uint32_t logic_value)
-{
-    return CMSIS_GPIO_PinWrite(&s_gpio_port4_handle, pin, logic_value);
-}
-
-static int32_t GPIO_PORT4_PinToggle(uint32_t pin)
-{
-    return CMSIS_GPIO_PinToggle(&s_gpio_port4_handle, pin);
-}
-
-static bool GPIO_PORT4_PinRead(uint32_t pin)
-{
-    return CMSIS_GPIO_PinRead(&s_gpio_port4_handle, pin);
-}
-
-static int32_t GPIO_PORT4_PortWrite(uint32_t ored_pins, uint32_t logic_value)
-{
-    return CMSIS_GPIO_PortWrite(&s_gpio_port4_handle, ored_pins, logic_value);
-}
-
-static int32_t GPIO_PORT4_PortToggle(uint32_t ored_pins)
-{
-    return CMSIS_GPIO_PortToggle(&s_gpio_port4_handle, ored_pins);
-}
-
-static uint32_t GPIO_PORT4_PortRead(void)
-{
-    return CMSIS_GPIO_PortRead(&s_gpio_port4_handle);
-}
-
-static int32_t GPIO_PORT4_Control(uint32_t pin, uint32_t control, uint32_t arg)
-{
-    return CMSIS_GPIO_Control(&s_gpio_port4_handle, pin, control, arg);
-}
-
-ARM_DRIVER_GPIO Driver_GPIO_PORT4 = {
-    .GetVersion      = CMSIS_GPIO_GetVersion,
-    .GetCapabilities = CMSIS_GPIO_GetCapabilities,
-    .Initialize      = GPIO_PORT4_Initialize,
-    .Uninitialize    = GPIO_PORT4_Uninitialize,
-    .InitPinAsOutput = GPIO_PORT4_InitPinAsOutput,
-    .InitPinAsInput  = GPIO_PORT4_InitPinAsInput,
-    .PowerControl    = GPIO_PORT4_PowerControl,
-    .PinWrite        = GPIO_PORT4_PinWrite,
-    .PinRead         = GPIO_PORT4_PinRead,
-    .PinToggle       = GPIO_PORT4_PinToggle,
-    .PortWrite       = GPIO_PORT4_PortWrite,
-    .PortToggle      = GPIO_PORT4_PortToggle,
-    .PortRead        = GPIO_PORT4_PortRead,
-    .Control         = GPIO_PORT4_Control,
-};
-
-#endif
-
-#if defined(GPIO) && defined(RTE_GPIO_PORT5) && RTE_GPIO_PORT5
-const gpio_cmsis_map_t s_gpio_port5_cmsis_maps[] = RTE_GPIO_PORT5_MAPS;
-
-const gpio_cmsis_config_t s_gpio_port5_cmsis_config = {
-    .gpio_base       = GPIO,
-    .pint_base       = PINT,
-    .port_index      = 5,
-    .size_of_map     = RTE_GPIO_PORT5_SIZE_OF_MAP,
-    .size_of_context = RTE_GPIO_PORT5_MAX_INTERRUPT_CONTEXTS,
-};
-
-static gpio_cmsis_context_t s_gpio_port5_contexts[RTE_GPIO_PORT5_MAX_INTERRUPT_CONTEXTS];
-
-static gpio_cmsis_handle_t s_gpio_port5_handle = {
-    .config         = &s_gpio_port5_cmsis_config,
-    .maps           = s_gpio_port5_cmsis_maps,
-    .status         = {0},
-    .interrupt_pins = 0x0U,
-    .contexts       = s_gpio_port5_contexts,
-};
-
-static int32_t GPIO_PORT5_Initialize(void)
-{
-    return CMSIS_GPIO_Initialize(&s_gpio_port5_handle);
-}
-
-static int32_t GPIO_PORT5_Uninitialize(void)
-{
-    return CMSIS_GPIO_Uninitialize(&s_gpio_port5_handle);
-}
-
-static int32_t GPIO_PORT5_InitPinAsOutput(uint32_t pin, uint32_t output_logic)
-{
-    return CMSIS_GPIO_InitPinAsOutput(&s_gpio_port5_handle, pin, output_logic);
-}
-
-static void GPIO_PORT5_Callback(pint_pin_int_t pintr, uint32_t pmatch_status)
-{
-    CMSIS_GPIO_Callback(&s_gpio_port5_handle, pintr, pmatch_status);
-}
-
-static int32_t GPIO_PORT5_InitPinAsInput(uint32_t pin, uint32_t irq_type, ARM_GPIO_SignalEvent_t cb_event)
-{
-    return CMSIS_GPIO_InitPinAsInput(&s_gpio_port5_handle, pin, irq_type, cb_event, GPIO_PORT5_Callback);
-}
-
-static int32_t GPIO_PORT5_PowerControl(ARM_POWER_STATE state)
-{
-    return CMSIS_GPIO_PowerControl(&s_gpio_port5_handle, state);
-}
-
-static int32_t GPIO_PORT5_PinWrite(uint32_t pin, uint32_t logic_value)
-{
-    return CMSIS_GPIO_PinWrite(&s_gpio_port5_handle, pin, logic_value);
-}
-
-static int32_t GPIO_PORT5_PinToggle(uint32_t pin)
-{
-    return CMSIS_GPIO_PinToggle(&s_gpio_port5_handle, pin);
-}
-
-static bool GPIO_PORT5_PinRead(uint32_t pin)
-{
-    return CMSIS_GPIO_PinRead(&s_gpio_port5_handle, pin);
-}
-
-static int32_t GPIO_PORT5_PortWrite(uint32_t ored_pins, uint32_t logic_value)
-{
-    return CMSIS_GPIO_PortWrite(&s_gpio_port5_handle, ored_pins, logic_value);
-}
-
-static int32_t GPIO_PORT5_PortToggle(uint32_t ored_pins)
-{
-    return CMSIS_GPIO_PortToggle(&s_gpio_port5_handle, ored_pins);
-}
-
-static uint32_t GPIO_PORT5_PortRead(void)
-{
-    return CMSIS_GPIO_PortRead(&s_gpio_port5_handle);
-}
-
-static int32_t GPIO_PORT5_Control(uint32_t pin, uint32_t control, uint32_t arg)
-{
-    return CMSIS_GPIO_Control(&s_gpio_port5_handle, pin, control, arg);
-}
-
-ARM_DRIVER_GPIO Driver_GPIO_PORT5 = {
-    .GetVersion      = CMSIS_GPIO_GetVersion,
-    .GetCapabilities = CMSIS_GPIO_GetCapabilities,
-    .Initialize      = GPIO_PORT5_Initialize,
-    .Uninitialize    = GPIO_PORT5_Uninitialize,
-    .InitPinAsOutput = GPIO_PORT5_InitPinAsOutput,
-    .InitPinAsInput  = GPIO_PORT5_InitPinAsInput,
-    .PowerControl    = GPIO_PORT5_PowerControl,
-    .PinWrite        = GPIO_PORT5_PinWrite,
-    .PinRead         = GPIO_PORT5_PinRead,
-    .PinToggle       = GPIO_PORT5_PinToggle,
-    .PortWrite       = GPIO_PORT5_PortWrite,
-    .PortToggle      = GPIO_PORT5_PortToggle,
-    .PortRead        = GPIO_PORT5_PortRead,
-    .Control         = GPIO_PORT5_Control,
-};
-
-#endif
