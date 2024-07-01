@@ -1,0 +1,1045 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="project_projx.xsd">
+  <SchemaVersion>2.1</SchemaVersion>
+  <Header>### uVision Project, (C) Keil Software</Header>
+  <Targets>
+    <Target>
+      <TargetName>cmsis_spi_int_b2b_transfer_slave debug</TargetName>
+      <ToolsetNumber>0x4</ToolsetNumber>
+      <ToolsetName>ARM-ADS</ToolsetName>
+      <uAC6>1</uAC6>
+      <TargetOption>
+        <TargetCommonOption>
+          <Device>LPC55S69JBD100:cm33_core0</Device>
+          <Vendor>NXP</Vendor>
+          <PackID>NXP.LPC55S69_DFP.13.0.0</PackID>
+          <PackURL>http://mcuxpresso.nxp.com/cmsis_pack/repo/</PackURL>
+          <Cpu>CPUTYPE("Cortex-M33") FPU3(SFPU) TZ DSP</Cpu>
+          <FlashUtilSpec/>
+          <StartupFile/>
+          <DeviceId>0</DeviceId>
+          <RegisterFile>$$Device:LPC55S69JBD100$fsl_device_registers.h</RegisterFile>
+          <MemoryEnv/>
+          <Cmp/>
+          <Asm/>
+          <Linker/>
+          <OHString/>
+          <InfinionOptionDll/>
+          <SLE66CMisc/>
+          <SLE66AMisc/>
+          <SLE66LinkerMisc/>
+          <SFDFile>$$Device:LPC55S69JBD100$LPC55S69_cm33_core0.xml</SFDFile>
+          <bCustSvd>0</bCustSvd>
+          <UseEnv>0</UseEnv>
+          <BinPath/>
+          <IncludePath/>
+          <LibPath/>
+          <RegisterFilePath/>
+          <DBRegisterFilePath/>
+          <TargetStatus>
+            <Error>0</Error>
+            <ExitCodeStop>0</ExitCodeStop>
+            <ButtonStop>0</ButtonStop>
+            <NotGenerated>0</NotGenerated>
+            <InvalidFlash>1</InvalidFlash>
+          </TargetStatus>
+          <OutputDirectory>debug\</OutputDirectory>
+          <OutputName>cmsis_spi_int_b2b_transfer_slave.out</OutputName>
+          <CreateExecutable>1</CreateExecutable>
+          <CreateLib>0</CreateLib>
+          <CreateHexFile>0</CreateHexFile>
+          <DebugInformation>1</DebugInformation>
+          <BrowseInformation>1</BrowseInformation>
+          <ListingPath>.\Listings\</ListingPath>
+          <HexFormatSelection>1</HexFormatSelection>
+          <Merge32K>0</Merge32K>
+          <CreateBatchFile>0</CreateBatchFile>
+          <BeforeCompile>
+            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg2>0</RunUserProg2>
+            <UserProg1Name/>
+            <UserProg2Name/>
+            <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
+            <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
+            <nStopU1X>0</nStopU1X>
+            <nStopU2X>0</nStopU2X>
+          </BeforeCompile>
+          <BeforeMake>
+            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg2>0</RunUserProg2>
+            <UserProg1Name/>
+            <UserProg2Name/>
+            <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
+            <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
+            <nStopB1X>0</nStopB1X>
+            <nStopB2X>0</nStopB2X>
+          </BeforeMake>
+          <AfterMake>
+            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg2>0</RunUserProg2>
+            <UserProg1Name/>
+            <UserProg2Name/>
+            <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
+            <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
+            <nStopA1X>0</nStopA1X>
+            <nStopA2X>0</nStopA2X>
+          </AfterMake>
+          <SelectedForBatchBuild>1</SelectedForBatchBuild>
+          <SVCSIdString/>
+        </TargetCommonOption>
+        <CommonProperty>
+          <UseCPPCompiler>0</UseCPPCompiler>
+          <RVCTCodeConst>0</RVCTCodeConst>
+          <RVCTZI>0</RVCTZI>
+          <RVCTOtherData>0</RVCTOtherData>
+          <ModuleSelection>0</ModuleSelection>
+          <IncludeInBuild>1</IncludeInBuild>
+          <AlwaysBuild>0</AlwaysBuild>
+          <GenerateAssemblyFile>0</GenerateAssemblyFile>
+          <AssembleAssemblyFile>0</AssembleAssemblyFile>
+          <PublicsOnly>0</PublicsOnly>
+          <StopOnExitCode>3</StopOnExitCode>
+          <CustomArgument/>
+          <IncludeLibraryModules/>
+          <ComprImg>1</ComprImg>
+        </CommonProperty>
+        <DllOption>
+          <SimDllName/>
+          <SimDllArguments/>
+          <SimDlgDll/>
+          <SimDlgDllArguments/>
+          <TargetDllName>SARMV8M.DLL</TargetDllName>
+          <TargetDllArguments> -MPU</TargetDllArguments>
+          <TargetDlgDll>TCM.DLL</TargetDlgDll>
+          <TargetDlgDllArguments>-pCM33</TargetDlgDllArguments>
+        </DllOption>
+        <DebugOption>
+          <OPTHX>
+            <HexSelection>1</HexSelection>
+            <HexRangeLowAddress>0</HexRangeLowAddress>
+            <HexRangeHighAddress>0</HexRangeHighAddress>
+            <HexOffset>0</HexOffset>
+            <Oh166RecLen>16</Oh166RecLen>
+          </OPTHX>
+        </DebugOption>
+        <Utilities>
+          <Flash1>
+            <UseTargetDll>1</UseTargetDll>
+            <UseExternalTool>0</UseExternalTool>
+            <RunIndependent>0</RunIndependent>
+            <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
+            <Capability>1</Capability>
+            <DriverSelection>-1</DriverSelection>
+          </Flash1>
+          <bUseTDR>1</bUseTDR>
+          <Flash2>BIN\UL2V8M.DLL</Flash2>
+          <Flash3/>
+          <Flash4/>
+          <pFcarmOut/>
+          <pFcarmGrp/>
+          <pFcArmRoot/>
+          <FcArmLst>0</FcArmLst>
+        </Utilities>
+        <TargetArmAds>
+          <ArmAdsMisc>
+            <GenerateListings>0</GenerateListings>
+            <asHll>1</asHll>
+            <asAsm>1</asAsm>
+            <asMacX>1</asMacX>
+            <asSyms>1</asSyms>
+            <asFals>1</asFals>
+            <asDbgD>1</asDbgD>
+            <asForm>1</asForm>
+            <ldLst>0</ldLst>
+            <ldmm>1</ldmm>
+            <ldXref>1</ldXref>
+            <BigEnd>0</BigEnd>
+            <AdsALst>1</AdsALst>
+            <AdsACrf>0</AdsACrf>
+            <AdsANop>0</AdsANop>
+            <AdsANot>0</AdsANot>
+            <AdsLLst>1</AdsLLst>
+            <AdsLmap>1</AdsLmap>
+            <AdsLcgr>1</AdsLcgr>
+            <AdsLsym>1</AdsLsym>
+            <AdsLszi>1</AdsLszi>
+            <AdsLtoi>1</AdsLtoi>
+            <AdsLsun>1</AdsLsun>
+            <AdsLven>1</AdsLven>
+            <AdsLsxf>1</AdsLsxf>
+            <RvctClst>0</RvctClst>
+            <GenPPlst>0</GenPPlst>
+            <AdsCpuType>"Cortex-M33"</AdsCpuType>
+            <RvctDeviceName/>
+            <mOS>0</mOS>
+            <uocRom>0</uocRom>
+            <uocRam>0</uocRam>
+            <hadIROM>1</hadIROM>
+            <hadIRAM>1</hadIRAM>
+            <hadXRAM>1</hadXRAM>
+            <uocXRam>0</uocXRam>
+            <RvdsVP>2</RvdsVP>
+            <RvdsMve>0</RvdsMve>
+            <hadIRAM2>1</hadIRAM2>
+            <hadIROM2>0</hadIROM2>
+            <StupSel>8</StupSel>
+            <useUlib>1</useUlib>
+            <EndSel>0</EndSel>
+            <uLtcg>0</uLtcg>
+            <nSecure>0</nSecure>
+            <RoSelD>3</RoSelD>
+            <RwSelD>4</RwSelD>
+            <CodeSel>0</CodeSel>
+            <OptFeed>0</OptFeed>
+            <NoZi1>0</NoZi1>
+            <NoZi2>0</NoZi2>
+            <NoZi3>0</NoZi3>
+            <NoZi4>0</NoZi4>
+            <NoZi5>0</NoZi5>
+            <Ro1Chk>0</Ro1Chk>
+            <Ro2Chk>0</Ro2Chk>
+            <Ro3Chk>0</Ro3Chk>
+            <Ir1Chk>1</Ir1Chk>
+            <Ir2Chk>0</Ir2Chk>
+            <Ra1Chk>0</Ra1Chk>
+            <Ra2Chk>0</Ra2Chk>
+            <Ra3Chk>0</Ra3Chk>
+            <Im1Chk>1</Im1Chk>
+            <Im2Chk>0</Im2Chk>
+            <OnChipMemories>
+              <Ocm1>
+                <Type>0</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </Ocm1>
+              <Ocm2>
+                <Type>0</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </Ocm2>
+              <Ocm3>
+                <Type>0</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </Ocm3>
+              <Ocm4>
+                <Type>0</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </Ocm4>
+              <Ocm5>
+                <Type>0</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </Ocm5>
+              <Ocm6>
+                <Type>0</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </Ocm6>
+              <IRAM>
+                <Type>0</Type>
+                <StartAddress>0x20000000</StartAddress>
+                <Size>0x44000</Size>
+              </IRAM>
+              <IROM>
+                <Type>1</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x98000</Size>
+              </IROM>
+              <XRAM>
+                <Type>1</Type>
+                <StartAddress>0x40100000</StartAddress>
+                <Size>0x4000</Size>
+              </XRAM>
+              <OCR_RVCT1>
+                <Type>1</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </OCR_RVCT1>
+              <OCR_RVCT2>
+                <Type>1</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </OCR_RVCT2>
+              <OCR_RVCT3>
+                <Type>1</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </OCR_RVCT3>
+              <OCR_RVCT4>
+                <Type>1</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x98000</Size>
+              </OCR_RVCT4>
+              <OCR_RVCT5>
+                <Type>1</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </OCR_RVCT5>
+              <OCR_RVCT6>
+                <Type>0</Type>
+                <StartAddress>0x40100000</StartAddress>
+                <Size>0x4000</Size>
+              </OCR_RVCT6>
+              <OCR_RVCT7>
+                <Type>0</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </OCR_RVCT7>
+              <OCR_RVCT8>
+                <Type>0</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </OCR_RVCT8>
+              <OCR_RVCT9>
+                <Type>0</Type>
+                <StartAddress>0x20000000</StartAddress>
+                <Size>0x44000</Size>
+              </OCR_RVCT9>
+              <OCR_RVCT10>
+                <Type>0</Type>
+                <StartAddress>0x4000000</StartAddress>
+                <Size>0x8000</Size>
+              </OCR_RVCT10>
+            </OnChipMemories>
+            <RvctStartVector/>
+          </ArmAdsMisc>
+          <Cads>
+            <interw>0</interw>
+            <Optim>2</Optim>
+            <oTime>0</oTime>
+            <SplitLS>0</SplitLS>
+            <OneElfS>1</OneElfS>
+            <Strict>0</Strict>
+            <EnumInt>0</EnumInt>
+            <PlainCh>0</PlainCh>
+            <Ropi>0</Ropi>
+            <Rwpi>0</Rwpi>
+            <wLevel>3</wLevel>
+            <uThumb>0</uThumb>
+            <uSurpInc>0</uSurpInc>
+            <uC99>0</uC99>
+            <uGnu>0</uGnu>
+            <useXO>0</useXO>
+            <v6Lang>3</v6Lang>
+            <v6LangP>3</v6LangP>
+            <vShortEn>1</vShortEn>
+            <vShortWch>1</vShortWch>
+            <v6Lto>0</v6Lto>
+            <v6WtE>0</v6WtE>
+            <v6Rtti>0</v6Rtti>
+            <VariousControls>
+              <MiscControls>-fno-common  -fdata-sections  -ffreestanding  -fno-builtin  -mthumb</MiscControls>
+              <Define>DEBUG, CPU_LPC55S69JBD100_cm33_core0, MCUXPRESSO_SDK</Define>
+              <Undefine/>
+              <IncludePath>..;../..</IncludePath>
+            </VariousControls>
+          </Cads>
+          <Aads>
+            <interw>0</interw>
+            <Ropi>0</Ropi>
+            <Rwpi>0</Rwpi>
+            <thumb>0</thumb>
+            <SplitLS>0</SplitLS>
+            <SwStkChk>0</SwStkChk>
+            <NoWarn>0</NoWarn>
+            <uSurpInc>0</uSurpInc>
+            <useXO>0</useXO>
+            <uClangAs>1</uClangAs>
+            <VariousControls>
+              <MiscControls/>
+              <Define>CPU_LPC55S69JBD100_cm33_core0, DEBUG, KEIL, DEBUG</Define>
+              <Undefine/>
+              <IncludePath/>
+            </VariousControls>
+          </Aads>
+          <LDads>
+            <umfTarg>0</umfTarg>
+            <Ropi>0</Ropi>
+            <Rwpi>0</Rwpi>
+            <noStLib>0</noStLib>
+            <RepFail>1</RepFail>
+            <useFile>0</useFile>
+            <TextAddressRange>0x00000000</TextAddressRange>
+            <DataAddressRange>0x20040000</DataAddressRange>
+            <pXoBase/>
+            <ScatterFile>LPC55S69_cm33_core0_flash.scf</ScatterFile>
+            <IncludeLibs/>
+            <IncludeLibsPath/>
+            <Misc>--remove --entry=Reset_Handler --diag_suppress 6314</Misc>
+            <LinkerInputFile/>
+            <DisabledWarnings>6314</DisabledWarnings>
+          </LDads>
+        </TargetArmAds>
+      </TargetOption>
+      <Groups>
+        <Group>
+          <GroupName>source</GroupName>
+          <Files>
+            <File>
+              <FileName>cmsis_spi_int_b2b_transfer_slave.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../cmsis_spi_int_b2b_transfer_slave.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>board</GroupName>
+          <Files>
+            <File>
+              <FileName>pin_mux.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../pin_mux.c</FilePath>
+            </File>
+            <File>
+              <FileName>pin_mux.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../pin_mux.h</FilePath>
+            </File>
+            <File>
+              <FileName>board.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../board.c</FilePath>
+            </File>
+            <File>
+              <FileName>board.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../board.h</FilePath>
+            </File>
+            <File>
+              <FileName>clock_config.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../clock_config.c</FilePath>
+            </File>
+            <File>
+              <FileName>clock_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../clock_config.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>doc</GroupName>
+          <Files>
+            <File>
+              <FileName>readme.md</FileName>
+              <FileType>5</FileType>
+              <FilePath>../readme.md</FilePath>
+            </File>
+          </Files>
+        </Group>
+      </Groups>
+    </Target>
+    <Target>
+      <TargetName>cmsis_spi_int_b2b_transfer_slave release</TargetName>
+      <ToolsetNumber>0x4</ToolsetNumber>
+      <ToolsetName>ARM-ADS</ToolsetName>
+      <uAC6>1</uAC6>
+      <TargetOption>
+        <TargetCommonOption>
+          <Device>LPC55S69JBD100:cm33_core0</Device>
+          <Vendor>NXP</Vendor>
+          <PackID>NXP.LPC55S69_DFP.13.0.0</PackID>
+          <PackURL>http://mcuxpresso.nxp.com/cmsis_pack/repo/</PackURL>
+          <Cpu>CPUTYPE("Cortex-M33") FPU3(SFPU) TZ DSP</Cpu>
+          <FlashUtilSpec/>
+          <StartupFile/>
+          <DeviceId>0</DeviceId>
+          <RegisterFile>$$Device:LPC55S69JBD100$fsl_device_registers.h</RegisterFile>
+          <MemoryEnv/>
+          <Cmp/>
+          <Asm/>
+          <Linker/>
+          <OHString/>
+          <InfinionOptionDll/>
+          <SLE66CMisc/>
+          <SLE66AMisc/>
+          <SLE66LinkerMisc/>
+          <SFDFile>$$Device:LPC55S69JBD100$LPC55S69_cm33_core0.xml</SFDFile>
+          <bCustSvd>0</bCustSvd>
+          <UseEnv>0</UseEnv>
+          <BinPath/>
+          <IncludePath/>
+          <LibPath/>
+          <RegisterFilePath/>
+          <DBRegisterFilePath/>
+          <TargetStatus>
+            <Error>0</Error>
+            <ExitCodeStop>0</ExitCodeStop>
+            <ButtonStop>0</ButtonStop>
+            <NotGenerated>0</NotGenerated>
+            <InvalidFlash>1</InvalidFlash>
+          </TargetStatus>
+          <OutputDirectory>release\</OutputDirectory>
+          <OutputName>cmsis_spi_int_b2b_transfer_slave.out</OutputName>
+          <CreateExecutable>1</CreateExecutable>
+          <CreateLib>0</CreateLib>
+          <CreateHexFile>0</CreateHexFile>
+          <DebugInformation>0</DebugInformation>
+          <BrowseInformation>1</BrowseInformation>
+          <ListingPath>.\Listings\</ListingPath>
+          <HexFormatSelection>1</HexFormatSelection>
+          <Merge32K>0</Merge32K>
+          <CreateBatchFile>0</CreateBatchFile>
+          <BeforeCompile>
+            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg2>0</RunUserProg2>
+            <UserProg1Name/>
+            <UserProg2Name/>
+            <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
+            <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
+            <nStopU1X>0</nStopU1X>
+            <nStopU2X>0</nStopU2X>
+          </BeforeCompile>
+          <BeforeMake>
+            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg2>0</RunUserProg2>
+            <UserProg1Name/>
+            <UserProg2Name/>
+            <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
+            <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
+            <nStopB1X>0</nStopB1X>
+            <nStopB2X>0</nStopB2X>
+          </BeforeMake>
+          <AfterMake>
+            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg2>0</RunUserProg2>
+            <UserProg1Name/>
+            <UserProg2Name/>
+            <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
+            <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
+            <nStopA1X>0</nStopA1X>
+            <nStopA2X>0</nStopA2X>
+          </AfterMake>
+          <SelectedForBatchBuild>1</SelectedForBatchBuild>
+          <SVCSIdString/>
+        </TargetCommonOption>
+        <CommonProperty>
+          <UseCPPCompiler>0</UseCPPCompiler>
+          <RVCTCodeConst>0</RVCTCodeConst>
+          <RVCTZI>0</RVCTZI>
+          <RVCTOtherData>0</RVCTOtherData>
+          <ModuleSelection>0</ModuleSelection>
+          <IncludeInBuild>1</IncludeInBuild>
+          <AlwaysBuild>0</AlwaysBuild>
+          <GenerateAssemblyFile>0</GenerateAssemblyFile>
+          <AssembleAssemblyFile>0</AssembleAssemblyFile>
+          <PublicsOnly>0</PublicsOnly>
+          <StopOnExitCode>3</StopOnExitCode>
+          <CustomArgument/>
+          <IncludeLibraryModules/>
+          <ComprImg>1</ComprImg>
+        </CommonProperty>
+        <DllOption>
+          <SimDllName/>
+          <SimDllArguments/>
+          <SimDlgDll/>
+          <SimDlgDllArguments/>
+          <TargetDllName>SARMV8M.DLL</TargetDllName>
+          <TargetDllArguments> -MPU</TargetDllArguments>
+          <TargetDlgDll>TCM.DLL</TargetDlgDll>
+          <TargetDlgDllArguments>-pCM33</TargetDlgDllArguments>
+        </DllOption>
+        <DebugOption>
+          <OPTHX>
+            <HexSelection>1</HexSelection>
+            <HexRangeLowAddress>0</HexRangeLowAddress>
+            <HexRangeHighAddress>0</HexRangeHighAddress>
+            <HexOffset>0</HexOffset>
+            <Oh166RecLen>16</Oh166RecLen>
+          </OPTHX>
+        </DebugOption>
+        <Utilities>
+          <Flash1>
+            <UseTargetDll>1</UseTargetDll>
+            <UseExternalTool>0</UseExternalTool>
+            <RunIndependent>0</RunIndependent>
+            <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
+            <Capability>1</Capability>
+            <DriverSelection>-1</DriverSelection>
+          </Flash1>
+          <bUseTDR>1</bUseTDR>
+          <Flash2>BIN\UL2V8M.DLL</Flash2>
+          <Flash3/>
+          <Flash4/>
+          <pFcarmOut/>
+          <pFcarmGrp/>
+          <pFcArmRoot/>
+          <FcArmLst>0</FcArmLst>
+        </Utilities>
+        <TargetArmAds>
+          <ArmAdsMisc>
+            <GenerateListings>0</GenerateListings>
+            <asHll>1</asHll>
+            <asAsm>1</asAsm>
+            <asMacX>1</asMacX>
+            <asSyms>1</asSyms>
+            <asFals>1</asFals>
+            <asDbgD>1</asDbgD>
+            <asForm>1</asForm>
+            <ldLst>0</ldLst>
+            <ldmm>1</ldmm>
+            <ldXref>1</ldXref>
+            <BigEnd>0</BigEnd>
+            <AdsALst>1</AdsALst>
+            <AdsACrf>0</AdsACrf>
+            <AdsANop>0</AdsANop>
+            <AdsANot>0</AdsANot>
+            <AdsLLst>1</AdsLLst>
+            <AdsLmap>1</AdsLmap>
+            <AdsLcgr>1</AdsLcgr>
+            <AdsLsym>1</AdsLsym>
+            <AdsLszi>1</AdsLszi>
+            <AdsLtoi>1</AdsLtoi>
+            <AdsLsun>1</AdsLsun>
+            <AdsLven>1</AdsLven>
+            <AdsLsxf>1</AdsLsxf>
+            <RvctClst>0</RvctClst>
+            <GenPPlst>0</GenPPlst>
+            <AdsCpuType>"Cortex-M33"</AdsCpuType>
+            <RvctDeviceName/>
+            <mOS>0</mOS>
+            <uocRom>0</uocRom>
+            <uocRam>0</uocRam>
+            <hadIROM>1</hadIROM>
+            <hadIRAM>1</hadIRAM>
+            <hadXRAM>1</hadXRAM>
+            <uocXRam>0</uocXRam>
+            <RvdsVP>2</RvdsVP>
+            <RvdsMve>0</RvdsMve>
+            <hadIRAM2>1</hadIRAM2>
+            <hadIROM2>0</hadIROM2>
+            <StupSel>8</StupSel>
+            <useUlib>1</useUlib>
+            <EndSel>0</EndSel>
+            <uLtcg>0</uLtcg>
+            <nSecure>0</nSecure>
+            <RoSelD>3</RoSelD>
+            <RwSelD>4</RwSelD>
+            <CodeSel>0</CodeSel>
+            <OptFeed>0</OptFeed>
+            <NoZi1>0</NoZi1>
+            <NoZi2>0</NoZi2>
+            <NoZi3>0</NoZi3>
+            <NoZi4>0</NoZi4>
+            <NoZi5>0</NoZi5>
+            <Ro1Chk>0</Ro1Chk>
+            <Ro2Chk>0</Ro2Chk>
+            <Ro3Chk>0</Ro3Chk>
+            <Ir1Chk>1</Ir1Chk>
+            <Ir2Chk>0</Ir2Chk>
+            <Ra1Chk>0</Ra1Chk>
+            <Ra2Chk>0</Ra2Chk>
+            <Ra3Chk>0</Ra3Chk>
+            <Im1Chk>1</Im1Chk>
+            <Im2Chk>0</Im2Chk>
+            <OnChipMemories>
+              <Ocm1>
+                <Type>0</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </Ocm1>
+              <Ocm2>
+                <Type>0</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </Ocm2>
+              <Ocm3>
+                <Type>0</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </Ocm3>
+              <Ocm4>
+                <Type>0</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </Ocm4>
+              <Ocm5>
+                <Type>0</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </Ocm5>
+              <Ocm6>
+                <Type>0</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </Ocm6>
+              <IRAM>
+                <Type>0</Type>
+                <StartAddress>0x20000000</StartAddress>
+                <Size>0x44000</Size>
+              </IRAM>
+              <IROM>
+                <Type>1</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x98000</Size>
+              </IROM>
+              <XRAM>
+                <Type>1</Type>
+                <StartAddress>0x40100000</StartAddress>
+                <Size>0x4000</Size>
+              </XRAM>
+              <OCR_RVCT1>
+                <Type>1</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </OCR_RVCT1>
+              <OCR_RVCT2>
+                <Type>1</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </OCR_RVCT2>
+              <OCR_RVCT3>
+                <Type>1</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </OCR_RVCT3>
+              <OCR_RVCT4>
+                <Type>1</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x98000</Size>
+              </OCR_RVCT4>
+              <OCR_RVCT5>
+                <Type>1</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </OCR_RVCT5>
+              <OCR_RVCT6>
+                <Type>0</Type>
+                <StartAddress>0x40100000</StartAddress>
+                <Size>0x4000</Size>
+              </OCR_RVCT6>
+              <OCR_RVCT7>
+                <Type>0</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </OCR_RVCT7>
+              <OCR_RVCT8>
+                <Type>0</Type>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
+              </OCR_RVCT8>
+              <OCR_RVCT9>
+                <Type>0</Type>
+                <StartAddress>0x20000000</StartAddress>
+                <Size>0x44000</Size>
+              </OCR_RVCT9>
+              <OCR_RVCT10>
+                <Type>0</Type>
+                <StartAddress>0x4000000</StartAddress>
+                <Size>0x8000</Size>
+              </OCR_RVCT10>
+            </OnChipMemories>
+            <RvctStartVector/>
+          </ArmAdsMisc>
+          <Cads>
+            <interw>0</interw>
+            <Optim>7</Optim>
+            <oTime>0</oTime>
+            <SplitLS>0</SplitLS>
+            <OneElfS>1</OneElfS>
+            <Strict>0</Strict>
+            <EnumInt>0</EnumInt>
+            <PlainCh>0</PlainCh>
+            <Ropi>0</Ropi>
+            <Rwpi>0</Rwpi>
+            <wLevel>3</wLevel>
+            <uThumb>0</uThumb>
+            <uSurpInc>0</uSurpInc>
+            <uC99>0</uC99>
+            <uGnu>0</uGnu>
+            <useXO>0</useXO>
+            <v6Lang>3</v6Lang>
+            <v6LangP>3</v6LangP>
+            <vShortEn>1</vShortEn>
+            <vShortWch>1</vShortWch>
+            <v6Lto>0</v6Lto>
+            <v6WtE>0</v6WtE>
+            <v6Rtti>0</v6Rtti>
+            <VariousControls>
+              <MiscControls>-fno-common  -fdata-sections  -ffreestanding  -fno-builtin  -mthumb</MiscControls>
+              <Define>NDEBUG, CPU_LPC55S69JBD100_cm33_core0, MCUXPRESSO_SDK</Define>
+              <Undefine/>
+              <IncludePath>..;../..</IncludePath>
+            </VariousControls>
+          </Cads>
+          <Aads>
+            <interw>0</interw>
+            <Ropi>0</Ropi>
+            <Rwpi>0</Rwpi>
+            <thumb>0</thumb>
+            <SplitLS>0</SplitLS>
+            <SwStkChk>0</SwStkChk>
+            <NoWarn>0</NoWarn>
+            <uSurpInc>0</uSurpInc>
+            <useXO>0</useXO>
+            <uClangAs>1</uClangAs>
+            <VariousControls>
+              <MiscControls/>
+              <Define>CPU_LPC55S69JBD100_cm33_core0, NDEBUG, KEIL, NDEBUG</Define>
+              <Undefine/>
+              <IncludePath/>
+            </VariousControls>
+          </Aads>
+          <LDads>
+            <umfTarg>0</umfTarg>
+            <Ropi>0</Ropi>
+            <Rwpi>0</Rwpi>
+            <noStLib>0</noStLib>
+            <RepFail>1</RepFail>
+            <useFile>0</useFile>
+            <TextAddressRange>0x00000000</TextAddressRange>
+            <DataAddressRange>0x20040000</DataAddressRange>
+            <pXoBase/>
+            <ScatterFile>LPC55S69_cm33_core0_flash.scf</ScatterFile>
+            <IncludeLibs/>
+            <IncludeLibsPath/>
+            <Misc>--remove --entry=Reset_Handler --diag_suppress 6314</Misc>
+            <LinkerInputFile/>
+            <DisabledWarnings>6314</DisabledWarnings>
+          </LDads>
+        </TargetArmAds>
+      </TargetOption>
+      <Groups>
+        <Group>
+          <GroupName>source</GroupName>
+          <Files>
+            <File>
+              <FileName>cmsis_spi_int_b2b_transfer_slave.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../cmsis_spi_int_b2b_transfer_slave.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>board</GroupName>
+          <Files>
+            <File>
+              <FileName>pin_mux.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../pin_mux.c</FilePath>
+            </File>
+            <File>
+              <FileName>pin_mux.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../pin_mux.h</FilePath>
+            </File>
+            <File>
+              <FileName>board.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../board.c</FilePath>
+            </File>
+            <File>
+              <FileName>board.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../board.h</FilePath>
+            </File>
+            <File>
+              <FileName>clock_config.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../clock_config.c</FilePath>
+            </File>
+            <File>
+              <FileName>clock_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../clock_config.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>doc</GroupName>
+          <Files>
+            <File>
+              <FileName>readme.md</FileName>
+              <FileType>5</FileType>
+              <FilePath>../readme.md</FilePath>
+            </File>
+          </Files>
+        </Group>
+      </Groups>
+    </Target>
+  </Targets>
+  <RTE>
+    <apis>
+      <api Capiversion="2.3.0" Cgroup="SPI" Cclass="CMSIS Driver" exclusive="0">
+        <package url="http://www.keil.com/pack/" schemaVersion="1.4" version="5.8.0" vendor="ARM" name="CMSIS"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </api>
+    </apis>
+    <components>
+      <component Cvendor="NXP" Cversion="1.0.0" Csub="debug_console_lite" Cgroup="SDK Utilities" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="1.0.0" Csub="assert_lite" Cgroup="SDK Utilities" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="2.5.1" Csub="dma" Cgroup="SDK Drivers" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="2.3.1" Csub="spi" Cgroup="SDK Drivers" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="2.2.1" Csub="spi_dma" Cgroup="SDK Drivers" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="2.5.0" Capiversion="2.2.0" Csub="flexcomm_spi_cmsis" Cgroup="SPI" Cclass="CMSIS Driver">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="2.4.0" Csub="common" Cgroup="SDK Drivers" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="2.3.3" Csub="clock" Cgroup="SDK Drivers" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="2.3.0" Csub="power" Cgroup="SDK Drivers" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="2.2.0" Csub="iocon" Cgroup="SDK Drivers" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="2.0.7" Csub="inputmux" Cgroup="SDK Drivers" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="2.0.1" Csub="inputmux_connections" Cgroup="SDK Drivers" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="1.0.0" Csub="LPC55S69_header" Cgroup="CMSIS" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="1.1.0" Cgroup="Startup" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="2.8.3" Csub="usart" Cgroup="SDK Drivers" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="2.0.2" Csub="flexcomm" Cgroup="SDK Drivers" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="2.1.7" Csub="gpio" Cgroup="SDK Drivers" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="1.0.0" Csub="usart_adapter" Cgroup="SDK Drivers" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="1.0.0" Csub="lists" Cgroup="SDK Drivers" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="1.1.1" Csub="misc_utilities" Cgroup="SDK Utilities" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="1.0.0" Csub="RTE_Device" Cgroup="SDK Project Template" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="2.1.2" Csub="reset" Cgroup="SDK Drivers" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="ARM" Cversion="5.5.0" Cgroup="CORE" Cclass="CMSIS">
+        <package url="http://www.keil.com/pack/" schemaVersion="1.4" version="5.8.0" vendor="ARM" name="CMSIS"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+      <component Cvendor="NXP" Cversion="1.0.0" Csub="LPC55S69_system" Cgroup="CMSIS" Cclass="Device">
+        <package url="https://mcuxpresso.nxp.com/cmsis_pack/repo/" schemaVersion="1.4" version="18.0.0" vendor="NXP" name="LPC55S69_DFP"/>
+        <targetInfos>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave debug"/>
+          <targetInfo name="cmsis_spi_int_b2b_transfer_slave release"/>
+        </targetInfos>
+      </component>
+    </components>
+    <files/>
+  </RTE>
+</Project>

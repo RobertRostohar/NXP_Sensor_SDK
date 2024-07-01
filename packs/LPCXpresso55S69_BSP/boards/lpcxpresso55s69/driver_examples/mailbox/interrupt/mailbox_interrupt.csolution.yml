@@ -1,0 +1,25 @@
+---
+solution:
+  created-for: cmsis-toolbox@2.1.0
+  packs:
+  - pack: NXP::LPC55S69_DFP
+  - pack: ARM::CMSIS
+  target-types:
+  - type: armgcc
+    compiler: GCC
+  - type: iar
+    compiler: IAR
+  - type: mdk
+    compiler: AC6
+  output-dirs:
+    outdir: "$ProjectDir()$/$TargetType$/$BuildType$"
+  build-types:
+  - type: debug
+    context-map:
+    - mailbox_interrupt_cm33_core1.debug
+  - type: release
+    context-map:
+    - mailbox_interrupt_cm33_core1.release
+  projects:
+  - project: cm33_core1/mailbox_interrupt_cm33_core1.cproject.yml
+  - project: cm33_core0/mailbox_interrupt_cm33_core0.cproject.yml

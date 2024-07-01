@@ -1,0 +1,20 @@
+---
+solution:
+  created-for: cmsis-toolbox@2.1.0
+  packs:
+  - pack: NXP::LPC55S69_DFP
+  - pack: ARM::CMSIS
+  target-types:
+  - type: armgcc
+    compiler: GCC
+  - type: iar
+    compiler: IAR
+  - type: mdk
+    compiler: AC6
+  output-dirs:
+    outdir: "./$TargetType$/$BuildType$"
+  build-types:
+  - type: release
+  - type: debug
+  projects:
+  - project: cmsis_i2c_dma_b2b_transfer_slave.cproject.yml

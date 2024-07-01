@@ -1,0 +1,25 @@
+---
+solution:
+  created-for: cmsis-toolbox@2.1.0
+  packs:
+  - pack: NXP::LPC55S69_DFP
+  - pack: ARM::CMSIS
+  target-types:
+  - type: armgcc
+    compiler: GCC
+  - type: iar
+    compiler: IAR
+  - type: mdk
+    compiler: AC6
+  output-dirs:
+    outdir: "$ProjectDir()$/$TargetType$/$BuildType$"
+  build-types:
+  - type: release
+    context-map:
+    - hello_world_s.release
+  - type: debug
+    context-map:
+    - hello_world_s.debug
+  projects:
+  - project: hello_world_s/hello_world_s.cproject.yml
+  - project: hello_world_ns/hello_world_ns.cproject.yml

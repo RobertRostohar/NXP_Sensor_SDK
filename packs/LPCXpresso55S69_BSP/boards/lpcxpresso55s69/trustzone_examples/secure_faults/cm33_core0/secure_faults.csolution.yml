@@ -1,0 +1,25 @@
+---
+solution:
+  created-for: cmsis-toolbox@2.1.0
+  packs:
+  - pack: NXP::LPC55S69_DFP
+  - pack: ARM::CMSIS
+  target-types:
+  - type: armgcc
+    compiler: GCC
+  - type: iar
+    compiler: IAR
+  - type: mdk
+    compiler: AC6
+  output-dirs:
+    outdir: "$ProjectDir()$/$TargetType$/$BuildType$"
+  build-types:
+  - type: release
+    context-map:
+    - secure_faults_s.release
+  - type: debug
+    context-map:
+    - secure_faults_s.debug
+  projects:
+  - project: secure_faults_s/secure_faults_s.cproject.yml
+  - project: secure_faults_ns/secure_faults_ns.cproject.yml

@@ -1,0 +1,16 @@
+---
+solution:
+  created-for: cmsis-toolbox@2.1.0
+  packs:
+  - pack: NXP::LPC55S69_DFP
+  - pack: ARM::CMSIS
+  target-types:
+  - type: mdk
+    compiler: AC6
+  output-dirs:
+    outdir: "./$TargetType$/$BuildType$"
+  build-types:
+  - type: release
+  - type: debug
+  projects:
+  - project: rotary_encoder_ezh.cproject.yml

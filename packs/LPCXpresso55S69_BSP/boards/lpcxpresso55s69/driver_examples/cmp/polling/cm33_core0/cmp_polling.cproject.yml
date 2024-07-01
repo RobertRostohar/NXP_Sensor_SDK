@@ -1,0 +1,397 @@
+---
+project:
+  description: The CMP polling Example shows the simplest way to use CMP driver
+  device: LPC55S69JBD100:cm33_core0
+  components:
+  - component: NXP::Device:SDK Utilities:debug_console_lite
+  - component: NXP::Device:SDK Utilities:assert_lite
+  - component: NXP::Device:SDK Drivers:usart
+  - component: NXP::Device:SDK Drivers:gpio
+  - component: NXP::Device:SDK Drivers:cmp_1
+  - component: NXP::Device:SDK Drivers:common
+  - component: NXP::Device:SDK Drivers:clock
+  - component: NXP::Device:SDK Drivers:power
+  - component: NXP::Device:SDK Drivers:iocon
+  - component: NXP::Device:SDK Drivers:inputmux
+  - component: NXP::Device:CMSIS:LPC55S69_header
+  - component: NXP::Device:Startup
+  - component: NXP::Device:SDK Drivers:flexcomm
+  - component: NXP::Device:SDK Drivers:usart_adapter
+  - component: NXP::Device:SDK Drivers:lists
+  - component: NXP::Device:SDK Utilities:misc_utilities
+  - component: NXP::Device:SDK Drivers:reset
+  - component: NXP::Device:SDK Drivers:inputmux_connections
+  - component: ARM::CMSIS:CORE
+  - component: NXP::Device:CMSIS:LPC55S69_system
+  groups:
+  - group: source
+    files:
+    - file: cmp_polling.c
+  - group: board
+    files:
+    - file: pin_mux.c
+    - file: pin_mux.h
+    - file: board.c
+    - file: board.h
+    - file: clock_config.c
+    - file: clock_config.h
+  - group: LPC55S69/iar
+    files:
+    - file: iar/LPC55S69_cm33_core0_flash.icf
+      for-compiler:
+      - IAR
+      for-context:
+      - ".debug"
+      - ".release"
+  - group: LPC55S69/arm
+    files:
+    - file: mdk/LPC55S69_cm33_core0_flash.scf
+      for-compiler:
+      - AC6
+      for-context:
+      - ".debug"
+      - ".release"
+  - group: LPC55S69/gcc
+    files:
+    - file: armgcc/LPC55S69_cm33_core0_flash.ld
+      for-compiler:
+      - GCC
+      for-context:
+      - ".debug"
+      - ".release"
+  setups:
+  - setup: IAR
+    for-compiler: IAR
+    for-context: ".release"
+    misc:
+    - C:
+      - "-I$ProjectDir()$/.."
+      - "-DNDEBUG"
+      - "-DCPU_LPC55S69JBD100_cm33_core0"
+      - "-DMCUXPRESSO_SDK"
+      - "--diag_suppress Pa082,Pa050"
+      - "-e"
+      - "--use_c++_inline"
+      - "-Oh"
+      ASM:
+      - "-DNDEBUG"
+      - "-s"
+      - -M"<>"
+      - "-w+"
+      - "-j"
+      CPP:
+      - "-DNDEBUG"
+      - "-DMCUXPRESSO_SDK"
+      - "--diag_suppress Pa082,Pa050"
+      - "-e"
+      - "--c++"
+  - setup: IAR
+    for-compiler: IAR
+    for-context: ".debug"
+    misc:
+    - C:
+      - "-I$ProjectDir()$/.."
+      - "-DDEBUG"
+      - "-DCPU_LPC55S69JBD100_cm33_core0"
+      - "-DMCUXPRESSO_SDK"
+      - "--debug"
+      - "--no_cse"
+      - "--no_unroll"
+      - "--no_inline"
+      - "--no_code_motion"
+      - "--no_tbaa"
+      - "--no_clustering"
+      - "--no_scheduling"
+      - "--diag_suppress Pa082,Pa050"
+      - "-e"
+      - "--use_c++_inline"
+      - "-Ol"
+      ASM:
+      - "-DDEBUG"
+      - "-r"
+      - "-s"
+      - -M"<>"
+      - "-w+"
+      - "-j"
+      CPP:
+      - "-DDEBUG"
+      - "-DMCUXPRESSO_SDK"
+      - "--debug"
+      - "--no_cse"
+      - "--no_unroll"
+      - "--no_code_motion"
+      - "--no_tbaa"
+      - "--no_clustering"
+      - "--no_scheduling"
+      - "--diag_suppress Pa082,Pa050"
+      - "-e"
+      - "--c++"
+  - setup: AC6
+    for-compiler: AC6
+    for-context: ".release"
+    misc:
+    - C:
+      - "-I$ProjectDir()$/.."
+      - "-DNDEBUG"
+      - "-DCPU_LPC55S69JBD100_cm33_core0"
+      - "-DMCUXPRESSO_SDK"
+      - "-Oz"
+      - "-mcpu=cortex-m33"
+      - "-mfpu=fpv5-sp-d16"
+      - "-std=c99"
+      - "-fshort-enums"
+      - "-fshort-wchar"
+      - "-ffunction-sections"
+      - "-fno-common"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mthumb"
+      - "-fno-rtti"
+      ASM:
+      - "-DNDEBUG"
+      CPP:
+      - "-DNDEBUG"
+      - "-DMCUXPRESSO_SDK"
+      - "-Oz"
+      - "-mcpu=cortex-m33"
+      - "-mfpu=fpv5-sp-d16"
+      - "-fshort-enums"
+      - "-fshort-wchar"
+      - "-fno-common"
+      - "-ffunction-sections"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mthumb"
+      - "-fno-rtti"
+      - "-fno-exceptions"
+      Link:
+      - "--diag_suppress=6314"
+      - "--remove"
+      - "--entry=Reset_Handler"
+      - "--map"
+      - "--xref"
+      - "--callgraph"
+      - "--symbols"
+      - "--info sizes"
+      - "--info totals"
+      - "--info unused"
+      - "--info veneers"
+      - "--strict"
+      - "--diag_suppress 6314"
+      - "--library_type=microlib"
+  - setup: AC6
+    for-compiler: AC6
+    for-context: ".debug"
+    misc:
+    - C:
+      - "-I$ProjectDir()$/.."
+      - "-DDEBUG"
+      - "-DCPU_LPC55S69JBD100_cm33_core0"
+      - "-DMCUXPRESSO_SDK"
+      - "-g"
+      - "-O1"
+      - "-mcpu=cortex-m33"
+      - "-mfpu=fpv5-sp-d16"
+      - "-std=c99"
+      - "-fshort-enums"
+      - "-fshort-wchar"
+      - "-ffunction-sections"
+      - "-fno-common"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mthumb"
+      - "-fno-rtti"
+      ASM:
+      - "-DDEBUG"
+      CPP:
+      - "-DDEBUG"
+      - "-DMCUXPRESSO_SDK"
+      - "-g"
+      - "-O1"
+      - "-mcpu=cortex-m33"
+      - "-mfpu=fpv5-sp-d16"
+      - "-fshort-enums"
+      - "-fshort-wchar"
+      - "-fno-common"
+      - "-ffunction-sections"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mthumb"
+      - "-fno-rtti"
+      - "-fno-exceptions"
+      Link:
+      - "--diag_suppress=6314"
+      - "--remove"
+      - "--entry=Reset_Handler"
+      - "--map"
+      - "--xref"
+      - "--callgraph"
+      - "--symbols"
+      - "--info sizes"
+      - "--info totals"
+      - "--info unused"
+      - "--info veneers"
+      - "--strict"
+      - "--diag_suppress 6314"
+      - "--library_type=microlib"
+  - setup: GCC
+    for-compiler: GCC
+    for-context: ".debug"
+    misc:
+    - C:
+      - "-I$ProjectDir()$/.."
+      - "-DDEBUG"
+      - "-DCPU_LPC55S69JBD100_cm33_core0"
+      - "-DMCUXPRESSO_SDK"
+      - "-g"
+      - "-O0"
+      - "-mcpu=cortex-m33"
+      - "-Wall"
+      - "-mfloat-abi=hard"
+      - "-mfpu=fpv5-sp-d16"
+      - "-mthumb"
+      - "-MMD"
+      - "-MP"
+      - "-fno-common"
+      - "-ffunction-sections"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mapcs"
+      - "-std=gnu99"
+      ASM:
+      - "-DDEBUG"
+      - "-D__STARTUP_CLEAR_BSS"
+      - "-mcpu=cortex-m33"
+      - "-mfloat-abi=hard"
+      - "-mfpu=fpv5-sp-d16"
+      - "-mthumb"
+      CPP:
+      - "-DDEBUG"
+      - "-DCPU_LPC55S69JBD100_cm33_core0"
+      - "-DMCUXPRESSO_SDK"
+      - "-g"
+      - "-O0"
+      - "-mcpu=cortex-m33"
+      - "-Wall"
+      - "-mfloat-abi=hard"
+      - "-mfpu=fpv5-sp-d16"
+      - "-mthumb"
+      - "-MMD"
+      - "-MP"
+      - "-fno-common"
+      - "-ffunction-sections"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mapcs"
+      - "-fno-rtti"
+      - "-fno-exceptions"
+      Link:
+      - "-g"
+      - "-mcpu=cortex-m33"
+      - "-Wall"
+      - "-mfloat-abi=hard"
+      - "-mfpu=fpv5-sp-d16"
+      - "--specs=nano.specs"
+      - "--specs=nosys.specs"
+      - "-fno-common"
+      - "-ffunction-sections"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mthumb"
+      - "-mapcs"
+      - "-Wl,--gc-sections"
+      - "-Wl,-static"
+      - "-Wl,-z"
+      - "-Wl,muldefs"
+      - "-Wl,-Map=output.map"
+      - "-Wl,--print-memory-usage"
+      Library:
+      - "-lm"
+      - "-lc"
+      - "-lgcc"
+      - "-lnosys"
+  - setup: GCC
+    for-compiler: GCC
+    for-context: ".release"
+    misc:
+    - C:
+      - "-I$ProjectDir()$/.."
+      - "-DNDEBUG"
+      - "-DCPU_LPC55S69JBD100_cm33_core0"
+      - "-DMCUXPRESSO_SDK"
+      - "-Os"
+      - "-mcpu=cortex-m33"
+      - "-Wall"
+      - "-mfloat-abi=hard"
+      - "-mfpu=fpv5-sp-d16"
+      - "-mthumb"
+      - "-MMD"
+      - "-MP"
+      - "-fno-common"
+      - "-ffunction-sections"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mapcs"
+      - "-std=gnu99"
+      ASM:
+      - "-DNDEBUG"
+      - "-D__STARTUP_CLEAR_BSS"
+      - "-mcpu=cortex-m33"
+      - "-mfloat-abi=hard"
+      - "-mfpu=fpv5-sp-d16"
+      - "-mthumb"
+      CPP:
+      - "-DNDEBUG"
+      - "-DCPU_LPC55S69JBD100_cm33_core0"
+      - "-DMCUXPRESSO_SDK"
+      - "-Os"
+      - "-mcpu=cortex-m33"
+      - "-Wall"
+      - "-mfloat-abi=hard"
+      - "-mfpu=fpv5-sp-d16"
+      - "-mthumb"
+      - "-MMD"
+      - "-MP"
+      - "-fno-common"
+      - "-ffunction-sections"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mapcs"
+      - "-fno-rtti"
+      - "-fno-exceptions"
+      Link:
+      - "-mcpu=cortex-m33"
+      - "-Wall"
+      - "-mfloat-abi=hard"
+      - "-mfpu=fpv5-sp-d16"
+      - "--specs=nano.specs"
+      - "--specs=nosys.specs"
+      - "-fno-common"
+      - "-ffunction-sections"
+      - "-fdata-sections"
+      - "-ffreestanding"
+      - "-fno-builtin"
+      - "-mthumb"
+      - "-mapcs"
+      - "-Wl,--gc-sections"
+      - "-Wl,-static"
+      - "-Wl,-z"
+      - "-Wl,muldefs"
+      - "-Wl,-Map=output.map"
+      - "-Wl,--print-memory-usage"
+      Library:
+      - "-lm"
+      - "-lc"
+      - "-lgcc"
+      - "-lnosys"
+  rte:
+    base-dir: "./$TargetType$/RTE"
