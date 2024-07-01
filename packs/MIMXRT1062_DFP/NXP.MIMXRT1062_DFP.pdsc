@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+<package schemaVersion="1.7.36" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.36/schema/PACK.xsd">
   <name>MIMXRT1062_DFP</name>
   <vendor>NXP</vendor>
   <description>Device Family Pack for MIMXRT1062</description>
   <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
   <license>Licenses.txt</license>
   <releases>
+    <release version="18.1.0-dev">
+      - Add GPIO CMSIS-Driver
+    </release>
     <release version="18.0.0" date="2024-01-14">NXP CMSIS Packs based on MCUXpresso SDK 2.15.0</release>
     <release version="17.1.0" date="2023-08-08">NXP CMSIS Packs based on MCUXpresso SDK 2.14.1</release>
     <release version="17.0.0" date="2023-07-27">NXP CMSIS Packs based on MCUXpresso SDK 2.14.0</release>
@@ -1063,6 +1066,12 @@
       <require Cclass="CMSIS Driver" Cgroup="Ethernet" Capiversion="2.2.0"/>
       <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
       <require Cclass="Device" Cgroup="SDK Drivers" Csub="phy-common"/>
+    </condition>
+    <condition id="driver.cmsis_gpio.condition_id">
+      <require condition="device_id.MIMXRT1062xxxxA, MIMXRT1062xxxxB.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iomuxc"/>
     </condition>
     <condition id="driver.cmsis_lpi2c.condition_id">
       <require condition="allOf.driver.lpi2c_edma, device_id=MIMXRT1062xxxxA, MIMXRT1062xxxxB, driver.lpi2c, CMSIS_Driver_Include.I2C, RTE_Device.internal_condition"/>
@@ -2301,6 +2310,13 @@
         <file category="sourceC" name="devices/MIMXRT1062/cmsis_drivers/fsl_enet_phy_cmsis.c" projectpath="drivers"/>
         <file category="header" name="devices/MIMXRT1062/cmsis_drivers/fsl_enet_phy_cmsis.h" projectpath="drivers"/>
         <file category="include" name="devices/MIMXRT1062/cmsis_drivers/"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="GPIO" Csub="gpio_cmsis" Cversion="1.0.0" Capiversion="1.0.0" condition="driver.cmsis_gpio.condition_id">
+      <description>GPIO CMSIS Driver</description>
+      <files>
+        <file category="header" name="devices/MIMXRT1062/cmsis_drivers/fsl_gpio_cmsis.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MIMXRT1062/cmsis_drivers/fsl_gpio_cmsis.c" projectpath="drivers"/>
       </files>
     </component>
     <component Cclass="CMSIS Driver" Cgroup="I2C" Csub="lpi2c_cmsis" Cversion="2.4.0" Capiversion="2.3.0" condition="driver.cmsis_lpi2c.condition_id">

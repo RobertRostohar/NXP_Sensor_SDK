@@ -18,11 +18,11 @@
  * $Date:        18. April 2023
  * $Revision:    V1.0
  *
- * Project:      GPIO Driver definitions for i.MX RT1060
+ * Project:      GPIO Driver definitions for i.MX RT1062
  */
 
-#ifndef GPIO_IMXRT1060_H_
-#define GPIO_IMXRT1060_H_
+#ifndef FSL_GPIO_CMSIS_H_
+#define FSL_GPIO_CMSIS_H_
 
 #ifdef  __cplusplus
 extern "C"
@@ -57,4 +57,4 @@ extern ARM_DRIVER_GPIO Driver_GPIO0;
 }
 #endif
 
-#endif /* GPIO_IMXRT1060_H_ */
+#endif /* FSL_GPIO_CMSIS_H_ */

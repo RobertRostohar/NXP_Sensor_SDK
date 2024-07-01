@@ -18,7 +18,7 @@
  * $Date:        18. April 2023
  * $Revision:    V1.0
  *
- * Project:      GPIO Driver for i.MX RT1060
+ * Project:      GPIO Driver for i.MX RT1062
  */
 
 #include "fsl_clock.h"
@@ -27,7 +27,7 @@
 #include "fsl_iomuxc.h"
 #include "fsl_iomuxc_ex.h"
 
-#include "GPIO_iMXRT1060.h"
+#include "fsl_gpio_cmsis.h"
 
 
 // Pin mapping
