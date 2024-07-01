@@ -28,7 +28,7 @@
 #include CMSIS_device_header
 
 #if !defined CMSIS_VOUT || !defined CMSIS_VIN
-#include "GPIO_iMXRT1060.h"
+#include "fsl_gpio_cmsis.h"
 #endif
 
 // VIO pins

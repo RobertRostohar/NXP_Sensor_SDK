@@ -4,8 +4,8 @@ layer:
   description: EVK-MIMXRT1060 Development Board
 
   packs:
-    - pack: NXP::MIMXRT1062_DFP@18.0.0
-    - pack: NXP::EVK-MIMXRT1060_BSP@18.0.0
+    - pack: NXP::MIMXRT1062_DFP@>=18.1.0-0
+    - pack: NXP::EVK-MIMXRT1060_BSP@>=18.1.0-0
     - pack: ARM::CMSIS@6.1.0
     - pack: ARM::CMSIS-Compiler@2.1.0
 
@@ -30,6 +30,9 @@ layer:
         - ARDUINO_UNO_D15
         - ARDUINO_UNO_D16
         - ARDUINO_UNO_D17
+        - FXOS8700_I2C
+        - FXOS8700_INT1
+        - FXOS8700_INT2
         - STDIN
         - STDOUT
         - STDERR
@@ -83,7 +86,7 @@ layer:
 
     - component: ARM::CMSIS:CORE
 
-    - component: ARM::CMSIS Driver:GPIO:Custom
+    - component: NXP::CMSIS Driver:GPIO:gpio_cmsis
     - component: ARM::CMSIS Driver:I2C:Custom
     - component: NXP::CMSIS Driver:I2C:lpi2c_cmsis
     - component: ARM::CMSIS Driver:USART:Custom
@@ -103,11 +106,6 @@ layer:
         - file: main.c
         - file: retarget_stdio.c
         - file: vio_evkmimxrt1060.c
-    - group: gpio_driver
-      files:
-        - file: ../../drivers/gpio/gpio_driver.h
-        - file: ../../drivers/gpio/iMXRT1060/GPIO_iMXRT1060.h
-        - file: ../../drivers/gpio/iMXRT1060/GPIO_iMXRT1060.c
 
   linker:
     - script: RTE/Device/MIMXRT1062DVL6A/MIMXRT1062xxxxx_flexspi_nor_sdram.scf

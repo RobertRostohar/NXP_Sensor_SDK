@@ -15,7 +15,7 @@
 
 #include "clock_config.h"
 #include "fsl_clock.h"
-#include "GPIO_iMXRT1060.h"
+#include "fsl_gpio_cmsis.h"
 #include "Driver_I2C.h"
 #include "Driver_SPI.h"
 #include "Driver_USART.h"
