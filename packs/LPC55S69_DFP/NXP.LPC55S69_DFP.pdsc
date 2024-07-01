@@ -1,0 +1,2556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>LPC55S69_DFP</name>
+  <vendor>NXP</vendor>
+  <description>Device Family Pack for LPC55S69</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="18.0.0" date="2024-01-14">NXP CMSIS Packs based on MCUXpresso SDK 2.15.0</release>
+    <release version="17.0.0" date="2023-07-27">NXP CMSIS Packs based on MCUXpresso SDK 2.14.0</release>
+    <release version="16.1.0" date="2023-03-23">NXP CMSIS Packs based on MCUXpresso SDK 2.13.1</release>
+    <release version="16.0.0" date="2023-01-16">NXP CMSIS Packs based on MCUXpresso SDK 2.13.0</release>
+    <release version="15.0.0" date="2022-07-13">NXP CMSIS Packs based on MCUXpresso SDK 2.12.0</release>
+    <release version="14.0.0" date="2022-01-05">NXP CMSIS Packs based on MCUXpresso SDK 2.11.0</release>
+    <release version="13.1.0" date="2021-07-13">NXP CMSIS Packs based on MCUXpresso SDK 2.10.0</release>
+    <release version="13.0.0" date="2021-02-05">NXP CMSIS Packs based on MCUXpresso SDK 2.9.0 with restructured startup component files</release>
+    <release version="12.4.0" date="2021-01-14">NXP CMSIS Packs based on MCUXpresso SDK 2.9.0</release>
+    <release version="12.3.0" date="2020-08-18">NXP CMSIS Packs based on MCUXpresso SDK 2.8.2</release>
+    <release version="12.2.0" date="2020-07-20">NXP CMSIS Packs based on MCUXpresso SDK 2.8.0</release>
+    <release version="12.1.1" date="2020-02-20">NXP CMSIS Packs based on MCUXpresso SDK 2.7.1</release>
+    <release version="12.1.0" date="2019-12-19">NXP CMSIS Packs based on MCUXpresso SDK 2.7.0</release>
+    <release version="12.0.1" date="2019-09-24">NXP CMSIS packs based on MCUXpresso SDK 2.6.3</release>
+    <release version="12.0.0" date="2019-06-10">NXP CMSIS packs based on MCUXpresso SDK 2.6.0</release>
+    <release version="11.0.0" date="2019-02-25">NXP CMSIS packs based on MCUXpresso SDK 2.5.0</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="CMSIS" vendor="ARM" version="5.8.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <devices>
+    <family Dfamily="LPC55S69" Dvendor="NXP:11">
+      <debugconfig default="swd" clock="5000000" swj="true"/>
+      <sequences>
+        <sequence name="EnableTraceClk">
+          <block>
+        __var SYSCON_NS_Base_Addr = 0x40000000;
+        __var IOCON_NS_Base_Addr  = 0x40001000;
+        __var TRACECLKSEL_Addr    = SYSCON_NS_Base_Addr + 0x268;
+        __var TRACECLKDIV_Addr    = SYSCON_NS_Base_Addr + 0x308;
+        __var AHBCLKCTRLSET0_Addr = IOCON_NS_Base_Addr  + 0x220;
+        __var clksel              = 0;
+        __var clkdiv              = 0;
+      </block>
+          <control if="__traceout &amp; 0x3">
+            <block>
+          clksel = Read32(TRACECLKSEL_Addr);  // Read current TRACECLKSEL value
+        </block>
+            <control if="clksel &gt; 2" info="Trace (TPIU) Clock not selected?">
+              <block>
+            Write32(TRACECLKSEL_Addr, 0x0);   // Select Trace divided clock
+          </block>
+            </control>
+            <block>
+          clkdiv = (Read32(TRACECLKDIV_Addr) &amp; 0xFF);  // Read current TRACECLKDIV value, preserve divider but clear rest to enable
+          Write32(TRACECLKDIV_Addr, clkdiv);
+
+          Write32(AHBCLKCTRLSET0_Addr, (1 &lt;&lt; 13));   // Enable IOCON clock
+        </block>
+          </control>
+        </sequence>
+        <sequence name="EnableDebugMailbox">
+          <block>
+        __var status=0x55aa;
+        Message(0, "LPC55xx connect script start");
+
+        // Read APIDR
+        __dp = 0;
+        __ap = 2;
+        status = ReadAP(0xFC);
+        Message(0, "APIDR: 0x%08X", status);
+
+        // Read DPIDR
+        __dp = 0;
+        __ap = 2;
+        status = ReadDP(0x0);
+        Message(0, "DPIDR: 0x%08X", status);
+
+        // Active DebugMailbox
+        __dp = 0;
+        __ap = 2;
+        WriteAP(0x0, 0x00000021);
+        DAP_Delay(30000);
+        ReadAP(0x0);
+
+        // Enter Debug Session
+        __dp = 0;
+        __ap = 2;
+        WriteAP(0x4, 0x00000007);
+        DAP_Delay(30000);
+        ReadAP(0x0);
+
+        __dp = 0;
+        __ap = 0;
+
+        Message(0, "LPC55xx connect script end");
+      </block>
+        </sequence>
+        <sequence name="DebugPortStart">
+          <block>
+        __var SW_DP_ABORT  = 0x0;
+        __var DP_CTRL_STAT = 0x4;
+        __var DP_SELECT    = 0x8;
+        __var powered_down = 0;
+        // Switch to DP Register Bank 0
+        WriteDP(DP_SELECT, 0x00000000);
+
+        // Read DP CTRL/STAT Register and check if CSYSPWRUPACK and CDBGPWRUPACK bits are set
+        powered_down = ((ReadDP(DP_CTRL_STAT) &amp; 0xA0000000) != 0xA0000000);
+      </block>
+          <control if="powered_down">
+            <block>
+          // Request Debug/System Power-Up
+          WriteDP(DP_CTRL_STAT, 0x50000000);
+        </block>
+            <!-- Wait for Power-Up Request to be acknowledged -->
+            <control while="(ReadDP(DP_CTRL_STAT) &amp; 0xA0000000) != 0xA0000000" timeout="1000000"/>
+            <!-- SWD Specific Part of sequence -->
+            <control if="(__protocol &amp; 0xFFFF) == 2">
+              <block>
+            // Init AP Transfer Mode, Transaction Counter, and Lane Mask (Normal Transfer Mode, Include all Byte Lanes)
+            WriteDP(DP_CTRL_STAT, 0x50000F00);
+
+            // Clear WDATAERR, STICKYORUN, STICKYCMP, and STICKYERR bits of CTRL/STAT Register by write to ABORT register
+            WriteDP(SW_DP_ABORT, 0x0000001E);
+
+            Sequence("EnableDebugMailbox");
+          </block>
+            </control>
+          </control>
+        </sequence>
+        <sequence name="DebugDeviceUnlockCore0">
+          <control if="__traceout &amp; 0x3" info="Trace output via TPIU selected">
+            <block>
+          Sequence("EnableTraceClk");       // Enable trace clock to enable TPIU register accesses
+        </block>
+          </control>
+        </sequence>
+        <sequence name="ResetCatchSetCore0">
+          <block>
+        __var SCS_Addr    = 0xE000E000;
+        __var DHCSR_Addr  = SCS_Addr + 0xDF0;
+        __var DEMCR_Addr  = SCS_Addr + 0xDFC;
+        __var resetVector = 0xFFFFFFFF;                                    // Reset Vector
+        __var resetVector_Addr = 0x00000004;
+
+        Write32(0xE000EDFC, Read32(DEMCR_Addr) &amp; (~0x00000001));       // Clear Reset Vector Catch
+
+        Write32(0x40034010, 0x00000000);                                   // Program Flash Word Start Address to 0x0 to read reset vector (STARTA)
+        Write32(0x40034014, 0x00000000);                                   // Program Flash Word Stop Address to 0x0 to read reset vector (STOPA)
+        Write32(0x40034080, 0x00000000);                                   // DATAW0: Prepare for read
+        Write32(0x40034084, 0x00000000);                                   // DATAW1: Prepare for read
+        Write32(0x40034088, 0x00000000);                                   // DATAW2: Prepare for read
+        Write32(0x4003408C, 0x00000000);                                   // DATAW3: Prepare for read
+        Write32(0x40034090, 0x00000000);                                   // DATAW4: Prepare for read
+        Write32(0x40034094, 0x00000000);                                   // DATAW5: Prepare for read
+        Write32(0x40034098, 0x00000000);                                   // DATAW6: Prepare for read
+        Write32(0x4003409C, 0x00000000);                                   // DATAW7: Prepare for read
+
+        Write32(0x40034FE8, 0x0000000F);                                   // Clear FLASH Controller Status (INT_CLR_STATUS)
+        Write32(0x40034000, 0x00000003);                                   // Read single Flash Word (CMD_READ_SINGLE_WORD)
+      </block>
+          <control while="(Read32(0x40034FE0) &amp; 0x00000004) == 0" timeout="100000" info="Wait for flash word read to finish"/>
+          <control if="(Read32(0x40034FE0) &amp; 0xB) == 0" info="No Error reading Flash Word with Reset Vector">
+            <control if="((Read32(0x400ACFFC) &amp; 0xC) != 0x8) || ((Read32(0x400ACFF8) &amp; 0xC) != 0x8)">
+              <block>
+            // ENABLE_SECURE_CHECKING is set to restrictive mode, access secure addresses
+            resetVector_Addr = 0x10000004;
+          </block>
+            </control>
+            <block>
+          // Lowest flash page readable, read via AHB (flash controller for some reason returns garbage)
+          resetVector = Read32(resetVector_Addr);                                // Read Reset Vector (Address 0x00000004)
+        </block>
+          </control>
+          <control if="resetVector != 0xFFFFFFFF" info="Breakpoint on user application reset vector">
+            <!-- we have a valid breakpoint address -->
+            <block>
+          Write32(0xE0002008, resetVector|1);                              // Program FPB Comparator 0 with reset handler address
+          Write32(0xE0002000, 0x00000003);                                 // Enable FPB
+        </block>
+          </control>
+          <control if="resetVector == 0xFFFFFFFF" info="Enable reset vector catch">
+            <!-- we do not have a valid breakpoint address -->
+            <block>
+          Write32(DEMCR_Addr, (Read32(DEMCR_Addr) | 0x00000001));          // Enable Reset Vector Catch in DEMCR
+        </block>
+          </control>
+          <block>
+        // Read DHCSR to clear potentially set DHCSR.S_RESET_ST bit
+        Read32(DHCSR_Addr);
+      </block>
+        </sequence>
+        <sequence name="ResetCatchSetCore1">
+          <block>
+        // Use DEMCR.VC_CORERESET for CPU1
+        __var SCS_Addr   = 0xE000E000;
+        __var DHCSR_Addr = SCS_Addr + 0xDF0;
+        __var DEMCR_Addr = SCS_Addr + 0xDFC;
+        __var value      = 0;
+
+        // Enable Reset Vector Catch in DEMCR
+        value = Read32(DEMCR_Addr);
+        Write32(DEMCR_Addr, (value | 0x00000001));
+        // Read DHCSR to clear potentially set DHCSR.S_RESET_ST bit
+        Read32(DHCSR_Addr);
+      </block>
+        </sequence>
+        <sequence name="ResetCatchClear">
+          <block>
+        __var DEMCR_Addr = 0xE000EDFC;
+
+        // Clear FPB Comparators 0 and 1
+        Write32(0xE0002008, 0x00000000);
+
+        // Disable FPB
+        Write32(0xE0002000, 0x00000002);
+
+        // Clear Reset Vector Catch
+        Write32(DEMCR_Addr, Read32(DEMCR_Addr) &amp; (~0x00000001));
+      </block>
+        </sequence>
+        <sequence name="WaitForStopAfterReset">
+          <block>
+        __var SCS_Addr    = 0xE000E000;
+        __var DHCSR_Addr  = SCS_Addr + 0xDF0;
+        __var ap0_disable=0x55aa;
+
+        // Give bootloader time to do what it needs to do
+        DAP_Delay(BootTime);  // try 10ms
+
+        // Read AP0 CSW
+        __dp = 0;
+        __ap = 0;
+        ap0_disable = ReadAP(0x0);
+        ap0_disable = ((ap0_disable &amp; 0x40) == 0);
+        Message(0, "AP0 DIS: %x", ap0_disable);
+      </block>
+          <!-- Reset Recovery: Wait for DHCSR.S_RESET_ST bit to clear on read -->
+          <control if="ap0_disable">
+            <block>
+          Sequence("EnableDebugMailbox");
+        </block>
+          </control>
+          <control while="(Read32(DHCSR_Addr) &amp; 0x02000000)" timeout="500000"/>
+          <control if="(Read32(DHCSR_Addr) &amp; 0x00020000) == 0">
+            <block>
+          Write32(DHCSR_Addr, 0xA05F0003);  // Force halt until finding a proper catch. Probably works better from flash.
+        </block>
+          </control>
+        </sequence>
+        <sequence name="ResetHardware">
+          <block>
+        __var nReset      = 0x80;
+        __var canReadPins = 0;
+        __var SCS_Addr    = 0xE000E000;
+        __var DHCSR_Addr  = SCS_Addr + 0xDF0;
+
+        // De-assert nRESET line
+        canReadPins = (DAP_SWJ_Pins(0x00, nReset, 0) != 0xFFFFFFFF);
+      </block>
+          <!-- Keep reset active for 50 ms -->
+          <control while="1" timeout="50000"/>
+          <control if="canReadPins">
+            <!-- Assert nRESET line and wait max. 1s for recovery -->
+            <control while="(DAP_SWJ_Pins(nReset, nReset, 0) &amp; nReset) == 0" timeout="1000000"/>
+          </control>
+          <control if="!canReadPins">
+            <block>
+          // Assert nRESET line
+          DAP_SWJ_Pins(nReset, nReset, 0);
+        </block>
+            <!-- Wait 100ms for recovery if nRESET not readable -->
+            <control while="1" timeout="100000"/>
+          </control>
+          <control if="(__connection &amp; (1 &lt;&lt; 17)) == 0">
+            <block>
+          Sequence("WaitForStopAfterReset");
+        </block>
+          </control>
+        </sequence>
+        <sequence name="ResetSystemCore0">
+          <block>
+        // System Control Space (SCS) offset as defined in Armv6-M/Armv7-M.
+        __var SCS_Addr   = 0xE000E000;
+        __var AIRCR_Addr = SCS_Addr + 0xD0C;
+        __var DHCSR_Addr = SCS_Addr + 0xDF0;
+
+        __errorcontrol = 1;
+
+        // Execute SYSRESETREQ via AIRCR
+        Write32(AIRCR_Addr, 0x05FA0004);
+
+        __errorcontrol = 0;
+
+        // Give bootloader time to do what it needs to do
+        DAP_Delay(BootTime);  // try 10ms
+      </block>
+          <block>
+        Sequence("WaitForStopAfterReset");
+      </block>
+        </sequence>
+        <sequence name="ResetProcessorCore1">
+          <block>
+        __var SYSCON_NS_Base_Addr = 0x40000000;
+        __var CPUCTRL_Addr        = SYSCON_NS_Base_Addr + 0x800;
+        __var value               = 0;
+        __var apOrg               = __ap;
+
+        __ap = 0;                           // Switch to CPU0 AP to drive CPU1 reset via CPUCTRL register
+
+        value      = Read32(CPUCTRL_Addr);  // Read CPUCTRL Register
+        value &amp;= 0x0000FFFF;            // Preserve previous settings
+        value     |= 0xC0C40000;            // Set key value
+        value     |= 0x00000028;            // Set CPU1CLKEN and CPU1RSTEN
+        Write32(CPUCTRL_Addr, value);       // Put CPU1 into reset
+
+        value &amp;= ~0x00000020;           // Clear CPU1RSTEN
+        Write32(CPUCTRL_Addr, value);       // Release CPU1 from reset
+
+        __ap = apOrg;
+      </block>
+        </sequence>
+        <sequence name="TraceStart">
+          <control if="__traceout &amp; 0x1" info="SWO Trace output selected">
+            <block>
+          Sequence("EnableTraceClk");       // Enable and configure trace clock
+        </block>
+            <control if="SWO_Pin == 0" info="SWO via PIO0_10">
+              <block>
+            Write32(0x40001028, 0x00000046); // Configure PIO0_10: FUNC - 6, MODE - 0, SLEW - 1, INVERT - 0, DIGMODE - 0, OD - 0
+          </block>
+            </control>
+            <control if="SWO_Pin == 1" info="SWO via PIO0_8">
+              <block>
+            Write32(0x40001020, 0x00000044); // Configure PIO0_10: FUNC - 4, MODE - 0, SLEW - 1, INVERT - 0, DIGMODE - 0, OD - 0
+          </block>
+            </control>
+          </control>
+        </sequence>
+      </sequences>
+      <debugvars configfile="devices/LPC55S69/arm/LPC55xx.dbgconf">
+  // Debug Access Variables, can be modified by user via copies of DBGCONF files as created by uVision. Also see sub-family level.
+  __var SWO_Pin               = 0;                    // Serial Wire Output pin: 0 = PIO0_10, 1 = PIO0_8
+  __var Dbg_CR                = 0x00000000;           // DBG_CR
+  __var BootTime              = 10000;                // 10 milliseconds
+</debugvars>
+      <description>High Efficiency Arm Cortex-M33-based Microcontroller</description>
+      <device Dname="LPC55S69">
+        <processor Pname="cm33_core0" Dcore="Cortex-M33" Dfpu="SP_FPU" Dmpu="MPU" Dtz="TZ" Ddsp="DSP" Dendian="Little-endian" Dclock="150000000"/>
+        <processor Pname="cm33_core1" Dcore="Cortex-M33" Dfpu="NO_FPU" Dmpu="NO_MPU" Dtz="NO_TZ" Ddsp="NO_DSP" Dendian="Little-endian" Dclock="150000000"/>
+        <environment Pname="cm33_core0" name="iar">
+          <file category="linkerfile" name="devices/LPC55S69/iar/LPC55S69_cm33_core0_flash.icf"/>
+        </environment>
+        <environment Pname="cm33_core1" name="iar">
+          <file category="linkerfile" name="devices/LPC55S69/iar/LPC55S69_cm33_core0_flash.icf"/>
+        </environment>
+        <sequences>
+          <sequence name="DebugDeviceUnlock" Pname="cm33_core0">
+            <block>
+          Sequence("DebugDeviceUnlockCore0");
+      </block>
+          </sequence>
+          <sequence name="DebugDeviceUnlock" Pname="cm33_core1" disable="1"/>
+          <sequence name="ResetCatchSet" Pname="cm33_core0">
+            <block>
+          Sequence("ResetCatchSetCore0");
+      </block>
+          </sequence>
+          <sequence name="ResetCatchSet" Pname="cm33_core1">
+            <block>
+          Sequence("ResetCatchSetCore1");
+      </block>
+          </sequence>
+          <sequence name="ResetSystem" Pname="cm33_core0">
+            <block>
+          Sequence("ResetSystemCore0");
+      </block>
+          </sequence>
+          <sequence name="ResetSystem" Pname="cm33_core1" disable="1"/>
+          <sequence name="ResetProcessor" Pname="cm33_core0" disable="1"/>
+          <sequence name="ResetProcessor" Pname="cm33_core1">
+            <block>
+          Sequence("ResetProcessorCore1");
+      </block>
+          </sequence>
+        </sequences>
+        <memory name="BootROM" start="0x03000000" size="0x020000" access="rx"/>
+        <memory name="BootROM_alias" start="0x13000000" size="0x020000" access="rx" alias="BootROM"/>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x09d800" access="rx" default="1" startup="1"/>
+        <memory name="PROGRAM_FLASH_alias" start="0x10000000" size="0x09d800" access="rw" alias="PROGRAM_FLASH"/>
+        <memory name="SRAM" start="0x20000000" size="0x040000" access="rw" default="1"/>
+        <memory name="SRAM4" start="0x20040000" size="0x4000" access="rw" default="1"/>
+        <memory name="SRAM4_alias" start="0x30040000" size="0x4000" access="rw" alias="SRAM4"/>
+        <memory name="SRAMX" start="0x04000000" size="0x8000" access="rw" default="1"/>
+        <memory name="SRAMX_alias" start="0x14000000" size="0x8000" access="rw" alias="SRAMX"/>
+        <memory name="SRAM_alias" start="0x30000000" size="0x040000" access="rw" alias="SRAM"/>
+        <memory name="USB_RAM" start="0x40100000" size="0x4000" access="rw" default="1"/>
+        <memory name="USB_RAM_alias" start="0x50100000" size="0x4000" access="rw" alias="USB_RAM"/>
+        <algorithm name="devices/LPC55S69/arm/LPC55XX_640.FLM" start="0x00000000" size="0x00098000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+        <algorithm name="devices/LPC55S69/arm/LPC55XX_S_640.FLM" start="0x10000000" size="0x00098000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+        <debug svd="devices/LPC55S69/LPC55S69_cm33_core0.xml" Pname="cm33_core0" __dp="0" __ap="0"/>
+        <debug svd="devices/LPC55S69/LPC55S69_cm33_core1.xml" Pname="cm33_core1" __dp="0" __ap="1"/>
+        <variant Dvariant="LPC55S69JBD100">
+          <compile Pname="cm33_core0" header="devices/LPC55S69/fsl_device_registers.h" define="CPU_LPC55S69JBD100_cm33_core0"/>
+          <compile Pname="cm33_core1" header="devices/LPC55S69/fsl_device_registers.h" define="CPU_LPC55S69JBD100_cm33_core1"/>
+        </variant>
+        <variant Dvariant="LPC55S69JEV98">
+          <compile Pname="cm33_core0" header="devices/LPC55S69/fsl_device_registers.h" define="CPU_LPC55S69JEV98_cm33_core0"/>
+          <compile Pname="cm33_core1" header="devices/LPC55S69/fsl_device_registers.h" define="CPU_LPC55S69JEV98_cm33_core1"/>
+        </variant>
+        <variant Dvariant="LPC55S69JBD64">
+          <compile Pname="cm33_core0" header="devices/LPC55S69/fsl_device_registers.h" define="CPU_LPC55S69JBD64_cm33_core0"/>
+          <compile Pname="cm33_core1" header="devices/LPC55S69/fsl_device_registers.h" define="CPU_LPC55S69JBD64_cm33_core1"/>
+        </variant>
+        <variant Dvariant="LPC55S69JEV59">
+          <compile Pname="cm33_core0" header="devices/LPC55S69/fsl_device_registers.h" define="CPU_LPC55S69JEV59_cm33_core0"/>
+          <compile Pname="cm33_core1" header="devices/LPC55S69/fsl_device_registers.h" define="CPU_LPC55S69JEV59_cm33_core1"/>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="device_id.LPC55S69.internal_condition">
+      <accept Dname="LPC55S69JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JEV98" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="DEVICES_Project_Template.LPC55S69.condition_id">
+      <require condition="allOf.component.usart_adapter, device_id=LPC55S69, device.LPC55S69_startup, driver.clock, driver.common, driver.flexcomm_i2c, driver.flexcomm_spi, driver.flexcomm_usart, driver.lpc_gpio, driver.lpc_iocon, driver.power, driver.reset, anyOf=allOf=component.serial_manager, utility.assert, utility.debug_console, allOf=utility.assert_lite, utility.debug_console_lite.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.usart_adapter, device_id=LPC55S69, device.LPC55S69_startup, driver.clock, driver.common, driver.flexcomm_i2c, driver.flexcomm_spi, driver.flexcomm_usart, driver.lpc_gpio, driver.lpc_iocon, driver.power, driver.reset, anyOf=allOf=component.serial_manager, utility.assert, utility.debug_console, allOf=utility.assert_lite, utility.debug_console_lite.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart_adapter"/>
+      <require condition="device_id.LPC55S69.internal_condition"/>
+      <require Cclass="Device" Cgroup="Startup" Csub=""/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="spi"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iocon"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="power"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="reset"/>
+      <require condition="anyOf.allOf=component.serial_manager, utility.assert, utility.debug_console, allOf=utility.assert_lite, utility.debug_console_lite.internal_condition"/>
+    </condition>
+    <condition id="anyOf.allOf=component.serial_manager, utility.assert, utility.debug_console, allOf=utility.assert_lite, utility.debug_console_lite.internal_condition">
+      <accept condition="allOf.component.serial_manager, utility.assert, utility.debug_console.internal_condition"/>
+      <accept condition="allOf.utility.assert_lite, utility.debug_console_lite.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.serial_manager, utility.assert, utility.debug_console.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="assert"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="allOf.utility.assert_lite, utility.debug_console_lite.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="assert_lite"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+    </condition>
+    <condition id="RTE_Device.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.lpc_dma.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=LPC55S69, driver.lpc_dma.internal_condition">
+      <require condition="device_id.LPC55S69.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dma"/>
+    </condition>
+    <condition id="device.LPC55S69.internal_condition">
+      <accept Dname="LPC55S69JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JEV98" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="cmake_toolchain.condition_id">
+      <require condition="allOf.device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.device=LPC55S69.internal_condition">
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.audio_flexcomm_i2s_dma_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.flexcomm_i2s_dma, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.flexcomm_i2s_dma, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm_i2s_dma"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.button.condition_id">
+      <require condition="allOf.driver.common, component.timer_manager, anyOf=component.lpc_gpio_adapter, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.timer_manager, anyOf=component.lpc_gpio_adapter, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="timer_manager"/>
+      <require condition="anyOf.component.lpc_gpio_adapter.internal_condition"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="anyOf.component.lpc_gpio_adapter.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_gpio_adapter"/>
+    </condition>
+    <condition id="component.codec_adapters.condition_id">
+      <require condition="anyOf.allOf=driver.codec, component.wm8904_adapter, allOf=driver.codec, component.wm8960_adapter, allOf=driver.codec, component.sgtl_adapter, allOf=driver.codec, component.da7212_adapter, allOf=driver.codec, component.cs42888_adapter.internal_condition"/>
+      <require condition="allOf.device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="anyOf.allOf=driver.codec, component.wm8904_adapter, allOf=driver.codec, component.wm8960_adapter, allOf=driver.codec, component.sgtl_adapter, allOf=driver.codec, component.da7212_adapter, allOf=driver.codec, component.cs42888_adapter.internal_condition">
+      <accept condition="allOf.driver.codec, component.wm8904_adapter.internal_condition"/>
+      <accept condition="allOf.driver.codec, component.wm8960_adapter.internal_condition"/>
+      <accept condition="allOf.driver.codec, component.sgtl_adapter.internal_condition"/>
+      <accept condition="allOf.driver.codec, component.da7212_adapter.internal_condition"/>
+      <accept condition="allOf.driver.codec, component.cs42888_adapter.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.codec, component.wm8904_adapter.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="wm8904_adapter"/>
+    </condition>
+    <condition id="allOf.driver.codec, component.wm8960_adapter.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="wm8960_adapter"/>
+    </condition>
+    <condition id="allOf.driver.codec, component.sgtl_adapter.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="sgtl_adapter"/>
+    </condition>
+    <condition id="allOf.driver.codec, component.da7212_adapter.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="da7212_adapter"/>
+    </condition>
+    <condition id="allOf.driver.codec, component.cs42888_adapter.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="cs42888_adapter"/>
+    </condition>
+    <condition id="component.codec_i2c.condition_id">
+      <require condition="allOf.driver.common, anyOf=component.flexcomm_i2c_adapter, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, anyOf=component.flexcomm_i2c_adapter, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="anyOf.component.flexcomm_i2c_adapter.internal_condition"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="anyOf.component.flexcomm_i2c_adapter.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm_i2c_adapter"/>
+    </condition>
+    <condition id="component.cs42888_adapter.condition_id">
+      <require condition="allOf.driver.cs42888, driver.codec, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.cs42888, driver.codec, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="cs42888"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.ctimer_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.ctimer, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.ctimer, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="ctimer"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.da7212_adapter.condition_id">
+      <require condition="allOf.driver.dialog7212, driver.codec, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.dialog7212, driver.codec, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dialog7212"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.flexcomm_i2c_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.flexcomm_i2c, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.flexcomm_i2c, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.flexcomm_spi_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.flexcomm_spi, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.flexcomm_spi, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="spi"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.gint_adapter.condition_id">
+      <require condition="allOf.driver.gint, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.gint, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gint"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.led.condition_id">
+      <require condition="allOf.driver.common, component.timer_manager, anyOf=component.lpc_gpio_adapter, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.lists.condition_id">
+      <require condition="allOf.driver.common, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.log.condition_id">
+      <require condition="allOf.driver.common, utility.str, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, utility.str, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="str"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.log.backend.debugconsole.condition_id">
+      <require condition="allOf.driver.common, component.log, utility.debug_console, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.log, utility.debug_console, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="log"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.log.backend.debugconsole_lite.condition_id">
+      <require condition="allOf.driver.common, component.log, utility.debug_console_lite, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.log, utility.debug_console_lite, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="log"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.log.backend.ringbuffer.condition_id">
+      <require condition="allOf.driver.common, component.log, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.log, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="log"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.lpc_crc_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.lpc_crc, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.lpc_crc, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_crc"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.lpc_gpio_adapter.condition_id">
+      <require condition="allOf.driver.lpc_gpio, driver.inputmux, driver.pint, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.lpc_gpio, driver.inputmux, driver.pint, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="inputmux"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="pint"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.lpcrtc.condition_id">
+      <require condition="allOf.driver.common, driver.lpc_rtc, device_id=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.lpc_rtc, device_id=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_rtc"/>
+      <require condition="device_id.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.mem_manager.condition_id">
+      <require condition="allOf.driver.common, component.lists, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.lists, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.mem_manager_light.condition_id">
+      <require condition="allOf.driver.common, component.lists, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.mflash.common.condition_id">
+      <require condition="allOf.device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.mflash.lpc55xxx.condition_id">
+      <require condition="allOf.component.mflash.common, device_id=LPC55S69, driver.iap1.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.mflash.common, device_id=LPC55S69, driver.iap1.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="mflash_common"/>
+      <require condition="device_id.LPC55S69.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iap1"/>
+    </condition>
+    <condition id="component.mflash_dummy.condition_id">
+      <require condition="allOf.component.mflash_file, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.mflash_file, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="mflash_file"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.mflash_file.condition_id">
+      <require condition="anyOf.component.mflash.lpc55xxx.internal_condition"/>
+      <require condition="allOf.device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="anyOf.component.mflash.lpc55xxx.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="lpc55xxx"/>
+    </condition>
+    <condition id="component.mrt_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.mrt, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.mrt, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="mrt"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.ostimer_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.ostimer, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.ostimer, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="ostimer"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.panic.condition_id">
+      <require condition="allOf.driver.common, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.pwm_ctimer_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.ctimer, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.reset_adapter.condition_id">
+      <require condition="allOf.driver.common, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.serial_manager.condition_id">
+      <require condition="allOf.driver.common, component.lists, anyOf=component.serial_manager_uart, component.serial_manager_virtual, component.serial_manager_swo, component.serial_manager_spi, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.lists, anyOf=component.serial_manager_uart, component.serial_manager_virtual, component.serial_manager_swo, component.serial_manager_spi, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require condition="anyOf.component.serial_manager_uart, component.serial_manager_virtual, component.serial_manager_swo, component.serial_manager_spi.internal_condition"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="anyOf.component.serial_manager_uart, component.serial_manager_virtual, component.serial_manager_swo, component.serial_manager_spi.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_virtual"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_swo"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_spi"/>
+    </condition>
+    <condition id="component.serial_manager_spi.condition_id">
+      <require condition="allOf.component.serial_manager, anyOf=allOf=driver.flexcomm_spi, component.flexcomm_spi_adapter, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.serial_manager, anyOf=allOf=driver.flexcomm_spi, component.flexcomm_spi_adapter, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require condition="anyOf.allOf=driver.flexcomm_spi, component.flexcomm_spi_adapter.internal_condition"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="anyOf.allOf=driver.flexcomm_spi, component.flexcomm_spi_adapter.internal_condition">
+      <accept condition="allOf.driver.flexcomm_spi, component.flexcomm_spi_adapter.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.flexcomm_spi, component.flexcomm_spi_adapter.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="spi"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm_spi_adapter"/>
+    </condition>
+    <condition id="component.serial_manager_swo.condition_id">
+      <require condition="allOf.core=cm33, driver.common, component.serial_manager, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.core=cm33, driver.common, component.serial_manager, device=LPC55S69.internal_condition">
+      <require condition="core.cm33.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="core.cm33.internal_condition">
+      <accept Dcore="Cortex-M33"/>
+    </condition>
+    <condition id="component.serial_manager_uart.condition_id">
+      <require condition="allOf.component.usart_adapter, component.serial_manager, anyOf=driver.flexcomm_usart, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.usart_adapter, component.serial_manager, anyOf=driver.flexcomm_usart, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require condition="anyOf.driver.flexcomm_usart.internal_condition"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="anyOf.driver.flexcomm_usart.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="usart"/>
+    </condition>
+    <condition id="component.serial_manager_virtual.condition_id">
+      <require condition="allOf.component.serial_manager, driver.common, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.serial_manager, driver.common, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.sgtl_adapter.condition_id">
+      <require condition="allOf.driver.sgtl5000, driver.codec, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.sgtl5000, driver.codec, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="sgtl5000"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.software_crc_adapter.condition_id">
+      <require condition="allOf.driver.common, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.software_rng_adapter.condition_id">
+      <require condition="allOf.driver.common, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.timer_manager.condition_id">
+      <require condition="allOf.driver.common, component.lists, anyOf=component.ctimer_adapter, component.mrt_adapter, component.ostimer_adapter, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.lists, anyOf=component.ctimer_adapter, component.mrt_adapter, component.ostimer_adapter, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require condition="anyOf.component.ctimer_adapter, component.mrt_adapter, component.ostimer_adapter.internal_condition"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="anyOf.component.ctimer_adapter, component.mrt_adapter, component.ostimer_adapter.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="ctimer_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="mrt_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="ostimer_adapter"/>
+    </condition>
+    <condition id="component.usart_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.flexcomm_usart, driver.flexcomm, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.flexcomm_usart, driver.flexcomm, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.usart_dma_adapter.condition_id">
+      <require condition="allOf.component.usart_adapter, component.timer_manager, driver.flexcomm_usart_dma, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.usart_adapter, component.timer_manager, driver.flexcomm_usart_dma, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="timer_manager"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart_dma"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.wm8904_adapter.condition_id">
+      <require condition="allOf.driver.wm8904, driver.codec, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.wm8904, driver.codec, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="wm8904"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="component.wm8960_adapter.condition_id">
+      <require condition="allOf.driver.wm8960, driver.codec, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.wm8960, driver.codec, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="wm8960"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="device.LPC55S69_CMSIS.condition_id">
+      <require condition="allOf.CMSIS_Include_core_cm, device_id=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.CMSIS_Include_core_cm, device_id=LPC55S69.internal_condition">
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require condition="device_id.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.cores=cm33, core_ids=cm33_core0, cm33_core1.condition_id">
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="core_ids.cm33_core0, cm33_core1.internal_condition"/>
+    </condition>
+    <condition id="cores.cm33.internal_condition">
+      <accept Dcore="Cortex-M33"/>
+    </condition>
+    <condition id="core_ids.cm33_core0, cm33_core1.internal_condition">
+      <accept Pname="cm33_core0" Dname="*"/>
+      <accept Pname="cm33_core1" Dname="*"/>
+    </condition>
+    <condition id="allOf.cores=cm33, core_ids=cm33_core0.condition_id">
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="core_ids.cm33_core0.internal_condition"/>
+    </condition>
+    <condition id="core_ids.cm33_core0.internal_condition">
+      <accept Pname="cm33_core0" Dname="*"/>
+    </condition>
+    <condition id="allOf.cores=cm33, core_ids=cm33_core1.condition_id">
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="core_ids.cm33_core1.internal_condition"/>
+    </condition>
+    <condition id="core_ids.cm33_core1.internal_condition">
+      <accept Pname="cm33_core1" Dname="*"/>
+    </condition>
+    <condition id="allOf.cores=cm33.condition_id">
+      <require condition="cores.cm33.internal_condition"/>
+    </condition>
+    <condition id="device.LPC55S69_linker.condition_id">
+      <require condition="allOf.device_id=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=LPC55S69.internal_condition">
+      <require condition="device_id.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="device_ids.LPC55S69.internal_condition">
+      <accept Dname="LPC55S69JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JEV98" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="allOf.toolchains=mdk, cores=cm33, core_ids=cm33_core0, device_ids=LPC55S69.condition_id">
+      <require condition="toolchains.mdk.internal_condition"/>
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="core_ids.cm33_core0.internal_condition"/>
+      <require condition="device_ids.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="toolchains.mdk.internal_condition">
+      <accept Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="allOf.toolchains=mdk, cores=cm33, core_ids=cm33_core1, device_ids=LPC55S69.condition_id">
+      <require condition="toolchains.mdk.internal_condition"/>
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="core_ids.cm33_core1.internal_condition"/>
+      <require condition="device_ids.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc, cores=cm33, core_ids=cm33_core0, device_ids=LPC55S69.condition_id">
+      <require condition="toolchains.armgcc.internal_condition"/>
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="core_ids.cm33_core0.internal_condition"/>
+      <require condition="device_ids.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="toolchains.armgcc.internal_condition">
+      <accept Tcompiler="GCC"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc, cores=cm33, core_ids=cm33_core1, device_ids=LPC55S69.condition_id">
+      <require condition="toolchains.armgcc.internal_condition"/>
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="core_ids.cm33_core1.internal_condition"/>
+      <require condition="device_ids.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=iar, cores=cm33, core_ids=cm33_core0, device_ids=LPC55S69.condition_id">
+      <require condition="toolchains.iar.internal_condition"/>
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="core_ids.cm33_core0.internal_condition"/>
+      <require condition="device_ids.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="toolchains.iar.internal_condition">
+      <accept Tcompiler="IAR"/>
+    </condition>
+    <condition id="allOf.toolchains=iar, cores=cm33, core_ids=cm33_core1, device_ids=LPC55S69.condition_id">
+      <require condition="toolchains.iar.internal_condition"/>
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="core_ids.cm33_core1.internal_condition"/>
+      <require condition="device_ids.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="device.LPC55S69_startup.condition_id">
+      <require condition="allOf.device.LPC55S69_system, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.device.LPC55S69_system, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="CMSIS" Csub="LPC55S69_system"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=mdk, cores=cm33, core_ids=cm33_core0.condition_id">
+      <require condition="toolchains.mdk.internal_condition"/>
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="core_ids.cm33_core0.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=mdk, cores=cm33, core_ids=cm33_core1.condition_id">
+      <require condition="toolchains.mdk.internal_condition"/>
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="core_ids.cm33_core1.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc, cores=cm33, core_ids=cm33_core0.condition_id">
+      <require condition="toolchains.armgcc.internal_condition"/>
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="core_ids.cm33_core0.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc, cores=cm33, core_ids=cm33_core1.condition_id">
+      <require condition="toolchains.armgcc.internal_condition"/>
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="core_ids.cm33_core1.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=iar, cores=cm33, core_ids=cm33_core0.condition_id">
+      <require condition="toolchains.iar.internal_condition"/>
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="core_ids.cm33_core0.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=iar, cores=cm33, core_ids=cm33_core1.condition_id">
+      <require condition="toolchains.iar.internal_condition"/>
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="core_ids.cm33_core1.internal_condition"/>
+    </condition>
+    <condition id="device.LPC55S69_system.condition_id">
+      <require condition="allOf.device.LPC55S69_CMSIS, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.device.LPC55S69_CMSIS, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="CMSIS" Csub="LPC55S69_header"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.anactrl.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=LPC55S69, driver.common.internal_condition">
+      <require condition="device_id.LPC55S69.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="driver.casper.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.clock.condition_id">
+      <require condition="allOf.anyOf=driver.power, driver.common, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.anyOf=driver.power, driver.common, device=LPC55S69.internal_condition">
+      <require condition="anyOf.driver.power.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="anyOf.driver.power.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="power"/>
+    </condition>
+    <condition id="driver.cmp_1.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.cmsis_flexcomm_i2c.condition_id">
+      <require condition="allOf.driver.flexcomm_i2c_dma, CMSIS_Driver_Include.I2C, RTE_Device, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.flexcomm_i2c_dma, CMSIS_Driver_Include.I2C, RTE_Device, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_dma"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.4.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.cmsis_flexcomm_spi.condition_id">
+      <require condition="allOf.driver.flexcomm_spi_dma, CMSIS_Driver_Include.SPI, RTE_Device, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.flexcomm_spi_dma, CMSIS_Driver_Include.SPI, RTE_Device, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="spi_dma"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.cmsis_flexcomm_usart.condition_id">
+      <require condition="allOf.driver.flexcomm_usart_dma, CMSIS_Driver_Include.USART, RTE_Device, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.flexcomm_usart_dma, CMSIS_Driver_Include.USART, RTE_Device, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart_dma"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.4.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.codec.condition_id">
+      <require condition="allOf.driver.common, anyOf=component.wm8904_adapter, component.wm8960_adapter, component.sgtl_adapter, component.da7212_adapter, component.cs42888_adapter, component.codec_adapters, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, anyOf=component.wm8904_adapter, component.wm8960_adapter, component.sgtl_adapter, component.da7212_adapter, component.cs42888_adapter, component.codec_adapters, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="anyOf.component.wm8904_adapter, component.wm8960_adapter, component.sgtl_adapter, component.da7212_adapter, component.cs42888_adapter, component.codec_adapters.internal_condition"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="anyOf.component.wm8904_adapter, component.wm8960_adapter, component.sgtl_adapter, component.da7212_adapter, component.cs42888_adapter, component.codec_adapters.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="wm8904_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="wm8960_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="sgtl_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="da7212_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="cs42888_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="codec_adapters"/>
+    </condition>
+    <condition id="driver.common.condition_id">
+      <require condition="allOf.driver.reset, driver.clock, device.LPC55S69_CMSIS, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.reset, driver.clock, device.LPC55S69_CMSIS, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="reset"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="CMSIS" Csub="LPC55S69_header"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.cs42888.condition_id">
+      <require condition="allOf.driver.common, component.codec_i2c, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.codec_i2c, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="codec_i2c"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.ctimer.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.dialog7212.condition_id">
+      <require condition="allOf.driver.common, component.codec_i2c, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.flexcomm.condition_id">
+      <require condition="allOf.driver.common, device_id=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, device_id=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device_id.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.flexcomm_i2c.condition_id">
+      <require condition="allOf.driver.flexcomm, driver.common, device_id=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.flexcomm, driver.common, device_id=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device_id.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.flexcomm_i2c_dma.condition_id">
+      <require condition="allOf.driver.lpc_dma, driver.flexcomm, driver.common, driver.flexcomm_i2c, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.lpc_dma, driver.flexcomm, driver.common, driver.flexcomm_i2c, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.flexcomm_i2s.condition_id">
+      <require condition="allOf.driver.flexcomm, driver.common, device_id=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.flexcomm_i2s_dma.condition_id">
+      <require condition="allOf.driver.lpc_dma, driver.flexcomm_i2s, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.lpc_dma, driver.flexcomm_i2s, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm_i2s"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.flexcomm_spi.condition_id">
+      <require condition="allOf.driver.flexcomm, driver.common, device_id=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.flexcomm_spi_dma.condition_id">
+      <require condition="allOf.driver.lpc_dma, driver.flexcomm, driver.flexcomm_spi, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.lpc_dma, driver.flexcomm, driver.flexcomm_spi, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="spi"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.flexcomm_usart.condition_id">
+      <require condition="allOf.driver.flexcomm, device_id=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.flexcomm, device_id=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm"/>
+      <require condition="device_id.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.flexcomm_usart_dma.condition_id">
+      <require condition="allOf.driver.lpc_dma, driver.flexcomm, driver.flexcomm_usart, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.lpc_dma, driver.flexcomm, driver.flexcomm_usart, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.fro_calib.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.ft5406.condition_id">
+      <require condition="allOf.driver.common, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.ft6x06.condition_id">
+      <require condition="allOf.CMSIS_Driver_Include.I2C, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.CMSIS_Driver_Include.I2C, device=LPC55S69.internal_condition">
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.4.0"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.fxos8700cq.condition_id">
+      <require condition="allOf.driver.common, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.gint.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.hashcrypt.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.iap1.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.ili9341.condition_id">
+      <require condition="allOf.driver.common, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.inputmux.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common, driver.inputmux_connections.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=LPC55S69, driver.common, driver.inputmux_connections.internal_condition">
+      <require condition="device_id.LPC55S69.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="inputmux_connections"/>
+    </condition>
+    <condition id="driver.inputmux_connections.condition_id">
+      <require condition="allOf.driver.common, device_id=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.lpadc.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpc_crc.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpc_dma.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpc_gpio.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpc_iocon.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpc_rtc.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.mailbox.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.mma8451q.condition_id">
+      <require condition="allOf.driver.common, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.mma8652fc.condition_id">
+      <require condition="allOf.driver.common, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.mrt.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.mx25r_flash.condition_id">
+      <require condition="allOf.device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.nand_flash-common.condition_id">
+      <require condition="allOf.device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.nor_flash-common.condition_id">
+      <require condition="allOf.device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.ostimer.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.pf1550.condition_id">
+      <require condition="allOf.device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.pf3000.condition_id">
+      <require condition="allOf.device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.pint.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.plu.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.power.condition_id">
+      <require condition="allOf.driver.common, device_id=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.powerquad.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.prince.condition_id">
+      <require condition="allOf.driver.iap1, driver.puf, device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.iap1, driver.puf, device_id=LPC55S69, driver.common.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iap1"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="PUF"/>
+      <require condition="device_id.LPC55S69.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="driver.puf.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.reset.condition_id">
+      <require condition="allOf.driver.common, device_id=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.rng_1.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.rtt.condition_id">
+      <require condition="allOf.driver.rtt.template, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.rtt.template, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rtt template"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc.condition_id">
+      <require condition="toolchains.armgcc.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=iar.condition_id">
+      <require condition="toolchains.iar.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=mdk.condition_id">
+      <require condition="toolchains.mdk.internal_condition"/>
+    </condition>
+    <condition id="driver.rtt.template.condition_id">
+      <require condition="allOf.device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.sctimer.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.sdif.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.sgtl5000.condition_id">
+      <require condition="allOf.driver.common, component.codec_i2c, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.sysctl.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.utick.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.wm8904.condition_id">
+      <require condition="allOf.driver.common, component.codec_i2c, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.wm8960.condition_id">
+      <require condition="allOf.driver.common, component.codec_i2c, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="driver.wwdt.condition_id">
+      <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="middleware.baremetal.condition_id">
+      <require condition="allOf.device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="utilities.misc_utilities.condition_id">
+      <require condition="allOf.device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc, cores=cm33.condition_id">
+      <require condition="toolchains.armgcc.internal_condition"/>
+      <require condition="cores.cm33.internal_condition"/>
+    </condition>
+    <condition id="utility.assert.condition_id">
+      <require condition="allOf.utility.debug_console, driver.common, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.utility.debug_console, driver.common, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="utility.assert_lite.condition_id">
+      <require condition="allOf.utility.debug_console_lite, driver.common, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.utility.debug_console_lite, driver.common, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="utility.debug_console.condition_id">
+      <require condition="allOf.component.serial_manager, driver.common, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="utility.debug_console_lite.condition_id">
+      <require condition="allOf.component.usart_adapter, device_id=LPC55S69, driver.common.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.usart_adapter, device_id=LPC55S69, driver.common.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart_adapter"/>
+      <require condition="device_id.LPC55S69.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="utility.incbin.condition_id">
+      <require condition="allOf.device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc, mdk.condition_id">
+      <require condition="toolchains.armgcc, mdk.internal_condition"/>
+    </condition>
+    <condition id="toolchains.armgcc, mdk.internal_condition">
+      <accept Tcompiler="GCC"/>
+      <accept Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="utility.notifier.condition_id">
+      <require condition="allOf.driver.common, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="utility.shell.condition_id">
+      <require condition="allOf.utility.str, component.lists, driver.common, device=LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.utility.str, component.lists, driver.common, device=LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="str"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="utility.str.condition_id">
+      <require condition="allOf.driver.common, device=LPC55S69.internal_condition"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="LPC55S69" Cversion="1.0.0" condition="DEVICES_Project_Template.LPC55S69.condition_id" isDefaultVariant="1">
+      <description>Devices_project_template LPC55S69</description>
+      <files>
+        <file category="header" attr="config" name="devices/LPC55S69/project_template/board.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/LPC55S69/project_template/board.c" version="1.0.0" projectpath="board"/>
+        <file category="header" attr="config" name="devices/LPC55S69/project_template/clock_config.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/LPC55S69/project_template/clock_config.c" version="1.0.0" projectpath="board"/>
+        <file category="header" attr="config" name="devices/LPC55S69/project_template/pin_mux.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/LPC55S69/project_template/pin_mux.c" version="1.0.0" projectpath="board"/>
+        <file category="header" attr="config" name="devices/LPC55S69/project_template/peripherals.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/LPC55S69/project_template/peripherals.c" version="1.0.0" projectpath="board"/>
+        <file category="include" name="devices/LPC55S69/project_template/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device" Cversion="1.0.0" condition="RTE_Device.condition_id">
+      <description>Rte_device</description>
+      <files>
+        <file category="header" attr="config" name="devices/LPC55S69/template/RTE_Device.h" version="1.0.0" projectpath="board"/>
+        <file category="include" name="devices/LPC55S69/template/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="cmake_toolchain" Cversion="1.0.0" condition="cmake_toolchain.condition_id">
+      <description>Cmake_toolchain</description>
+      <files>
+        <file category="other" name="tools/cmake_toolchain_files/armgcc.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/xcc.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/xclang.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/armgcc_force_cpp.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/mcux_config.cmake" projectpath="cmake_toolchain_files"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="audio_flexcomm_i2s_dma_adapter" Cversion="1.0.0" condition="component.audio_flexcomm_i2s_dma_adapter.condition_id">
+      <description>Component flexcomm_i2s_dma_adapter</description>
+      <files>
+        <file category="header" name="components/audio/fsl_adapter_audio.h" projectpath="component/audio"/>
+        <file category="sourceC" name="components/audio/fsl_adapter_flexcomm_i2s.c" projectpath="component/audio"/>
+        <file category="include" name="components/audio/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="button" Cversion="1.0.0" condition="component.button.condition_id">
+      <description>Component button</description>
+      <files>
+        <file category="header" name="components/button/fsl_component_button.h" projectpath="component/button"/>
+        <file category="sourceC" name="components/button/fsl_component_button.c" projectpath="component/button"/>
+        <file category="include" name="components/button/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="codec_adapters" Cversion="2.2.0" condition="component.codec_adapters.condition_id">
+      <description>Component codec adapters for multi codec</description>
+      <RTE_Components_h>
+#ifndef CODEC_MULTI_ADAPTERS
+#define CODEC_MULTI_ADAPTERS 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="sourceC" name="components/codec/port/fsl_codec_adapter.c" projectpath="codec/port"/>
+        <file category="include" name="components/codec/port/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="codec_i2c" Cversion="2.1.0" condition="component.codec_i2c.condition_id">
+      <description>Component codec_i2c</description>
+      <RTE_Components_h>
+#ifndef SDK_I2C_BASED_COMPONENT_USED
+#define SDK_I2C_BASED_COMPONENT_USED 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/codec/i2c/fsl_codec_i2c.h" projectpath="codec"/>
+        <file category="sourceC" name="components/codec/i2c/fsl_codec_i2c.c" projectpath="codec"/>
+        <file category="include" name="components/codec/i2c/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cs42888_adapter" Cversion="2.2.1" condition="component.cs42888_adapter.condition_id">
+      <description>Component cs42888 adapter for single codec</description>
+      <files>
+        <file category="sourceC" name="components/codec/port/cs42888/fsl_codec_cs42888_adapter.c" projectpath="codec/port/cs42888"/>
+        <file category="header" name="components/codec/port/cs42888/fsl_codec_cs42888_adapter.h" projectpath="codec/port/cs42888"/>
+        <file category="header" name="components/codec/port/fsl_codec_adapter.h" projectpath="codec/port"/>
+        <file category="include" name="components/codec/port/cs42888/"/>
+        <file category="include" name="components/codec/port/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ctimer_adapter" Cversion="1.0.0" condition="component.ctimer_adapter.condition_id">
+      <description>Component ctimer_adapter</description>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h" projectpath="component/timer"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_ctimer.c" projectpath="component/timer"/>
+        <file category="include" name="components/timer/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="da7212_adapter" Cversion="2.2.0" condition="component.da7212_adapter.condition_id">
+      <description>Component da7212 adapter for single codec</description>
+      <files>
+        <file category="sourceC" name="components/codec/port/da7212/fsl_codec_da7212_adapter.c" projectpath="codec/port/da7212"/>
+        <file category="header" name="components/codec/port/da7212/fsl_codec_da7212_adapter.h" projectpath="codec/port/da7212"/>
+        <file category="header" name="components/codec/port/fsl_codec_adapter.h" projectpath="codec/port"/>
+        <file category="include" name="components/codec/port/da7212/"/>
+        <file category="include" name="components/codec/port/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm_i2c_adapter" Cversion="1.0.0" condition="component.flexcomm_i2c_adapter.condition_id">
+      <description>Component flexcomm_i2c_adapter</description>
+      <files>
+        <file category="header" name="components/i2c/fsl_adapter_i2c.h" projectpath="component/i2c"/>
+        <file category="sourceC" name="components/i2c/fsl_adapter_flexcomm_i2c.c" projectpath="component/i2c"/>
+        <file category="include" name="components/i2c/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm_spi_adapter" Cversion="1.0.0" condition="component.flexcomm_spi_adapter.condition_id">
+      <description>Component flexcomm_spi_adapter</description>
+      <files>
+        <file category="header" name="components/spi/fsl_adapter_spi.h" projectpath="component/spi"/>
+        <file category="sourceC" name="components/spi/fsl_adapter_flexcomm_spi.c" projectpath="component/spi"/>
+        <file category="include" name="components/spi/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gint_adapter" Cversion="1.0.1" condition="component.gint_adapter.condition_id">
+      <description>Component gint_adapter</description>
+      <files>
+        <file category="header" name="components/gpio/fsl_adapter_gpio.h" projectpath="component/gpio"/>
+        <file category="sourceC" name="components/gpio/fsl_adapter_gint.c" projectpath="component/gpio"/>
+        <file category="include" name="components/gpio/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="led" Cversion="1.0.0" condition="component.led.condition_id">
+      <description>Component led</description>
+      <files>
+        <file category="header" name="components/led/fsl_component_led.h" projectpath="component/led"/>
+        <file category="sourceC" name="components/led/fsl_component_led.c" projectpath="component/led"/>
+        <file category="include" name="components/led/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lists" Cversion="1.0.0" condition="component.lists.condition_id">
+      <description>Component lists</description>
+      <files>
+        <file category="header" name="components/lists/fsl_component_generic_list.h" projectpath="component/lists"/>
+        <file category="sourceC" name="components/lists/fsl_component_generic_list.c" projectpath="component/lists"/>
+        <file category="include" name="components/lists/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="log" Cversion="1.0.0" condition="component.log.condition_id">
+      <description>Component log</description>
+      <files>
+        <file category="header" name="components/log/fsl_component_log.h" projectpath="component/log"/>
+        <file category="header" name="components/log/fsl_component_log_config.h" projectpath="component/log"/>
+        <file category="sourceC" name="components/log/fsl_component_log.c" projectpath="component/log"/>
+        <file category="include" name="components/log/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="debugconsole" Cversion="1.0.0" condition="component.log.backend.debugconsole.condition_id">
+      <description>Component log backend debug console</description>
+      <files>
+        <file category="sourceC" name="components/log/fsl_component_log_backend_debugconsole.c" projectpath="component/log"/>
+        <file category="header" name="components/log/fsl_component_log_backend_debugconsole.h" projectpath="component/log"/>
+        <file category="include" name="components/log/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="debugconsole_lite" Cversion="1.0.0" condition="component.log.backend.debugconsole_lite.condition_id">
+      <description>Component log backend debug console lite</description>
+      <files>
+        <file category="sourceC" name="components/log/fsl_component_log_backend_debugconsole.c" projectpath="component/log"/>
+        <file category="header" name="components/log/fsl_component_log_backend_debugconsole.h" projectpath="component/log"/>
+        <file category="include" name="components/log/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ringbuffer" Cversion="1.0.0" condition="component.log.backend.ringbuffer.condition_id">
+      <description>Component log backend ring buffer</description>
+      <files>
+        <file category="sourceC" name="components/log/fsl_component_log_backend_ringbuffer.c" projectpath="component/log"/>
+        <file category="header" name="components/log/fsl_component_log_backend_ringbuffer.h" projectpath="component/log"/>
+        <file category="include" name="components/log/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_crc_adapter" Cversion="1.0.0" condition="component.lpc_crc_adapter.condition_id">
+      <description>Component lpc_crc_adapter</description>
+      <files>
+        <file category="header" name="components/crc/fsl_adapter_crc.h" projectpath="component/crc"/>
+        <file category="sourceC" name="components/crc/fsl_adapter_lpc_crc.c" projectpath="component/crc"/>
+        <file category="include" name="components/crc/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_gpio_adapter" Cversion="1.0.1" condition="component.lpc_gpio_adapter.condition_id">
+      <description>Component lpc_gpio_adapter</description>
+      <files>
+        <file category="header" name="components/gpio/fsl_adapter_gpio.h" projectpath="component/gpio"/>
+        <file category="sourceC" name="components/gpio/fsl_adapter_lpc_gpio.c" projectpath="component/gpio"/>
+        <file category="include" name="components/gpio/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpcrtc" Cversion="1.0.0" condition="component.lpcrtc.condition_id">
+      <description>Component lpcrtc</description>
+      <RTE_Components_h>
+#ifndef RTC_LEGACY_FUNCTION_PROTOTYPE
+#define RTC_LEGACY_FUNCTION_PROTOTYPE 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/rtc/fsl_adapter_rtc.h" projectpath="component/rtc"/>
+        <file category="sourceC" name="components/rtc/fsl_adapter_lpcrtc.c" projectpath="component/rtc"/>
+        <file category="include" name="components/rtc/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mem_manager" Cversion="1.0.0" condition="component.mem_manager.condition_id">
+      <description>Component mem_manager</description>
+      <files>
+        <file category="header" name="components/mem_manager/fsl_component_mem_manager.h" projectpath="component/mem_manager"/>
+        <file category="sourceC" name="components/mem_manager/fsl_component_mem_manager.c" projectpath="component/mem_manager"/>
+        <file category="include" name="components/mem_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mem_manager_light" Cversion="1.0.0" condition="component.mem_manager_light.condition_id">
+      <description>Component mem_manager_light</description>
+      <files>
+        <file category="header" name="components/mem_manager/fsl_component_mem_manager.h" projectpath="component/mem_manager"/>
+        <file category="sourceC" name="components/mem_manager/fsl_component_mem_manager_light.c" projectpath="component/mem_manager"/>
+        <file category="include" name="components/mem_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mflash_common" Cversion="1.0.0" condition="component.mflash.common.condition_id">
+      <description>mflash common</description>
+      <files>
+        <file category="header" name="components/flash/mflash/mflash_common.h" projectpath="flash/mflash"/>
+        <file category="include" name="components/flash/mflash/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpc55xxx" Cversion="1.0.0" condition="component.mflash.lpc55xxx.condition_id">
+      <description>mflash lpc55xxx</description>
+      <RTE_Components_h>
+#ifndef MFLASH_FILE_BASEADDR
+#define MFLASH_FILE_BASEADDR 458752
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="sourceC" name="components/flash/mflash/lpc55xxx/mflash_drv.c" projectpath="flash/mflash/lpc55xxx"/>
+        <file category="header" name="components/flash/mflash/lpc55xxx/mflash_drv.h" projectpath="flash/mflash/lpc55xxx"/>
+        <file category="include" name="components/flash/mflash/lpc55xxx/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mflash_dummy" Cversion="1.0.0" condition="component.mflash_dummy.condition_id">
+      <description>dummy file for overwriting mflash when dowloading</description>
+      <files>
+        <file category="sourceC" name="components/flash/mflash/mflash_dummy.c" projectpath="flash/mflash"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mflash_file" Cversion="1.0.0" condition="component.mflash_file.condition_id">
+      <description>mflash file</description>
+      <files>
+        <file category="header" name="components/flash/mflash/mflash_file.h" projectpath="flash/mflash"/>
+        <file category="sourceC" name="components/flash/mflash/mflash_file.c" projectpath="flash/mflash"/>
+        <file category="doc" name="components/flash/mflash/readme.txt" projectpath="flash/mflash"/>
+        <file category="include" name="components/flash/mflash/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mrt_adapter" Cversion="1.0.0" condition="component.mrt_adapter.condition_id">
+      <description>Component mrt_adapter</description>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h" projectpath="component/timer"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_mrt.c" projectpath="component/timer"/>
+        <file category="include" name="components/timer/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ostimer_adapter" Cversion="1.0.0" condition="component.ostimer_adapter.condition_id">
+      <description>Component ostimer_adapter</description>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h" projectpath="component/timer"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_ostimer.c" projectpath="component/timer"/>
+        <file category="include" name="components/timer/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="panic" Cversion="1.0.0" condition="component.panic.condition_id">
+      <description>Component panic</description>
+      <files>
+        <file category="header" name="components/panic/fsl_component_panic.h" projectpath="component/panic"/>
+        <file category="sourceC" name="components/panic/fsl_component_panic.c" projectpath="component/panic"/>
+        <file category="include" name="components/panic/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pwm_ctimer_adapter" Cversion="1.0.0" condition="component.pwm_ctimer_adapter.condition_id">
+      <description>Component pwm_ctimer_adapter</description>
+      <files>
+        <file category="header" name="components/pwm/fsl_adapter_pwm.h" projectpath="component/pwm"/>
+        <file category="sourceC" name="components/pwm/fsl_adapter_pwm_ctimer.c" projectpath="component/pwm"/>
+        <file category="include" name="components/pwm/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="reset_adapter" Cversion="1.0.0" condition="component.reset_adapter.condition_id">
+      <description>Component reset_adapter</description>
+      <files>
+        <file category="header" name="components/reset/fsl_adapter_reset.h" projectpath="component/reset"/>
+        <file category="sourceC" name="components/reset/fsl_adapter_reset.c" projectpath="component/reset"/>
+        <file category="include" name="components/reset/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager" Cversion="1.0.1" condition="component.serial_manager.condition_id">
+      <description>Component serial_manager</description>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_manager.h" projectpath="component/serial_manager"/>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_internal.h" projectpath="component/serial_manager"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_manager.c" projectpath="component/serial_manager"/>
+        <file category="include" name="components/serial_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_spi" Cversion="1.0.0" condition="component.serial_manager_spi.condition_id">
+      <description>Component serial_manager_spi</description>
+      <RTE_Components_h>
+#ifndef SERIAL_PORT_TYPE_SPI
+#define SERIAL_PORT_TYPE_SPI 1
+#endif
+#ifndef SERIAL_PORT_TYPE_SPI_MASTER
+#define SERIAL_PORT_TYPE_SPI_MASTER 1
+#endif
+#ifndef SERIAL_PORT_TYPE_SPI_SLAVE
+#define SERIAL_PORT_TYPE_SPI_SLAVE 1
+#endif
+#ifndef SERIAL_MANAGER_NON_BLOCKING_MODE
+#define SERIAL_MANAGER_NON_BLOCKING_MODE 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_spi.h" projectpath="component/serial_manager"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_spi.c" projectpath="component/serial_manager"/>
+        <file category="include" name="components/serial_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_swo" Cversion="1.0.0" condition="component.serial_manager_swo.condition_id">
+      <description>Component serial_manager_swo</description>
+      <RTE_Components_h>
+#ifndef SERIAL_PORT_TYPE_SWO
+#define SERIAL_PORT_TYPE_SWO 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_swo.h" projectpath="component/serial_manager"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_swo.c" projectpath="component/serial_manager"/>
+        <file category="include" name="components/serial_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart" Cversion="1.0.0" condition="component.serial_manager_uart.condition_id">
+      <description>Component serial_manager_uart</description>
+      <RTE_Components_h>
+#ifndef SERIAL_PORT_TYPE_UART
+#define SERIAL_PORT_TYPE_UART 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_uart.h" projectpath="component/serial_manager"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_uart.c" projectpath="component/serial_manager"/>
+        <file category="include" name="components/serial_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_virtual" Cversion="1.0.0" condition="component.serial_manager_virtual.condition_id">
+      <description>Component serial_manager_virtual</description>
+      <RTE_Components_h>
+#ifndef SERIAL_PORT_TYPE_VIRTUAL
+#define SERIAL_PORT_TYPE_VIRTUAL 1
+#endif
+#ifndef DEBUG_CONSOLE_TRANSFER_NON_BLOCKING
+#define DEBUG_CONSOLE_TRANSFER_NON_BLOCKING 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_virtual.h" projectpath="component/serial_manager"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_virtual.c" projectpath="component/serial_manager"/>
+        <file category="include" name="components/serial_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sgtl_adapter" Cversion="2.2.0" condition="component.sgtl_adapter.condition_id">
+      <description>Component sgtl5000 adapter for single codec</description>
+      <files>
+        <file category="sourceC" name="components/codec/port/sgtl5000/fsl_codec_sgtl_adapter.c" projectpath="codec/port/sgtl5000"/>
+        <file category="header" name="components/codec/port/sgtl5000/fsl_codec_sgtl_adapter.h" projectpath="codec/port/sgtl5000"/>
+        <file category="header" name="components/codec/port/fsl_codec_adapter.h" projectpath="codec/port"/>
+        <file category="include" name="components/codec/port/sgtl5000/"/>
+        <file category="include" name="components/codec/port/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="software_crc_adapter" Cversion="1.0.0" condition="component.software_crc_adapter.condition_id">
+      <description>Component software_crc_adapter</description>
+      <files>
+        <file category="header" name="components/crc/fsl_adapter_crc.h" projectpath="component/crc"/>
+        <file category="sourceC" name="components/crc/fsl_adapter_software_crc.c" projectpath="component/crc"/>
+        <file category="include" name="components/crc/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="software_rng_adapter" Cversion="1.0.0" condition="component.software_rng_adapter.condition_id">
+      <description>Component software_rng_adapter</description>
+      <files>
+        <file category="header" name="components/rng/fsl_adapter_rng.h" projectpath="component/rng"/>
+        <file category="sourceC" name="components/rng/fsl_adapter_software_rng.c" projectpath="component/rng"/>
+        <file category="include" name="components/rng/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="timer_manager" Cversion="1.0.0" condition="component.timer_manager.condition_id">
+      <description>Component timer_manager</description>
+      <files>
+        <file category="header" name="components/timer_manager/fsl_component_timer_manager.h" projectpath="component/timer_manager"/>
+        <file category="sourceC" name="components/timer_manager/fsl_component_timer_manager.c" projectpath="component/timer_manager"/>
+        <file category="include" name="components/timer_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="usart_adapter" Cversion="1.0.0" condition="component.usart_adapter.condition_id">
+      <description>Component usart_adapter</description>
+      <files>
+        <file category="header" name="components/uart/fsl_adapter_uart.h" projectpath="component/uart"/>
+        <file category="sourceC" name="components/uart/fsl_adapter_usart.c" projectpath="component/uart"/>
+        <file category="include" name="components/uart/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="usart_dma_adapter" Cversion="1.0.0" condition="component.usart_dma_adapter.condition_id">
+      <description>Component usart_dma_adapter</description>
+      <RTE_Components_h>
+#ifndef HAL_UART_DMA_ENABLE
+#define HAL_UART_DMA_ENABLE 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/uart/fsl_adapter_uart.h" projectpath="component/uart"/>
+        <file category="sourceC" name="components/uart/fsl_adapter_usart.c" projectpath="component/uart"/>
+        <file category="include" name="components/uart/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wm8904_adapter" Cversion="2.2.0" condition="component.wm8904_adapter.condition_id">
+      <description>Component wm8904 adapter for single codec</description>
+      <files>
+        <file category="sourceC" name="components/codec/port/wm8904/fsl_codec_wm8904_adapter.c" projectpath="codec/port/wm8904"/>
+        <file category="header" name="components/codec/port/wm8904/fsl_codec_wm8904_adapter.h" projectpath="codec/port/wm8904"/>
+        <file category="header" name="components/codec/port/fsl_codec_adapter.h" projectpath="codec/port"/>
+        <file category="include" name="components/codec/port/wm8904/"/>
+        <file category="include" name="components/codec/port/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wm8960_adapter" Cversion="2.2.0" condition="component.wm8960_adapter.condition_id">
+      <description>Component wm8960 adapter for single codecs</description>
+      <files>
+        <file category="sourceC" name="components/codec/port/wm8960/fsl_codec_wm8960_adapter.c" projectpath="codec/port/wm8960"/>
+        <file category="header" name="components/codec/port/wm8960/fsl_codec_wm8960_adapter.h" projectpath="codec/port/wm8960"/>
+        <file category="header" name="components/codec/port/fsl_codec_adapter.h" projectpath="codec/port"/>
+        <file category="include" name="components/codec/port/wm8960/"/>
+        <file category="include" name="components/codec/port/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="LPC55S69_header" Cversion="1.0.0" condition="device.LPC55S69_CMSIS.condition_id">
+      <description>Device LPC55S69_cmsis</description>
+      <files>
+        <file condition="allOf.cores=cm33, core_ids=cm33_core0, cm33_core1.condition_id" category="header" name="devices/LPC55S69/fsl_device_registers.h" projectpath="device"/>
+        <file condition="allOf.cores=cm33, core_ids=cm33_core0.condition_id" category="header" name="devices/LPC55S69/LPC55S69_cm33_core0.h" projectpath="device"/>
+        <file condition="allOf.cores=cm33, core_ids=cm33_core0.condition_id" category="header" name="devices/LPC55S69/LPC55S69_cm33_core0_features.h" projectpath="device"/>
+        <file condition="allOf.cores=cm33, core_ids=cm33_core1.condition_id" category="header" name="devices/LPC55S69/LPC55S69_cm33_core1.h" projectpath="device"/>
+        <file condition="allOf.cores=cm33, core_ids=cm33_core1.condition_id" category="header" name="devices/LPC55S69/LPC55S69_cm33_core1_features.h" projectpath="device"/>
+        <file condition="allOf.cores=cm33.condition_id" category="include" name="devices/LPC55S69/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="LPC55S69_linker" Cversion="1.0.0" condition="device.LPC55S69_linker.condition_id">
+      <description>Device LPC55S69_linker</description>
+      <files>
+        <file condition="allOf.toolchains=mdk, cores=cm33, core_ids=cm33_core0, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/arm/LPC55S69_cm33_core0_flash.scf" version="1.0.0" projectpath="LPC55S69/arm"/>
+        <file condition="allOf.toolchains=mdk, cores=cm33, core_ids=cm33_core0, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/arm/LPC55S69_cm33_core0_flash_ns.scf" version="1.0.0" projectpath="LPC55S69/arm"/>
+        <file condition="allOf.toolchains=mdk, cores=cm33, core_ids=cm33_core0, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/arm/LPC55S69_cm33_core0_flash_s.scf" version="1.0.0" projectpath="LPC55S69/arm"/>
+        <file condition="allOf.toolchains=mdk, cores=cm33, core_ids=cm33_core0, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/arm/LPC55S69_cm33_core0_ram.scf" version="1.0.0" projectpath="LPC55S69/arm"/>
+        <file condition="allOf.toolchains=mdk, cores=cm33, core_ids=cm33_core1, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/arm/LPC55S69_cm33_core1_flash.scf" version="1.0.0" projectpath="LPC55S69/arm"/>
+        <file condition="allOf.toolchains=mdk, cores=cm33, core_ids=cm33_core1, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/arm/LPC55S69_cm33_core1_ram.scf" version="1.0.0" projectpath="LPC55S69/arm"/>
+        <file condition="allOf.toolchains=mdk, cores=cm33, core_ids=cm33_core1, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/arm/LPC55S69_cm33_core1_ram_s.scf" version="1.0.0" projectpath="LPC55S69/arm"/>
+        <file condition="allOf.toolchains=armgcc, cores=cm33, core_ids=cm33_core0, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/gcc/LPC55S69_cm33_core0_flash.ld" version="1.0.0" projectpath="LPC55S69/gcc"/>
+        <file condition="allOf.toolchains=armgcc, cores=cm33, core_ids=cm33_core0, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/gcc/LPC55S69_cm33_core0_flash_ns.ld" version="1.0.0" projectpath="LPC55S69/gcc"/>
+        <file condition="allOf.toolchains=armgcc, cores=cm33, core_ids=cm33_core0, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/gcc/LPC55S69_cm33_core0_flash_s.ld" version="1.0.0" projectpath="LPC55S69/gcc"/>
+        <file condition="allOf.toolchains=armgcc, cores=cm33, core_ids=cm33_core0, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/gcc/LPC55S69_cm33_core0_ram.ld" version="1.0.0" projectpath="LPC55S69/gcc"/>
+        <file condition="allOf.toolchains=armgcc, cores=cm33, core_ids=cm33_core1, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/gcc/LPC55S69_cm33_core1_flash.ld" version="1.0.0" projectpath="LPC55S69/gcc"/>
+        <file condition="allOf.toolchains=armgcc, cores=cm33, core_ids=cm33_core1, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/gcc/LPC55S69_cm33_core1_ram.ld" version="1.0.0" projectpath="LPC55S69/gcc"/>
+        <file condition="allOf.toolchains=armgcc, cores=cm33, core_ids=cm33_core1, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/gcc/LPC55S69_cm33_core1_ram_s.ld" version="1.0.0" projectpath="LPC55S69/gcc"/>
+        <file condition="allOf.toolchains=iar, cores=cm33, core_ids=cm33_core0, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/iar/LPC55S69_cm33_core0_flash.icf" version="1.0.0" projectpath="LPC55S69/iar"/>
+        <file condition="allOf.toolchains=iar, cores=cm33, core_ids=cm33_core0, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/iar/LPC55S69_cm33_core0_flash_ns.icf" version="1.0.0" projectpath="LPC55S69/iar"/>
+        <file condition="allOf.toolchains=iar, cores=cm33, core_ids=cm33_core0, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/iar/LPC55S69_cm33_core0_flash_s.icf" version="1.0.0" projectpath="LPC55S69/iar"/>
+        <file condition="allOf.toolchains=iar, cores=cm33, core_ids=cm33_core0, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/iar/LPC55S69_cm33_core0_ram.icf" version="1.0.0" projectpath="LPC55S69/iar"/>
+        <file condition="allOf.toolchains=iar, cores=cm33, core_ids=cm33_core1, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/iar/LPC55S69_cm33_core1_flash.icf" version="1.0.0" projectpath="LPC55S69/iar"/>
+        <file condition="allOf.toolchains=iar, cores=cm33, core_ids=cm33_core1, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/iar/LPC55S69_cm33_core1_ram.icf" version="1.0.0" projectpath="LPC55S69/iar"/>
+        <file condition="allOf.toolchains=iar, cores=cm33, core_ids=cm33_core1, device_ids=LPC55S69.condition_id" category="linkerScript" attr="config" name="devices/LPC55S69/iar/LPC55S69_cm33_core1_ram_s.icf" version="1.0.0" projectpath="LPC55S69/iar"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Csub="" Cversion="1.1.0" condition="device.LPC55S69_startup.condition_id">
+      <description>Device LPC55S69_startup</description>
+      <files>
+        <file condition="allOf.toolchains=mdk, cores=cm33, core_ids=cm33_core0.condition_id" category="sourceAsm" attr="config" name="devices/LPC55S69/arm/startup_LPC55S69_cm33_core0.S" version="1.1.0" projectpath="startup"/>
+        <file condition="allOf.toolchains=mdk, cores=cm33, core_ids=cm33_core1.condition_id" category="sourceAsm" attr="config" name="devices/LPC55S69/arm/startup_LPC55S69_cm33_core1.S" version="1.1.0" projectpath="startup"/>
+        <file condition="allOf.toolchains=armgcc, cores=cm33, core_ids=cm33_core0.condition_id" category="sourceAsm" name="devices/LPC55S69/gcc/startup_LPC55S69_cm33_core0.S" projectpath="startup"/>
+        <file condition="allOf.toolchains=armgcc, cores=cm33, core_ids=cm33_core1.condition_id" category="sourceAsm" name="devices/LPC55S69/gcc/startup_LPC55S69_cm33_core1.S" projectpath="startup"/>
+        <file condition="allOf.toolchains=iar, cores=cm33, core_ids=cm33_core0.condition_id" category="sourceAsm" attr="config" name="devices/LPC55S69/iar/startup_LPC55S69_cm33_core0.s" version="1.1.0" projectpath="startup"/>
+        <file condition="allOf.toolchains=iar, cores=cm33, core_ids=cm33_core1.condition_id" category="sourceAsm" attr="config" name="devices/LPC55S69/iar/startup_LPC55S69_cm33_core1.s" version="1.1.0" projectpath="startup"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="LPC55S69_system" Cversion="1.0.0" condition="device.LPC55S69_system.condition_id">
+      <description>Device LPC55S69_system</description>
+      <files>
+        <file condition="allOf.cores=cm33, core_ids=cm33_core0.condition_id" category="sourceC" name="devices/LPC55S69/system_LPC55S69_cm33_core0.c" projectpath="device"/>
+        <file condition="allOf.cores=cm33, core_ids=cm33_core0.condition_id" category="header" name="devices/LPC55S69/system_LPC55S69_cm33_core0.h" projectpath="device"/>
+        <file condition="allOf.cores=cm33, core_ids=cm33_core1.condition_id" category="sourceC" name="devices/LPC55S69/system_LPC55S69_cm33_core1.c" projectpath="device"/>
+        <file condition="allOf.cores=cm33, core_ids=cm33_core1.condition_id" category="header" name="devices/LPC55S69/system_LPC55S69_cm33_core1.h" projectpath="device"/>
+        <file condition="allOf.cores=cm33.condition_id" category="include" name="devices/LPC55S69/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="anactrl" Cversion="2.3.1" condition="driver.anactrl.condition_id">
+      <description>anactrl Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_anactrl.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_anactrl.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="casper" Cversion="2.2.4" condition="driver.casper.condition_id">
+      <description>CASPER Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_casper.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_casper.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="clock" Cversion="2.3.3" condition="driver.clock.condition_id">
+      <description>Clock Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_clock.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_clock.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cmp_1" Cversion="2.2.1" condition="driver.cmp_1.condition_id">
+      <description>cmp_1 Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_cmp.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_cmp.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Csub="flexcomm_i2c_cmsis" Cversion="2.3.0" Capiversion="2.3.0" condition="driver.cmsis_flexcomm_i2c.condition_id">
+      <description>I2C CMSIS Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/cmsis_drivers/fsl_i2c_cmsis.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/cmsis_drivers/fsl_i2c_cmsis.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/cmsis_drivers/"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="flexcomm_spi_cmsis" Cversion="2.5.0" Capiversion="2.2.0" condition="driver.cmsis_flexcomm_spi.condition_id">
+      <description>SPI CMSIS Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/cmsis_drivers/fsl_spi_cmsis.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/cmsis_drivers/fsl_spi_cmsis.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/cmsis_drivers/"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Csub="flexcomm_usart_cmsis" Cversion="2.4.0" Capiversion="2.3.0" condition="driver.cmsis_flexcomm_usart.condition_id">
+      <description>USART CMSIS Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/cmsis_drivers/fsl_usart_cmsis.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/cmsis_drivers/fsl_usart_cmsis.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/cmsis_drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="codec" Cversion="2.3.1" condition="driver.codec.condition_id">
+      <description>Driver codec</description>
+      <RTE_Components_h>
+#ifndef SDK_I2C_BASED_COMPONENT_USED
+#define SDK_I2C_BASED_COMPONENT_USED 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/codec/fsl_codec_common.h" projectpath="codec"/>
+        <file category="sourceC" name="components/codec/fsl_codec_common.c" projectpath="codec"/>
+        <file category="include" name="components/codec/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="common" Cversion="2.4.0" condition="driver.common.condition_id">
+      <description>COMMON Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_common.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_common.c" projectpath="drivers"/>
+        <file condition="allOf.cores=cm33.condition_id" category="sourceC" name="devices/LPC55S69/drivers/fsl_common_arm.c" projectpath="drivers"/>
+        <file condition="allOf.cores=cm33.condition_id" category="header" name="devices/LPC55S69/drivers/fsl_common_arm.h" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cs42888" Cversion="2.1.3" condition="driver.cs42888.condition_id">
+      <description>Driver cs42888</description>
+      <RTE_Components_h>
+#ifndef SDK_I2C_BASED_COMPONENT_USED
+#define SDK_I2C_BASED_COMPONENT_USED 1
+#endif
+#ifndef CODEC_CS42888_ENABLE
+#define CODEC_CS42888_ENABLE 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/codec/cs42888/fsl_cs42888.h" projectpath="codec"/>
+        <file category="sourceC" name="components/codec/cs42888/fsl_cs42888.c" projectpath="codec"/>
+        <file category="include" name="components/codec/cs42888/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ctimer" Cversion="2.3.1" condition="driver.ctimer.condition_id">
+      <description>CTimer Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_ctimer.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_ctimer.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dialog7212" Cversion="2.3.0" condition="driver.dialog7212.condition_id">
+      <description>Driver dialog7212</description>
+      <RTE_Components_h>
+#ifndef SDK_I2C_BASED_COMPONENT_USED
+#define SDK_I2C_BASED_COMPONENT_USED 1
+#endif
+#ifndef BOARD_USE_CODEC
+#define BOARD_USE_CODEC 1
+#endif
+#ifndef CODEC_DA7212_ENABLE
+#define CODEC_DA7212_ENABLE 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/codec/da7212/fsl_dialog7212.h" projectpath="codec"/>
+        <file category="sourceC" name="components/codec/da7212/fsl_dialog7212.c" projectpath="codec"/>
+        <file category="include" name="components/codec/da7212/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm" Cversion="2.0.2" condition="driver.flexcomm.condition_id">
+      <description>FLEXCOMM Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_flexcomm.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_flexcomm.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c" Cversion="2.3.3" condition="driver.flexcomm_i2c.condition_id">
+      <description>I2C Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_i2c.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_i2c.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_dma" Cversion="2.3.1" condition="driver.flexcomm_i2c_dma.condition_id">
+      <description>I2C Driver</description>
+      <files>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_i2c_dma.c" projectpath="drivers"/>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_i2c_dma.h" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm_i2s" Cversion="2.3.2" condition="driver.flexcomm_i2s.condition_id">
+      <description>I2S Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_i2s.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_i2s.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm_i2s_dma" Cversion="2.3.2" condition="driver.flexcomm_i2s_dma.condition_id">
+      <description>I2S Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_i2s_dma.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_i2s_dma.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="spi" Cversion="2.3.1" condition="driver.flexcomm_spi.condition_id">
+      <description>SPI Driver</description>
+      <files>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_spi.c" projectpath="drivers"/>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_spi.h" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="spi_dma" Cversion="2.2.1" condition="driver.flexcomm_spi_dma.condition_id">
+      <description>SPI Driver</description>
+      <files>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_spi_dma.c" projectpath="drivers"/>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_spi_dma.h" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="usart" Cversion="2.8.3" condition="driver.flexcomm_usart.condition_id">
+      <description>USART Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_usart.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_usart.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="usart_dma" Cversion="2.6.0" condition="driver.flexcomm_usart_dma.condition_id">
+      <description>USART Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_usart_dma.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_usart_dma.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="fro_calib" Cversion="2.0.1" condition="driver.fro_calib.condition_id">
+      <description>FRO calibration driver with calibration Lib</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_fro_calib.h" projectpath="LPC55S69/drivers"/>
+        <file condition="allOf.toolchains=mdk, cores=cm33, core_ids=cm33_core0.condition_id" category="library" name="devices/LPC55S69/arm/keil_lib_fro_calib_cm33_core0.lib" projectpath="LPC55S69/arm"/>
+        <file condition="allOf.toolchains=mdk, cores=cm33, core_ids=cm33_core1.condition_id" category="library" name="devices/LPC55S69/arm/keil_lib_fro_calib_cm33_core1.lib" projectpath="LPC55S69/arm"/>
+        <file condition="allOf.toolchains=iar, cores=cm33, core_ids=cm33_core0.condition_id" category="library" name="devices/LPC55S69/iar/iar_lib_fro_calib_cm33_core0.a" projectpath="LPC55S69/iar"/>
+        <file condition="allOf.toolchains=iar, cores=cm33, core_ids=cm33_core1.condition_id" category="library" name="devices/LPC55S69/iar/iar_lib_fro_calib_cm33_core1.a" projectpath="LPC55S69/iar"/>
+        <file condition="allOf.toolchains=armgcc, cores=cm33, core_ids=cm33_core0.condition_id" category="library" name="devices/LPC55S69/gcc/libfro_calib_hardabi.a" projectpath="LPC55S69/gcc"/>
+        <file condition="allOf.toolchains=armgcc, cores=cm33, core_ids=cm33_core0.condition_id" category="library" name="devices/LPC55S69/gcc/libfro_calib_softabi.a" projectpath="LPC55S69/gcc"/>
+        <file condition="allOf.toolchains=armgcc, cores=cm33, core_ids=cm33_core1.condition_id" category="library" name="devices/LPC55S69/gcc/libfro_calib_soft.a" projectpath="LPC55S69/gcc"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ft5406" Cversion="1.0.0" condition="driver.ft5406.condition_id">
+      <description>Driver ft5406</description>
+      <files>
+        <file category="header" name="components/ft5406/fsl_ft5406.h" projectpath="touchpanel"/>
+        <file category="sourceC" name="components/ft5406/fsl_ft5406.c" projectpath="touchpanel"/>
+        <file category="include" name="components/ft5406/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ft6x06" Cversion="1.0.0" condition="driver.ft6x06.condition_id">
+      <description>Driver ft6x06</description>
+      <files>
+        <file category="header" name="components/ft6x06/fsl_ft6x06.h" projectpath="touchpanel"/>
+        <file category="sourceC" name="components/ft6x06/fsl_ft6x06.c" projectpath="touchpanel"/>
+        <file category="include" name="components/ft6x06/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="fxos8700cq" Cversion="1.0.0" condition="driver.fxos8700cq.condition_id">
+      <description>Driver fxos8700cq</description>
+      <files>
+        <file category="header" name="components/fxos8700cq/fsl_fxos.h" projectpath="accel"/>
+        <file category="sourceC" name="components/fxos8700cq/fsl_fxos.c" projectpath="accel"/>
+        <file category="include" name="components/fxos8700cq/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gint" Cversion="2.1.0" condition="driver.gint.condition_id">
+      <description>GINT Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_gint.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_gint.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="hashcrypt" Cversion="2.2.14" condition="driver.hashcrypt.condition_id">
+      <description>Hashcrypt Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_hashcrypt.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_hashcrypt.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="iap1" Cversion="2.1.5" condition="driver.iap1.condition_id">
+      <description>FLASHIAP Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_iap.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_iap.c" projectpath="drivers"/>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_iap_ffr.h" projectpath="drivers"/>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_iap_kbp.h" projectpath="drivers"/>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_iap_skboot_authenticate.h" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ili9341" Cversion="1.0.2" condition="driver.ili9341.condition_id">
+      <description>Driver ili9341</description>
+      <files>
+        <file category="header" name="components/ili9341/fsl_ili9341.h" projectpath="lcd"/>
+        <file category="sourceC" name="components/ili9341/fsl_ili9341.c" projectpath="lcd"/>
+        <file category="include" name="components/ili9341/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="inputmux" Cversion="2.0.7" condition="driver.inputmux.condition_id">
+      <description>INPUTMUX Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_inputmux.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_inputmux.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="inputmux_connections" Cversion="2.0.1" condition="driver.inputmux_connections.condition_id">
+      <description>Inputmux_connections Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_inputmux_connections.h" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpadc" Cversion="2.8.4" condition="driver.lpadc.condition_id">
+      <description>LPADC Driver</description>
+      <files>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_lpadc.c" projectpath="drivers"/>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_lpadc.h" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_crc" Cversion="2.1.1" condition="driver.lpc_crc.condition_id">
+      <description>CRC Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_crc.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_crc.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dma" Cversion="2.5.1" condition="driver.lpc_dma.condition_id">
+      <description>DMA Driver</description>
+      <files>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_dma.c" projectpath="drivers"/>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_dma.h" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio" Cversion="2.1.7" condition="driver.lpc_gpio.condition_id">
+      <description>GPIO Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_gpio.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_gpio.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="iocon" Cversion="2.2.0" condition="driver.lpc_iocon.condition_id">
+      <description>IOCON Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_iocon.h" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_rtc" Cversion="2.2.0" condition="driver.lpc_rtc.condition_id">
+      <description>RTC Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_rtc.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_rtc.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mailbox" Cversion="2.3.1" condition="driver.mailbox.condition_id">
+      <description>MAILBOX Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_mailbox.h" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mma8451q" Cversion="1.0.0" condition="driver.mma8451q.condition_id">
+      <description>Driver mma8451q</description>
+      <files>
+        <file category="header" name="components/mma8451q/fsl_mma.h" projectpath="accel"/>
+        <file category="sourceC" name="components/mma8451q/fsl_mma.c" projectpath="accel"/>
+        <file category="include" name="components/mma8451q/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mma8652fc" Cversion="1.0.0" condition="driver.mma8652fc.condition_id">
+      <description>Driver mma8652fc</description>
+      <files>
+        <file category="header" name="components/mma8652fc/fsl_mma.h" projectpath="accel"/>
+        <file category="sourceC" name="components/mma8652fc/fsl_mma.c" projectpath="accel"/>
+        <file category="include" name="components/mma8652fc/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mrt" Cversion="2.0.4" condition="driver.mrt.condition_id">
+      <description>MRT Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_mrt.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_mrt.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mx25r_flash" Cversion="2.0.0" condition="driver.mx25r_flash.condition_id">
+      <description>Driver mx25r_flash</description>
+      <files>
+        <file category="header" name="components/mx25r_flash/mx25r_flash.h" projectpath="source"/>
+        <file category="sourceC" name="components/mx25r_flash/mx25r_flash.c" projectpath="source"/>
+        <file category="include" name="components/mx25r_flash/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="nand_flash-common" Cversion="1.0.0" condition="driver.nand_flash-common.condition_id">
+      <description>Driver nand_flash-common</description>
+      <files>
+        <file category="header" name="components/flash/nand/fsl_nand_flash.h" projectpath="nand_flash"/>
+        <file category="include" name="components/flash/nand/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="nor_flash-common" Cversion="1.0.0" condition="driver.nor_flash-common.condition_id">
+      <description>Driver nor_flash-common</description>
+      <files>
+        <file category="header" name="components/flash/nor/fsl_nor_flash.h" projectpath="nor_flash"/>
+        <file category="include" name="components/flash/nor/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ostimer" Cversion="2.2.1" condition="driver.ostimer.condition_id">
+      <description>OSTimer Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_ostimer.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_ostimer.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pf1550" Cversion="1.0.0" condition="driver.pf1550.condition_id">
+      <description>Driver pf1550</description>
+      <files>
+        <file category="header" name="components/pf1550/fsl_pf1550.h" projectpath="pmic_driver"/>
+        <file category="sourceC" name="components/pf1550/fsl_pf1550.c" projectpath="pmic_driver"/>
+        <file category="header" name="components/pf1550/fsl_pf1550_charger.h" projectpath="pmic_driver"/>
+        <file category="sourceC" name="components/pf1550/fsl_pf1550_charger.c" projectpath="pmic_driver"/>
+        <file category="include" name="components/pf1550/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pf3000" Cversion="1.0.0" condition="driver.pf3000.condition_id">
+      <description>Driver pf3000</description>
+      <files>
+        <file category="header" name="components/pf3000/fsl_pf3000.h" projectpath="pmic_driver"/>
+        <file category="sourceC" name="components/pf3000/fsl_pf3000.c" projectpath="pmic_driver"/>
+        <file category="include" name="components/pf3000/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pint" Cversion="2.1.12" condition="driver.pint.condition_id">
+      <description>PINT Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_pint.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_pint.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="plu" Cversion="2.2.1" condition="driver.plu.condition_id">
+      <description>PLU Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_plu.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_plu.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="power" Cversion="2.3.0" condition="driver.power.condition_id">
+      <description>Power driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_power.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_power.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="powerquad" Cversion="2.2.0" condition="driver.powerquad.condition_id">
+      <description>POWERQUAD Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_powerquad_data.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_powerquad_data.c" projectpath="drivers"/>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_powerquad.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_powerquad_basic.c" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_powerquad_math.c" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_powerquad_matrix.c" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_powerquad_filter.c" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_powerquad_transform.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="PRINCE" Cversion="2.6.0" condition="driver.prince.condition_id">
+      <description>PRINCE Driver</description>
+      <RTE_Components_h>
+#ifndef FFR_INCLUDE
+#define FFR_INCLUDE "fsl_iap_ffr.h"
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_prince.c" projectpath="drivers"/>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_prince.h" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="PUF" Cversion="2.1.6" condition="driver.puf.condition_id">
+      <description>PUF Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_puf.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_puf.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="reset" Cversion="2.1.2" condition="driver.reset.condition_id">
+      <description>Reset Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_reset.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_reset.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rng" Cversion="2.0.3" condition="driver.rng_1.condition_id">
+      <description>RNG Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_rng.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_rng.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rtt" Cversion="7.22.0" condition="driver.rtt.condition_id">
+      <description>SEGGER Real Time Transfer(RTT)</description>
+      <files>
+        <file category="sourceC" name="components/rtt/RTT/SEGGER_RTT.c" projectpath="rtt/RTT"/>
+        <file category="header" name="components/rtt/RTT/SEGGER_RTT.h" projectpath="rtt/RTT"/>
+        <file category="sourceC" name="components/rtt/RTT/SEGGER_RTT_printf.c" projectpath="rtt/RTT"/>
+        <file condition="allOf.toolchains=armgcc.condition_id" category="sourceC" name="components/rtt/Syscalls/SEGGER_RTT_Syscalls_GCC.c" projectpath="rtt/Syscalls"/>
+        <file condition="allOf.toolchains=iar.condition_id" category="sourceC" name="components/rtt/Syscalls/SEGGER_RTT_Syscalls_IAR.c" projectpath="rtt/Syscalls"/>
+        <file condition="allOf.toolchains=mdk.condition_id" category="sourceC" name="components/rtt/Syscalls/SEGGER_RTT_Syscalls_KEIL.c" projectpath="rtt/Syscalls"/>
+        <file category="doc" name="components/rtt/License.txt" projectpath="rtt"/>
+        <file category="doc" name="components/rtt/README.txt" projectpath="rtt"/>
+        <file category="include" name="components/rtt/RTT/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rtt template" Cversion="7.22.0" condition="driver.rtt.template.condition_id">
+      <description>RTT template configuration</description>
+      <files>
+        <file category="header" attr="config" name="components/rtt/template/SEGGER_RTT_Conf.h" version="7.22.0" projectpath="rtt/template"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sctimer" Cversion="2.4.9" condition="driver.sctimer.condition_id">
+      <description>SCT Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_sctimer.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_sctimer.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sdif" Cversion="2.1.0" condition="driver.sdif.condition_id">
+      <description>sdif Driver</description>
+      <files>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_sdif.c" projectpath="drivers"/>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_sdif.h" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sgtl5000" Cversion="2.1.1" condition="driver.sgtl5000.condition_id">
+      <description>Driver sgtl5000</description>
+      <RTE_Components_h>
+#ifndef SDK_I2C_BASED_COMPONENT_USED
+#define SDK_I2C_BASED_COMPONENT_USED 1
+#endif
+#ifndef BOARD_USE_CODEC
+#define BOARD_USE_CODEC 1
+#endif
+#ifndef CODEC_SGTL5000_ENABLE
+#define CODEC_SGTL5000_ENABLE 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/codec/sgtl5000/fsl_sgtl5000.h" projectpath="codec"/>
+        <file category="sourceC" name="components/codec/sgtl5000/fsl_sgtl5000.c" projectpath="codec"/>
+        <file category="include" name="components/codec/sgtl5000/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sysctl" Cversion="2.0.5" condition="driver.sysctl.condition_id">
+      <description>SYSCTL Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_sysctl.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_sysctl.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="utick" Cversion="2.0.5" condition="driver.utick.condition_id">
+      <description>UTICK Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_utick.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_utick.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wm8904" Cversion="2.5.1" condition="driver.wm8904.condition_id">
+      <description>Driver wm8904</description>
+      <RTE_Components_h>
+#ifndef SDK_I2C_BASED_COMPONENT_USED
+#define SDK_I2C_BASED_COMPONENT_USED 1
+#endif
+#ifndef BOARD_USE_CODEC
+#define BOARD_USE_CODEC 1
+#endif
+#ifndef CODEC_WM8904_ENABLE
+#define CODEC_WM8904_ENABLE 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/codec/wm8904/fsl_wm8904.h" projectpath="codec"/>
+        <file category="sourceC" name="components/codec/wm8904/fsl_wm8904.c" projectpath="codec"/>
+        <file category="include" name="components/codec/wm8904/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wm8960" Cversion="2.2.4" condition="driver.wm8960.condition_id">
+      <description>Driver wm8960</description>
+      <RTE_Components_h>
+#ifndef SDK_I2C_BASED_COMPONENT_USED
+#define SDK_I2C_BASED_COMPONENT_USED 1
+#endif
+#ifndef BOARD_USE_CODEC
+#define BOARD_USE_CODEC 1
+#endif
+#ifndef CODEC_WM8960_ENABLE
+#define CODEC_WM8960_ENABLE 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/codec/wm8960/fsl_wm8960.h" projectpath="codec"/>
+        <file category="sourceC" name="components/codec/wm8960/fsl_wm8960.c" projectpath="codec"/>
+        <file category="include" name="components/codec/wm8960/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wwdt" Cversion="2.1.9" condition="driver.wwdt.condition_id">
+      <description>WWDT Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/drivers/fsl_wwdt.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/drivers/fsl_wwdt.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="baremetal" Cversion="1.0.0" condition="middleware.baremetal.condition_id">
+      <description>Middleware baremetal</description>
+      <RTE_Components_h>
+#ifndef SDK_OS_BAREMETAL
+#define SDK_OS_BAREMETAL 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="doc" name="middleware/bm/readme.txt" projectpath="middleware/bm"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="misc_utilities" Cversion="1.1.1" condition="utilities.misc_utilities.condition_id">
+      <description>Utilities which is needed for particular toolchain like the SBRK function required to address limitation between HEAP and STACK in GCC toolchain library.</description>
+      <files>
+        <file condition="allOf.toolchains=armgcc.condition_id" category="sourceC" name="devices/LPC55S69/utilities/fsl_sbrk.c" projectpath="utilities"/>
+        <file condition="allOf.toolchains=armgcc.condition_id" category="sourceC" name="devices/LPC55S69/utilities/fsl_syscall_stub.c" projectpath="utilities"/>
+        <file condition="allOf.toolchains=armgcc, cores=cm33.condition_id" category="sourceAsm" name="devices/LPC55S69/utilities/fsl_memcpy.S" projectpath="utilities"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert" Cversion="1.0.0" condition="utility.assert.condition_id">
+      <description>Utility assert</description>
+      <files>
+        <file category="sourceC" name="devices/LPC55S69/utilities/fsl_assert.c" projectpath="utilities"/>
+        <file category="header" name="devices/LPC55S69/utilities/fsl_assert.h" projectpath="utilities"/>
+        <file category="include" name="devices/LPC55S69/utilities/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert_lite" Cversion="1.0.0" condition="utility.assert_lite.condition_id">
+      <description>Utility assert_lite</description>
+      <files>
+        <file category="sourceC" name="devices/LPC55S69/utilities/debug_console_lite/fsl_assert.c" projectpath="utilities"/>
+        <file category="header" name="devices/LPC55S69/utilities/debug_console_lite/fsl_assert.h" projectpath="utilities"/>
+        <file category="include" name="devices/LPC55S69/utilities/debug_console_lite/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console" Cversion="1.0.1" condition="utility.debug_console.condition_id">
+      <description>Utility debug_console</description>
+      <files>
+        <file category="sourceC" name="devices/LPC55S69/utilities/str/fsl_str.c" projectpath="utilities"/>
+        <file category="header" name="devices/LPC55S69/utilities/str/fsl_str.h" projectpath="utilities"/>
+        <file category="sourceC" name="devices/LPC55S69/utilities/debug_console/fsl_debug_console.c" projectpath="utilities"/>
+        <file category="header" name="devices/LPC55S69/utilities/debug_console/fsl_debug_console.h" projectpath="utilities"/>
+        <file category="header" name="devices/LPC55S69/utilities/debug_console/fsl_debug_console_conf.h" projectpath="utilities"/>
+        <file category="include" name="devices/LPC55S69/utilities/str/"/>
+        <file category="include" name="devices/LPC55S69/utilities/debug_console/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite" Cversion="1.0.0" condition="utility.debug_console_lite.condition_id">
+      <description>Utility debug_console_lite</description>
+      <files>
+        <file category="sourceC" name="devices/LPC55S69/utilities/str/fsl_str.c" projectpath="utilities"/>
+        <file category="header" name="devices/LPC55S69/utilities/str/fsl_str.h" projectpath="utilities"/>
+        <file category="sourceC" name="devices/LPC55S69/utilities/debug_console_lite/fsl_debug_console.c" projectpath="utilities"/>
+        <file category="header" name="devices/LPC55S69/utilities/debug_console_lite/fsl_debug_console.h" projectpath="utilities"/>
+        <file category="include" name="devices/LPC55S69/utilities/str/"/>
+        <file category="include" name="devices/LPC55S69/utilities/debug_console_lite/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="incbin" Cversion="1.0.0" condition="utility.incbin.condition_id">
+      <description>Used to include slave core binary into master core binary.</description>
+      <files>
+        <file condition="allOf.toolchains=armgcc, mdk.condition_id" category="sourceAsm" name="devices/LPC55S69/utilities/incbin/fsl_incbin.S" projectpath="utilities"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="notifier" Cversion="1.0.0" condition="utility.notifier.condition_id">
+      <description>Utility notifier</description>
+      <files>
+        <file category="sourceC" name="devices/LPC55S69/utilities/fsl_notifier.c" projectpath="utilities/utilities"/>
+        <file category="header" name="devices/LPC55S69/utilities/fsl_notifier.h" projectpath="utilities/utilities"/>
+        <file category="include" name="devices/LPC55S69/utilities/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="shell" Cversion="1.0.0" condition="utility.shell.condition_id">
+      <description>Utility shell</description>
+      <RTE_Components_h>
+#ifndef DEBUG_CONSOLE_RX_ENABLE
+#define DEBUG_CONSOLE_RX_ENABLE 0
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="sourceC" name="devices/LPC55S69/utilities/shell/fsl_shell.c" projectpath="utilities"/>
+        <file category="header" name="devices/LPC55S69/utilities/shell/fsl_shell.h" projectpath="utilities"/>
+        <file category="include" name="devices/LPC55S69/utilities/shell/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="str" Cversion="1.0.0" condition="utility.str.condition_id">
+      <description>Utility str</description>
+      <files>
+        <file category="sourceC" name="devices/LPC55S69/utilities/str/fsl_str.c" projectpath="utilities"/>
+        <file category="header" name="devices/LPC55S69/utilities/str/fsl_str.h" projectpath="utilities"/>
+        <file category="include" name="devices/LPC55S69/utilities/str/"/>
+      </files>
+    </component>
+  </components>
+</package>
