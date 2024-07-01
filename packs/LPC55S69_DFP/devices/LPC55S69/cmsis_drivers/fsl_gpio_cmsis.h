@@ -21,8 +21,8 @@
  * Project:      GPIO Driver definitions for LPC55S69
  */
 
-#ifndef GPIO_LPC55S69_H_
-#define GPIO_LPC55S69_H_
+#ifndef FSL_GPIO_CMSIS_H_
+#define FSL_GPIO_CMSIS_H_
 
 #ifdef  __cplusplus
 extern "C"
@@ -52,5 +52,5 @@ extern ARM_DRIVER_GPIO Driver_GPIO0;
 }
 #endif
 
-#endif /* GPIO_LPC55S69_H_ */
+#endif /* FSL_GPIO_CMSIS_H_ */
 

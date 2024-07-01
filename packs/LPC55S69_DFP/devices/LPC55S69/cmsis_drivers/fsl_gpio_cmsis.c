@@ -29,7 +29,7 @@
 #include "fsl_iocon_ex.h"
 #include "fsl_pint.h"
 
-#include "GPIO_LPC55S69.h"
+#include "fsl_gpio_cmsis.h"
 
 
 // Pin mapping  

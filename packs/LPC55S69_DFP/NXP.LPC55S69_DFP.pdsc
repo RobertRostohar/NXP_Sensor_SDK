@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+<package schemaVersion="1.7.36" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.36/schema/PACK.xsd">
   <name>LPC55S69_DFP</name>
   <vendor>NXP</vendor>
   <description>Device Family Pack for LPC55S69</description>
   <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
   <license>Licenses.txt</license>
   <releases>
+    <release version="18.1.0-dev">
+      - Add GPIO CMSIS-Driver
+    </release>
     <release version="18.0.0" date="2024-01-14">NXP CMSIS Packs based on MCUXpresso SDK 2.15.0</release>
     <release version="17.0.0" date="2023-07-27">NXP CMSIS Packs based on MCUXpresso SDK 2.14.0</release>
     <release version="16.1.0" date="2023-03-23">NXP CMSIS Packs based on MCUXpresso SDK 2.13.1</release>
@@ -1006,6 +1009,14 @@
     <condition id="driver.cmp_1.condition_id">
       <require condition="allOf.device_id=LPC55S69, driver.common.internal_condition"/>
     </condition>
+    <condition id="driver.cmsis_gpio.condition_id">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="inputmux"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iocon"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="pint"/>
+      <require condition="device.LPC55S69.internal_condition"/>
+    </condition>
     <condition id="driver.cmsis_flexcomm_i2c.condition_id">
       <require condition="allOf.driver.flexcomm_i2c_dma, CMSIS_Driver_Include.I2C, RTE_Device, device=LPC55S69.internal_condition"/>
     </condition>
@@ -1889,6 +1900,13 @@
         <file category="header" name="devices/LPC55S69/drivers/fsl_cmp.h" projectpath="drivers"/>
         <file category="sourceC" name="devices/LPC55S69/drivers/fsl_cmp.c" projectpath="drivers"/>
         <file category="include" name="devices/LPC55S69/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="GPIO" Csub="gpio_cmsis" Cversion="1.0.0" Capiversion="1.0.0" condition="driver.cmsis_gpio.condition_id">
+      <description>SPI CMSIS Driver</description>
+      <files>
+        <file category="header" name="devices/LPC55S69/cmsis_drivers/fsl_gpio_cmsis.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC55S69/cmsis_drivers/fsl_gpio_cmsis.c" projectpath="drivers"/>
       </files>
     </component>
     <component Cclass="CMSIS Driver" Cgroup="I2C" Csub="flexcomm_i2c_cmsis" Cversion="2.3.0" Capiversion="2.3.0" condition="driver.cmsis_flexcomm_i2c.condition_id">
