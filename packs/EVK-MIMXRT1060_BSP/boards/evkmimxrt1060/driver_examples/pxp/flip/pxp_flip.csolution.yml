@@ -1,0 +1,23 @@
+---
+solution:
+  created-for: cmsis-toolbox@2.1.0
+  packs:
+  - pack: NXP::MIMXRT1062_DFP
+  - pack: NXP::EVK-MIMXRT1060_BSP
+  - pack: ARM::CMSIS
+  target-types:
+  - type: armgcc
+    compiler: GCC
+  - type: iar
+    compiler: IAR
+  - type: mdk
+    compiler: AC6
+  output-dirs:
+    outdir: "./$TargetType$/$BuildType$"
+  build-types:
+  - type: flexspi_nor_sdram_debug
+  - type: flexspi_nor_sdram_release
+  - type: sdram_debug
+  - type: sdram_release
+  projects:
+  - project: pxp_flip.cproject.yml

@@ -1,0 +1,25 @@
+---
+solution:
+  created-for: cmsis-toolbox@2.1.0
+  packs:
+  - pack: NXP::MIMXRT1062_DFP
+  - pack: NXP::EVK-MIMXRT1060_BSP
+  - pack: ARM::CMSIS
+  target-types:
+  - type: armgcc
+    compiler: GCC
+  - type: iar
+    compiler: IAR
+  - type: mdk
+    compiler: AC6
+  output-dirs:
+    outdir: "./$TargetType$/$BuildType$"
+  build-types:
+  - type: release
+  - type: debug
+  - type: sdram_debug
+  - type: sdram_release
+  - type: flexspi_nor_debug
+  - type: flexspi_nor_release
+  projects:
+  - project: flexcan_ping_pong_buffer_transfer.cproject.yml
