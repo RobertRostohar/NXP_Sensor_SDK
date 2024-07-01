@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+<package schemaVersion="1.7.36" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.36/schema/PACK.xsd">
   <name>LPCXpresso54114_BSP</name>
   <vendor>NXP</vendor>
   <description>Board Support Pack for LPCXPRESSO54114</description>
   <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
   <license>Licenses.txt</license>
   <releases>
+    <release version="13.1.0-dev">
+      - Add board layer
+    </release>
     <release version="13.0.0" date="2021-02-05">NXP CMSIS Packs based on MCUXpresso SDK 2.9.0 with restructured startup component files</release>
     <release version="12.3.0" date="2021-01-14">NXP CMSIS Packs based on MCUXpresso SDK 2.9.0</release>
     <release version="12.2.0" date="2020-07-20">NXP CMSIS Packs based on MCUXpresso SDK 2.8.0</release>
@@ -69,6 +72,9 @@
     </condition>
     <condition id="core_type.cm0p">
       <require Dcore="Cortex-M0+" Dfpu="NO_FPU"/>
+    </condition>
+    <condition id="board.lpcxpresso54114">
+      <require Bvendor="NXP" Bname="LPCXpresso54114"/>
     </condition>
   </conditions>
   <examples>
@@ -903,4 +909,7 @@ Tips: This demo is to show how the various power mode can switch to each other. 
       </files>
     </component>
   </components>
+  <csolution> 
+    <clayer type="Board" path="layer" file="Board.clayer.yml" copy-to="Board/LPCXpresso54114" condition="board.lpcxpresso54114"/>
+  </csolution>
 </package>

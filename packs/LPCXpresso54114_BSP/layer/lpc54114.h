@@ -15,7 +15,7 @@
 #define LPC54114_H_
 
 #include "fsl_power.h"
-#include "GPIO_LPC5411x.h"
+#include "fsl_gpio_cmsis.h"
 #include "Driver_I2C.h"
 #include "Driver_SPI.h"
 #include "Driver_USART.h"
