@@ -6,22 +6,22 @@ solution:
     - pack: NXP::ISSDK@>=3.0.0-0
 
   target-types:
-    - type: evkmimxrt1060_agmp03
-      board: NXP::EVK-MIMXRT1060
-      variables:
-        - Board-Layer:  ../../../../../packs/EVK-MIMXRT1060_BSP/boards/evkmimxrt1060/layer/Board.clayer.yml
-        - Shield-Layer: ../../../../../packs/ISSDK/middleware/issdk/shields/agmp03/Shield.clayer.yml
-    - type: frdmk22f_agmp03
-      board: NXP::FRDM-K22F
-      variables:
-        - Board-Layer:  ../../../../../packs/FRDM-K22F_BSP/boards/frdmk22f/layer/Board.clayer.yml
-        - Shield-Layer: ../../../../../packs/ISSDK/middleware/issdk/shields/agmp03/Shield.clayer.yml
-    - type: lpcxpresso54114_agmp03
-      board: NXP::LPCXpresso54114
-      device: NXP::LPC54114J256BD64:cm4
-      variables:
-        - Board-Layer:  ../../../../../packs/LPCXpresso54114_BSP/layer/Board.clayer.yml
-        - Shield-Layer: ../../../../../packs/ISSDK/middleware/issdk/shields/agmp03/Shield.clayer.yml
+    # - type: evkmimxrt1060_agmp03
+    #   board: NXP::EVK-MIMXRT1060
+    #   variables:
+    #     - Board-Layer:  ../../../../../packs/EVK-MIMXRT1060_BSP/boards/evkmimxrt1060/layer/Board.clayer.yml
+    #     - Shield-Layer: ../../../../../packs/ISSDK/middleware/issdk/shields/agmp03/Shield.clayer.yml
+    # - type: frdmk22f_agmp03
+    #   board: NXP::FRDM-K22F
+    #   variables:
+    #     - Board-Layer:  ../../../../../packs/FRDM-K22F_BSP/boards/frdmk22f/layer/Board.clayer.yml
+    #     - Shield-Layer: ../../../../../packs/ISSDK/middleware/issdk/shields/agmp03/Shield.clayer.yml
+    # - type: lpcxpresso54114_agmp03
+    #   board: NXP::LPCXpresso54114
+    #   device: NXP::LPC54114J256BD64:cm4
+    #   variables:
+    #     - Board-Layer:  ../../../../../packs/LPCXpresso54114_BSP/layer/Board.clayer.yml
+    #     - Shield-Layer: ../../../../../packs/ISSDK/middleware/issdk/shields/agmp03/Shield.clayer.yml
 
   build-types:
     - type: debug
