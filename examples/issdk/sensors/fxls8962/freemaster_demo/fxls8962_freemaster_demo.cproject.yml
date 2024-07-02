@@ -7,6 +7,7 @@ project:
         - FXLS8962_I2C
         - FXLS8962_INT1
         - CMSIS_VIO
+        - NXP_UART
 
   groups:
     - group: doc
