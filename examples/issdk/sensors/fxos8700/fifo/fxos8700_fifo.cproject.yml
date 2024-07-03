@@ -1,0 +1,24 @@
+project:
+  description: FXOS8700 Sensor Demo - FIFO Mode
+
+  connections:
+    - connect: FXOS8700 Sensor
+      consumes:
+        - FXOS8700_I2C
+
+  groups:
+    - group: source
+      files:
+        - file: ../../../issdk_hal.h
+        - file: fxos8700_fifo.c
+
+  components:
+    - component: NXP::Sensors:sensors:issdk_fxos8700
+    - component: NXP::Sensors:drivers:issdk_interfaces
+    - component: NXP::Sensors:utils:systick_utils
+
+  layers:
+    - layer: $Board-Layer$
+      type: Board
+    - layer: $Shield-Layer$
+      type: Shield

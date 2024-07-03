@@ -1,0 +1,70 @@
+solution:
+  created-for: CMSIS-Toolbox@2.4.0
+  cdefault:
+
+  packs:
+    - pack: NXP::ISSDK@>=3.0.0-0
+    - pack: NXP::FREEMASTER@1.0.0
+
+  target-types:
+    - type: evkmimxrt1060
+      board: NXP::EVK-MIMXRT1060
+      define:
+        - FXOS8700_ON_BOARD
+      variables:
+        - Board-Layer:  ../../../../../packs/EVK-MIMXRT1060_BSP/boards/evkmimxrt1060/layer/Board.clayer.yml
+    - type: frdmk22f
+      board: NXP::FRDM-K22F
+      define:
+        - FXOS8700_ON_BOARD
+      variables:
+        - Board-Layer:  ../../../../../packs/FRDM-K22F_BSP/boards/frdmk22f/layer/Board.clayer.yml
+    - type: evkmimxrt1060_agm01
+      board: NXP::EVK-MIMXRT1060
+      variables:
+        - Board-Layer:  ../../../../../packs/EVK-MIMXRT1060_BSP/boards/evkmimxrt1060/layer/Board.clayer.yml
+        - Shield-Layer: ../../../../../packs/ISSDK/middleware/issdk/shields/agm01/Shield.clayer.yml
+    - type: frdmk22f_agm01
+      board: NXP::FRDM-K22F
+      variables:
+        - Board-Layer:  ../../../../../packs/FRDM-K22F_BSP/boards/frdmk22f/layer/Board.clayer.yml
+        - Shield-Layer: ../../../../../packs/ISSDK/middleware/issdk/shields/agm01/Shield.clayer.yml
+    - type: lpcxpresso54114_agm01
+      # RGB LED needs to be disconnected on LPCXpresso54114 board - remove JS19!
+      board: NXP::LPCXpresso54114
+      device: NXP::LPC54114J256BD64:cm4
+      variables:
+        - Board-Layer:  ../../../../../packs/LPCXpresso54114_BSP/layer/Board.clayer.yml
+        - Shield-Layer: ../../../../../packs/ISSDK/middleware/issdk/shields/agm01/Shield.clayer.yml
+    - type: lpcxpresso55S69_agm01
+      board: NXP::LPCXpresso55S69
+      device: :cm33_core0
+      variables:
+        - Board-Layer:  ../../../../../packs/LPCXpresso55S69_BSP/boards/lpcxpresso55s69/layer/Board.clayer.yml
+        - Shield-Layer: ../../../../../packs/ISSDK/middleware/issdk/shields/agm01/Shield.clayer.yml
+
+  build-types:
+    - type: debug
+      define:
+        - DEBUG
+      optimize: none
+      debug: on
+
+    - type: release
+      define:
+        - NDEBUG
+      optimize: size
+      debug: off
+
+  projects:
+    - project: ./fifo/fxos8700_fifo.cproject.yml
+    - project: ./freemaster_demo/fxos8700_freemaster_demo.cproject.yml
+      for-context:
+        - +frdmk22f
+        - +frdmk22f_agm01
+    - project: ./interrupt/fxos8700_interrupt.cproject.yml
+    - project: ./poll/fxos8700_poll.cproject.yml
+    - project: ./poll_spi/fxos8700_poll_spi.cproject.yml
+      not-for-context:
+        - +evkmimxrt1060
+        - +evkmimxrt1060_agm01
