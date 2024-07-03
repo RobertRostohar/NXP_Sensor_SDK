@@ -3,33 +3,40 @@ layer:
   description: FRDM-STBC-P3115 Sensor Shield Board
 
   connections:
+    - connect: MPL3115 Sensor Disabled
+      set: P3115_MPL3115.Disabled
+    - connect: MPL3115 Sensor Enabled
+      set: P3115_MPL3115.Enabled
+      provides:
+        - MPL3115_SENSOR
+        - P3115_MPL3115_SENSOR
     - connect: MPL3115 I2C0 Communication Interface
-      set: COMM_IF.I2C0
+      set: P3115_COMM_IF.I2C0
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
       provides:
-        - P3115_COMMUNICATION_INTERFACE
         - MPL3115_I2C
       consumes:
+        - P3115_MPL3115_SENSOR
         - ARDUINO_UNO_I2C
     - connect: MPL3115 I2C1 Communication Interface
-      set: COMM_IF.I2C1
+      set: P3115_COMM_IF.I2C1
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
       provides:
-        - P3115_COMMUNICATION_INTERFACE
         - MPL3115_I2C
       consumes:
+        - P3115_MPL3115_SENSOR
         - ARDUINO_UNO_I2C-Alt
     - connect: MPL3115 Interrupt 1
       provides:
         - MPL3115_INT1
       consumes:
-        - P3115_COMMUNICATION_INTERFACE
+        - P3115_MPL3115_SENSOR
         - ARDUINO_UNO_D5
     - connect: MPL3115 Interrupt 2
       provides:
         - MPL3115_INT2
       consumes:
-        - P3115_COMMUNICATION_INTERFACE
+        - P3115_MPL3115_SENSOR
         - ARDUINO_UNO_D2
 
   define:

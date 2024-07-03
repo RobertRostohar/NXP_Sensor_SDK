@@ -4,9 +4,11 @@ project:
   connections:
     - connect: MPL3115 Sensor
       consumes:
+        - MPL3115_SENSOR
         - MPL3115_I2C
         - MPL3115_INT1
         - CMSIS_VIO
+        - STDOUT
 
   groups:
     - group: doc

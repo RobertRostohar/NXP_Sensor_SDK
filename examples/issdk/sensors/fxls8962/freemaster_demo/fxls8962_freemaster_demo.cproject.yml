@@ -4,9 +4,11 @@ project:
   connections:
     - connect: FXLS8962 Sensor
       consumes:
+        - FXLS8962_SENSOR
         - FXLS8962_I2C
         - FXLS8962_INT1
         - CMSIS_VIO
+        - STDOUT
         - NXP_UART
 
   groups:

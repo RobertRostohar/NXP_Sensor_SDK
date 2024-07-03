@@ -4,9 +4,11 @@ project:
   connections:
     - connect: FXOS8700 Sensor
       consumes:
+        - FXOS8700_SENSOR
         - FXOS8700_I2C
         - FXOS8700_INT2
         - CMSIS_VIO
+        - STDOUT
 
   groups:
     - group: source

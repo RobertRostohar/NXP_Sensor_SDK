@@ -60,8 +60,7 @@ extern ARM_DRIVER_USART Driver_USART1;  /* OpenSDA      */
 extern ARM_DRIVER_USART Driver_USART3;  /* Arduino UART */
 
 // On-Board FXOS8700 Sensor Information
-#ifndef FXOS8700_ON_BOARD_DISABLE
-#define FXOS8700_ON_BOARD
+#ifdef  FXOS8700_ON_BOARD
 #define FXOS8700_I2C_INDEX  1
 #define FXOS8700_I2C_DRIVER ARM_Driver_I2C_(FXOS8700_I2C_INDEX)
 #define FXOS8700_I2C_ADDR   0x1E

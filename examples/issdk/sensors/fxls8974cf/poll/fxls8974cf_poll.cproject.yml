@@ -4,7 +4,9 @@ project:
   connections:
     - connect: FXLS8974 Sensor
       consumes:
+        - FXLS8974_SENSOR
         - FXLS8974_I2C
+        - STDOUT
 
   groups:
     - group: doc

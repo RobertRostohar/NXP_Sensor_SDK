@@ -3,124 +3,154 @@ layer:
   description: FRDM-STBC-AGMP03 Sensor Shield Board
 
   connections:
+    - connect: FXLS8962 Sensor Disabled
+      set: AGMP03_FXLS8962.Disabled
+    - connect: FXLS8962 Sensor Enabled
+      set: AGMP03_FXLS8962.Enabled
+      provides:
+        - FXLS8962_SENSOR
+        - AGMP03_FXLS8962_SENSOR
     - connect: FXLS8962 I2C0 Communication Interfaces
-      set: COMM_IF.I2C0
+      set: AGMP03_COMM_IF.I2C0
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
       provides:
-        - AGMP03_COMMUNICATION_INTERFACE
         - FXLS8962_I2C
       consumes:
+        - AGMP03_FXLS8962_SENSOR
         - ARDUINO_UNO_I2C
     - connect: FXLS8962 I2C1 Communication Interfaces
       set: COMM_IF.I2C1
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
       provides:
-        - AGMP03_COMMUNICATION_INTERFACE
         - FXLS8962_I2C
       consumes:
+        - AGMP03_FXLS8962_SENSOR
         - ARDUINO_UNO_I2C-Alt
     - connect: FXLS8962 SPI Communication Interfaces
-      set: COMM_IF.SPI
+      set: AGMP03_COMM_IF.SPI
       info: "Jumper configuration: I2C/SPI=SPI"
       provides:
-        - AGMP03_COMMUNICATION_INTERFACE
         - FXLS8962_SPI
       consumes:
+        - AGMP03_FXLS8962_SENSOR
         - ARDUINO_UNO_SPI
         - ARDUINO_UNO_D10
     - connect: FXLS8962 Interrupt 1
       provides:
         - FXLS8962_INT1
       consumes:
-        - AGMP03_COMMUNICATION_INTERFACE
+        - AGMP03_FXLS8962_SENSOR
         - ARDUINO_UNO_D2
     - connect: FXLS8962 Interrupt 2
       provides:
         - FXLS8962_INT2
       consumes:
-        - AGMP03_COMMUNICATION_INTERFACE
+        - AGMP03_FXLS8962_SENSOR
         - ARDUINO_UNO_D14
 
+    - connect: FXAS21002 Sensor Disabled
+      set: AGMP03_FXAS21002.Disabled
+    - connect: FXAS21002 Sensor Enabled
+      set: AGMP03_FXAS21002.Enabled
+      provides:
+        - FXAS21002_SENSOR
+        - AGMP03_FXAS21002_SENSOR
     - connect: FXAS21002 I2C0 Communication Interfaces
-      set: COMM_IF.I2C0
+      set: AGMP03_COMM_IF.I2C0
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
       provides:
-        - AGMP03_COMMUNICATION_INTERFACE
         - FXAS21002_I2C
       consumes:
+        - AGMP03_FXAS21002_SENSOR
         - ARDUINO_UNO_I2C
     - connect: FXAS21002 I2C1 Communication Interfaces
-      set: COMM_IF.I2C1
+      set: AGMP03_COMM_IF.I2C1
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
       provides:
-        - AGMP03_COMMUNICATION_INTERFACE
         - FXAS21002_I2C
       consumes:
+        - AGMP03_FXAS21002_SENSOR
         - ARDUINO_UNO_I2C-Alt
     - connect: FXAS21002 SPI Bus
-      set: COMM_IF.SPI
+      set: AGMP03_COMM_IF.SPI
       info: "Jumper configuration: I2C/SPI=SPI"
       provides:
-        - AGMP03_COMMUNICATION_INTERFACE
         - FXAS21002_SPI
       consumes:
+        - AGMP03_FXAS21002_SENSOR
         - ARDUINO_UNO_SPI
         - ARDUINO_UNO_D15
     - connect: FXAS21002 Interrupt 1
       provides:
         - FXAS21002_INT1
       consumes:
+        - AGMP03_FXAS21002_SENSOR
         - ARDUINO_UNO_D8
     - connect: FXAS21002 Interrupt 2
       provides:
         - FXAS21002_INT2
       consumes:
+        - AGMP03_FXAS21002_SENSOR
         - ARDUINO_UNO_D16
 
+    - connect: MPL3115 Sensor Disabled
+      set: AGMP03_MPL3115.Disabled
+    - connect: MPL3115 Sensor Enabled
+      set: AGMP03_MPL3115.Enabled
+      provides:
+        - MPL3115_SENSOR
+        - AGMP03_MPL3115_SENSOR
     - connect: MPL3115 I2C0 Communication Interfaces
-      set: COMM_IF.I2C0
+      set: AGMP03_COMM_IF.I2C0
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
       provides:
-        - AGMP03_COMMUNICATION_INTERFACE
         - MPL3115_I2C
       consumes:
+        - AGMP03_MPL3115_SENSOR
         - ARDUINO_UNO_I2C
     - connect: MPL3115 I2C1 Communication Interfaces
-      set: COMM_IF.I2C1
+      set: AGMP03_COMM_IF.I2C1
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
       provides:
-        - AGMP03_COMMUNICATION_INTERFACE
         - MPL3115_I2C
       consumes:
+        - AGMP03_MPL3115_SENSOR
         - ARDUINO_UNO_I2C-Alt
     - connect: MPL3115 Interrupt 1
       provides:
         - MPL3115_INT1
       consumes:
-        - AGMP03_COMMUNICATION_INTERFACE
+        - AGMP03_MPL3115_SENSOR
         - ARDUINO_UNO_D7
 
+    - connect: MAG3110 Sensor Disabled
+      set: AGMP03_MAG3110.Disabled
+    - connect: MAG3110 Sensor Enabled
+      set: AGMP03_MAG3110.Enabled
+      provides:
+        - MAG3110_SENSOR
+        - AGMP03_MAG3110_SENSOR
     - connect: MAG3110 I2C0 Communication Interfaces
-      set: COMM_IF.I2C0
+      set: AGMP03_COMM_IF.I2C0
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C0"
       provides:
-        - AGMP03_COMMUNICATION_INTERFACE
         - MAG3110_I2C
       consumes:
+        - AGMP03_MAG3110_SENSOR
         - ARDUINO_UNO_I2C
     - connect: MAG3110 I2C1 Communication Interfaces
-      set: COMM_IF.I2C1
+      set: AGMP03_COMM_IF.I2C1
       info: "Jumper configuration: I2C/SPI=I2C, I2C=I2C1"
       provides:
-        - AGMP03_COMMUNICATION_INTERFACE
         - MAG3110_I2C
       consumes:
+        - AGMP03_MAG3110_SENSOR
         - ARDUINO_UNO_I2C-Alt
     - connect: MAG3110 Interrupt 1
       provides:
         - MAG3110_INT1
       consumes:
-        - AGMP03_COMMUNICATION_INTERFACE
+        - AGMP03_MAG3110_SENSOR
         - ARDUINO_UNO_D5
 
     - connect: FRDM-STBC-AGMP03 Shield Reset

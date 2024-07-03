@@ -30,13 +30,20 @@ layer:
         - ARDUINO_UNO_D16
         - ARDUINO_UNO_D17
         - NXP_UART
-        - FXOS8700_I2C
-        - FXOS8700_INT1
-        - FXOS8700_INT2
         - STDIN
         - STDOUT
         - STDERR
         - Heap: 1024
+    - connect: FRDM-K22F FXOS8700 On-Board Sensor Disabled
+      set: FXOS8700_OnBoard.Disabled
+    - connect: FRDM-K22F FXOS8700 On-Board Sensor Enabled
+      set: FXOS8700_OnBoard.Enabled
+      info: "Add preprocessor define FXOS8700_ON_BOARD"
+      provides:
+        - FXOS8700_SENSOR
+        - FXOS8700_I2C
+        - FXOS8700_INT1
+        - FXOS8700_INT2
 
   define:
     - FREEDOM

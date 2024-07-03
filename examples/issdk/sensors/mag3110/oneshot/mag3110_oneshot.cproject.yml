@@ -4,7 +4,9 @@ project:
   connections:
     - connect: MAG3110 Sensor
       consumes:
+        - MAG3110_SENSOR
         - MAG3110_I2C
+        - STDOUT
 
   groups:
     - group: doc

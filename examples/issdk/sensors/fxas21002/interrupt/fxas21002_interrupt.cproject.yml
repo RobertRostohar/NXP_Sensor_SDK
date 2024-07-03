@@ -4,9 +4,11 @@ project:
   connections:
     - connect: FXAS21002 Sensor
       consumes:
+        - FXAS21002_SENSOR
         - FXAS21002_I2C
         - FXAS21002_INT1
         - CMSIS_VIO
+        - STDOUT
 
   groups:
     - group: doc

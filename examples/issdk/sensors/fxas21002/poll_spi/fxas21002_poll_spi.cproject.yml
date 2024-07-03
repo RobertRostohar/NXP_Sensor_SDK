@@ -4,7 +4,9 @@ project:
   connections:
     - connect: FXAS21002 Sensor
       consumes:
+        - FXAS21002_SENSOR
         - FXAS21002_SPI
+        - STDOUT
 
   groups:
     - group: doc

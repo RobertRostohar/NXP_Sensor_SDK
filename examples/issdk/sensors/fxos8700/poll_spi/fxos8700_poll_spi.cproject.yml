@@ -4,7 +4,9 @@ project:
   connections:
     - connect: FXOS8700 Sensor
       consumes:
+        - FXOS8700_SENSOR
         - FXOS8700_SPI
+        - STDOUT
 
   groups:
     - group: source

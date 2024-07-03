@@ -4,7 +4,9 @@ project:
   connections:
     - connect: MPL3115 Sensor
       consumes:
+        - MPL3115_SENSOR
         - MPL3115_I2C
+        - STDOUT
 
   groups:
     - group: doc

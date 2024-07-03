@@ -4,9 +4,11 @@ project:
   connections:
     - connect: MAG3110 Sensor
       consumes:
+        - MAG3110_SENSOR
         - MAG3110_I2C
         - MAG3110_INT1
         - CMSIS_VIO
+        - STDOUT
 
   groups:
     - group: doc
