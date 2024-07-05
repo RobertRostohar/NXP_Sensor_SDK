@@ -6,19 +6,16 @@ Demonstrates a scalable solution for sensor examples using multiple boards and s
 
 Projects are using software layers with specified standard interfaces.
 
-Source code has been taken from existing NXP SDKs, restructured (only some files have been slightly modified) 
-and extended with CMSIS Project Manager YML files.
+Examples have been taken from NXP  ISSDK pack (slightly modified) and extended with CMSIS Project Manager YML files.
 
 ## Repository top-level structure
 
 Directory                   | Description
 ----------------------------|-------------------------------------------------
-[boards](./boards)          | Board layers for various evaluation boards
 [examples](./examples)      | ISSDK examples for various sensors
-[middleware](./middleware)  | Middleware: FreeMASTER, ISSDK, SDMMC (not used)
-[shields](./shields)        | Shield layers for various Arduino sensor shields
+[packs](./packs)            | NXP Packs: ISSDK and various DFPs and BSPs
 
-Details about the repository contents and how it was derived from NXP SDKs is described in [Contents.md](./Contents.md).
+Details about the packs are described in [packs/README.md](./packs/README.md).
 
 ## ISSDK Sensor examples
 
@@ -32,28 +29,45 @@ The projects consists of:
  - shield software layer
 
 ### Software Prerequisites
- - [CMSIS-Toolbox 2.0.0](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/releases/) or later
- - Arm Compiler 6.18 or later
- - CMSIS packs required by examples  
-   Packs can be installed by executing the following `csolution` and `cpackget` commands:
-   ```
-   csolution list packs -s <sensor_example>.csolution.yml -m >packs.txt
-   cpackget add -f packs.txt
-   ```
+ - Visual Studio Code with Arm Keil Studio Pack extension
+ - CMSIS-Toolbox (manged though vcpkg)
+ - Arm Compiler for Embedded (managed through vcpkg)
+ - CMSIS packs provided in this repository mapped as software packs (not published via the CMSIS-Pack index):
+   - [ISSDK](packs/ISSDK/) - IoT Sensing SDK
+   - [EVK-MIMXRT1060_BSP](packs/EVK-MIMXRT1060_BSP/) when using NXP EVK-MIMXRT1060 board
+   - [MIMXRT1062_DFP](packs/MIMXRT1062_DFP/) when using NXP EVK-MIMXRT1060 board
+   - [FRDM-K22F_BSP](packs/FRDM-K22F_BSP/) when using NXP FRDM-K22F board
+   - [MK22F51212_DFP](packs/MK22F51212_DFP/) when using NXP FRDM-K22F board
+   - [LPCXpresso55S69_BSP](packs/LPCXpresso55S69_BSP/) when using NXP LPCXpresso55S69 board
+   - [LPC55S69_DFP](packs/LPC55S69_DFP/) when using NXP LPCXpresso55S69 board
+   - [LPCXpresso54114_BSP](packs/LPCXpresso54114_BSP/) when using NXP LPCXpresso54114 board
+   - [LPC54114_DFP](packs/LPC54114_DFP/) when using NXP LPCXpresso54114 board
+  >Packs are installed using `cpackget add <pack_path>/<pack_vendor>.<pack_name>.pdsc` 
 
+### Configuring examples for specific target
+
+Examples have already been configured for various targets with compatible board and shield layers.
+
+Configuring a specific target:
+ - Open `<sensor_name>.csolution.yml`
+   - Add target under `target-types:`
+     - Specify target name `type: <target_name>`
+     - Specify board name `board: <board_name>` or device name `device: <device_name>`
+ - Detect compatible board and shield layers by running  
+   `cbuild setup <sensor_name>.csolution.yml --context-set --context <project>.<build_type>+<target_type>`
+  - Open `<sensor_name>.cbuild-idx.yml` and examine detected `target-configurations` and their `Board-Layer` and `Shield-Layer` variables.
+  - Copy desired `Board-Layer` and `Shield-Layer` variables to `<sensor_name>.csolution.yml` under `target-types: variables:`.
 
 ### Building the examples
 
 1. Go to directory `examples/issdk/sensors/<sensor_name>`
 
-2. Use the `csolution` command to create `.cprj` project files for examples (all build and target types).
-   ```
-   csolution convert -s <sensor_name>.csolution.yml
-   ```
+2. Activate environment `vcpkg-configuration.json`
 
-3. Go to sub-directory `<sensor_example>`
+3. Activate solution and Build the selected context(s) using `Arm CMSIS Solution` extension within Visual Studio Code
 
-4. Use the `cbuild` command to create executable file for specified build and target type.
+   Alternatively use the `cbuild` command line tool to create the executable for specified project, build and target type
+
    ```
-   cbuild <sensor_project>.<build_type>+<target_type>.cprj
+   cbuild <sensor_name>.csolution.yml --packs --update-rte --context <project>.<build_type>+<target_type>
    ```
