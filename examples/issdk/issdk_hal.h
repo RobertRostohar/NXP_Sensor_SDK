@@ -15,6 +15,8 @@
 #ifndef __ISSDK_HAL_H__
 #define __ISSDK_HAL_H__
 
+#include "RTE_Components.h"
+
 #ifdef   CMSIS_device_header
 #include CMSIS_device_header
 #endif
