@@ -36,6 +36,8 @@ layer:
         - Heap: 1024
     - connect: FRDM-K22F FXOS8700 On-Board Sensor Disabled
       set: FXOS8700_OnBoard.Disabled
+      provides:
+        - ONBOARD_FXOS8700_SENSOR_DISABLED
     - connect: FRDM-K22F FXOS8700 On-Board Sensor Enabled
       set: FXOS8700_OnBoard.Enabled
       info: "Add preprocessor define FXOS8700_ON_BOARD"

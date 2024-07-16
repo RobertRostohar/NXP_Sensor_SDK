@@ -5,6 +5,8 @@ layer:
   connections:
     - connect: MPL3115 Sensor Disabled
       set: P3115_MPL3115.Disabled
+      provides:
+        - P3115_MPL3115_SENSOR_DISABLED
     - connect: MPL3115 Sensor Enabled
       set: P3115_MPL3115.Enabled
       provides:

@@ -5,6 +5,8 @@ layer:
   connections:
     - connect: FXOS8700 Sensor Disabled
       set: AGM01_FXOS8700.Disabled
+      provides:
+        - AGM01_FXOS8700_SENSOR_DISABLED
     - connect: FXOS8700 Sensor Enabled
       set: AGM01_FXOS8700.Enabled
       provides:
@@ -50,6 +52,8 @@ layer:
 
     - connect: FXAS21002 Sensor Disabled
       set: AGM01_FXAS21002.Disabled
+      provides:
+        - AGM01_FXAS21002_SENSOR_DISABLED
     - connect: FXAS21002 Sensor Enabled
       set: AGM01_FXAS21002.Enabled
       provides:

@@ -5,6 +5,8 @@ layer:
   connections:
     - connect: FXLS8974 Sensor Disabled
       set: A8974_FXLS8974.Disabled
+      provides:
+        - A8974_FXLS8974_SENSOR_DISABLED
     - connect: FXLS8974 Sensor Enabled
       set: A8974_FXLS8974.Enabled
       provides:

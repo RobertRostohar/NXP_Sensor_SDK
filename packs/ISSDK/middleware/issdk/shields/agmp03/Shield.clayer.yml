@@ -5,6 +5,8 @@ layer:
   connections:
     - connect: FXLS8962 Sensor Disabled
       set: AGMP03_FXLS8962.Disabled
+      provides:
+        - AGMP03_FXLS8962_SENSOR_DISABLED
     - connect: FXLS8962 Sensor Enabled
       set: AGMP03_FXLS8962.Enabled
       provides:
@@ -50,6 +52,8 @@ layer:
 
     - connect: FXAS21002 Sensor Disabled
       set: AGMP03_FXAS21002.Disabled
+      provides:
+        - AGMP03_FXAS21002_SENSOR_DISABLED
     - connect: FXAS21002 Sensor Enabled
       set: AGMP03_FXAS21002.Enabled
       provides:
@@ -95,6 +99,8 @@ layer:
 
     - connect: MPL3115 Sensor Disabled
       set: AGMP03_MPL3115.Disabled
+      provides:
+        - AGMP03_MPL3115_SENSOR_DISABLED
     - connect: MPL3115 Sensor Enabled
       set: AGMP03_MPL3115.Enabled
       provides:
@@ -125,6 +131,8 @@ layer:
 
     - connect: MAG3110 Sensor Disabled
       set: AGMP03_MAG3110.Disabled
+      provides:
+        - AGMP03_MAG3110_SENSOR_DISABLED
     - connect: MAG3110 Sensor Enabled
       set: AGMP03_MAG3110.Enabled
       provides:
