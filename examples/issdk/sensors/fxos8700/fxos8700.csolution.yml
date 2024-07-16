@@ -1,5 +1,5 @@
 solution:
-  created-for: CMSIS-Toolbox@2.4.0
+  created-for: CMSIS-Toolbox@2.5.0
   cdefault:
 
   packs:
@@ -47,7 +47,7 @@ solution:
     - type: debug
       define:
         - DEBUG
-      optimize: none
+      optimize: debug
       debug: on
 
     - type: release
@@ -62,4 +62,3 @@ solution:
     - project: ./interrupt/fxos8700_interrupt.cproject.yml
     - project: ./poll/fxos8700_poll.cproject.yml
     - project: ./poll_spi/fxos8700_poll_spi.cproject.yml
-      not-for-context:
