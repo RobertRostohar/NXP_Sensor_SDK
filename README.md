@@ -12,14 +12,13 @@ Examples have been taken from NXP  ISSDK pack (slightly modified) and extended w
 
 Directory                   | Description
 ----------------------------|-------------------------------------------------
-[examples](./examples)      | ISSDK examples for various sensors
 [packs](./packs)            | NXP Packs: ISSDK and various DFPs and BSPs
 
 Details about the packs are described in [packs/README.md](./packs/README.md).
 
 ## ISSDK Sensor examples
 
-IoT Sensing SDK (ISSDK) examples for various sensors are located in directory [examples/issdk/sensors](./examples/issdk/sensors).
+IoT Sensing SDK (ISSDK) examples for various sensors are located in directory [packs/ISSDK/middleware/issdk/examples/sensors](./packs/ISSDK/middleware/issdk/examples/sensors).
 
 Projects are described with CMSIS Project Manager input files (YML format) and are using CMSIS software packs (Open-CMSIS-Pack format).
 
@@ -60,7 +59,7 @@ Configuring a specific target:
 
 ### Building the examples
 
-1. Go to directory `examples/issdk/sensors/<sensor_name>`
+1. Go to directory `packs/ISSDK/middleware/issdk/examples/sensors/<sensor_name>`
 
 2. Activate environment `vcpkg-configuration.json`
 

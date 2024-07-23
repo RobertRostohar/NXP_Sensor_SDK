@@ -1,0 +1,31 @@
+project:
+  description: MPL3115 Sensor Demo - I2C Interface with Interrupt Line
+
+  connections:
+    - connect: MPL3115 Sensor
+      consumes:
+        - MPL3115_SENSOR
+        - MPL3115_I2C
+        - MPL3115_INT1
+        - CMSIS_VIO
+        - STDOUT
+
+  groups:
+    - group: doc
+      files:
+        - file: readme.txt
+    - group: source
+      files:
+        - file: ../issdk_hal.h
+        - file: mpl3115_normal_interrupt.c
+
+  components:
+    - component: Sensors:sensors:issdk_mpl3115
+    - component: Sensors:drivers:issdk_interfaces
+    - component: Sensors:utils:systick_utils
+
+  layers:
+    - layer: $Board-Layer$
+      type: Board
+    - layer: $Shield-Layer$
+      type: Shield

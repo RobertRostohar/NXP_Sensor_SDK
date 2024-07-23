@@ -1,0 +1,32 @@
+project:
+  description: FXOS8700 Sensor Demo - FREEMASTER Demo
+
+  connections:
+    - connect: FXOS8700 Sensor
+      consumes:
+        - FXOS8700_SENSOR
+        - FXOS8700_I2C
+        - FXOS8700_INT2
+        - CMSIS_VIO
+        - STDOUT
+        - NXP_UART
+
+  groups:
+    - group: source
+      files:
+        - file: ../issdk_hal.h
+        - file: fxos8700_freemaster_demo.c
+
+  components:
+    - component: FreeMASTER:FreeMASTER Driver:Common Driver Code&Communication driver common code
+    - component: FreeMASTER:FreeMASTER Driver:Configuration file template&Default app configuration file
+    - component: FreeMASTER:FreeMASTER Driver:FreeMASTER 32bit driver&Communication driver 32bit
+    - component: Sensors:sensors:issdk_fxos8700
+    - component: Sensors:drivers:issdk_interfaces
+    - component: Sensors:utils:systick_utils
+
+  layers:
+    - layer: $Board-Layer$
+      type: Board
+    - layer: $Shield-Layer$
+      type: Shield

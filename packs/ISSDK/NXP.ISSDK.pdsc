@@ -7,6 +7,7 @@
   <license>Licenses.txt</license>
   <releases>
     <release version="3.0.0-dev">
+      - Add reference examples
       - Migrate Sensors from NXP GPIO Driver API to CMSIS-Driver GPIO API
     </release>
     <release version="2.0.0" date="2024-01-14">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.15.0</release>
@@ -983,4 +984,43 @@
     <clayer type="Shield" path="middleware/issdk/shields/agmp03" file="Shield.clayer.yml" copy-to="Shield/FRDM-STBC-AGMP03"/>
     <clayer type="Shield" path="middleware/issdk/shields/p3115"  file="Shield.clayer.yml" copy-to="Shield/FRDM-STBC-P3115"/>
   </csolution>
+
+  <examples>
+    <example name="fxas21002" doc="" folder="middleware/issdk/examples/sensors/fxas21002">
+      <description>fxas21002 sensor examples</description>
+      <project>
+        <environment name="csolution" load="fxas21002.csolution.yml"/>
+      </project>
+    </example>
+    <example name="fxls8962" doc="" folder="middleware/issdk/examples/sensors/fxls8962">
+      <description>fxls8962 sensor examples</description>
+      <project>
+        <environment name="csolution" load="fxls8962.csolution.yml"/>
+      </project>
+    </example>
+    <example name="fxls8974cf" doc="" folder="middleware/issdk/examples/sensors/fxls8974cf">
+      <description>fxls8974cf sensor examples</description>
+      <project>
+        <environment name="csolution" load="fxls8974cf.csolution.yml"/>
+      </project>
+    </example>
+    <example name="fxos8700" doc="" folder="middleware/issdk/examples/sensors/fxos8700">
+      <description>fxos8700 sensor examples</description>
+      <project>
+        <environment name="fxos8700" load="fxos8700.csolution.yml"/>
+      </project>
+    </example>
+    <example name="mag3110" doc="" folder="middleware/issdk/examples/sensors/mag3110">
+      <description>mag3110 sensor examples</description>
+      <project>
+        <environment name="csoluton" load="mag3110.csolution.yml"/>
+      </project>
+    </example>
+    <example name="mpl3115" doc="" folder="middleware/issdk/examples/sensors/mpl3115">
+      <description>mpl3115 sensor examples</description>
+      <project>
+        <environment name="csolution" load="mpl3115.csoluton.yml"/>
+      </project>
+    </example>
+  </examples>
 </package>

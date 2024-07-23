@@ -1,0 +1,30 @@
+project:
+  description: FXLS8962 Sensor Demo - Freefall
+
+  connections:
+    - connect: FXLS8962 Sensor
+      consumes:
+        - FXLS8962_SENSOR
+        - FXLS8962_I2C
+        - FXLS8962_INT1
+        - STDOUT
+
+  groups:
+    - group: doc
+      files:
+        - file: readme.txt
+    - group: source
+      files:
+        - file: ../issdk_hal.h
+        - file: fxls8962_freefall.c
+
+  components:
+    - component: Sensors:sensors:issdk_fxls8962
+    - component: Sensors:drivers:issdk_interfaces
+    - component: Sensors:utils:systick_utils
+
+  layers:
+    - layer: $Board-Layer$
+      type: Board
+    - layer: $Shield-Layer$
+      type: Shield

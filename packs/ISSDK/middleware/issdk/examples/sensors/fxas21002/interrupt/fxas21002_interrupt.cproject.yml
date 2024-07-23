@@ -1,0 +1,31 @@
+project:
+  description: FXAS21002 Sensor Demo - I2C Interface with Interrupt Line
+
+  connections:
+    - connect: FXAS21002 Sensor
+      consumes:
+        - FXAS21002_SENSOR
+        - FXAS21002_I2C
+        - FXAS21002_INT1
+        - CMSIS_VIO
+        - STDOUT
+
+  groups:
+    - group: doc
+      files:
+        - file: readme.txt
+    - group: source
+      files:
+        - file: ../issdk_hal.h
+        - file: fxas21002_interrupt.c
+
+  components:
+    - component: Sensors:sensors:issdk_fxas21002
+    - component: Sensors:drivers:issdk_interfaces
+    - component: Sensors:utils:systick_utils
+
+  layers:
+    - layer: $Board-Layer$
+      type: Board
+    - layer: $Shield-Layer$
+      type: Shield
