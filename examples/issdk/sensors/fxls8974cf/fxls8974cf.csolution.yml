@@ -2,6 +2,10 @@ solution:
   created-for: CMSIS-Toolbox@2.5.0
   cdefault:
 
+# select-compiler:  # list of tested compilers that can be selected
+#   - compiler: AC6
+  compiler: AC6
+
   packs:
     - pack: NXP::ISSDK@>=3.0.0-0
     - pack: NXP::FREEMASTER@>=1.0.0
