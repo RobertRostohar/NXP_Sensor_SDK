@@ -18,9 +18,9 @@ project:
         - file: mpl3115_normal.c
 
   components:
-    - component: NXP::Sensors:sensors:issdk_mpl3115
-    - component: NXP::Sensors:drivers:issdk_interfaces
-    - component: NXP::Sensors:utils:systick_utils
+    - component: Sensors:sensors:issdk_mpl3115
+    - component: Sensors:drivers:issdk_interfaces
+    - component: Sensors:utils:systick_utils
 
   layers:
     - layer: $Board-Layer$

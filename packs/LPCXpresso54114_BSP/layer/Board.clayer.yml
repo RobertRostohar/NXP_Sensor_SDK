@@ -46,53 +46,53 @@ layer:
     - LPC_54114
 
   components:
-    - component: NXP::Device:Startup
+    - component: Device:Startup
 
-    - component: NXP::Device:CMSIS:LPC54114_header
-    - component: NXP::Device:CMSIS:LPC54114_system
+    - component: Device:CMSIS:LPC54114_header
+    - component: Device:CMSIS:LPC54114_system
 
-    - component: NXP::Device:SDK Drivers:clock
-    - component: NXP::Device:SDK Drivers:common
-    - component: NXP::Device:SDK Drivers:dma
-    - component: NXP::Device:SDK Drivers:flexcomm
-    - component: NXP::Device:SDK Drivers:gint
-    - component: NXP::Device:SDK Drivers:gpio
-    - component: NXP::Device:SDK Drivers:i2c
-    - component: NXP::Device:SDK Drivers:i2c_dma
-    - component: NXP::Device:SDK Drivers:inputmux
-    - component: NXP::Device:SDK Drivers:inputmux_connections
-    - component: NXP::Device:SDK Drivers:iocon
-    - component: NXP::Device:SDK Drivers:lists
-    - component: NXP::Device:SDK Drivers:pint
-    - component: NXP::Device:SDK Drivers:power
-    - component: NXP::Device:SDK Drivers:reset
-    - component: NXP::Device:SDK Drivers:spi
-    - component: NXP::Device:SDK Drivers:spi_dma
-    - component: NXP::Device:SDK Drivers:usart
-    - component: NXP::Device:SDK Drivers:usart_adapter
-    - component: NXP::Device:SDK Drivers:usart_dma
+    - component: Device:SDK Drivers:clock
+    - component: Device:SDK Drivers:common
+    - component: Device:SDK Drivers:dma
+    - component: Device:SDK Drivers:flexcomm
+    - component: Device:SDK Drivers:gint
+    - component: Device:SDK Drivers:gpio
+    - component: Device:SDK Drivers:i2c
+    - component: Device:SDK Drivers:i2c_dma
+    - component: Device:SDK Drivers:inputmux
+    - component: Device:SDK Drivers:inputmux_connections
+    - component: Device:SDK Drivers:iocon
+    - component: Device:SDK Drivers:lists
+    - component: Device:SDK Drivers:pint
+    - component: Device:SDK Drivers:power
+    - component: Device:SDK Drivers:reset
+    - component: Device:SDK Drivers:spi
+    - component: Device:SDK Drivers:spi_dma
+    - component: Device:SDK Drivers:usart
+    - component: Device:SDK Drivers:usart_adapter
+    - component: Device:SDK Drivers:usart_dma
 
-    - component: NXP::Device:SDK Project Template:RTE_Device
+    - component: Device:SDK Project Template:RTE_Device
 
-    - component: NXP::Device:SDK Utilities:assert
-    - component: NXP::Device:SDK Utilities:debug_console
-    - component: NXP::Device:SDK Utilities:serial_manager
-    - component: NXP::Device:SDK Utilities:serial_manager_uart
+    - component: Device:SDK Utilities:assert
+    - component: Device:SDK Utilities:debug_console
+    - component: Device:SDK Utilities:serial_manager
+    - component: Device:SDK Utilities:serial_manager_uart
 
-    - component: NXP::Board Support:SDK Project Template:project_template&lpcxpresso54114
+    - component: Board Support:SDK Project Template:project_template&lpcxpresso54114
 
-    - component: ARM::CMSIS:CORE
+    - component: CMSIS:CORE
 
-    - component: NXP::CMSIS Driver:GPIO:gpio_cmsis
-    - component: NXP::CMSIS Driver:I2C:flexcomm_i2c_cmsis
-    - component: NXP::CMSIS Driver:SPI:flexcomm_spi_cmsis
-    - component: NXP::CMSIS Driver:USART:flexcomm_usart_cmsis
-    - component: ARM::CMSIS Driver:VIO:Custom
+    - component: CMSIS Driver:GPIO:gpio_cmsis
+    - component: CMSIS Driver:I2C:flexcomm_i2c_cmsis
+    - component: CMSIS Driver:SPI:flexcomm_spi_cmsis
+    - component: CMSIS Driver:USART:flexcomm_usart_cmsis
+    - component: CMSIS Driver:VIO:Custom
 
-    - component: ARM::CMSIS-Compiler:CORE
-    - component: ARM::CMSIS-Compiler:STDERR:Custom
-    - component: ARM::CMSIS-Compiler:STDOUT:Custom
-    - component: ARM::CMSIS-Compiler:STDIN:Custom
+    - component: CMSIS-Compiler:CORE
+    - component: CMSIS-Compiler:STDERR:Custom
+    - component: CMSIS-Compiler:STDOUT:Custom
+    - component: CMSIS-Compiler:STDIN:Custom
 
   groups:
     - group: board

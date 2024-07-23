@@ -15,9 +15,9 @@ project:
         - file: fxos8700_fifo.c
 
   components:
-    - component: NXP::Sensors:sensors:issdk_fxos8700
-    - component: NXP::Sensors:drivers:issdk_interfaces
-    - component: NXP::Sensors:utils:systick_utils
+    - component: Sensors:sensors:issdk_fxos8700
+    - component: Sensors:drivers:issdk_interfaces
+    - component: Sensors:utils:systick_utils
 
   layers:
     - layer: $Board-Layer$

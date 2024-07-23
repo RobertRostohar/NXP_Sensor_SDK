@@ -18,9 +18,9 @@ project:
         - file: mag3110_oneshot.c
 
   components:
-    - component: NXP::Sensors:sensors:issdk_mag3110
-    - component: NXP::Sensors:drivers:issdk_interfaces
-    - component: NXP::Sensors:utils:systick_utils
+    - component: Sensors:sensors:issdk_mag3110
+    - component: Sensors:drivers:issdk_interfaces
+    - component: Sensors:utils:systick_utils
 
   layers:
     - layer: $Board-Layer$
