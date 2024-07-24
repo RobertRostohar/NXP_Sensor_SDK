@@ -6,7 +6,7 @@
   <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
   <license>Licenses.txt</license>
   <releases>
-    <release version="3.0.0-dev">
+    <release version="3.1.0-dev">
       - Add reference examples
       - Migrate Sensors from NXP GPIO Driver API to CMSIS-Driver GPIO API
     </release>
