@@ -22,6 +22,12 @@
     </languages>
   </requirements>
   <conditions>
+    <condition id="CMSIS Driver I2C">
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.4.0"/>
+    </condition>
+    <condition id="CMSIS Driver SPI">
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Capiversion="2.3.0"/>
+    </condition>
     <condition id="middleware.issdk.algorithms.pedometer.common.condition_id">
       <require condition="allOf.CMSIS_Driver_Include.I2C, CMSIS_Driver_Include.SPI.internal_condition"/>
     </condition>
@@ -776,12 +782,21 @@
         <file category="include" name="middleware/issdk/sensors/"/>
       </files>
     </component>
-    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxas21002" Cversion="1.8.0" condition="middleware.issdk.sensor.fxas21002.condition_id">
-      <description>ISSDK FXAS21002 Sensor Driver Files</description>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxas21002" Cvariant="I2C" Cversion="1.8.0" condition="CMSIS Driver I2C">
+      <description>ISSDK FXAS21002 Sensor Driver Files - I2C</description>
       <files>
         <file category="header" name="middleware/issdk/sensors/fxas21002.h" projectpath="sensors"/>
-        <file category="header" name="middleware/issdk/sensors/fxas21002_drv.h" projectpath="sensors"/>
-        <file category="sourceC" name="middleware/issdk/sensors/fxas21002_drv.c" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxas21002_drv_i2c.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/fxas21002_drv_i2c.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxas21002" Cvariant="SPI" Cversion="1.8.0" condition="CMSIS Driver SPI">
+      <description>ISSDK FXAS21002 Sensor Driver Files - SPI</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/fxas21002.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxas21002_drv_spi.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/fxas21002_drv_spi.c" projectpath="sensors"/>
         <file category="include" name="middleware/issdk/sensors/"/>
       </files>
     </component>
@@ -812,12 +827,21 @@
         <file category="include" name="middleware/issdk/sensors/"/>
       </files>
     </component>
-    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxls8962" Cversion="1.8.0" condition="middleware.issdk.sensor.fxls8962.condition_id">
-      <description>ISSDK FXLS8962 Sensor Driver Files</description>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxls8962" Cvariant="I2C" Cversion="1.8.0" condition="CMSIS Driver I2C">
+      <description>ISSDK FXLS8962 Sensor Driver Files - I2C</description>
       <files>
         <file category="header" name="middleware/issdk/sensors/fxls8962.h" projectpath="sensors"/>
-        <file category="header" name="middleware/issdk/sensors/fxls8962_drv.h" projectpath="sensors"/>
-        <file category="sourceC" name="middleware/issdk/sensors/fxls8962_drv.c" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxls8962_drv_i2c.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/fxls8962_drv_i2c.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxls8962" Cvariant="SPI" Cversion="1.8.0" condition="CMSIS Driver SPI">
+      <description>ISSDK FXLS8962 Sensor Driver Files - SPI</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/fxls8962.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxls8962_drv_spi.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/fxls8962_drv_spi.c" projectpath="sensors"/>
         <file category="include" name="middleware/issdk/sensors/"/>
       </files>
     </component>
@@ -839,21 +863,39 @@
         <file category="include" name="middleware/issdk/sensors/"/>
       </files>
     </component>
-    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxls8974cf" Cversion="1.8.0" condition="middleware.issdk.sensor.fxls8974cf.condition_id">
-      <description>ISSDK FXLS8974CF Sensor Driver Files</description>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxls8974cf" Cvariant="I2C" Cversion="1.8.0" condition="CMSIS Driver I2C">
+      <description>ISSDK FXLS8974CF Sensor Driver Files - I2C</description>
       <files>
         <file category="header" name="middleware/issdk/sensors/fxls8974.h" projectpath="sensors"/>
-        <file category="header" name="middleware/issdk/sensors/fxls8974_drv.h" projectpath="sensors"/>
-        <file category="sourceC" name="middleware/issdk/sensors/fxls8974_drv.c" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxls8974_drv_i2c.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/fxls8974_drv_i2c.c" projectpath="sensors"/>
         <file category="include" name="middleware/issdk/sensors/"/>
       </files>
     </component>
-    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxos8700" Cversion="1.8.0" condition="middleware.issdk.sensor.fxos8700.condition_id">
-      <description>ISSDK FXOS8700 Sensor Driver Files</description>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxls8974cf" Cvariant="SPI" Cversion="1.8.0" condition="CMSIS Driver SPI">
+      <description>ISSDK FXLS8974CF Sensor Driver Files - SPI</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/fxls8974.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxls8974_drv_spi.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/fxls8974_drv_spi.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxos8700" Cvariant="I2C" Cversion="1.8.0" condition="CMSIS Driver I2C">
+      <description>ISSDK FXOS8700 Sensor Driver Files - I2C</description>
       <files>
         <file category="header" name="middleware/issdk/sensors/fxos8700.h" projectpath="sensors"/>
-        <file category="header" name="middleware/issdk/sensors/fxos8700_drv.h" projectpath="sensors"/>
-        <file category="sourceC" name="middleware/issdk/sensors/fxos8700_drv.c" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxos8700_drv_i2c.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/fxos8700_drv_i2c.c" projectpath="sensors"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_fxos8700" Cvariant="SPI" Cversion="1.8.0" condition="CMSIS Driver SPI">
+      <description>ISSDK FXOS8700 Sensor Driver Files - SPI</description>
+      <files>
+        <file category="header" name="middleware/issdk/sensors/fxos8700.h" projectpath="sensors"/>
+        <file category="header" name="middleware/issdk/sensors/fxos8700_drv_spi.h" projectpath="sensors"/>
+        <file category="sourceC" name="middleware/issdk/sensors/fxos8700_drv_spi.c" projectpath="sensors"/>
         <file category="include" name="middleware/issdk/sensors/"/>
       </files>
     </component>
@@ -875,17 +917,24 @@
         <file category="include" name="middleware/issdk/sensors/"/>
       </files>
     </component>
-    <component Cclass="Sensors" Cgroup="drivers" Csub="issdk_interfaces" Cversion="1.7.0" condition="middleware.issdk.sensor.interface.common.condition_id">
-      <description>ISSDK Sensor Interface Common</description>
+    <component Cclass="Sensors" Cgroup="drivers" Csub="issdk_interfaces" Cvariant="I2C" Cversion="1.7.0" condition="CMSIS Driver I2C">
+      <description>ISSDK Sensor Interface Common - I2C</description>
       <files>
         <file category="sourceC" name="middleware/issdk/sensors/register_io_i2c.c" projectpath="interfaces"/>
-        <file category="sourceC" name="middleware/issdk/sensors/register_io_spi.c" projectpath="interfaces"/>
-        <file category="sourceC" name="middleware/issdk/sensors/sensor_io_spi.c" projectpath="interfaces"/>
         <file category="sourceC" name="middleware/issdk/sensors/sensor_io_i2c.c" projectpath="interfaces"/>
         <file category="header" name="middleware/issdk/sensors/register_io_i2c.h" projectpath="interfaces"/>
+        <file category="header" name="middleware/issdk/sensors/sensor_io_i2c.h" projectpath="interfaces"/>
+        <file category="header" name="middleware/issdk/sensors/sensor_drv.h" projectpath="interfaces"/>
+        <file category="include" name="middleware/issdk/sensors/"/>
+      </files>
+    </component>
+    <component Cclass="Sensors" Cgroup="drivers" Csub="issdk_interfaces" Cvariant="SPI" Cversion="1.7.0" condition="CMSIS Driver SPI">
+      <description>ISSDK Sensor Interface Common - SPI</description>
+      <files>
+        <file category="sourceC" name="middleware/issdk/sensors/register_io_spi.c" projectpath="interfaces"/>
+        <file category="sourceC" name="middleware/issdk/sensors/sensor_io_spi.c" projectpath="interfaces"/>
         <file category="header" name="middleware/issdk/sensors/register_io_spi.h" projectpath="interfaces"/>
         <file category="header" name="middleware/issdk/sensors/sensor_io_spi.h" projectpath="interfaces"/>
-        <file category="header" name="middleware/issdk/sensors/sensor_io_i2c.h" projectpath="interfaces"/>
         <file category="header" name="middleware/issdk/sensors/sensor_drv.h" projectpath="interfaces"/>
         <file category="include" name="middleware/issdk/sensors/"/>
       </files>
@@ -899,7 +948,7 @@
         <file category="include" name="middleware/issdk/sensors/"/>
       </files>
     </component>
-    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_mag3110" Cversion="1.8.0" condition="middleware.issdk.sensor.mag3110.condition_id">
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_mag3110" Cversion="1.8.0" condition="CMSIS Driver I2C">
       <description>ISSDK MAG3110 Sensor Driver Files</description>
       <files>
         <file category="header" name="middleware/issdk/sensors/mag3110.h" projectpath="sensors"/>
@@ -944,7 +993,7 @@
         <file category="include" name="middleware/issdk/sensors/"/>
       </files>
     </component>
-    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_mpl3115" Cversion="1.8.0" condition="middleware.issdk.sensor.mpl3115.condition_id">
+    <component Cclass="Sensors" Cgroup="sensors" Csub="issdk_mpl3115" Cversion="1.8.0" condition="CMSIS Driver I2C">
       <description>ISSDK MPL3115 Sensor Driver Files</description>
       <files>
         <file category="header" name="middleware/issdk/sensors/mpl3115.h" projectpath="sensors"/>
