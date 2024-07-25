@@ -987,37 +987,37 @@
 
   <examples>
     <example name="fxas21002" doc="" folder="middleware/issdk/examples/sensors/fxas21002">
-      <description>fxas21002 sensor examples</description>
+      <description>NXP Sensor SDK: Examples for FXAS21002 3-Axis Digital Gyroscope</description>
       <project>
         <environment name="csolution" load="fxas21002.csolution.yml"/>
       </project>
     </example>
     <example name="fxls8962" doc="" folder="middleware/issdk/examples/sensors/fxls8962">
-      <description>fxls8962 sensor examples</description>
+      <description>NXP Sensor SDK: Examples for FXLS8962 compact 3-Axis Accelerometer</description>
       <project>
         <environment name="csolution" load="fxls8962.csolution.yml"/>
       </project>
     </example>
     <example name="fxls8974cf" doc="" folder="middleware/issdk/examples/sensors/fxls8974cf">
-      <description>fxls8974cf sensor examples</description>
+      <description>NXP Sensor SDK: Examples for FXLS8974CF compact 3-Axis MEMS Accelerometer</description>
       <project>
         <environment name="csolution" load="fxls8974cf.csolution.yml"/>
       </project>
     </example>
     <example name="fxos8700" doc="" folder="middleware/issdk/examples/sensors/fxos8700">
-      <description>fxos8700 sensor examples</description>
+      <description>NXP Sensor SDK: Examples for FXOS8700 6-Axis linear Accelerometer and Magnetometer</description>
       <project>
         <environment name="fxos8700" load="fxos8700.csolution.yml"/>
       </project>
     </example>
     <example name="mag3110" doc="" folder="middleware/issdk/examples/sensors/mag3110">
-      <description>mag3110 sensor examples</description>
+      <description>NXP Sensor SDK: Examples for MAG3110 3-Axis Digital Magnetometer</description>
       <project>
         <environment name="csoluton" load="mag3110.csolution.yml"/>
       </project>
     </example>
     <example name="mpl3115" doc="" folder="middleware/issdk/examples/sensors/mpl3115">
-      <description>mpl3115 sensor examples</description>
+      <description>NXP Sensor SDK: Examples for MPL3115 Absolute Digital Pressure Sensor</description>
       <project>
         <environment name="csolution" load="mpl3115.csoluton.yml"/>
       </project>
