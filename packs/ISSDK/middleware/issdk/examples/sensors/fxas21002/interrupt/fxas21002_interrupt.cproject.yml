@@ -20,8 +20,8 @@ project:
         - file: fxas21002_interrupt.c
 
   components:
-    - component: Sensors:sensors:issdk_fxas21002
-    - component: Sensors:drivers:issdk_interfaces
+    - component: Sensors:sensors:issdk_fxas21002&I2C
+    - component: Sensors:drivers:issdk_interfaces&I2C
     - component: Sensors:utils:systick_utils
 
   layers:

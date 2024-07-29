@@ -25,7 +25,7 @@
 
 /* ISSDK Includes */
 #include "issdk_hal.h"
-#include "fxls8962_drv.h"
+#include "fxls8962_drv_i2c.h"
 
 //-----------------------------------------------------------------------
 // Macros

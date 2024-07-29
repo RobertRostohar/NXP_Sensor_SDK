@@ -21,8 +21,8 @@ project:
     - component: FreeMASTER:FreeMASTER Driver:Common Driver Code&Communication driver common code
     - component: FreeMASTER:FreeMASTER Driver:Configuration file template&Default app configuration file
     - component: FreeMASTER:FreeMASTER Driver:FreeMASTER 32bit driver&Communication driver 32bit
-    - component: Sensors:sensors:issdk_fxos8700
-    - component: Sensors:drivers:issdk_interfaces
+    - component: Sensors:sensors:issdk_fxos8700&I2C
+    - component: Sensors:drivers:issdk_interfaces&I2C
     - component: Sensors:utils:systick_utils
 
   layers:

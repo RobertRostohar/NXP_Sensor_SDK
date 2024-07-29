@@ -20,8 +20,8 @@ project:
         - file: fxls8974cf_motion_wakeup.c
 
   components:
-    - component: Sensors:sensors:issdk_fxls8974cf
-    - component: Sensors:drivers:issdk_interfaces
+    - component: Sensors:sensors:issdk_fxls8974cf&I2C
+    - component: Sensors:drivers:issdk_interfaces&I2C
     - component: Sensors:utils:systick_utils
 
   layers:

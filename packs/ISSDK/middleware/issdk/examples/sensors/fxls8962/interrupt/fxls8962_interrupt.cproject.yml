@@ -20,8 +20,8 @@ project:
         - file: fxls8962_interrupt.c
 
   components:
-    - component: Sensors:sensors:issdk_fxls8962
-    - component: Sensors:drivers:issdk_interfaces
+    - component: Sensors:sensors:issdk_fxls8962&I2C
+    - component: Sensors:drivers:issdk_interfaces&I2C
     - component: Sensors:utils:systick_utils
 
   layers:

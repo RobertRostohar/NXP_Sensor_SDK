@@ -18,8 +18,8 @@ project:
         - file: fxas21002_poll_spi.c
 
   components:
-    - component: Sensors:sensors:issdk_fxas21002
-    - component: Sensors:drivers:issdk_interfaces
+    - component: Sensors:sensors:issdk_fxas21002&SPI
+    - component: Sensors:drivers:issdk_interfaces&SPI
     - component: Sensors:utils:systick_utils
 
   layers:

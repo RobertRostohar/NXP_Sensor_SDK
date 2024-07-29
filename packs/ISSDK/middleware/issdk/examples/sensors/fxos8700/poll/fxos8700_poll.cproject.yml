@@ -15,8 +15,8 @@ project:
         - file: fxos8700_poll.c
 
   components:
-    - component: Sensors:sensors:issdk_fxos8700
-    - component: Sensors:drivers:issdk_interfaces
+    - component: Sensors:sensors:issdk_fxos8700&I2C
+    - component: Sensors:drivers:issdk_interfaces&I2C
     - component: Sensors:utils:systick_utils
 
   layers:

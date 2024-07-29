@@ -15,8 +15,8 @@ project:
         - file: fxos8700_poll_spi.c
 
   components:
-    - component: Sensors:sensors:issdk_fxos8700
-    - component: Sensors:drivers:issdk_interfaces
+    - component: Sensors:sensors:issdk_fxos8700&SPI
+    - component: Sensors:drivers:issdk_interfaces&SPI
     - component: Sensors:utils:systick_utils
 
   layers:

@@ -19,7 +19,7 @@ project:
 
   components:
     - component: Sensors:sensors:issdk_mag3110
-    - component: Sensors:drivers:issdk_interfaces
+    - component: Sensors:drivers:issdk_interfaces&I2C
     - component: Sensors:utils:systick_utils
 
   layers:

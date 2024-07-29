@@ -20,7 +20,7 @@
 
 /* ISSDK Includes */
 #include "issdk_hal.h"
-#include "fxas21002_drv.h"
+#include "fxas21002_drv_i2c.h"
 
 /*******************************************************************************
  * Macro Definitions

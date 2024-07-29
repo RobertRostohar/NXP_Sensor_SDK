@@ -20,7 +20,7 @@
 
 /* ISSDK Includes */
 #include "issdk_hal.h"
-#include "fxos8700_drv.h"
+#include "fxos8700_drv_i2c.h"
 
 /*******************************************************************************
  * Macro Definitions
