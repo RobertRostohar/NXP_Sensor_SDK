@@ -16,7 +16,7 @@ layer:
         - ARDUINO_UNO_UART
         # - ARDUINO_UNO_SPI
         - ARDUINO_UNO_I2C
-        - ARDUINO_UNO_I2C-Alt
+        # - ARDUINO_UNO_I2C-Alt
         - ARDUINO_UNO_D2
         - ARDUINO_UNO_D3
         - ARDUINO_UNO_D4
@@ -36,6 +36,8 @@ layer:
         - Heap: 1024
     - connect: EVK-MIMXRT1060 FXOS8700 On-Board Sensor Disabled
       set: FXOS8700_OnBoard.Disabled
+      provides:
+        - ONBOARD_FXOS8700_SENSOR_DISABLED
     - connect: EVK-MIMXRT1060 FXOS8700 On-Board Sensor Enabled
       set: FXOS8700_OnBoard.Enabled
       info: "Add preprocessor define FXOS8700_ON_BOARD"
@@ -59,51 +61,51 @@ layer:
         - --predefine="-DXIP_BOOT_HEADER_ENABLE=1"
 
   components:
-    - component: NXP::Device:Startup
+    - component: Device:Startup
 
-    - component: NXP::Device:CMSIS:MIMXRT1062_header
-    - component: NXP::Device:CMSIS:MIMXRT1062_system
+    - component: Device:CMSIS:MIMXRT1062_header
+    - component: Device:CMSIS:MIMXRT1062_system
 
-    - component: NXP::Device:SDK Drivers:clock
-    - component: NXP::Device:SDK Drivers:common
-    - component: NXP::Device:SDK Drivers:dmamux
-    - component: NXP::Device:SDK Drivers:edma
-    - component: NXP::Device:SDK Drivers:gpio
-    - component: NXP::Device:SDK Drivers:i2c
-    - component: NXP::Device:SDK Drivers:i2c_edma
-    - component: NXP::Device:SDK Drivers:iomuxc
-    - component: NXP::Device:SDK Drivers:lists
-    - component: NXP::Device:SDK Drivers:lpuart
-    - component: NXP::Device:SDK Drivers:lpuart_adapter
-    - component: NXP::Device:SDK Drivers:lpuart_edma
-    - component: NXP::Device:SDK Drivers:nic301
-    - component: NXP::Device:SDK Drivers:xip_device
+    - component: Device:SDK Drivers:clock
+    - component: Device:SDK Drivers:common
+    - component: Device:SDK Drivers:dmamux
+    - component: Device:SDK Drivers:edma
+    - component: Device:SDK Drivers:gpio
+    - component: Device:SDK Drivers:i2c
+    - component: Device:SDK Drivers:i2c_edma
+    - component: Device:SDK Drivers:iomuxc
+    - component: Device:SDK Drivers:lists
+    - component: Device:SDK Drivers:lpuart
+    - component: Device:SDK Drivers:lpuart_adapter
+    - component: Device:SDK Drivers:lpuart_edma
+    - component: Device:SDK Drivers:nic301
+    - component: Device:SDK Drivers:xip_device
 
-    - component: NXP::Device:SDK Project Template:RTE_Device
+    - component: Device:SDK Project Template:RTE_Device
 
-    - component: NXP::Device:SDK Utilities:MIMXRT1062_linker
+    - component: Device:SDK Utilities:MIMXRT1062_linker
 
-    - component: NXP::Device:SDK Utilities:assert
-    - component: NXP::Device:SDK Utilities:debug_console
-    - component: NXP::Device:SDK Utilities:serial_manager
-    - component: NXP::Device:SDK Utilities:serial_manager_uart
+    - component: Device:SDK Utilities:assert
+    - component: Device:SDK Utilities:debug_console
+    - component: Device:SDK Utilities:serial_manager
+    - component: Device:SDK Utilities:serial_manager_uart
 
-    - component: NXP::Board Support:SDK Drivers:evkmimxrt1060
-    - component: NXP::Board Support:SDK Project Template:project_template&evkmimxrt1060
+    - component: Board Support:SDK Drivers:evkmimxrt1060
+    - component: Board Support:SDK Project Template:project_template&evkmimxrt1060
 
-    - component: ARM::CMSIS:CORE
+    - component: CMSIS:CORE
 
-    - component: NXP::CMSIS Driver:GPIO:gpio_cmsis
-    - component: ARM::CMSIS Driver:I2C:Custom
-    - component: NXP::CMSIS Driver:I2C:lpi2c_cmsis
-    - component: ARM::CMSIS Driver:USART:Custom
-    - component: NXP::CMSIS Driver:USART:lpuart_cmsis
-    - component: ARM::CMSIS Driver:VIO:Custom
+    - component: CMSIS Driver:GPIO:gpio_cmsis
+    - component: CMSIS Driver:I2C:Custom
+    - component: CMSIS Driver:I2C:lpi2c_cmsis
+    - component: CMSIS Driver:USART:Custom
+    - component: CMSIS Driver:USART:lpuart_cmsis
+    - component: CMSIS Driver:VIO:Custom
 
-    - component: ARM::CMSIS-Compiler:CORE
-    - component: ARM::CMSIS-Compiler:STDERR:Custom
-    - component: ARM::CMSIS-Compiler:STDOUT:Custom
-    - component: ARM::CMSIS-Compiler:STDIN:Custom
+    - component: CMSIS-Compiler:CORE
+    - component: CMSIS-Compiler:STDERR:Custom
+    - component: CMSIS-Compiler:STDOUT:Custom
+    - component: CMSIS-Compiler:STDIN:Custom
 
   groups:
     - group: board
