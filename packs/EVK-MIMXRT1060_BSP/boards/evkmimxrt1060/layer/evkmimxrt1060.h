@@ -20,9 +20,7 @@
 #include "Driver_SPI.h"
 #include "Driver_USART.h"
 
-// i.MXRT1060 EVK Arduino Connector Pin Defintion
-#define ARDUINO_UNO_D0  GPIO_PORT1(23U) /* LPUART3: RX */
-#define ARDUINO_UNO_D1  GPIO_PORT1(22U) /* LPUART3: TX */
+// i.MXRT1060 EVK Arduino Connector Pin Defintions
 #define ARDUINO_UNO_D2  GPIO_PORT1(11U)
 #define ARDUINO_UNO_D3  GPIO_PORT1(24U)
 #define ARDUINO_UNO_D4  GPIO_PORT1(9U)
@@ -32,32 +30,35 @@
 #define ARDUINO_UNO_D8  GPIO_PORT1(3U)
 #define ARDUINO_UNO_D9  GPIO_PORT1(2U)
 #define ARDUINO_UNO_D10 GPIO_PORT3(13U)
-#define ARDUINO_UNO_D11 GPIO_PORT3(14U) /* LPSPI1: MOSI */
-#define ARDUINO_UNO_D12 GPIO_PORT3(15U) /* LPSPI1: MISO */
-#define ARDUINO_UNO_D13 GPIO_PORT3(12U) /* LPSPI1: SCK  */
 #define ARDUINO_UNO_D14 GPIO_PORT1(26U)
 #define ARDUINO_UNO_D15 GPIO_PORT1(27U)
 #define ARDUINO_UNO_D16 GPIO_PORT1(20U)
 #define ARDUINO_UNO_D17 GPIO_PORT1(21U)
-#define ARDUINO_UNO_D18 GPIO_PORT1(17U) /* LPI2C1: SDA, Shared with D20 */
-#define ARDUINO_UNO_D19 GPIO_PORT1(16U) /* LPI2C1: SCL, Shared with D21 */
-#define ARDUINO_UNO_D20 GPIO_PORT1(17U) /* LPI2C1: SDA, Shared with D18 */
-#define ARDUINO_UNO_D21 GPIO_PORT1(16U) /* LPI2C1: SCL, Shared with D19 */
 
-// i.MXRT1060 EVK Arduino CMSIS Driver instances
+// i.MXRT1060 EVK Arduino Connector Alternate Function Pin Defintions
+// D0  - LPUART3: RX   (PIO1 Pin 23)
+// D1  - LPUART3: TX   (PIO1 Pin 22)
+// D11 - LPSPI1:  MOSI (PIO3 Pin 14)
+// D12 - LPSPI1:  MISO (PIO3 Pin 15)
+// D13 - LPSPI1:  SCK  (PIO3 Pin 12)
+// D18 - LPI2C1:  SDA  (PIO1 Pin 17), Shared with D20
+// D19 - LPI2C1:  SCL  (PIO1 Pin 16), Shared with D21
+// D20 - LPI2C1:  SDA  (PIO1 Pin 17), Shared with D18
+// D21 - LPI2C1:  SCL  (PIO1 Pin 16), Shared with D19
+
+// CMSIS Driver instances on Arduino Connector
 #define ARDUINO_UNO_I2C     1
-/*
-#define ARDUINO_UNO_SPI     1
-*/
+// #define ARDUINO_UNO_SPI     1
 #define ARDUINO_UNO_UART    3
 
+// Retarget stdio to CMSIS UART
+#define RETARGET_STDIO_UART 1
+
 // CMSIS Drivers
-extern ARM_DRIVER_I2C   Driver_I2C1;    /* Arduino I2C  */
-/*
-extern ARM_DRIVER_SPI   Driver_SPI1;    // Arduino SPI
-*/
-extern ARM_DRIVER_USART Driver_USART1;  /* OpenSDA      */
-extern ARM_DRIVER_USART Driver_USART3;  /* Arduino UART */
+extern ARM_DRIVER_I2C   ARM_Driver_I2C_(ARDUINO_UNO_I2C);       // Arduino I2C
+// extern ARM_DRIVER_SPI   ARM_Driver_SPI_(ARDUINO_UNO_SPI);       // Arduino SPI
+extern ARM_DRIVER_USART ARM_Driver_USART_(RETARGET_STDIO_UART); // OpenSDA
+extern ARM_DRIVER_USART ARM_Driver_USART_(ARDUINO_UNO_UART);    // Arduino UART
 
 // On-Board FXOS8700 Sensor Information
 #ifdef  FXOS8700_ON_BOARD
