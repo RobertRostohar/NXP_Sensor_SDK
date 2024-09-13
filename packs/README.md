@@ -1,42 +1,6 @@
 # Packs
 This directory contains NXP CMSIS-Packs which have been updated as described below.
 
-## IoT Sensing SDK ([ISSDK](ISSDK/))
-- development pack version 3.0.0-dev based on NXP ISSDK pack version 2.0.0
-- added shield layers
-  - registered in pack description
-  - [layer description and content](ISSDK/middleware/issdk/shields/)
-- modified `systick_utils` to use CMSIS Core (not NXP specific)
-  - [systick_utils.c](ISSDK/middleware/issdk/drivers/systick/systick_utils.c)
-- modified I2C interface to remove reference to NXP peripheral memory map
-  - [register_io_i2c.c](ISSDK/middleware/issdk/sensors/register_io_i2c.c)
-  - [register_io_i2c.h](ISSDK/middleware/issdk/sensors/register_io_i2c.h)
-- modified SPI interface to use GPIO CMSIS-Driver and remove reference to NXP peripheral memory map
-  - [register_io_spi.c](ISSDK/middleware/issdk/sensors/register_io_spi.c)
-  - [register_io_spi.h](ISSDK/middleware/issdk/sensors/register_io_spi.h)
-- modified sensor drivers to use GPIO CMSIS-Driver
-  - [diff_p_drv.c](ISSDK/middleware/issdk/sensors/diff_p_drv.c)
-  - [diff_p_drv.h](ISSDK/middleware/issdk/sensors/diff_p_drv.h)
-  - [fxas21002_drv.c](ISSDK/middleware/issdk/sensors/fxas21002_drv.c)
-  - [fxas21002_drv.h](ISSDK/middleware/issdk/sensors/fxas21002_drv.h)
-  - [fxlc95000_drv.c](ISSDK/middleware/issdk/sensors/fxlc95000_drv.c)
-  - [fxlc95000_drv.h](ISSDK/middleware/issdk/sensors/fxlc95000_drv.h)
-  - [fxls8471q_drv.c](ISSDK/middleware/issdk/sensors/fxls8471q_drv.c)
-  - [fxls8471q_drv.h](ISSDK/middleware/issdk/sensors/fxls8471q_drv.h)
-  - [fxls8961_drv.c](ISSDK/middleware/issdk/sensors/fxls8961_drv.c)
-  - [fxls8961_drv.h](ISSDK/middleware/issdk/sensors/fxls8961_drv.h)
-  - [fxls896x_drv.c](ISSDK/middleware/issdk/sensors/fxls896x_drv.c)
-  - [fxls896x_drv.h](ISSDK/middleware/issdk/sensors/fxls896x_drv.h)
-  - [fxls8971_drv.c](ISSDK/middleware/issdk/sensors/fxls8971_drv.c)
-  - [fxls8971_drv.h](ISSDK/middleware/issdk/sensors/fxls8971_drv.h)
-  - [fxls8974_drv.c](ISSDK/middleware/issdk/sensors/fxls8974_drv.c)
-  - [fxls8974_drv.h](ISSDK/middleware/issdk/sensors/fxls8974_drv.h)
-  - [fxos8700_drv.c](ISSDK/middleware/issdk/sensors/fxos8700_drv.c)
-  - [fxos8700_drv.h](ISSDK/middleware/issdk/sensors/fxos8700_drv.h)
-  - [mma9553_drv.c](ISSDK/middleware/issdk/sensors/mma9553_drv.c)
-  - [mma9553_drv.h](ISSDK/middleware/issdk/sensors/mma9553_drv.h)
-
-
 ## EVK-MIMXRT1060 Board Support Pack ([EVK-MIMXRT1060_BSP](EVK-MIMXRT1060_BSP/))
 - development pack version 18.1.0-dev based on NXP EVK-MIMXRT1060_BSP pack version 18.0.0
 - added board layer
