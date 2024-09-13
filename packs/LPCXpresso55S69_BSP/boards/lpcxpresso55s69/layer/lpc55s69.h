@@ -20,40 +20,45 @@
 #include "Driver_SPI.h"
 #include "Driver_USART.h"
 
-// LPCXpresso55S69 Arduino Connector Pin Defintion
-#define ARDUINO_UNO_D0  GPIO_PORT1(24U) /* UART2: RX   PIO1 Pin 24 */
-#define ARDUINO_UNO_D1  GPIO_PORT0(27U) /* UART2: TX   PIO0 Pin 27 */
+// LPCXpresso55S69 Arduino Connector GPIO Pin Defintions
 #define ARDUINO_UNO_D2  GPIO_PORT0(15U)
-#define ARDUINO_UNO_D3  GPIO_PORT1(6U)  /* LED RED:    PIO1 Pin 6  */
-#define ARDUINO_UNO_D4  GPIO_PORT1(7U)  /* LED GREEN:  PIO1 Pin 7  */
-#define ARDUINO_UNO_D5  GPIO_PORT1(4U)  /* LED BLUE:   PIO1 Pin 4  */
+#define ARDUINO_UNO_D3  GPIO_PORT1(6U)  // LED RED:   PIO1 Pin 6
+#define ARDUINO_UNO_D4  GPIO_PORT1(7U)  // LED GREEN: PIO1 Pin 7
+#define ARDUINO_UNO_D5  GPIO_PORT1(4U)  // LED BLUE:  PIO1 Pin 4
 #define ARDUINO_UNO_D6  GPIO_PORT1(10U)
 #define ARDUINO_UNO_D7  GPIO_PORT1(9U)
 #define ARDUINO_UNO_D8  GPIO_PORT1(8U)
 #define ARDUINO_UNO_D9  GPIO_PORT1(5U)
 #define ARDUINO_UNO_D10 GPIO_PORT1(1U)
-#define ARDUINO_UNO_D11 GPIO_PORT0(26U) /* SPI8:  MOSI PIO0 Pin 26 */
-#define ARDUINO_UNO_D12 GPIO_PORT1(3U)  /* SPI8:  MISO PIO1 Pin 3  */
-#define ARDUINO_UNO_D13 GPIO_PORT1(2U)  /* SPI8:  SCK  PIO1 Pin 2  */
 #define ARDUINO_UNO_D14 GPIO_PORT0(16U)
 #define ARDUINO_UNO_D15 GPIO_PORT0(23U)
 #define ARDUINO_UNO_D16 GPIO_PORT0(0U)
 #define ARDUINO_UNO_D17 GPIO_PORT1(31U)
 #define ARDUINO_UNO_D18 GPIO_PORT0(13U)
 #define ARDUINO_UNO_D19 GPIO_PORT0(14U)
-#define ARDUINO_UNO_D20 GPIO_PORT1(21U) /* I2C4:  SDA  PIO1 Pin 21 */
-#define ARDUINO_UNO_D21 GPIO_PORT1(20U) /* I2C4:  SCL  PIO1 Pin 20 */
 
-// LPCXpresso55S69 Arduino CMSIS Driver instances
+// LPCXpresso55S69 Arduino Connector Alternate Function Pin Definitions
+// D0  - UART2: RX   (PIO1 Pin 24)
+// D1  - UART2: TX   (PIO0 Pin 27)
+// D11 - SPI8:  MOSI (PIO0 Pin 26)
+// D12 - SPI8:  MISO (PIO1 Pin 3)
+// D13 - SPI8:  SCK  (PIO1 Pin 2)
+// D20 - I2C4:  SDA  (PIO1 Pin 21)
+// D21 - I2C4:  SCL  (PIO1 Pin 20)
+
+// CMSIS Driver instances on Arduino Connector
 #define ARDUINO_UNO_I2C     4
 #define ARDUINO_UNO_SPI     8
 #define ARDUINO_UNO_UART    2
 
+// Retarget stdio to CMSIS UART
+#define RETARGET_STDIO_UART 0
+
 // CMSIS Drivers
-extern ARM_DRIVER_I2C   Driver_I2C4;    /* Arduino I2C  */
-extern ARM_DRIVER_SPI   Driver_SPI8;    /* Arduino SPI  */
-extern ARM_DRIVER_USART Driver_USART0;  /* OpenSDA      */
-extern ARM_DRIVER_USART Driver_USART2;  /* Arduino UART */
+extern ARM_DRIVER_I2C   ARM_Driver_I2C_(ARDUINO_UNO_I2C);       // Arduino I2C
+extern ARM_DRIVER_SPI   ARM_Driver_SPI_(ARDUINO_UNO_SPI);       // Arduino SPI
+extern ARM_DRIVER_USART ARM_Driver_USART_(RETARGET_STDIO_UART); // OpenSDA
+extern ARM_DRIVER_USART ARM_Driver_USART_(ARDUINO_UNO_UART);    // Arduino UART
 
 // Enter Sleep (Power Down)
 #define ENTER_SLEEP()       POWER_EnterSleep()
